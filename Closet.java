@@ -29,6 +29,7 @@ import javafx.stage.Stage;
 import event.Event;
 import event.EventLog;
 import common.PropertyFile;
+import javafx.scene.image.Image;
 
 import model.Receptionist;
 import userinterface.MainStageContainer;
@@ -45,7 +46,6 @@ public class Closet extends Application
 	/** Main stage of the application */
 	private Stage mainStage;
 
-
 	// start method for this class, the main application object
 	//----------------------------------------------------------
 	public void start(Stage primaryStage)
@@ -54,9 +54,9 @@ public class Closet extends Application
 	   System.out.println("Copyright 2018 Sandeep Mitra and Students");
 
            // Create the top-level container (main frame) and add contents to it.
-	   MainStageContainer.setStage(primaryStage, "Brockport Professional Clothes Closet Version 1.00");
+	   MainStageContainer.setStage(primaryStage, "Clothes Closet Version 1.00");
 	   mainStage = MainStageContainer.getInstance();
-
+           mainStage.getIcons().add(new Image("/images/shieldtrans.png")); // set small icon in top left to bport icon
 	   // Finish setting up the stage (ENABLE THE GUI TO BE CLOSED USING THE TOP RIGHT
 	   // 'X' IN THE WINDOW), and show it.
         mainStage.setOnCloseRequest(new EventHandler <javafx.stage.WindowEvent>() {
