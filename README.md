@@ -1,6 +1,6 @@
 ******THINGS TO NOTE WHEN COMMITTING*****
 
-1.COMMITS ARE PRETTY MUCH PERMIT!!!! Replacing a file causes the previous file to be deleted and a hastle to recover it.
+1.COMMITS ARE PRETTY MUCH PERMIT!!!! Replacing a file causes the previous file to be deleted and a hassle to recover it.
   Feel free to make branches if you are unsure about the committing!!
   BRANCHES ARE SAFER.
   Creating a branch allows you to have your own branch workspace.
