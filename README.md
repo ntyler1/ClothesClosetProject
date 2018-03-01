@@ -17,6 +17,6 @@
 
 ******THINGS TO NOTE WHEN TESTING*****
 
-1. Java code needs to be compiled (you all know that right??). You adding your .java class doesnt actually do anything unless its           compiled. coms.txt contains two cmd commands to compile everything. Simply open cmd (command prompt), change directory to your project directory (ex: cd desktop/csc429project) then paste the two commands into cmd and hit enter. Cmd will report any errors, if so you have some fixing to do. That should compile your changes and now you are free to actually run the application.
+1. Java code needs to be compiled (you all know that right??). You adding your .java class doesnt actually do anything unless its           compiled. coms.txt contains two cmd commands to compile everything. Simply open cmd (command prompt), change directory to your project directory (ex: cd desktop/csc429project) then paste the two commands into cmd and hit enter. Cmd will report any errors, if so you have some fixing to do. That should compile your changes and now you are free to actually run the application by clicking on the run batch file.
 
-2. Be careful with your ide. They add extra imports to work with your workspace. For example, eclipse likes to add an import something like import com.sun.stuff.stuff;. You need to remove these before committing or else when compiling there will be errors because it cant find the import.
+2. Be careful with your ide. They sometimes add extra imports to work with your workspace. For example, eclipse likes to add an import something like import com.sun.stuff.stuff;. You need to remove these before committing or else when compiling there will be errors because it cant find the import.
