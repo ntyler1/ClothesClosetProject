@@ -41,7 +41,7 @@ public class AddColorTransaction extends Transaction
 	protected void setDependencies()
 	{
 		dependencies = new Properties();
-		dependencies.setProperty("CancelAddAT", "CancelTransaction");
+		dependencies.setProperty("CancelAddC", "CancelTransaction");
 		dependencies.setProperty("OK", "CancelTransaction");
 		dependencies.setProperty("ColorData", "TransactionError");
 
@@ -77,7 +77,7 @@ public class AddColorTransaction extends Transaction
 					String descriptionOfAT = props.getProperty("Description");
 					if (descriptionOfAT.length() > 30)
 					{
-						transactionErrorMessage = "ERROR: Article Type Description too long! ";
+						transactionErrorMessage = "ERROR: Color Description too long! ";
 					}
 					else
 					{
