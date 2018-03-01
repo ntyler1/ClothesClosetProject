@@ -1,6 +1,8 @@
 package userinterface;
-
+import javafx.event.Event;
 import java.util.Properties;
+
+import com.sun.xml.internal.bind.v2.runtime.Name;
 
 import impresario.IModel;
 import javafx.event.ActionEvent;
@@ -34,15 +36,15 @@ public class AddClothingItemView extends View
 	protected TextField email;
 	protected TextField notes;
 
-	protected Button submit;
-	protected Button done;
+	protected Button submitButton;
+	protected Button returnButton;
 
 	protected MessageView statusLog;
 
 
-	
-	
-	public AddArticleTypeView(IModel ac)
+
+
+	public AddClothingItemView(IModel ac)
 	{
 		super(ac, "AddClothingItemView");
 
@@ -65,17 +67,17 @@ public class AddClothingItemView extends View
 		myModel.subscribe("TransactionError", this);
 	}
 
-	
-	
-	
+
+
+
 	protected String getActionText()
 	{
 		return "Adding the clothing item...";
 	}
 
-	
-	
-	
+
+
+
 	private Node createTitle()
 	{
 		VBox container = new VBox(10);
@@ -119,93 +121,138 @@ public class AddClothingItemView extends View
 		return container;
 	}
 
-	
-	
-	
+
+
+
 	private VBox createFormContent()
 	{
 		VBox vbox = new VBox(10);
-		
+
 		Text prompt = new Text("CLOTHING ITEM INFORMATION");
-        prompt.setWrappingWidth(400);
-        prompt.setTextAlignment(TextAlignment.CENTER);
-        prompt.setFill(Color.BLACK);
+		prompt.setWrappingWidth(400);
+		prompt.setTextAlignment(TextAlignment.CENTER);
+		prompt.setFill(Color.BLACK);
 		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		vbox.getChildren().add(prompt);
-		
+
 
 		GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-       	grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(0, 25, 10, 0));
+		grid.setAlignment(Pos.CENTER);
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(0, 25, 10, 0));
+
 
 		Text genderLabel = new Text(" Gender : ");
 		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 12);
 		genderLabel.setFont(myFont);
 		genderLabel.setWrappingWidth(150);
-		gender.setTextAlignment(TextAlignment.RIGHT);
+		genderLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(genderLabel, 0, 1);
 
 		gender = (ComboBox)createGenderComboBox();
+		//gender.setPrefWidth(value);
 		grid.add(gender, 1, 1);
-		
-		
-		
+
+
+
 		Text color1Label = new Text(" Color 1 : ");
 		color1Label.setFont(myFont);
 		color1Label.setWrappingWidth(150);
-		color1.setTextAlignment(TextAlignment.RIGHT);
+		color1Label.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(color1Label, 0, 2);
 
-		gender = new TextField();
-		grid.add(gender, 1, 2);
+		color1  = (ComboBox)createColor1ComboBox();
+		//color1.setPrefWidth(value);
+		grid.add(color1, 1, 2);
 
-		
-		
+
+
 		Text color2Label = new Text(" Color 2 : ");
 		color2Label.setFont(myFont);
 		color2Label.setWrappingWidth(150);
 		color2Label.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(color2Label, 0, 3);
 
-		color2 = new TextField();
-		grid.add(color2, 1, 2);
-		
-		
-		
+		color2 = (ComboBox)createColor2ComboBox();
+		//color2.setPrefWidth(value);
+		grid.add(color2, 1, 3);
+
+
+
 		Text brandLabel = new Text(" Brand : ");
 		brandLabel.setFont(myFont);
 		brandLabel.setWrappingWidth(150);
 		brandLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(brandLabel, 0, 4);
 
-		brand = new TextField();
+		brand = new TextField("Type brand...");
+		//brand.setPrefWidth(value);
 		grid.add(brand, 1, 4);
 
-		
-		
-		Text color2Label = new Text(" Color 2 : ");
-		color2Label.setFont(myFont);
-		color2Label.setWrappingWidth(150);
-		color2Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(color2Label, 0, 3);
 
-		color2 = new TextField();
-		grid.add(color2, 1, 2);
-		
-		
-		
-		
-		
-		Text alphaCodeLabel = new Text(" Alpha Code : ");
-		alphaCodeLabel.setFont(myFont);
-		alphaCodeLabel.setWrappingWidth(150);
-		alphaCodeLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(alphaCodeLabel, 0, 3);
 
-		alphaCode = new TextField();
-		grid.add(alphaCode, 1, 3);
+		Text notesLabel = new Text(" Notes : ");
+		notesLabel.setFont(myFont);
+		notesLabel.setWrappingWidth(150);
+		notesLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(notesLabel, 0, 5);
+
+		notes = new TextField("Type description...");
+		//notes.setPrefWidth();
+		//notes.setPrefHeight(value);
+		grid.add(notes, 1, 5);
+
+
+		Text firstNameLabel = new Text(" First Name : ");
+		firstNameLabel.setFont(myFont);
+		firstNameLabel.setWrappingWidth(150);
+		firstNameLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(firstNameLabel, 3, 0);
+
+		firstName = new TextField("Type first name...");
+		//firstName.setPrefWidth(value);
+		grid.add(firstName, 4, 0);
+
+
+
+		Text lastNameLabel = new Text(" Last Name : ");
+		lastNameLabel.setFont(myFont);
+		lastNameLabel.setWrappingWidth(150);
+		lastNameLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(lastNameLabel, 3, 1);
+
+		lastName = new TextField("Type last name...");
+		//lastName.setPrefWidth(value);
+		grid.add(lastName, 4, 1);
+
+
+
+		Text phoneNumberLabel = new Text(" Phone Number : ");
+		phoneNumberLabel.setFont(myFont);
+		phoneNumberLabel.setWrappingWidth(150);
+		phoneNumberLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(phoneNumberLabel, 4, 2);
+
+		phoneNumber = new TextField("Type phone number...");
+		//phoneNumber.setPrefWidth(value);
+		grid.add(phoneNumber, 3, 2);
+
+
+
+		Text emailLabel = new Text(" Email Address : ");
+		emailLabel.setFont(myFont);
+		emailLabel.setWrappingWidth(150);
+		emailLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(emailLabel, 3, 3);
+
+		email = new TextField("Type email address...");
+		//email.setPrefWidth(value);
+		grid.add(email, 4, 3);
+
+
+
+
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
@@ -213,23 +260,72 @@ public class AddClothingItemView extends View
 		submitButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-					Properties props = new Properties();
-					String bcPrfx = barcodePrefix.getText();
-					if (bcPrfx.length() > 0)
+			@Override
+			public void handle(ActionEvent e) {
+				clearErrorMessage();
+				Properties props = new Properties();
+				String gndr = (String) gender.getValue();
+				if (gndr.length() > 0)
+				{
+					props.setProperty("Gender", gndr);
+					String clr1 = (String)color1.getValue();
+					if (clr1.length() > 0)
 					{
-						props.setProperty("BarcodePrefix", bcPrfx);
-						String descrip = description.getText();
-						if (descrip.length() > 0)
+						props.setProperty("Color1", clr1);
+						String clr2 = (String)color2.getValue();
+						if (clr2.length() > 0)
 						{
-							props.setProperty("Description", descrip);
-							String alfaC = alphaCode.getText();
-							if (alfaC.length() > 0)
+							props.setProperty("Color2", clr2);
+							String brnd = brand.getText();
+							if (brnd.length() > 0)
 							{
-								props.setProperty("AlphaCode", alfaC);
-								myModel.stateChangeRequest("ArticleTypeData", props); 
+								props.setProperty("Brand", brnd);
+								String nts = notes.getText();
+								if (nts.length() > 0)
+								{
+									props.setProperty("Notes", nts);
+									String frstName = firstName.getText();
+									if (frstName.length() > 0)
+									{
+										props.setProperty("FirstName", frstName);
+										String lstName = lastName.getText();
+										if (lstName.length() > 0)
+										{
+											props.setProperty("LastName", lstName);
+											String phoneNum = phoneNumber.getText();
+											if (phoneNum.length() > 0)
+											{
+												props.setProperty("PhoneNumber", phoneNum);
+												String em = email.getText();
+												if (em.length() > 0)
+												{
+													props.setProperty("Emial", em);
+													myModel.stateChangeRequest("InventoryData", props); 
+												}
+												else
+												{
+													displayErrorMessage("ERROR: Please enter a valid alpha code!");
+												}
+											}
+											else
+											{
+												displayErrorMessage("ERROR: Please enter a valid alpha code!");
+											}
+										}
+										else
+										{
+											displayErrorMessage("ERROR: Please enter a valid alpha code!");
+										}
+									}
+									else
+									{
+										displayErrorMessage("ERROR: Please enter a valid alpha code!");
+									}
+								}
+								else
+								{
+									displayErrorMessage("ERROR: Please enter a valid alpha code!");
+								}
 							}
 							else
 							{
@@ -238,32 +334,36 @@ public class AddClothingItemView extends View
 						}
 						else
 						{
-							displayErrorMessage("ERROR: Please enter a valid description!");
+							displayErrorMessage("ERROR: Please enter a valid alpha code!");
 						}
-						
 					}
 					else
 					{
-						displayErrorMessage("ERROR: Please enter a barcode prefix!");
-						
+						displayErrorMessage("ERROR: Please enter a valid alpha code!");
 					}
-       		    	  
-            	  }
-        	});
-		doneCont.getChildren().add(submitButton);
-		
-		cancelButton = new Button("Return");
-		cancelButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
+				}
+				else
+				{
+					displayErrorMessage("ERROR: Please enter a valid alpha code!");
+				}
 
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-       		    	myModel.stateChangeRequest("CancelAddAT", null);   
-            	  }
-        	});
-		doneCont.getChildren().add(cancelButton);
-	
+			}
+
+		});
+		doneCont.getChildren().add(submitButton);
+
+		returnButton = new Button("Return");
+		returnButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		returnButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				clearErrorMessage();
+				myModel.stateChangeRequest("CancelAddCI", null);   
+			}
+		});
+		doneCont.getChildren().add(returnButton);
+
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(doneCont);
 
@@ -272,11 +372,72 @@ public class AddClothingItemView extends View
 
 
 
-public Node createGenderComboBox()
-{
-	final ComboBox<String> genderCombo = new ComboBox<String>();
-	genderCombo.getItems().addAll("Male" , "Female");
-	return genderCombo;
-}
+	public Node createGenderComboBox()
+	{
+		final ComboBox<String> genderCombo = new ComboBox<String>();
+		genderCombo.getItems().addAll("Male" , "Female");
+		return genderCombo;
+	}
+
+	public Node createColor1ComboBox()
+	{
+		final ComboBox<String> color1Combo = new ComboBox<String>();
+		color1Combo.getItems().addAll("Male" , "Female");
+		return color1Combo;
+	}
+
+	public Node createColor2ComboBox()
+	{
+		final ComboBox<String> color2Combo = new ComboBox<String>();
+		color2Combo.getItems().addAll("Male" , "Female");
+		return color2Combo;
+	}
+
+	protected MessageView createStatusLog(String initialMessage)
+	{
+		statusLog = new MessageView(initialMessage);
+
+		return statusLog;
+	}
+
+	public void populateFields()
+	{
+
+	}
+
+	public void updateState(String key, Object value)
+	{
+		clearErrorMessage();
+
+		if (key.equals("TransactionError") == true)
+		{
+			String val = (String)value;
+			if (val.startsWith("ERR") == true)
+			{
+				displayErrorMessage(val);
+			}
+			else
+			{
+				displayMessage(val);
+			}
+
+		}
+	}
+
+	public void displayErrorMessage(String message)
+	{
+		statusLog.displayErrorMessage(message);
+	}
+
+
+	public void displayMessage(String message)
+	{
+		statusLog.displayMessage(message);
+	}
+
+	public void clearErrorMessage()
+	{
+		statusLog.clearErrorMessage();
+	}
 
 }
