@@ -15,7 +15,7 @@ import exception.MultiplePrimaryKeysException;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-/** The class containing the UpdateArticleTypeTransaction for the Professional Clothes Closet application */
+/** The class containing the UpdateColorTransaction for the Professional Clothes Closet application */
 //==============================================================
 public class UpdateColorTransaction extends Transaction
 {
@@ -43,7 +43,7 @@ public class UpdateColorTransaction extends Transaction
 	{
 		dependencies = new Properties();
 		dependencies.setProperty("CancelSearchColor", "CancelTransaction");
-		dependencies.setProperty("CancelAddAT", "CancelTransaction");
+		dependencies.setProperty("CancelAddC", "CancelTransaction");
 		dependencies.setProperty("ColorData", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
@@ -85,8 +85,8 @@ public class UpdateColorTransaction extends Transaction
 	//--------------------------------------------------------------------------
 	private void colorModificationHelper(Properties props)
 	{
-		String descriptionOfAT = props.getProperty("Description");
-		if (descriptionOfAT.length() > 30)
+		String descriptionOfC = props.getProperty("Description");
+		if (descriptionOfC.length() > 30)
 		{
 			transactionErrorMessage = "ERROR: Color Description too long! ";
 		}
@@ -101,7 +101,7 @@ public class UpdateColorTransaction extends Transaction
 			{
 				// Everything OK
 				
-				mySelectedColor.stateChangeRequest("Description", descriptionOfAT);
+				mySelectedColor.stateChangeRequest("Description", descriptionOfC);
 				mySelectedColor.stateChangeRequest("AlphaCode", alphaCode);
 				mySelectedColor.update();
 				transactionErrorMessage = (String)mySelectedColor.getState("UpdateStatusMessage");
@@ -128,7 +128,7 @@ public class UpdateColorTransaction extends Transaction
 					transactionErrorMessage = "ERROR: Barcode Prefix " + barcodePrefix 
 						+ " already exists!";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Article type with barcode prefix : " + barcodePrefix + " already exists!",
+						"Color with barcode prefix : " + barcodePrefix + " already exists!",
 						Event.ERROR);
 				}
 				catch (InvalidPrimaryKeyException ex)
@@ -240,7 +240,7 @@ public class UpdateColorTransaction extends Transaction
 			catch (Exception ex)
 			{
 				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Error in creating ModifyArticleTypeView", Event.ERROR);
+					"Error in creating ModifyColorView", Event.ERROR);
 			}
 		}
 		else
