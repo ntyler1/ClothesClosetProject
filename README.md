@@ -9,11 +9,7 @@
 
 2.Be sure to make sure files make it to the right subdirectory.
   ex: userinterface files go into the userinterface folder.
-  You can do this by editing the name of the file when you commit/make a branch.
-  At the top of the commit it should show your file names above the code .
-  add the directory before the name before you commit.
-  ex: addArticleView.java becomes userinterface/addArticleView.java
-  or you can click the subdirectory folder you need to add files to and upload the files directly to the subdirectory 
+  You can do this by clicking the subdirectory folder you need to add files to and upload the files directly to the subdirectory 
  
 3.Test your code before you commit!!!
   DONT ADD BROKEN CODE TO THE REPOSITORY, WHAT'S THE POINT OF THAT????
