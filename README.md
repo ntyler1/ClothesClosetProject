@@ -3,11 +3,10 @@
 1.COMMITS ARE PRETTY MUCH PERMANENT!!!! Replacing a file causes the previous file to be deleted and a hassle to recover it.
   Feel free to make branches if you are unsure about the committing!!
   BRANCHES ARE SAFER.
-  Creating a branch allows you to have your own branch workspace by creating a subrepository for your changes which do not interfere with   the master repository unless it is merged.
   Make the names of branches relevant, for merging purposes please!!! So I know what the changes are the branch contains.
   Adding new files is no big deal since there is no deletion of files.
 
-2.Be sure to make sure files make it to the right subdirectory.
+2.Be sure files make it to the right subdirectory.
   ex: userinterface files go into the userinterface folder.
   You can do this by clicking the subdirectory folder you need to add files to and upload the files directly to the subdirectory 
  
