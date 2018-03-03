@@ -55,6 +55,7 @@ public class AddArticleTypeView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
+                container.setStyle("-fx-background-color: gold");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// Add a title for this panel
@@ -75,7 +76,7 @@ public class AddArticleTypeView extends View
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** Adding a new Article Type **";
+		return "** ADD NEW ARTICLE TYPE **";
 	}
 
 	// Create the title container
@@ -85,18 +86,18 @@ public class AddArticleTypeView extends View
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
-		Text clientText = new Text(" Office of Career Services ");
-		clientText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		Text clientText = new Text("OFFICE OF CAREER SERVICES");
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
 		clientText.setWrappingWidth(350);
 		clientText.setTextAlignment(TextAlignment.CENTER);
 		clientText.setFill(Color.DARKGREEN);
 		container.getChildren().add(clientText);
 		
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
 		titleText.setWrappingWidth(350);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.BROWN);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
@@ -107,10 +108,10 @@ public class AddArticleTypeView extends View
                 container.getChildren().add(blankText);
 
 		Text actionText = new Text("     " + getActionText() + "       ");
-		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREY);
 		container.getChildren().add(actionText);
 	
 		return container;
@@ -127,13 +128,13 @@ public class AddArticleTypeView extends View
 		blankText.setWrappingWidth(350);
 		blankText.setTextAlignment(TextAlignment.CENTER);
 		blankText.setFill(Color.WHITE);
-		vbox.getChildren().add(blankText);
+                vbox.getChildren().add(blankText);
 		
-		Text prompt = new Text("ARTICLE TYPE INFORMATION");
+		Text prompt = new Text("ENTER ARTICLE TYPE INFORMATION");
                 prompt.setWrappingWidth(400);
                 prompt.setTextAlignment(TextAlignment.CENTER);
                 prompt.setFill(Color.BLACK);
-		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+		prompt.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		vbox.getChildren().add(prompt);
 		
 
@@ -144,7 +145,7 @@ public class AddArticleTypeView extends View
                 grid.setPadding(new Insets(0, 25, 10, 0));
 
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
-		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 12);
+		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
 		barcodePrefixLabel.setFont(myFont);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -173,11 +174,11 @@ public class AddArticleTypeView extends View
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
-                ImageView icon = new ImageView(new Image("/images/check.png"));
+                ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
-		submitButton = new Button("Submit", icon);
-		submitButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		submitButton = new Button("Add", icon);
+		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
        		     @Override
@@ -217,11 +218,11 @@ public class AddArticleTypeView extends View
             	  }
         	});
 		doneCont.getChildren().add(submitButton);
-		icon = new ImageView(new Image("/images/return.png"));
+		icon = new ImageView(new Image("/images/returncolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
        		     @Override

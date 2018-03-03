@@ -56,6 +56,7 @@ public class SearchArticleTypeView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
+                container.setStyle("-fx-background-color: gold");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// Add a title for this panel
@@ -76,7 +77,7 @@ public class SearchArticleTypeView extends View
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** Search for Article Type **";
+		return "** SEARCH FOR ARTICLE TYPE **";
 	}
 
 	// Create the title container
@@ -86,25 +87,18 @@ public class SearchArticleTypeView extends View
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
-		Text clientText = new Text(" Office of Career Services ");
-		clientText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		Text clientText = new Text("OFFICE OF CAREER SERVICES");
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
 		clientText.setWrappingWidth(350);
 		clientText.setTextAlignment(TextAlignment.CENTER);
 		clientText.setFill(Color.DARKGREEN);
 		container.getChildren().add(clientText);
 		
-		Text collegeText = new Text(" THE COLLEGE AT BROCKPORT ");
-		collegeText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		collegeText.setWrappingWidth(350);
-		collegeText.setTextAlignment(TextAlignment.CENTER);
-		collegeText.setFill(Color.DARKGREEN);
-		container.getChildren().add(collegeText);
-		
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
 		titleText.setWrappingWidth(350);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.BROWN);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
@@ -114,11 +108,11 @@ public class SearchArticleTypeView extends View
 		blankText.setFill(Color.WHITE);
 		container.getChildren().add(blankText);
 
-		Text actionText = new Text("     " + getActionText() + "       ");
+		Text actionText = new Text("   " + getActionText() + "     ");
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREY);
 		container.getChildren().add(actionText);
 	
 		return container;
@@ -137,11 +131,11 @@ public class SearchArticleTypeView extends View
 		blankText.setFill(Color.WHITE);
 		vbox.getChildren().add(blankText);
                 
-		Text prompt1 = new Text("Enter Article Type Barcode Prefix (if known)");
+		Text prompt1 = new Text("ENTER ARTICLE TYPE BARCODE PREFIX");
                 prompt1.setWrappingWidth(400);
                 prompt1.setTextAlignment(TextAlignment.CENTER);
                 prompt1.setFill(Color.BLACK);
-		prompt1.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+		prompt1.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		vbox.getChildren().add(prompt1);
 		
 		GridPane grid0 = new GridPane();
@@ -151,7 +145,7 @@ public class SearchArticleTypeView extends View
                 grid0.setPadding(new Insets(0, 25, 10, 0));
 		
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
-		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 12);
+		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 14);
 		barcodePrefixLabel.setFont(myFont);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -176,11 +170,11 @@ public class SearchArticleTypeView extends View
 		
 		vbox.getChildren().add(grid0);
 		
-		Text prompt2 = new Text(" - Otherwise, enter other criteria below - ");
+		Text prompt2 = new Text(" ENTER OTHER SEARCH CRITERIA ");
                 prompt2.setWrappingWidth(400);
                 prompt2.setTextAlignment(TextAlignment.CENTER);
                 prompt2.setFill(Color.BLACK);
-		prompt2.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+		prompt2.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		vbox.getChildren().add(prompt2);
 
 		GridPane grid = new GridPane();
@@ -224,11 +218,11 @@ public class SearchArticleTypeView extends View
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
-                ImageView icon = new ImageView(new Image("/images/check.png"));
+                ImageView icon = new ImageView(new Image("/images/searchcolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
-		submitButton = new Button("Submit",icon);
-		submitButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		submitButton = new Button("Search",icon);
+		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
        		     @Override
@@ -252,11 +246,11 @@ public class SearchArticleTypeView extends View
 			}
 		});
 		doneCont.getChildren().add(submitButton);
-		icon = new ImageView(new Image("/images/return.png"));
+		icon = new ImageView(new Image("/images/returncolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return",icon);
-		cancelButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
        		     @Override
