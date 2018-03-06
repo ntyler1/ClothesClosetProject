@@ -1,7 +1,9 @@
 // specify the package
 package userinterface;
 
+
 // system imports
+import model.*;
 import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -44,6 +46,8 @@ public class RemoveArticleTypeView extends View
 
 	// For showing error message
 	protected MessageView statusLog;
+	
+	private Receptionist myReceptionist;
 
 	// constructor for this class -- takes a model object
 	//----------------------------------------------------------
@@ -179,11 +183,7 @@ public class RemoveArticleTypeView extends View
 				}
 				else
 				{
-					props.setProperty("AlphaCode", alfaC);
-					myModel.stateChangeRequest("ArticleTypeData", props);
-					props.setProperty("Description", desc);
-					myModel.stateChangeRequest("ArticleTypeData", props);
-					//two options, create new ArticleType or find a way to search
+					myReceptionist.createArticleTypeCollection(alfaC, desc);
 				}
 			}});
 
@@ -220,7 +220,8 @@ public class RemoveArticleTypeView extends View
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
-
+		description.setText((String)myModel.getState("Description"));
+		alphaCode.setText((String)myModel.getState("AlphaCode"));
 	}
 
 	/**
