@@ -47,8 +47,10 @@ public class ArticleTypeCollectionView extends View
 	protected TableView<ArticleTypeTableModel> tableOfArticleTypes;
 	protected Button cancelButton;
 	protected Button submitButton;
-
+        protected int entryCnt = 0;
 	protected MessageView statusLog;
+        protected Text actionText; 
+        
 
 
 	//--------------------------------------------------------------------------
@@ -58,6 +60,7 @@ public class ArticleTypeCollectionView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
+                container.setStyle("-fx-background-color: gold");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// create our GUI components, add them to this panel
@@ -89,14 +92,15 @@ public class ArticleTypeCollectionView extends View
 				(ArticleTypeCollection)myModel.getState("ArticleTypeList");
 
 	 		Vector entryList = (Vector)articleTypeCollection.getState("ArticleTypes");
-			
+                        
 			if (entryList.size() > 0)
 			{
 				Enumeration entries = entryList.elements();
 
 				while (entries.hasMoreElements() == true)
 				{
-					ArticleType nextAT = (ArticleType)entries.nextElement();
+                                        entryCnt++;
+                                        ArticleType nextAT = (ArticleType)entries.nextElement();
 					Vector<String> view = nextAT.getEntryListView();
 
 					// add this list entry to the list
@@ -104,6 +108,10 @@ public class ArticleTypeCollectionView extends View
 					tableData.add(nextTableRowData);
 					
 				}
+                                if(entryList.size() == 1)
+                                    actionText.setText(entryCnt+" ARTICLE TYPE FOUND!");
+                                else 
+                                    actionText.setText(entryCnt+" ARTICLE TYPES FOUND!");
 			}
 			else
 			{
@@ -115,6 +123,7 @@ public class ArticleTypeCollectionView extends View
 		catch (Exception e) {//SQLException e) {
 			// Need to handle this exception
 		}
+               
 	}
 
 	// Create the title container
@@ -124,25 +133,18 @@ public class ArticleTypeCollectionView extends View
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
-		Text clientText = new Text(" Office of Career Services ");
-		clientText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		Text clientText = new Text("OFFICE OF CAREER SERVICES");
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
 		clientText.setWrappingWidth(350);
 		clientText.setTextAlignment(TextAlignment.CENTER);
 		clientText.setFill(Color.DARKGREEN);
 		container.getChildren().add(clientText);
-		
-		Text collegeText = new Text(" THE COLLEGE AT BROCKPORT ");
-		collegeText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		collegeText.setWrappingWidth(350);
-		collegeText.setTextAlignment(TextAlignment.CENTER);
-		collegeText.setFill(Color.DARKGREEN);
-		container.getChildren().add(collegeText);
-		
+                
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
+		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
 		titleText.setWrappingWidth(350);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.BROWN);
 		container.getChildren().add(titleText);
                 		
                 Text blankText = new Text("  ");
@@ -151,12 +153,12 @@ public class ArticleTypeCollectionView extends View
 		blankText.setTextAlignment(TextAlignment.CENTER);
 		blankText.setFill(Color.WHITE);
 		container.getChildren().add(blankText);
-                
-		Text actionText = new Text("      ** Matching Article Types **       ");
-		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+
+                actionText = new Text(entryCnt+" ARTICLE TYPES FOUND!");
+		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREY);
 		container.getChildren().add(actionText);
 	
 		return container;
@@ -174,6 +176,7 @@ public class ArticleTypeCollectionView extends View
                 grid.setPadding(new Insets(0, 25, 10, 0));
 
 		tableOfArticleTypes = new TableView<ArticleTypeTableModel>();
+                tableOfArticleTypes.setStyle("-fx-focus-color: transparent;");
 		tableOfArticleTypes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;
@@ -208,7 +211,7 @@ public class ArticleTypeCollectionView extends View
 				}
 			}
 		});
-                ImageView icon = new ImageView(new Image("/images/check.png"));
+                ImageView icon = new ImageView(new Image("/images/checkcolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Submit",icon);
@@ -223,7 +226,7 @@ public class ArticleTypeCollectionView extends View
 					
             	 }
         	});
-                icon = new ImageView(new Image("/images/return.png"));
+                icon = new ImageView(new Image("/images/returncolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
@@ -245,7 +248,7 @@ public class ArticleTypeCollectionView extends View
             	  }
         	});
 
-		HBox btnContainer = new HBox(100);
+		HBox btnContainer = new HBox(10);
 		btnContainer.setAlignment(Pos.CENTER);
 		btnContainer.getChildren().add(submitButton);
 		btnContainer.getChildren().add(cancelButton);
