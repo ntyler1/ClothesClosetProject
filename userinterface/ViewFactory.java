@@ -26,7 +26,24 @@ public class ViewFactory {
 		else if(viewName.equals("SearchArticleTypeView") == true)
 		{
 			return new SearchArticleTypeView(model);
-		} /*
+		}
+		else if(viewName.equals("AddColorView") == true)
+		{
+			return new AddColorView(model);
+		}
+		else if(viewName.equals("ModifyColorView") == true)
+		{
+			return new ModifyColorView(model);
+		}
+		else if(viewName.equals("ColorCollectionView") == true)
+		{
+			return new ColorCollectionView(model);
+		}
+		else if(viewName.equals("SearchColorView") == true)
+		{
+			return new SearchColorView(model);
+		}
+		/*
 		else if(viewName.equals("DepositTransactionView") == true)
 		{
 			return new DepositTransactionView(model);
