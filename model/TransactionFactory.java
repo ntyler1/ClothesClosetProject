@@ -42,6 +42,11 @@ public class TransactionFactory
 		{
 			retValue = new UpdateColorTransaction();
 		}
+		else
+		if(transType.equals("RemoveColor") == true)
+		{
+			retValue = new RemoveColorTransaction();
+		}
 		
 		/*
 		else
