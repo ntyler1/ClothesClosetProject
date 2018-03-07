@@ -27,6 +27,8 @@ import java.util.Properties;
 
 // project imports
 import impresario.IModel;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /** The class containing the Modify Article Type View  for the Professional Clothes
  *  Closet application 
@@ -47,7 +49,7 @@ public class ModifyArticleTypeView extends AddArticleTypeView
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** Modify Article Type Data **";
+		return "** EDITING ARTICLE TYPE **";
 	}
 
 	//-------------------------------------------------------------
@@ -68,6 +70,13 @@ public class ModifyArticleTypeView extends AddArticleTypeView
 		{
 			alphaCode.setText(alfaC);
 		}
+                
+                submitButton.setText("Save"); //fix submitbutton
+                ImageView icon = new ImageView(new Image("/images/savecolor.png"));
+                icon.setFitHeight(15);
+                icon.setFitWidth(15);
+                submitButton.setGraphic(icon);
+                
 	}
 
 }

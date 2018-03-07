@@ -27,8 +27,10 @@ import java.util.Properties;
 
 // project imports
 import impresario.IModel;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
-/** The class containing the Remove Article Type View  for the Professional Clothes
+/** The class containing the Modify Article Type View  for the Professional Clothes
  *  Closet application 
  */
 //==============================================================
@@ -47,7 +49,7 @@ public class RemoveArticleTypeView extends AddArticleTypeView
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** Remove Article Type Data **";
+		return "** REMOVING ARTICLE TYPE **";
 	}
 
 	//-------------------------------------------------------------
@@ -57,17 +59,28 @@ public class RemoveArticleTypeView extends AddArticleTypeView
 		if (bcPrefix != null)
 		{
 			barcodePrefix.setText(bcPrefix);
+                        barcodePrefix.setDisable(true);
 		}
 		String desc = (String)myModel.getState("Description");
 		if (desc != null)
 		{
 			description.setText(desc);
+                        description.setDisable(true);
+
 		}
 		String alfaC = (String)myModel.getState("AlphaCode");
 		if (alfaC != null)
 		{
 			alphaCode.setText(alfaC);
+                        alphaCode.setDisable(true);
 		}
+                
+                submitButton.setText("Remove"); //fix submitbutton
+                ImageView icon = new ImageView(new Image("/images/trashcolor.png"));
+                icon.setFitHeight(15);
+                icon.setFitWidth(15);
+                submitButton.setGraphic(icon);
+                
 	}
 
 }
