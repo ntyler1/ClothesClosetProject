@@ -62,11 +62,11 @@ public class ViewFactory {
 		else if(viewName.equals("DepositReceipt") == true)
 		{
 			return new DepositReceipt(model);
-		}*/
+		}
 		else if(viewName.equals("InventoryCollectionView") == true)
 		{
 			return new InventoryCollectionView(model);
-		}
+		}*/
 		else
 			return null;
 	}
