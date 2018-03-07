@@ -163,7 +163,9 @@ public class ArticleType extends EntityBase implements IView
 	{
 		updateStateInDatabase();
 	}
-	
+	public void remove(){
+            removeStateInDatabase();
+        }
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase() 
 	{
@@ -192,7 +194,24 @@ public class ArticleType extends EntityBase implements IView
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
 
-
+        private void removeStateInDatabase() 
+	{
+		try
+		{
+			if (persistentState.getProperty("ID") != null)
+			{
+				Properties whereClause = new Properties();
+				whereClause.setProperty("ID", persistentState.getProperty("ID"));
+				updatePersistentState(mySchema, persistentState, whereClause);
+				updateStatusMessage = "Article type with prefix : " + persistentState.getProperty("BarcodePrefix") + " removed successfully!";
+			}
+		}
+		catch (SQLException ex)
+		{
+			updateStatusMessage = "Error in removing article type data in database!";
+		}
+		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
+	}
 	/**
 	 * This method is needed solely to enable the Article Type information to be displayable in a table
 	 *s

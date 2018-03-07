@@ -35,7 +35,7 @@ public class Receptionist implements IView, IModel
 
 	// GUI Components
 	private Hashtable<String, Scene> myViews;
-	private Stage	  	myStage;
+	private Stage myStage;
 
 	private String transactionErrorMessage = "";
 
