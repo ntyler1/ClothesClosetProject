@@ -164,6 +164,11 @@ public class Color extends EntityBase implements IView
 		updateStateInDatabase();
 	}
 	
+	public void remove()
+	{
+         removeStateInDatabase();
+    }
+	
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase() 
 	{
@@ -188,6 +193,26 @@ public class Color extends EntityBase implements IView
 		catch (SQLException ex)
 		{
 			updateStatusMessage = "Error in installing color data in database!";
+		}
+		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
+	}
+	
+	private void removeStateInDatabase() 
+	{
+		try
+		{
+			if (persistentState.getProperty("ID") != null)
+			{
+				Properties whereClause = new Properties();
+				whereClause.setProperty("ID", persistentState.getProperty("ID"));
+				updatePersistentState(mySchema, persistentState, whereClause);
+				updateStatusMessage = "Color with prefix : " + persistentState.getProperty("BarcodePrefix") + " removed successfully!";
+			}
+			
+		}
+		catch (SQLException ex)
+		{
+			updateStatusMessage = "Error in removing color data in database!";
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
