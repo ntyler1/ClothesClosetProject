@@ -23,7 +23,7 @@ import userinterface.ViewFactory;
 //==============================================================
 public class ColorCollection  extends EntityBase implements IView
 {
-	private static final String myTableName = "color";
+	private static final String myTableName = "Color";
 
 	private Vector<Color> colors;
 	// GUI Components
@@ -48,13 +48,13 @@ public class ColorCollection  extends EntityBase implements IView
 
 			for (int cnt = 0; cnt < allDataRetrieved.size(); cnt++)
 			{
-				Properties nextATData = allDataRetrieved.elementAt(cnt);
+				Properties nextCData = allDataRetrieved.elementAt(cnt);
 
-				Color at = new Color(nextATData);
+				Color c = new Color(nextCData);
 
-				if (at != null)
+				if (c != null)
 				{
-					addColor(at);
+					addColor(c);
 				}
 			}
 
@@ -173,11 +173,11 @@ public class ColorCollection  extends EntityBase implements IView
 		Color retValue = null;
 		for (int cnt = 0; cnt < colors.size(); cnt++)
 		{
-			Color nextAT = colors.elementAt(cnt);
-			String nextBarcodePrefix = (String)nextAT.getState("BarcodePrefix");
+			Color nextC = colors.elementAt(cnt);
+			String nextBarcodePrefix = (String)nextC.getState("BarcodePrefix");
 			if (nextBarcodePrefix.equals(barcodePrefix) == true)
 			{
-				retValue = nextAT;
+				retValue = nextC;
 				return retValue; // we should say 'break;' here
 			}
 		}
