@@ -82,13 +82,10 @@ public class RemoveColorTransaction extends Transaction
 	----------------------------------------------------------
 	private void processColorRemoval(Properties props)
 	{
-		if (props.getProperty("Status") != null)
-		{
-		String statusOfC = props.getProperty("Status");
-		mySelectedColor.stateChangeRequest("Status", statusOfC);
-		mySelectedColor.update();
+
+		mySelectedColor.stateChangeRequest("Status", "Inactive");
+		mySelectedColor.remove();
 		transactionErrorMessage = (String)mySelectedColor.getState("UpdateStatusMessage");	
-		}
 		
 	}
 	
@@ -120,14 +117,6 @@ public class RemoveColorTransaction extends Transaction
 		{
 			if (mySelectedColor != null)
 				return mySelectedColor.getState("AlphaCode");
-			else
-				return "";
-		}
-		else
-		if (key.equals("Status") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("Status");
 			else
 				return "";
 		}
