@@ -24,7 +24,7 @@ import userinterface.ViewFactory;
 //==============================================================
 public class Color extends EntityBase implements IView
 {
-	private static final String myTableName = "color";
+	private static final String myTableName = "Color";
 
 	protected Properties dependencies;
 
@@ -59,20 +59,20 @@ public class Color extends EntityBase implements IView
 			if (size != 1)
 			{
 				
-				throw new MultiplePrimaryKeysException("Multiple color matching barcode prefix : "
+				throw new MultiplePrimaryKeysException("Multiple colors matching barcode prefix : "
 					+ barcodePrefix + " found.");
 			}
 			else
 			{
 				// copy all the retrieved data into persistent state
-				Properties retrievedATData = allDataRetrieved.elementAt(0);
+				Properties retrievedCData = allDataRetrieved.elementAt(0);
 				persistentState = new Properties();
 
-				Enumeration allKeys = retrievedATData.propertyNames();
+				Enumeration allKeys = retrievedCData.propertyNames();
 				while (allKeys.hasMoreElements() == true)
 				{
 					String nextKey = (String)allKeys.nextElement();
-					String nextValue = retrievedATData.getProperty(nextKey);
+					String nextValue = retrievedCData.getProperty(nextKey);
 					// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
 
 					if (nextValue != null)
