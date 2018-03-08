@@ -114,7 +114,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 	 * verifying the new barcode, etc.
 	 */
 	//----------------------------------------------------------
-	private void processArticleTypeModification(Properties props)
+	private void processArticleTypeRemove(Properties props)
 	{
 		if (props.getProperty("BarcodePrefix") != null)
 		{
@@ -246,7 +246,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 		else
 		if (key.equals("ArticleTypeData") == true)
 		{
-			processArticleTypeModification((Properties)value);
+			processArticleTypeRemove((Properties)value);
 		}
 
 		myRegistry.updateSubscribers(key, this);

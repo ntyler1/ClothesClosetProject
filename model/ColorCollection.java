@@ -25,7 +25,7 @@ public class ColorCollection  extends EntityBase implements IView
 {
 	private static final String myTableName = "Color";
 
-	private Vector<Color> colors;
+	private Vector<ColorX> colors;
 	// GUI Components
 
 	// constructor for this class
@@ -44,13 +44,13 @@ public class ColorCollection  extends EntityBase implements IView
 
 		if (allDataRetrieved != null)
 		{
-			colors = new Vector<Color>();
+			colors = new Vector<ColorX>();
 
 			for (int cnt = 0; cnt < allDataRetrieved.size(); cnt++)
 			{
 				Properties nextCData = allDataRetrieved.elementAt(cnt);
 
-				Color c = new Color(nextCData);
+				ColorX c = new ColorX(nextCData);
 
 				if (c != null)
 				{
@@ -109,14 +109,14 @@ public class ColorCollection  extends EntityBase implements IView
 		
 	
 	//----------------------------------------------------------------------------------
-	private void addColor(Color a)
+	private void addColor(ColorX a)
 	{
 		int index = findIndexToAdd(a);
 		colors.insertElementAt(a,index); // To build up a collection sorted on some key
 	}
 
 	//----------------------------------------------------------------------------------
-	private int findIndexToAdd(Color a)
+	private int findIndexToAdd(ColorX a)
 	{
 		int low=0;
 		int high = colors.size()-1;
@@ -126,9 +126,9 @@ public class ColorCollection  extends EntityBase implements IView
 		{
 			middle = (low+high)/2;
 
-			Color midSession = colors.elementAt(middle);
+			ColorX midSession = colors.elementAt(middle);
 
-			int result = Color.compare(a,midSession);
+			int result = ColorX.compare(a,midSession);
 
 			if (result ==0)
 			{
@@ -168,12 +168,12 @@ public class ColorCollection  extends EntityBase implements IView
 	}
 
 	//----------------------------------------------------------
-	public Color retrieve(String barcodePrefix)
+	public ColorX retrieve(String barcodePrefix)
 	{
-		Color retValue = null;
+		ColorX retValue = null;
 		for (int cnt = 0; cnt < colors.size(); cnt++)
 		{
-			Color nextC = colors.elementAt(cnt);
+			ColorX nextC = colors.elementAt(cnt);
 			String nextBarcodePrefix = (String)nextC.getState("BarcodePrefix");
 			if (nextBarcodePrefix.equals(barcodePrefix) == true)
 			{

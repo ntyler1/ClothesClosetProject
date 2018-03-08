@@ -21,7 +21,7 @@ public class UpdateColorTransaction extends Transaction
 {
 
 	private ColorCollection myColorList;
-	private Color mySelectedColor;
+	private ColorX mySelectedColor;
 	
 
 	// GUI Components
@@ -124,7 +124,7 @@ public class UpdateColorTransaction extends Transaction
 			{
 				try
 				{
-					Color oldColor = new Color(barcodePrefix);
+					ColorX oldColor = new ColorX(barcodePrefix);
 					transactionErrorMessage = "ERROR: Barcode Prefix " + barcodePrefix 
 						+ " already exists!";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
@@ -303,4 +303,3 @@ public class UpdateColorTransaction extends Transaction
 	}
 
 }
-

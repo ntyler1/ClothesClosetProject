@@ -42,6 +42,9 @@ public class TransactionFactory
 		{
 			retValue = new UpdateColorTransaction();
 		}
+                else if(transType.equals("RemoveColor") == true){
+                    retValue = new RemoveColorTransaction();
+                }
                 else
                 if(transType.equals("ListAvailableInventory") == true){
                         retValue = new ListAvailableInventoryTransaction();

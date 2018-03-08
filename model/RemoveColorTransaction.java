@@ -21,7 +21,7 @@ public class RemoveColorTransaction extends Transaction
 {
 
 	private ColorCollection myColorList;
-	private Color mySelectedColor;
+	private ColorX mySelectedColor;
 	
 
 	// GUI Components
@@ -222,4 +222,3 @@ public class RemoveColorTransaction extends Transaction
 
 }
 
-}
