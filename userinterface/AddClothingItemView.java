@@ -2,8 +2,6 @@ package userinterface;
 import javafx.event.Event;
 import java.util.Properties;
 
-import com.sun.xml.internal.bind.v2.runtime.Name;
-
 import impresario.IModel;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -41,9 +39,6 @@ public class AddClothingItemView extends View
 
 	protected MessageView statusLog;
 
-
-
-
 	public AddClothingItemView(IModel ac)
 	{
 		super(ac, "AddClothingItemView");
@@ -67,16 +62,10 @@ public class AddClothingItemView extends View
 		myModel.subscribe("TransactionError", this);
 	}
 
-
-
-
 	protected String getActionText()
 	{
-		return "*** Adding a Clothing Item ***";
+		return "Adding the clothing item...";
 	}
-
-
-
 
 	private Node createTitle()
 	{
@@ -121,9 +110,6 @@ public class AddClothingItemView extends View
 		return container;
 	}
 
-
-
-
 	private VBox createFormContent()
 	{
 		VBox vbox = new VBox(10);
@@ -135,13 +121,11 @@ public class AddClothingItemView extends View
 		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		vbox.getChildren().add(prompt);
 
-
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
 		grid.setHgap(10);
 		grid.setVgap(10);
 		grid.setPadding(new Insets(0, 25, 10, 0));
-
 
 		Text genderLabel = new Text(" Gender : ");
 		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 12);
@@ -154,8 +138,6 @@ public class AddClothingItemView extends View
 		//gender.setPrefWidth(value);
 		grid.add(gender, 1, 1);
 
-
-
 		Text color1Label = new Text(" Color 1 : ");
 		color1Label.setFont(myFont);
 		color1Label.setWrappingWidth(150);
@@ -165,8 +147,6 @@ public class AddClothingItemView extends View
 		color1  = (ComboBox)createColor1ComboBox();
 		//color1.setPrefWidth(value);
 		grid.add(color1, 1, 2);
-
-
 
 		Text color2Label = new Text(" Color 2 : ");
 		color2Label.setFont(myFont);
@@ -178,8 +158,6 @@ public class AddClothingItemView extends View
 		//color2.setPrefWidth(value);
 		grid.add(color2, 1, 3);
 
-
-
 		Text brandLabel = new Text(" Brand : ");
 		brandLabel.setFont(myFont);
 		brandLabel.setWrappingWidth(150);
@@ -189,8 +167,6 @@ public class AddClothingItemView extends View
 		brand = new TextField("Type brand...");
 		//brand.setPrefWidth(value);
 		grid.add(brand, 1, 4);
-
-
 
 		Text notesLabel = new Text(" Notes : ");
 		notesLabel.setFont(myFont);
@@ -214,8 +190,6 @@ public class AddClothingItemView extends View
 		//firstName.setPrefWidth(value);
 		grid.add(firstName, 4, 0);
 
-
-
 		Text lastNameLabel = new Text(" Last Name : ");
 		lastNameLabel.setFont(myFont);
 		lastNameLabel.setWrappingWidth(150);
@@ -225,8 +199,6 @@ public class AddClothingItemView extends View
 		lastName = new TextField("Type last name...");
 		//lastName.setPrefWidth(value);
 		grid.add(lastName, 4, 1);
-
-
 
 		Text phoneNumberLabel = new Text(" Phone Number : ");
 		phoneNumberLabel.setFont(myFont);
@@ -238,8 +210,6 @@ public class AddClothingItemView extends View
 		//phoneNumber.setPrefWidth(value);
 		grid.add(phoneNumber, 3, 2);
 
-
-
 		Text emailLabel = new Text(" Email Address : ");
 		emailLabel.setFont(myFont);
 		emailLabel.setWrappingWidth(150);
@@ -249,10 +219,6 @@ public class AddClothingItemView extends View
 		email = new TextField("Type email address...");
 		//email.setPrefWidth(value);
 		grid.add(email, 4, 3);
-
-
-
-
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
@@ -369,8 +335,6 @@ public class AddClothingItemView extends View
 
 		return vbox;
 	}
-
-
 
 	public Node createGenderComboBox()
 	{
