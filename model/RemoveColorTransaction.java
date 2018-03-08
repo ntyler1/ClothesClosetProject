@@ -79,7 +79,7 @@ public class RemoveColorTransaction extends Transaction
 		}
 	}
 
-	----------------------------------------------------------
+	//----------------------------------------------------------
 	private void processColorRemoval(Properties props)
 	{
 
