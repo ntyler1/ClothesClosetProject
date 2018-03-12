@@ -49,7 +49,7 @@ public class ModifyColorView extends AddColorView
 	//-------------------------------------------------------------
 	protected String getActionText()	
 	{
-		return "** MODIFYING COLOR **";
+		return "** UPDATING COLOR **";
 	}
 
 	//-------------------------------------------------------------
@@ -70,8 +70,8 @@ public class ModifyColorView extends AddColorView
 		{
 			alphaCode.setText(alfaC);
 		}
-                
-                submitButton.setText("Save"); //fix submitbutton
+                actionText.setFill(Color.LIGHTBLUE);
+                submitButton.setText("Update");  //fix submitbutton
                 ImageView icon = new ImageView(new Image("/images/savecolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);

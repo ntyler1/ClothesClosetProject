@@ -74,13 +74,13 @@ public class RemoveArticleTypeView extends AddArticleTypeView
 			alphaCode.setText(alfaC);
                         alphaCode.setDisable(true);
 		}
-                
+                actionText.setFill(Color.PALEVIOLETRED);
+                prompt.setText("Selected Article Type Information:");
                 submitButton.setText("Remove"); //fix submitbutton
                 ImageView icon = new ImageView(new Image("/images/trashcolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
                 submitButton.setGraphic(icon);
-                
 	}
 
 }

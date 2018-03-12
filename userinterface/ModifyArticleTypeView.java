@@ -49,7 +49,7 @@ public class ModifyArticleTypeView extends AddArticleTypeView
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** EDITING ARTICLE TYPE **";
+		return "** UPDATING ARTICLE TYPE **";
 	}
 
 	//-------------------------------------------------------------
@@ -70,13 +70,12 @@ public class ModifyArticleTypeView extends AddArticleTypeView
 		{
 			alphaCode.setText(alfaC);
 		}
-                
-                submitButton.setText("Save"); //fix submitbutton
+                actionText.setFill(Color.LIGHTBLUE);
+                submitButton.setText("Update"); //fix submitbutton
                 ImageView icon = new ImageView(new Image("/images/savecolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
                 submitButton.setGraphic(icon);
-                
 	}
 
 }

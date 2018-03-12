@@ -43,7 +43,7 @@ public class MessageView extends Text
 	public MessageView(String initialMessage)
 	{
 		super(initialMessage);
-		setFont(Font.font("Helvetica", FontWeight.BOLD, 16));
+		setFont(Font.font("COPPERPLATE", FontWeight.BOLD, 16));
 		setFill(Color.BLUE);
 		setTextAlignment(TextAlignment.LEFT);
 	}
@@ -55,7 +55,7 @@ public class MessageView extends Text
 	public void displayMessage(String message)
 	{
 		// display the passed text in red
-		setFill(Color.BLUE);
+		setFill(Color.LIGHTGREEN);
 		setText(message);
 	}
 
@@ -66,7 +66,7 @@ public class MessageView extends Text
 	public void displayErrorMessage(String message)
 	{
 		// display the passed text in red
-		setFill(Color.RED);
+		setFill(Color.FIREBRICK);
 		setText(message);
 	}
 

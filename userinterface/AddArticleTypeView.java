@@ -28,6 +28,8 @@ import java.util.Properties;
 
 // project imports
 import impresario.IModel;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
 
 /** The class containing the Add Article Type View  for the Professional Clothes
  *  Closet application 
@@ -40,6 +42,8 @@ public class AddArticleTypeView extends View
 	protected TextField barcodePrefix;
 	protected TextField description;
 	protected TextField alphaCode;
+        protected Text actionText;
+        protected Text prompt;
 
 	protected Button submitButton;
 	protected Button cancelButton;
@@ -55,7 +59,7 @@ public class AddArticleTypeView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
-                container.setStyle("-fx-background-color: gold");
+                container.setStyle("-fx-background-color: slategrey");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// Add a title for this panel
@@ -76,7 +80,7 @@ public class AddArticleTypeView extends View
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** ADD NEW ARTICLE TYPE **";
+		return "** ADDING NEW ARTICLE TYPE **";
 	}
 
 	// Create the title container
@@ -97,7 +101,7 @@ public class AddArticleTypeView extends View
 		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
 		titleText.setWrappingWidth(350);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
@@ -107,11 +111,11 @@ public class AddArticleTypeView extends View
 		blankText.setFill(Color.WHITE);
                 container.getChildren().add(blankText);
 
-		Text actionText = new Text("     " + getActionText() + "       ");
+		actionText = new Text("     " + getActionText() + "       ");
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BROWN);
+		actionText.setFill(Color.LIGHTGREEN);
 		container.getChildren().add(actionText);
 	
 		return container;
@@ -130,11 +134,11 @@ public class AddArticleTypeView extends View
 		blankText.setFill(Color.WHITE);
                 vbox.getChildren().add(blankText);
 		
-		Text prompt = new Text("Enter New Article Type Information:");
+		prompt = new Text("Enter New Article Type Information:");
                 prompt.setWrappingWidth(400);
                 prompt.setTextAlignment(TextAlignment.CENTER);
                 prompt.setFill(Color.BLACK);
-		prompt.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+		prompt.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
 		vbox.getChildren().add(prompt);
 		
 
@@ -146,6 +150,8 @@ public class AddArticleTypeView extends View
 
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
 		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
+                
+                barcodePrefixLabel.setFill(Color.GOLD);
 		barcodePrefixLabel.setFont(myFont);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -155,22 +161,25 @@ public class AddArticleTypeView extends View
 		grid.add(barcodePrefix, 1, 1);
 
 		Text descripLabel = new Text(" Description : ");
+                
+                descripLabel.setFill(Color.GOLD);
 		descripLabel.setFont(myFont);
 		descripLabel.setWrappingWidth(150);
 		descripLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(descripLabel, 0, 2);
 
 		description = new TextField();
-		grid.add(description, 1, 2);
+                grid.add(description, 1, 2);
 
 		Text alphaCodeLabel = new Text(" Alpha Code : ");
+                alphaCodeLabel.setFill(Color.GOLD);
 		alphaCodeLabel.setFont(myFont);
 		alphaCodeLabel.setWrappingWidth(150);
 		alphaCodeLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(alphaCodeLabel, 0, 3);
 
 		alphaCode = new TextField();
-		grid.add(alphaCode, 1, 3);
+                grid.add(alphaCode, 1, 3);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
@@ -178,64 +187,73 @@ public class AddArticleTypeView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
+                submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		submitButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-					Properties props = new Properties();
-					String bcPrfx = barcodePrefix.getText();
-					if (bcPrfx.length() > 0)
-					{
-						props.setProperty("BarcodePrefix", bcPrfx);
-						String descrip = description.getText();
-						if (descrip.length() > 0)
-						{
-							props.setProperty("Description", descrip);
-							String alfaC = alphaCode.getText();
-							if (alfaC.length() > 0)
-							{
-								props.setProperty("AlphaCode", alfaC);
-								myModel.stateChangeRequest("ArticleTypeData", props); 
-							}
-							else
-							{
-								displayErrorMessage("ERROR: Please enter a valid alpha code!");
-							}
-						}
-						else
-						{
-							displayErrorMessage("ERROR: Please enter a valid description!");
-						}
-						
-					}
-					else
-					{
-						displayErrorMessage("ERROR: Please enter a barcode prefix!");			
-					}
-       		    	  
-            	  }
-        	});
+		submitButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    clearOutlines();
+                    Properties props = new Properties();
+                    String bcPrfx = barcodePrefix.getText();
+                    if (bcPrfx.length() > 0)
+                    {
+                        props.setProperty("BarcodePrefix", bcPrfx);
+                        String descrip = description.getText();
+                        if (descrip.length() > 0)
+                        {
+                            props.setProperty("Description", descrip);
+                            String alfaC = alphaCode.getText();
+                            if (alfaC.length() > 0)
+                            {
+                                props.setProperty("AlphaCode", alfaC);
+                                myModel.stateChangeRequest("ArticleTypeData", props);
+                            }
+                            else
+                            {
+                                alphaCode.setStyle("-fx-border-color: firebrick;");
+                                displayErrorMessage("ERROR: Please enter a valid alpha code!");
+                            }
+                        }
+                        else
+                        {
+                            description.setStyle("-fx-border-color: firebrick;");
+                            displayErrorMessage("ERROR: Please enter a valid description!");
+                        }
+                        
+                    }
+                    else
+                    {
+                        barcodePrefix.setStyle("-fx-border-color: firebrick;");
+                        displayErrorMessage("ERROR: Please enter a barcode prefix!");
+                    }
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    submitButton.setEffect(new DropShadow());
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    submitButton.setEffect(null);
+                });
 		doneCont.getChildren().add(submitButton);
-		icon = new ImageView(new Image("/images/returncolor.png"));
+		icon = new ImageView(new Image("/images/return.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
+                cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-       		    	myModel.stateChangeRequest("CancelAddAT", null);   
-            	  }
-        	});
+		cancelButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    myModel.stateChangeRequest("CancelAddAT", null);
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    cancelButton.setEffect(new DropShadow());
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    cancelButton.setEffect(null);
+                });
 		doneCont.getChildren().add(cancelButton);
 	
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(doneCont);
-
+                clearOutlines();
 		return vbox;
 	}
 
@@ -248,7 +266,12 @@ public class AddArticleTypeView extends View
 
 		return statusLog;
 	}
-
+        
+        private void clearOutlines(){
+            barcodePrefix.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            description.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            alphaCode.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+        }
 	//-------------------------------------------------------------
 	public void populateFields()
 	{

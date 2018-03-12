@@ -39,6 +39,7 @@ import java.util.Enumeration;
 // project imports
 import impresario.IModel;
 import javafx.application.Platform;
+import javafx.scene.effect.DropShadow;
 import model.ArticleType;
 import model.ArticleTypeCollection;
 
@@ -61,7 +62,7 @@ public class ArticleTypeCollectionView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
-                container.setStyle("-fx-background-color: gold");
+                container.setStyle("-fx-background-color: slategrey");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// create our GUI components, add them to this panel
@@ -114,12 +115,12 @@ public class ArticleTypeCollectionView extends View
                                 else 
                                     actionText.setText(entryCnt+" Article Types Found!");
                                     
-                               actionText.setFill(Color.CORNFLOWERBLUE);
+                               actionText.setFill(Color.LIGHTGREEN);
 			}
 			else
 			{
 				actionText.setText("No Article Types Found!");
-                                actionText.setFill(Color.PALEVIOLETRED);
+                                actionText.setFill(Color.FIREBRICK);
 			}
 			
 			tableOfArticleTypes.setItems(tableData);
@@ -148,7 +149,7 @@ public class ArticleTypeCollectionView extends View
 		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
 		titleText.setWrappingWidth(350);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
                 		
                 Text blankText = new Text("  ");
@@ -179,7 +180,7 @@ public class ArticleTypeCollectionView extends View
                 grid.setPadding(new Insets(0, 25, 10, 0));
 
 		tableOfArticleTypes = new TableView<ArticleTypeTableModel>();
-                tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:green;");
+                tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
 		tableOfArticleTypes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
                 
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;
@@ -205,54 +206,46 @@ public class ArticleTypeCollectionView extends View
 		tableOfArticleTypes.getColumns().addAll(descriptionColumn, 
 			barcodePrefixColumn, alphaCodeColumn, statusColumn);
 
-		tableOfArticleTypes.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event)
-			{
-				if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
-					processArticleTypeSelected();
-				}
-			}
-		});
-                ImageView icon = new ImageView(new Image("/images/checkcolor.png"));
+		tableOfArticleTypes.setOnMousePressed((MouseEvent event) -> {
+                    if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
+                        processArticleTypeSelected();
+                    }
+                });
+                ImageView icon = new ImageView(new Image("/images/check.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Select",icon);
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
                 submitButton.requestFocus();
- 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		     	clearErrorMessage(); 
-					// do the inquiry
-					processArticleTypeSelected();
-					
-            	 }
-        	});
-                icon = new ImageView(new Image("/images/returncolor.png"));
+                submitButton.setStyle("-fx-background-color: lightgreen; ");
+ 		submitButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    // do the inquiry
+                    processArticleTypeSelected();
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    submitButton.setEffect(new DropShadow());
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    submitButton.setEffect(null);
+                });
+                icon = new ImageView(new Image("/images/return.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
+                cancelButton.setStyle("-fx-background-color: palevioletred; ");
                 cancelButton.setGraphic(icon);
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
- 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-					/**
-					 * Process the Cancel button.
-					 * The ultimate result of this action is that the transaction will tell the Receptionist to
-					 * to switch to the Receptionist view. BUT THAT IS NOT THIS VIEW'S CONCERN.
-					 * It simply tells its model (controller) that the transaction was canceled, and leaves it
-					 * to the model to decide to tell the Receptionist to do the switch back.
-			 		*/
-					//----------------------------------------------------------
-       		     	clearErrorMessage();
-       		     	myModel.stateChangeRequest("CancelArticleTypeList", null); 
-            	  }
-        	});
-
+ 		cancelButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    myModel.stateChangeRequest("CancelArticleTypeList", null);
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    cancelButton.setEffect(new DropShadow());
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    cancelButton.setEffect(null);
+                });
 		HBox btnContainer = new HBox(10);
 		btnContainer.setAlignment(Pos.CENTER);
 		btnContainer.getChildren().add(submitButton);

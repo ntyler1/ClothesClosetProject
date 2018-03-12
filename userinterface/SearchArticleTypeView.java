@@ -27,8 +27,10 @@ import java.util.Properties;
 
 // project imports
 import impresario.IModel;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 /** The class containing the Add Article Type View  for the Professional Clothes
  *  Closet application 
@@ -56,7 +58,7 @@ public class SearchArticleTypeView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
-                container.setStyle("-fx-background-color: gold");
+                container.setStyle("-fx-background-color: slategrey");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// Add a title for this panel
@@ -98,7 +100,7 @@ public class SearchArticleTypeView extends View
 		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
 		titleText.setWrappingWidth(350);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
@@ -112,7 +114,7 @@ public class SearchArticleTypeView extends View
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BROWN);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 	
 		return container;
@@ -135,7 +137,7 @@ public class SearchArticleTypeView extends View
                 prompt1.setWrappingWidth(400);
                 prompt1.setTextAlignment(TextAlignment.CENTER);
                 prompt1.setFill(Color.BLACK);
-		prompt1.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+		prompt1.setFont(Font.font("Copperplate", FontWeight.SEMI_BOLD, 18));
 		vbox.getChildren().add(prompt1);
 		
 		GridPane grid0 = new GridPane();
@@ -147,25 +149,23 @@ public class SearchArticleTypeView extends View
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
 		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 14);
 		barcodePrefixLabel.setFont(myFont);
+                barcodePrefixLabel.setFill(Color.GOLD);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid0.add(barcodePrefixLabel, 0, 1);
 
 		barcodePrefix = new TextField();
-		barcodePrefix.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-					Properties props = new Properties();
-					String bcPrfx = barcodePrefix.getText();
-					if (bcPrfx.length() > 0)
-					{
-						props.setProperty("BarcodePrefix", bcPrfx);
-						myModel.stateChangeRequest("SearchArticleType", props); 
-					}
-			}
-		});
+                barcodePrefix.setStyle("-fx-focus-color: darkgreen;");
+		barcodePrefix.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    Properties props = new Properties();
+                    String bcPrfx = barcodePrefix.getText();
+                    if (bcPrfx.length() > 0)
+                    {
+                        props.setProperty("BarcodePrefix", bcPrfx);
+                        myModel.stateChangeRequest("SearchArticleType", props);
+                    }
+                });
 		grid0.add(barcodePrefix, 1, 1);
 		
 		vbox.getChildren().add(grid0);
@@ -174,7 +174,7 @@ public class SearchArticleTypeView extends View
                 prompt2.setWrappingWidth(400);
                 prompt2.setTextAlignment(TextAlignment.CENTER);
                 prompt2.setFill(Color.BLACK);
-		prompt2.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+		prompt2.setFont(Font.font("Copperplate", FontWeight.SEMI_BOLD, 18));
 		vbox.getChildren().add(prompt2);
 
 		GridPane grid = new GridPane();
@@ -185,35 +185,34 @@ public class SearchArticleTypeView extends View
 
 		Text descripLabel = new Text(" Description : ");
 		descripLabel.setFont(myFont);
+                descripLabel.setFill(Color.GOLD);
 		descripLabel.setWrappingWidth(150);
 		descripLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(descripLabel, 0, 1);
 
 		description = new TextField();
-		description.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-					Properties props = new Properties();
-					
-					String descrip = description.getText();
-					props.setProperty("Description", descrip);
-					String alfaC = alphaCode.getText();
-					props.setProperty("AlphaCode", alfaC);
-					myModel.stateChangeRequest("SearchArticleType", props); 
-					
-			}
-		});
+                description.setStyle("-fx-focus-color: darkgreen;");
+		description.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    Properties props = new Properties();
+                    
+                    String descrip = description.getText();
+                    props.setProperty("Description", descrip);
+                    String alfaC = alphaCode.getText();
+                    props.setProperty("AlphaCode", alfaC);
+                    myModel.stateChangeRequest("SearchArticleType", props);
+                });
 		grid.add(description, 1, 1);
 
 		Text alphaCodeLabel = new Text(" Alpha Code : ");
 		alphaCodeLabel.setFont(myFont);
+                alphaCodeLabel.setFill(Color.GOLD);
 		alphaCodeLabel.setWrappingWidth(150);
 		alphaCodeLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(alphaCodeLabel, 0, 2);
 
 		alphaCode = new TextField();
+                alphaCode.setStyle("-fx-focus-color: darkgreen;");
 		grid.add(alphaCode, 1, 2);
 
 		HBox doneCont = new HBox(10);
@@ -222,43 +221,49 @@ public class SearchArticleTypeView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Search",icon);
+                submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		submitButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-					Properties props = new Properties();
-					String bcPrfx = barcodePrefix.getText();
-					if (bcPrfx.length() > 0)
-					{
-						props.setProperty("BarcodePrefix", bcPrfx);
-						myModel.stateChangeRequest("SearchArticleType", props); 
-					}
-					else
-					{
-						String descrip = description.getText();
-						props.setProperty("Description", descrip);
-						String alfaC = alphaCode.getText();
-						props.setProperty("AlphaCode", alfaC);
-						myModel.stateChangeRequest("SearchArticleType", props); 
-					}
-			}
-		});
+		submitButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    Properties props = new Properties();
+                    String bcPrfx = barcodePrefix.getText();
+                    if (bcPrfx.length() > 0)
+                    {
+                        props.setProperty("BarcodePrefix", bcPrfx);
+                        myModel.stateChangeRequest("SearchArticleType", props);
+                    }
+                    else
+                    {
+                        String descrip = description.getText();
+                        props.setProperty("Description", descrip);
+                        String alfaC = alphaCode.getText();
+                        props.setProperty("AlphaCode", alfaC);
+                        myModel.stateChangeRequest("SearchArticleType", props);
+                    }
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    submitButton.setEffect(new DropShadow());
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    submitButton.setEffect(null);
+                });
 		doneCont.getChildren().add(submitButton);
-		icon = new ImageView(new Image("/images/returncolor.png"));
+		icon = new ImageView(new Image("/images/return.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return",icon);
+                cancelButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-
-       		     @Override
-       		     public void handle(ActionEvent e) {
-       		    	clearErrorMessage();
-       		    	myModel.stateChangeRequest("CancelSearchArticleType", null);   
-            	  }
-        	});
+		cancelButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    myModel.stateChangeRequest("CancelSearchArticleType", null);
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    cancelButton.setEffect(new DropShadow());
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    cancelButton.setEffect(null);
+                });
 		doneCont.getChildren().add(cancelButton);
 	
 		vbox.getChildren().add(grid);
