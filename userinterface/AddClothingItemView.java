@@ -1,6 +1,9 @@
 package userinterface;
 import javafx.event.Event;
-import java.util.Properties;
+
+import java.util.Vector;
+
+import com.sun.xml.internal.bind.v2.runtime.Name;
 
 import impresario.IModel;
 import javafx.event.ActionEvent;
@@ -20,6 +23,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import java.util.Properties;
 
 public class AddClothingItemView extends View
 {
@@ -38,21 +42,32 @@ public class AddClothingItemView extends View
 	protected Button returnButton;
 
 	protected MessageView statusLog;
+	private int value;
+	
+	//private Vector<String> allColors;
 
-	public AddClothingItemView(IModel ac)
+
+
+
+	public AddClothingItemView(IModel aci)
 	{
-		super(ac, "AddClothingItemView");
+		super(aci, "AddClothingItemView");
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// Add a title for this panel
+		value = 150;
+
 		container.getChildren().add(createTitle());
 
 		// create our GUI components, add them to this Container
-		container.getChildren().add(createFormContent());
+		container.getChildren().add(createArticleFormContent());
 
+		
+		container.getChildren().add(createDonatorFormContent());
+		
 		container.getChildren().add(createStatusLog("             "));
 
 		getChildren().add(container);
@@ -62,10 +77,16 @@ public class AddClothingItemView extends View
 		myModel.subscribe("TransactionError", this);
 	}
 
+
+
+
 	protected String getActionText()
 	{
-		return "Adding the clothing item...";
+		return "*** Adding a Clothing Item ***";
 	}
+
+
+
 
 	private Node createTitle()
 	{
@@ -106,20 +127,30 @@ public class AddClothingItemView extends View
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		actionText.setFill(Color.BLACK);
 		container.getChildren().add(actionText);
+		
+		Text blankText2 = new Text("   ");
+		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText2.setWrappingWidth(350);
+		blankText2.setTextAlignment(TextAlignment.CENTER);
+		blankText2.setFill(Color.WHITE);
+		container.getChildren().add(blankText2);
 
 		return container;
 	}
+	
 
-	private VBox createFormContent()
+	
+	private Node createDonatorFormContent()
 	{
-		VBox vbox = new VBox(10);
+		VBox vbox2 = new VBox(10);
 
-		Text prompt = new Text("CLOTHING ITEM INFORMATION");
+		Text prompt = new Text("DONOR INFORMATION");
 		prompt.setWrappingWidth(400);
 		prompt.setTextAlignment(TextAlignment.CENTER);
 		prompt.setFill(Color.BLACK);
 		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-		vbox.getChildren().add(prompt);
+		vbox2.getChildren().add(prompt);
+
 
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -127,98 +158,56 @@ public class AddClothingItemView extends View
 		grid.setVgap(10);
 		grid.setPadding(new Insets(0, 25, 10, 0));
 
-		Text genderLabel = new Text(" Gender : ");
-		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 12);
-		genderLabel.setFont(myFont);
-		genderLabel.setWrappingWidth(150);
-		genderLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(genderLabel, 0, 1);
-
-		gender = (ComboBox)createGenderComboBox();
-		//gender.setPrefWidth(value);
-		grid.add(gender, 1, 1);
-
-		Text color1Label = new Text(" Color 1 : ");
-		color1Label.setFont(myFont);
-		color1Label.setWrappingWidth(150);
-		color1Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(color1Label, 0, 2);
-
-		color1  = (ComboBox)createColor1ComboBox();
-		//color1.setPrefWidth(value);
-		grid.add(color1, 1, 2);
-
-		Text color2Label = new Text(" Color 2 : ");
-		color2Label.setFont(myFont);
-		color2Label.setWrappingWidth(150);
-		color2Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(color2Label, 0, 3);
-
-		color2 = (ComboBox)createColor2ComboBox();
-		//color2.setPrefWidth(value);
-		grid.add(color2, 1, 3);
-
-		Text brandLabel = new Text(" Brand : ");
-		brandLabel.setFont(myFont);
-		brandLabel.setWrappingWidth(150);
-		brandLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(brandLabel, 0, 4);
-
-		brand = new TextField("Type brand...");
-		//brand.setPrefWidth(value);
-		grid.add(brand, 1, 4);
-
-		Text notesLabel = new Text(" Notes : ");
-		notesLabel.setFont(myFont);
-		notesLabel.setWrappingWidth(150);
-		notesLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(notesLabel, 0, 5);
-
-		notes = new TextField("Type description...");
-		//notes.setPrefWidth();
-		//notes.setPrefHeight(value);
-		grid.add(notes, 1, 5);
-
-
 		Text firstNameLabel = new Text(" First Name : ");
+		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 14);
 		firstNameLabel.setFont(myFont);
 		firstNameLabel.setWrappingWidth(150);
 		firstNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(firstNameLabel, 3, 0);
+		grid.add(firstNameLabel, 0, 1);
 
 		firstName = new TextField("Type first name...");
-		//firstName.setPrefWidth(value);
-		grid.add(firstName, 4, 0);
+		firstName.setPrefWidth(value);
+		grid.add(firstName, 1, 1);
+
+
 
 		Text lastNameLabel = new Text(" Last Name : ");
 		lastNameLabel.setFont(myFont);
 		lastNameLabel.setWrappingWidth(150);
 		lastNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(lastNameLabel, 3, 1);
+		grid.add(lastNameLabel, 0, 2);
 
 		lastName = new TextField("Type last name...");
-		//lastName.setPrefWidth(value);
-		grid.add(lastName, 4, 1);
+		lastName.setPrefWidth(value);
+		grid.add(lastName, 1, 2);
+
+
 
 		Text phoneNumberLabel = new Text(" Phone Number : ");
 		phoneNumberLabel.setFont(myFont);
 		phoneNumberLabel.setWrappingWidth(150);
 		phoneNumberLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(phoneNumberLabel, 4, 2);
+		grid.add(phoneNumberLabel, 0, 3);
 
 		phoneNumber = new TextField("Type phone number...");
-		//phoneNumber.setPrefWidth(value);
-		grid.add(phoneNumber, 3, 2);
+		phoneNumber.setPrefWidth(value);
+		grid.add(phoneNumber, 1, 3);
+
+
 
 		Text emailLabel = new Text(" Email Address : ");
 		emailLabel.setFont(myFont);
 		emailLabel.setWrappingWidth(150);
 		emailLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(emailLabel, 3, 3);
+		grid.add(emailLabel, 0, 4);
 
 		email = new TextField("Type email address...");
-		//email.setPrefWidth(value);
-		grid.add(email, 4, 3);
+		email.setPrefWidth(value);
+		grid.add(email, 1, 4);
+
+
+
+
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
@@ -266,7 +255,7 @@ public class AddClothingItemView extends View
 												if (em.length() > 0)
 												{
 													props.setProperty("Emial", em);
-													myModel.stateChangeRequest("InventoryData", props); 
+													myModel.stateChangeRequest("ClothingItemData", props); 
 												}
 												else
 												{
@@ -330,11 +319,103 @@ public class AddClothingItemView extends View
 		});
 		doneCont.getChildren().add(returnButton);
 
-		vbox.getChildren().add(grid);
-		vbox.getChildren().add(doneCont);
+		vbox2.getChildren().add(grid);
+		vbox2.getChildren().add(doneCont);
 
+		return vbox2;
+		
+	}
+
+
+
+
+	private VBox createArticleFormContent()
+	{
+		VBox vbox = new VBox(10);
+
+		Text prompt = new Text("CLOTHING ITEM INFORMATION");
+		prompt.setWrappingWidth(400);
+		prompt.setTextAlignment(TextAlignment.CENTER);
+		prompt.setFill(Color.BLACK);
+		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+		vbox.getChildren().add(prompt);
+
+
+		GridPane grid = new GridPane();
+		grid.setAlignment(Pos.CENTER);
+		grid.setHgap(10);
+		grid.setVgap(10);
+		grid.setPadding(new Insets(0, 25, 10, 0));
+
+
+		Text genderLabel = new Text(" Gender : ");
+		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 14);
+		genderLabel.setFont(myFont);
+		genderLabel.setWrappingWidth(150);
+		genderLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(genderLabel, 0, 1);
+
+		gender = (ComboBox)createGenderComboBox();
+		gender.setPrefWidth(100);
+		grid.add(gender, 1, 1);
+
+
+
+		Text color1Label = new Text(" Color 1 : ");
+		color1Label.setFont(myFont);
+		color1Label.setWrappingWidth(150);
+		color1Label.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(color1Label, 0, 2);
+
+		color1  = (ComboBox)createColor1ComboBox();
+		color1.setPrefWidth(100);
+		grid.add(color1, 1, 2);
+
+
+
+		Text color2Label = new Text(" Color 2 : ");
+		color2Label.setFont(myFont);
+		color2Label.setWrappingWidth(150);
+		color2Label.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(color2Label, 0, 3);
+
+		color2 = (ComboBox)createColor2ComboBox();
+		color2.setPrefWidth(100);
+		grid.add(color2, 1, 3);
+
+
+
+		Text brandLabel = new Text(" Brand : ");
+		brandLabel.setFont(myFont);
+		brandLabel.setWrappingWidth(150);
+		brandLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(brandLabel, 0, 4);
+
+		brand = new TextField("Type brand...");
+		brand.setPrefWidth(value);
+		grid.add(brand, 1, 4);
+
+
+
+		Text notesLabel = new Text(" Notes : ");
+		notesLabel.setFont(myFont);
+		notesLabel.setWrappingWidth(150);
+		notesLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(notesLabel, 0, 5);
+
+		notes = new TextField("Type description...");
+		notes.setPrefWidth(value);
+		grid.add(notes, 1, 5);
+		
+		Text space = new Text("");
+		space.setWrappingWidth(150);
+		grid.add(space, 0, 6);
+		
+		vbox.getChildren().add(grid);
 		return vbox;
 	}
+
+
 
 	public Node createGenderComboBox()
 	{
@@ -346,15 +427,31 @@ public class AddClothingItemView extends View
 	public Node createColor1ComboBox()
 	{
 		final ComboBox<String> color1Combo = new ComboBox<String>();
-		color1Combo.getItems().addAll("Male" , "Female");
+		color1Combo.getItems().addAll("Red" , "Blue", "Green");
+		
+		//Start for populating the comboBox with database values
+		//String qr1 = "SELECT color FROM Color GROUP BY color;";
+		//Vector<String> allColors = getSelectQueryResult(qr1);
+		
 		return color1Combo;
+
+		
 	}
 
 	public Node createColor2ComboBox()
 	{
 		final ComboBox<String> color2Combo = new ComboBox<String>();
-		color2Combo.getItems().addAll("Male" , "Female");
+		color2Combo.getItems().addAll("Red" , "Blue", "Green");
+		
+		//Start for populating the comboBox with database values
+		
+		//String qr1 = "SELECT color FROM Color GROUP BY color;";
+		//Vector<String> allColors = getSelectQueryResult(qr1);
+		
+		
+		
 		return color2Combo;
+		
 	}
 
 	protected MessageView createStatusLog(String initialMessage)
