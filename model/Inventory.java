@@ -18,13 +18,13 @@ import impresario.IView;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-/** The class containing the Article Type for the Professional Clothes Closet 
+/** The class containing the Inventory for the Professional Clothes Closet 
  * application 
  */
 //==============================================================
-public class ArticleType extends EntityBase implements IView
+public class Inventory extends EntityBase implements IView
 {
-	private static final String myTableName = "ArticleType";
+	private static final String myTableName = "Inventory";
 
 	protected Properties dependencies;
 
@@ -33,14 +33,12 @@ public class ArticleType extends EntityBase implements IView
 
 	// constructor for this class
 	//----------------------------------------------------------
-	public ArticleType(String barcodePrefix) throws InvalidPrimaryKeyException, MultiplePrimaryKeysException
+	public Inventory(String barcode) throws InvalidPrimaryKeyException, MultiplePrimaryKeysException
 	{
 		super(myTableName);
 
-		setDependencies();
-		
-		barcodePrefix = barcodePrefix.trim();
-		String query = "SELECT * FROM " + myTableName + " WHERE (BarcodePrefix = '" + barcodePrefix + "')";
+		barcode = barcode.trim();
+		String query = "SELECT * FROM " + myTableName + " WHERE (Barcode = '" + barcode + "')";
 
 		Vector<Properties> allDataRetrieved = getSelectQueryResult(query);
 
@@ -51,16 +49,16 @@ public class ArticleType extends EntityBase implements IView
 			// if size = 0 throw the Invalid Primary Key Exception
 			if (size == 0)
 			{
-				throw new InvalidPrimaryKeyException("No article type matching barcode prefix : "
-				+ barcodePrefix + " found.");
+				throw new InvalidPrimaryKeyException("No clothing item matching barcode : "
+				+ barcode + " found.");
 			}
 			else
 			// There should be EXACTLY one article type. More than that is an error
 			if (size != 1)
 			{
 				
-				throw new MultiplePrimaryKeysException("Multiple article types matching barcode prefix : "
-					+ barcodePrefix + " found.");
+				throw new MultiplePrimaryKeysException("Multiple clothing items matching barcode : "
+					+ barcode + " found.");
 			}
 			else
 			{
@@ -86,16 +84,15 @@ public class ArticleType extends EntityBase implements IView
 		// If no article type found for this barcode prefix, throw an Invalid Primary key exception
 		else
 		{
-			throw new InvalidPrimaryKeyException("No article type matching barcode prefix : "
-				+ barcodePrefix + " found.");
+			throw new InvalidPrimaryKeyException("No cloting item matching barcode prefix : "
+				+ barcode + " found.");
 		}
 	}
-
 	/**
-	 * Alternate constructor. Can be used to create a NEW Article Type 
+	 * Alternate constructor.
 	 */
 	//----------------------------------------------------------
-	public ArticleType(Properties props)
+	public Inventory(Properties props)
 	{
 		super(myTableName);
 
@@ -106,12 +103,12 @@ public class ArticleType extends EntityBase implements IView
 		{
 			String nextKey = (String)allKeys.nextElement();
 			String nextValue = props.getProperty(nextKey);
-
-			if (nextValue != null)
+			if (nextValue != "")
 			{
 				persistentState.setProperty(nextKey, nextValue);
 			}
 		}
+                
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -148,94 +145,72 @@ public class ArticleType extends EntityBase implements IView
 		stateChangeRequest(key, value);
 	}
 
-	
-	//-----------------------------------------------------------------------------------
-	public static int compare(ArticleType a, ArticleType b)
-	{
-		String aVal = (String)a.getState("Description");
-		String bVal = (String)b.getState("Description");
-
-		return aVal.compareTo(bVal);
-	}
-
 	//-----------------------------------------------------------------------------------
 	public void update()
 	{
 		updateStateInDatabase();
 	}
-	public void remove(){
-            removeStateInDatabase();
-        }
+	
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase() 
 	{
 		try
 		{
+                    
 			if (persistentState.getProperty("ID") != null)
 			{
 				Properties whereClause = new Properties();
 				whereClause.setProperty("ID", persistentState.getProperty("ID"));
 				updatePersistentState(mySchema, persistentState, whereClause);
-				updateStatusMessage = "Article type with prefix : " + persistentState.getProperty("BarcodePrefix") + " updated successfully!";
+				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
 			}
 			else
 			{
-				Integer atID =
-					insertAutoIncrementalPersistentState(mySchema, persistentState);
-				persistentState.setProperty("ID", "" + atID.intValue());
-				updateStatusMessage = "Article type with prefix : " +  persistentState.getProperty("BarcodePrefix")
+				Integer iID =
+					insertPersistentState(mySchema, persistentState);
+				updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
 					+ " installed successfully!";
 			}
 		}
 		catch (SQLException ex)
 		{
-			updateStatusMessage = "Error in installing article type data in database!";
+                    System.out.println(ex);
+                    updateStatusMessage = "ERROR in installing inventory data in database!";
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
 
-        private void removeStateInDatabase() 
-	{
-		try
-		{
-			if (persistentState.getProperty("ID") != null)
-			{
-				Properties whereClause = new Properties();
-				whereClause.setProperty("ID", persistentState.getProperty("ID"));
-				updatePersistentState(mySchema, persistentState, whereClause);
-				updateStatusMessage = "Article type with prefix : " + persistentState.getProperty("BarcodePrefix") + " removed successfully!";
-			}
-		}
-		catch (SQLException ex)
-		{
-			updateStatusMessage = "Error in removing article type data in database!";
-		}
-		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
-	}
+
 	/**
-	 * This method is needed solely to enable the Article Type information to be displayable in a table
-	 *s
+	 * This method is needed solely to enable the information to be displayable in a table
+	 *
 	 */
 	//--------------------------------------------------------------------------
 	public Vector<String> getEntryListView()
 	{
 		Vector<String> v = new Vector<String>();
 
-		v.addElement(persistentState.getProperty("BarcodePrefix"));
-		v.addElement(persistentState.getProperty("Description"));
-		v.addElement(persistentState.getProperty("AlphaCode"));
-		v.addElement(persistentState.getProperty("Status"));
+		v.addElement(persistentState.getProperty("Barcode"));
+		v.addElement(persistentState.getProperty("Gender"));
+		v.addElement(persistentState.getProperty("Size"));
+		v.addElement(persistentState.getProperty("ArticleType"));
+                v.addElement(persistentState.getProperty("Color1"));
+		v.addElement(persistentState.getProperty("Color2"));
+		v.addElement(persistentState.getProperty("Brand"));
+		v.addElement(persistentState.getProperty("Notes"));
+                v.addElement(persistentState.getProperty("Status"));
+		v.addElement(persistentState.getProperty("DonorLastName"));
+		v.addElement(persistentState.getProperty("DonorFirstName"));
+		v.addElement(persistentState.getProperty("DonorPhone"));
+                v.addElement(persistentState.getProperty("DonorEmail"));
+		v.addElement(persistentState.getProperty("ReceiverNetid"));
+                v.addElement(persistentState.getProperty("ReceiverLastName"));
+		v.addElement(persistentState.getProperty("ReceiverFirstName"));
+		v.addElement(persistentState.getProperty("DateDonated"));
+		v.addElement(persistentState.getProperty("DateTaken"));
 
 		return v;
 	}
-        
-        public String getBarcodePrefix(){
-            return persistentState.getProperty("BarcodePrefix");
-        }
-        
-        public String getDescription(){
-            return persistentState.getProperty("Description");
-        }
 
 	//-----------------------------------------------------------------------------------
 	protected void initializeSchema(String tableName)

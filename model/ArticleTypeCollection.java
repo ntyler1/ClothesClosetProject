@@ -195,7 +195,6 @@ public class ArticleTypeCollection  extends EntityBase implements IView
 	//------------------------------------------------------
 	protected void createAndShowView()
 	{
-
 		Scene localScene = myViews.get("ArticleTypeCollectionView");
 
 		if (localScene == null)
@@ -206,8 +205,7 @@ public class ArticleTypeCollection  extends EntityBase implements IView
 				myViews.put("ArticleTypeCollectionView", localScene);
 		}
 		// make the view visible by installing it into the frame
-		swapToView(localScene);
-		
+		swapToView(localScene);	
 	}
 
 	//-----------------------------------------------------------------------------------

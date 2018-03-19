@@ -216,7 +216,14 @@ public class ColorX extends EntityBase implements IView
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
-
+        
+        public String getBarcodePrefix(){
+            return persistentState.getProperty("BarcodePrefix");
+        }
+        
+        public String getDescription(){
+            return persistentState.getProperty("Description");
+        }
 
 	/**
 	 * This method is needed solely to enable the Color information to be displayable in a table
