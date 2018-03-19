@@ -280,7 +280,7 @@ public class ReceptionistView extends View
                 addClothingItemButton.setStyle("-fx-background-color: lightgreen; ");
 		addClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		addClothingItemButton.setOnAction((ActionEvent e) -> {
-                    myModel.stateChangeRequest("addClothingItem", null);
+                    myModel.stateChangeRequest("AddClothingItem", null);
                 });
                 addClothingItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     addClothingItemButton.setEffect(shadow);

@@ -40,6 +40,7 @@ import java.util.Enumeration;
 import impresario.IModel;
 import javafx.application.Platform;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.InnerShadow;
 import model.ArticleType;
 import model.ArticleTypeCollection;
 
@@ -180,6 +181,7 @@ public class ArticleTypeCollectionView extends View
                 grid.setPadding(new Insets(0, 25, 10, 0));
 
 		tableOfArticleTypes = new TableView<ArticleTypeTableModel>();
+                tableOfArticleTypes.setEffect(new DropShadow());
                 tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
 		tableOfArticleTypes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
                 
@@ -255,6 +257,7 @@ public class ArticleTypeCollectionView extends View
                 tableOfArticleTypes.setPrefHeight(250);
 		vbox.getChildren().add(tableOfArticleTypes);
 		vbox.getChildren().add(btnContainer);
+                vbox.setPadding(new Insets(10,10,10,10));
 	
 		return vbox;
 	}

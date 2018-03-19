@@ -1,19 +1,17 @@
+// specify the package
 package userinterface;
+
+// system imports
 import javafx.event.Event;
-
-import java.util.Vector;
-
-import com.sun.xml.internal.bind.v2.runtime.Name;
-
-import impresario.IModel;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -23,95 +21,109 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.util.Properties;
 
+// project imports
+import impresario.IModel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.Vector;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import model.Gender;
+import model.ArticleType;
+import model.ColorX;
+import model.ArticleTypeCollection;
+import model.ColorCollection;
+import javafx.scene.control.ComboBox;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
+
+/** The class containing the Add Article Type View  for the Professional Clothes
+ *  Closet application 
+ */
+//==============================================================
 public class AddClothingItemView extends View
 {
 
-	protected ComboBox gender;
-	protected ComboBox color1;
-	protected ComboBox color2;
+	// GUI components
+	protected TextField barcode;
 	protected TextField brand;
-	protected TextField firstName;
-	protected TextField lastName;
-	protected TextField phoneNumber;
-	protected TextField email;
 	protected TextField notes;
+        protected TextField donorFName;
+        protected TextField donorLName;
+        protected TextField donorPhone;
+        protected TextField donorEmail;
+        protected Text actionText;
+        protected Text prompt;
 
 	protected Button submitButton;
-	protected Button returnButton;
+	protected Button cancelButton;
+        protected ComboBox<Gender> gender;
+        protected ComboBox<String> size;
+        protected ComboBox<ArticleType> articleType;
+        protected ComboBox<ColorX> color1;
+        protected ComboBox<ColorX> color2;
 
+	// For showing error message
 	protected MessageView statusLog;
-	private int value;
-	
-	//private Vector<String> allColors;
 
-
-
-
-	public AddClothingItemView(IModel aci)
+	// constructor for this class -- takes a model object
+	//----------------------------------------------------------
+	public AddClothingItemView(IModel ac)
 	{
-		super(aci, "AddClothingItemView");
+		super(ac, "AddClothingItemView");
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
+                container.setStyle("-fx-background-color: slategrey");
 		container.setPadding(new Insets(15, 5, 5, 5));
 
 		// Add a title for this panel
-		value = 150;
-
 		container.getChildren().add(createTitle());
-
+		
 		// create our GUI components, add them to this Container
-		container.getChildren().add(createArticleFormContent());
+		container.getChildren().add(createFormContent());
 
-		
-		container.getChildren().add(createDonatorFormContent());
-		
 		container.getChildren().add(createStatusLog("             "));
 
 		getChildren().add(container);
 
-		populateFields();
-
 		myModel.subscribe("TransactionError", this);
 	}
 
-
-
-
+	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "*** Adding a Clothing Item ***";
+		return "** ADDING NEW CLOTHING ITEM **";
 	}
 
-
-
-
+	// Create the title container
+	//-------------------------------------------------------------
 	private Node createTitle()
 	{
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
-
-		Text clientText = new Text(" Office of Career Services ");
-		clientText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		clientText.setWrappingWidth(350);
+		
+		Text clientText = new Text("OFFICE OF CAREER SERVICES");
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 30));
+		clientText.setWrappingWidth(425);
 		clientText.setTextAlignment(TextAlignment.CENTER);
 		clientText.setFill(Color.DARKGREEN);
 		container.getChildren().add(clientText);
-
-		Text collegeText = new Text(" THE COLLEGE AT BROCKPORT ");
-		collegeText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		collegeText.setWrappingWidth(350);
-		collegeText.setTextAlignment(TextAlignment.CENTER);
-		collegeText.setFill(Color.DARKGREEN);
-		container.getChildren().add(collegeText);
-
+		
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-		titleText.setWrappingWidth(350);
+		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 30));
+		titleText.setWrappingWidth(380);
 		titleText.setTextAlignment(TextAlignment.CENTER);
-		titleText.setFill(Color.DARKGREEN);
+		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
@@ -119,353 +131,513 @@ public class AddClothingItemView extends View
 		blankText.setWrappingWidth(350);
 		blankText.setTextAlignment(TextAlignment.CENTER);
 		blankText.setFill(Color.WHITE);
-		container.getChildren().add(blankText);
+                container.getChildren().add(blankText);
 
-		Text actionText = new Text("     " + getActionText() + "       ");
-		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-		actionText.setWrappingWidth(350);
+		actionText = new Text("     " + getActionText() + "       ");
+		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
+		actionText.setWrappingWidth(450);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.LIGHTGREEN);
 		container.getChildren().add(actionText);
+                container.setAlignment(Pos.CENTER);
+                
+		return container;
+	}
+
+	// Create the main form content
+	//-------------------------------------------------------------
+	private VBox createFormContent()
+	{
+		VBox vbox = new VBox(10);
+                
+                Text blankText = new Text("  ");
+		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText.setWrappingWidth(350);
+		blankText.setTextAlignment(TextAlignment.CENTER);
+		blankText.setFill(Color.WHITE);
+                vbox.getChildren().add(blankText);
 		
-		Text blankText2 = new Text("   ");
+		prompt = new Text("Enter New Clothing Item Information:");
+                prompt.setWrappingWidth(400);
+                prompt.setTextAlignment(TextAlignment.CENTER);
+                prompt.setFill(Color.BLACK);
+		prompt.setFont(Font.font("Copperplate", FontWeight.THIN, 20));
+		vbox.getChildren().add(prompt);
+		vbox.setAlignment(Pos.CENTER);
+
+		GridPane grid = new GridPane();
+                grid.setAlignment(Pos.CENTER);
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(0, 25, 10, 0));
+
+		Text barcodeLabel = new Text(" Barcode : ");
+		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
+                
+                barcodeLabel.setFill(Color.GOLD);
+		barcodeLabel.setFont(myFont);
+		barcodeLabel.setWrappingWidth(145);
+		barcodeLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(barcodeLabel, 0, 1);
+
+		barcode = new TextField();
+                barcode.setMinWidth(180);
+                grid.add(barcode, 1, 1);
+                barcode.setOnKeyReleased(event -> {
+                        if(barcode.getText().length() == 8 && event.getText().length() == 1){
+                            clearOutlines();
+                            clearErrorMessage();
+                            String bc = barcode.getText();
+                            String sex = bc.substring(0, 1);
+                            String atPrefix = bc.substring(1, 3);
+                            String color1Prefix = bc.substring(3, 5);
+                            int cnt = 0;
+
+                           try{
+                               gender.getSelectionModel().select(new Gender(Integer.parseInt(sex)));
+                               cnt++;
+                               articleType.getSelectionModel().select(new ArticleType(atPrefix));
+                               cnt++;
+                               color1.getSelectionModel().select(new ColorX(color1Prefix));
+                           }
+                           catch(Exception InvalidPrimaryKeyException){
+                                switch (cnt) {
+                                    case 0:
+                                        gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                        break;
+                                    case 1:
+                                        articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                        break;
+                                    default:
+                                        color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                        break;
+                                }
+                               displayErrorMessage("ERROR: Entered Barcode Does Not Match Data Found In Database!");
+                           }
+                        }
+                });
+                
+                Text genderLabel = new Text(" Gender : ");
+                
+                genderLabel.setFill(Color.GOLD);
+		genderLabel.setFont(myFont);
+		genderLabel.setWrappingWidth(145);
+		genderLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(genderLabel, 0, 2);
+
+		gender = new ComboBox<Gender>();
+                gender.setItems(FXCollections.observableArrayList(
+                    new Gender("Male",0), new Gender("Female",1)));
+                gender.setPromptText("Please Select Gender");
+                gender.setConverter(new StringConverter<Gender>() {
+                    @Override
+                public String toString(Gender object) {
+                   return object.getName();
+                 }
+                 @Override
+                    public Gender fromString(String string) {
+                        return null;
+                    }
+                });
+                gender.setOnAction((event) -> {
+                    barcode.setText(gender.getSelectionModel().getSelectedItem().getValue() + barcode.getText().substring(1));
+                });
+
+                gender.setMaxWidth(180);
+		grid.add(gender, 1, 2);
+                
+                Text atLabel = new Text(" Article Type : ");
+                
+                atLabel.setFill(Color.GOLD);
+		atLabel.setFont(myFont);
+		atLabel.setWrappingWidth(145);
+		atLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(atLabel, 0, 3);
+
+                articleType = new ComboBox<ArticleType>();
+                fillArticleTypeComboBox();
+                articleType.setConverter(new StringConverter<ArticleType>() {
+                    @Override
+                public String toString(ArticleType object) {
+                   return object.getDescription() + " ("+object.getBarcodePrefix()+")";
+                 }
+                 @Override
+                    public ArticleType fromString(String string) {
+                        return null;
+                    }
+                });
+                articleType.setOnAction((event) -> {
+                    barcode.setText(barcode.getText().substring(0,1) + articleType.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(3));
+                });
+                articleType.setPromptText("Please Select Article Type");
+                articleType.setMaxWidth(180);
+		grid.add(articleType, 1, 3);
+                
+                Text c1Label = new Text(" Color 1 : ");
+                
+                c1Label.setFill(Color.GOLD);
+		c1Label.setFont(myFont);
+		c1Label.setWrappingWidth(145);
+		c1Label.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(c1Label, 0, 4);
+
+                color1 = new ComboBox<ColorX>();
+                color1.setConverter(new StringConverter<ColorX>() {
+                    @Override
+                public String toString(ColorX object) {
+                   return object.getDescription() + " ("+object.getBarcodePrefix()+")";
+                 }
+                 @Override
+                    public ColorX fromString(String string) {
+                        return null;
+                    }
+                });
+                color1.setOnAction((event) -> {
+                    barcode.setText(barcode.getText().substring(0,3) + color1.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(5));
+                });
+                color1.setPromptText("Please Select Color 1");
+                color1.setMaxWidth(185);
+		grid.add(color1, 1, 4);
+                
+                Text c2Label = new Text(" Color 2 : ");
+                
+                c2Label.setFill(Color.GOLD);
+		c2Label.setFont(myFont);
+		c2Label.setWrappingWidth(145);
+		c2Label.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(c2Label, 0, 5);
+
+                color2 = new ComboBox<ColorX>();
+                color2.setConverter(new StringConverter<ColorX>() {
+                    @Override
+                public String toString(ColorX object) {
+                   return object.getDescription() + " ("+object.getBarcodePrefix()+")";
+                 }
+                 @Override
+                    public ColorX fromString(String string) {
+                        return null;
+                    }
+                });
+                color2.setPromptText("Please Select Color 2");
+                color2.setMaxWidth(185);
+		grid.add(color2, 1, 5);
+                
+                fillColorComboBox();
+                
+                Text sizeLabel = new Text(" Size : ");
+                
+                sizeLabel.setFill(Color.GOLD);
+		sizeLabel.setFont(myFont);
+		sizeLabel.setWrappingWidth(145);
+		sizeLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(sizeLabel, 0, 6);
+
+                size = new ComboBox<>();
+                size.setItems(FXCollections.observableArrayList(
+                    "S",
+                    "M",
+                    "L",
+                    "XL",
+                    "XXL"));
+                size.setPromptText("Please Select Size");
+                size.setMaxWidth(185);
+		grid.add(size, 1, 6);
+                
+                Text brandLabel = new Text(" Brand : ");
+                
+                brandLabel.setFill(Color.GOLD);
+		brandLabel.setFont(myFont);
+		brandLabel.setWrappingWidth(145);
+		brandLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(brandLabel, 2, 1);
+
+		brand = new TextField();
+                brand.setMinWidth(180);
+                grid.add(brand, 3, 1);
+                
+                Text notesLabel = new Text(" Notes : ");
+                
+                notesLabel.setFill(Color.GOLD);
+		notesLabel.setFont(myFont);
+		notesLabel.setWrappingWidth(145);
+		notesLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(notesLabel, 2, 2);
+
+		notes = new TextField();
+                notes.setMinWidth(180);
+                grid.add(notes, 3, 2);
+                
+                Text donorFNameLabel = new Text(" Donor First Name : ");
+                
+                donorFNameLabel.setFill(Color.GOLD);
+		donorFNameLabel.setFont(myFont);
+		donorFNameLabel.setWrappingWidth(145);
+		donorFNameLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(donorFNameLabel, 2, 3);
+
+		donorFName = new TextField();
+                donorFName.setMinWidth(180);
+                grid.add(donorFName, 3, 3);
+                
+                Text donorLNameLabel = new Text(" Donor Last Name : ");
+                
+                donorLNameLabel.setFill(Color.GOLD);
+		donorLNameLabel.setFont(myFont);
+		donorLNameLabel.setWrappingWidth(145);
+		donorLNameLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(donorLNameLabel, 2, 4);
+
+		donorLName = new TextField();
+                donorLName.setMinWidth(180);
+                grid.add(donorLName, 3, 4);
+                
+                Text donorPhoneLabel = new Text(" Donor Phone # : ");
+                
+                donorPhoneLabel.setFill(Color.GOLD);
+		donorPhoneLabel.setFont(myFont);
+		donorPhoneLabel.setWrappingWidth(145);
+		donorPhoneLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(donorPhoneLabel, 2, 5);
+
+		donorPhone = new TextField();
+                donorPhone.setMinWidth(180);
+                grid.add(donorPhone, 3, 5);
+                
+                Text donorEmailLabel = new Text(" Donor Email : ");
+                
+                donorEmailLabel.setFill(Color.GOLD);
+		donorEmailLabel.setFont(myFont);
+		donorEmailLabel.setWrappingWidth(145);
+		donorEmailLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(donorEmailLabel, 2, 6);
+
+		donorEmail = new TextField();
+                donorEmail.setMinWidth(180);
+                grid.add(donorEmail, 3, 6);
+                
+		HBox doneCont = new HBox(10);
+		doneCont.setAlignment(Pos.CENTER);
+                ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
+                icon.setFitHeight(15);
+                icon.setFitWidth(15);
+		submitButton = new Button("Add", icon);
+                submitButton.setStyle("-fx-background-color: lightgreen; ");
+		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		submitButton.setOnAction((ActionEvent e) -> {
+                    clearOutlines();
+                    clearErrorMessage();
+                    Properties props = new Properties();
+                    String bc = barcode.getText();
+                    if (bc.length() == 8){
+                        if(gender.getSelectionModel().getSelectedItem() != null){
+                            if(articleType.getSelectionModel().getSelectedItem() != null){
+                                if(color1.getSelectionModel().getSelectedItem() != null){
+                                    if(color2.getSelectionModel().getSelectedItem() != null){
+                                        if(size.getSelectionModel().getSelectedItem() != null){
+                                            String brandStr = brand.getText();
+                                            if(brandStr.length() > 0){
+                                                String notesStr = notes.getText();
+                                                if(notesStr.length() > 0){
+                                                    String donorFNameStr = donorFName.getText();
+                                                    if(donorFNameStr.length() > 0){
+                                                        String donorLNameStr = donorLName.getText();
+                                                        if(donorLNameStr.length() > 0){
+                                                           String donorPhoneStr = donorPhone.getText();
+                                                            if(donorPhoneStr.length() > 0){
+                                                                String donorEmailStr = donorEmail.getText();
+                                                                if(donorEmailStr.length() > 0){
+                                                                    props.setProperty("Barcode", bc);
+                                                                    props.setProperty("Gender", gender.getSelectionModel().getSelectedItem().getName());
+                                                                    props.setProperty("Size", size.getSelectionModel().getSelectedItem());
+                                                                    props.setProperty("ArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());
+                                                                    props.setProperty("Color1", color1.getSelectionModel().getSelectedItem().getBarcodePrefix());
+                                                                    props.setProperty("Color2", color2.getSelectionModel().getSelectedItem().getBarcodePrefix());
+                                                                    props.setProperty("Brand", brandStr);
+                                                                    props.setProperty("Notes", notesStr);
+                                                                    props.setProperty("DonorFirstName", donorFNameStr);
+                                                                    props.setProperty("DonorLastName", donorLNameStr);
+                                                                    props.setProperty("DonorPhone", donorPhoneStr);
+                                                                    props.setProperty("DonorEmail", donorEmailStr);
+                                                                    props.setProperty("Status", "Donated");
+                                                                    props.setProperty("DateDonated", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+                                                                    myModel.stateChangeRequest("ClothingItemData", props);
+                                                                }
+                                                                else{
+                                                                    donorEmail.setStyle("-fx-border-color: firebrick;");
+                                                                    displayErrorMessage("ERROR: Please Enter a Donor Email!");
+                                                                }
+                                                            }
+                                                            else{
+                                                                donorPhone.setStyle("-fx-border-color: firebrick;");
+                                                                displayErrorMessage("ERROR: Please Enter a Donor Phone Number!");
+                                                            }
+                                                        }
+                                                        else{
+                                                            donorLName.setStyle("-fx-border-color: firebrick;");
+                                                            displayErrorMessage("ERROR: Please Enter a Donor Last Name!");
+                                                        }
+                                                    }
+                                                    else{
+                                                        donorFName.setStyle("-fx-border-color: firebrick;");
+                                                        displayErrorMessage("ERROR: Please Enter a Donor First Name!");
+                                                    }
+                                                }
+                                                else{
+                                                    notes.setStyle("-fx-border-color: firebrick;");
+                                                    displayErrorMessage("ERROR: Please Enter Notes!");
+                                                }
+                                            }
+                                            else{
+                                                brand.setStyle("-fx-border-color: firebrick;");
+                                                displayErrorMessage("ERROR: Please Enter a Brand!");
+                                            }
+                                        }
+                                        else{
+                                            size.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                            displayErrorMessage("ERROR: Please Select a Size!");
+                                        }
+                                    }
+                                    else{
+                                        color2.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                        displayErrorMessage("ERROR: Please Select a Color 2!");
+                                    }
+                                }
+                                else{
+                                    color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                    displayErrorMessage("ERROR: Please Select a Color 1!");
+                                }
+                            }
+                            else{
+                                articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                                displayErrorMessage("ERROR: Please Select a Article Type!");
+                            }
+                        }
+                        else{
+                            gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+                            displayErrorMessage("ERROR: Please Select a Gender!");
+                        }
+                    }
+                    else
+                    {
+                        barcode.setStyle("-fx-border-color: firebrick;");
+                        displayErrorMessage("ERROR: Please enter a valid barcode!");
+                    }
+               });
+                submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    submitButton.setEffect(new DropShadow());
+                });
+                submitButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    submitButton.setEffect(null);
+                });
+		doneCont.getChildren().add(submitButton);
+		icon = new ImageView(new Image("/images/return.png"));
+                icon.setFitHeight(15);
+                icon.setFitWidth(15);
+		cancelButton = new Button("Return", icon);
+                cancelButton.setStyle("-fx-background-color: palevioletred; ");
+		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		cancelButton.setOnAction((ActionEvent e) -> {
+                    clearErrorMessage();
+                    myModel.stateChangeRequest("CancelAddCI", null);
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    cancelButton.setEffect(new DropShadow());
+                });
+                cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    cancelButton.setEffect(null);
+                });
+		doneCont.getChildren().add(cancelButton);
+	
+		vbox.getChildren().add(grid);
+                Text blankText2 = new Text("  ");
 		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		blankText2.setWrappingWidth(350);
 		blankText2.setTextAlignment(TextAlignment.CENTER);
 		blankText2.setFill(Color.WHITE);
-		container.getChildren().add(blankText2);
-
-		return container;
-	}
-	
-
-	
-	private Node createDonatorFormContent()
-	{
-		VBox vbox2 = new VBox(10);
-
-		Text prompt = new Text("DONOR INFORMATION");
-		prompt.setWrappingWidth(400);
-		prompt.setTextAlignment(TextAlignment.CENTER);
-		prompt.setFill(Color.BLACK);
-		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-		vbox2.getChildren().add(prompt);
-
-
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.CENTER);
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(0, 25, 10, 0));
-
-		Text firstNameLabel = new Text(" First Name : ");
-		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 14);
-		firstNameLabel.setFont(myFont);
-		firstNameLabel.setWrappingWidth(150);
-		firstNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(firstNameLabel, 0, 1);
-
-		firstName = new TextField("Type first name...");
-		firstName.setPrefWidth(value);
-		grid.add(firstName, 1, 1);
-
-
-
-		Text lastNameLabel = new Text(" Last Name : ");
-		lastNameLabel.setFont(myFont);
-		lastNameLabel.setWrappingWidth(150);
-		lastNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(lastNameLabel, 0, 2);
-
-		lastName = new TextField("Type last name...");
-		lastName.setPrefWidth(value);
-		grid.add(lastName, 1, 2);
-
-
-
-		Text phoneNumberLabel = new Text(" Phone Number : ");
-		phoneNumberLabel.setFont(myFont);
-		phoneNumberLabel.setWrappingWidth(150);
-		phoneNumberLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(phoneNumberLabel, 0, 3);
-
-		phoneNumber = new TextField("Type phone number...");
-		phoneNumber.setPrefWidth(value);
-		grid.add(phoneNumber, 1, 3);
-
-
-
-		Text emailLabel = new Text(" Email Address : ");
-		emailLabel.setFont(myFont);
-		emailLabel.setWrappingWidth(150);
-		emailLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(emailLabel, 0, 4);
-
-		email = new TextField("Type email address...");
-		email.setPrefWidth(value);
-		grid.add(email, 1, 4);
-
-
-
-
-
-		HBox doneCont = new HBox(10);
-		doneCont.setAlignment(Pos.CENTER);
-		submitButton = new Button("Submit");
-		submitButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-		submitButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent e) {
-				clearErrorMessage();
-				Properties props = new Properties();
-				String gndr = (String) gender.getValue();
-				if (gndr.length() > 0)
-				{
-					props.setProperty("Gender", gndr);
-					String clr1 = (String)color1.getValue();
-					if (clr1.length() > 0)
-					{
-						props.setProperty("Color1", clr1);
-						String clr2 = (String)color2.getValue();
-						if (clr2.length() > 0)
-						{
-							props.setProperty("Color2", clr2);
-							String brnd = brand.getText();
-							if (brnd.length() > 0)
-							{
-								props.setProperty("Brand", brnd);
-								String nts = notes.getText();
-								if (nts.length() > 0)
-								{
-									props.setProperty("Notes", nts);
-									String frstName = firstName.getText();
-									if (frstName.length() > 0)
-									{
-										props.setProperty("FirstName", frstName);
-										String lstName = lastName.getText();
-										if (lstName.length() > 0)
-										{
-											props.setProperty("LastName", lstName);
-											String phoneNum = phoneNumber.getText();
-											if (phoneNum.length() > 0)
-											{
-												props.setProperty("PhoneNumber", phoneNum);
-												String em = email.getText();
-												if (em.length() > 0)
-												{
-													props.setProperty("Emial", em);
-													myModel.stateChangeRequest("ClothingItemData", props); 
-												}
-												else
-												{
-													displayErrorMessage("ERROR: Please enter a valid alpha code!");
-												}
-											}
-											else
-											{
-												displayErrorMessage("ERROR: Please enter a valid alpha code!");
-											}
-										}
-										else
-										{
-											displayErrorMessage("ERROR: Please enter a valid alpha code!");
-										}
-									}
-									else
-									{
-										displayErrorMessage("ERROR: Please enter a valid alpha code!");
-									}
-								}
-								else
-								{
-									displayErrorMessage("ERROR: Please enter a valid alpha code!");
-								}
-							}
-							else
-							{
-								displayErrorMessage("ERROR: Please enter a valid alpha code!");
-							}
-						}
-						else
-						{
-							displayErrorMessage("ERROR: Please enter a valid alpha code!");
-						}
-					}
-					else
-					{
-						displayErrorMessage("ERROR: Please enter a valid alpha code!");
-					}
-				}
-				else
-				{
-					displayErrorMessage("ERROR: Please enter a valid alpha code!");
-				}
-
-			}
-
-		});
-		doneCont.getChildren().add(submitButton);
-
-		returnButton = new Button("Return");
-		returnButton.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-		returnButton.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent e) {
-				clearErrorMessage();
-				myModel.stateChangeRequest("CancelAddCI", null);   
-			}
-		});
-		doneCont.getChildren().add(returnButton);
-
-		vbox2.getChildren().add(grid);
-		vbox2.getChildren().add(doneCont);
-
-		return vbox2;
-		
-	}
-
-
-
-
-	private VBox createArticleFormContent()
-	{
-		VBox vbox = new VBox(10);
-
-		Text prompt = new Text("CLOTHING ITEM INFORMATION");
-		prompt.setWrappingWidth(400);
-		prompt.setTextAlignment(TextAlignment.CENTER);
-		prompt.setFill(Color.BLACK);
-		prompt.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-		vbox.getChildren().add(prompt);
-
-
-		GridPane grid = new GridPane();
-		grid.setAlignment(Pos.CENTER);
-		grid.setHgap(10);
-		grid.setVgap(10);
-		grid.setPadding(new Insets(0, 25, 10, 0));
-
-
-		Text genderLabel = new Text(" Gender : ");
-		Font myFont = Font.font("Helvetica", FontWeight.BOLD, 14);
-		genderLabel.setFont(myFont);
-		genderLabel.setWrappingWidth(150);
-		genderLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(genderLabel, 0, 1);
-
-		gender = (ComboBox)createGenderComboBox();
-		gender.setPrefWidth(100);
-		grid.add(gender, 1, 1);
-
-
-
-		Text color1Label = new Text(" Color 1 : ");
-		color1Label.setFont(myFont);
-		color1Label.setWrappingWidth(150);
-		color1Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(color1Label, 0, 2);
-
-		color1  = (ComboBox)createColor1ComboBox();
-		color1.setPrefWidth(100);
-		grid.add(color1, 1, 2);
-
-
-
-		Text color2Label = new Text(" Color 2 : ");
-		color2Label.setFont(myFont);
-		color2Label.setWrappingWidth(150);
-		color2Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(color2Label, 0, 3);
-
-		color2 = (ComboBox)createColor2ComboBox();
-		color2.setPrefWidth(100);
-		grid.add(color2, 1, 3);
-
-
-
-		Text brandLabel = new Text(" Brand : ");
-		brandLabel.setFont(myFont);
-		brandLabel.setWrappingWidth(150);
-		brandLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(brandLabel, 0, 4);
-
-		brand = new TextField("Type brand...");
-		brand.setPrefWidth(value);
-		grid.add(brand, 1, 4);
-
-
-
-		Text notesLabel = new Text(" Notes : ");
-		notesLabel.setFont(myFont);
-		notesLabel.setWrappingWidth(150);
-		notesLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(notesLabel, 0, 5);
-
-		notes = new TextField("Type description...");
-		notes.setPrefWidth(value);
-		grid.add(notes, 1, 5);
-		
-		Text space = new Text("");
-		space.setWrappingWidth(150);
-		grid.add(space, 0, 6);
-		
-		vbox.getChildren().add(grid);
+                vbox.getChildren().add(blankText2);
+		vbox.getChildren().add(doneCont);
+                clearOutlines();
 		return vbox;
 	}
 
 
-
-	public Node createGenderComboBox()
-	{
-		final ComboBox<String> genderCombo = new ComboBox<String>();
-		genderCombo.getItems().addAll("Male" , "Female");
-		return genderCombo;
-	}
-
-	public Node createColor1ComboBox()
-	{
-		final ComboBox<String> color1Combo = new ComboBox<String>();
-		color1Combo.getItems().addAll("Red" , "Blue", "Green");
-		
-		//Start for populating the comboBox with database values
-		//String qr1 = "SELECT color FROM Color GROUP BY color;";
-		//Vector<String> allColors = getSelectQueryResult(qr1);
-		
-		return color1Combo;
-
-		
-	}
-
-	public Node createColor2ComboBox()
-	{
-		final ComboBox<String> color2Combo = new ComboBox<String>();
-		color2Combo.getItems().addAll("Red" , "Blue", "Green");
-		
-		//Start for populating the comboBox with database values
-		
-		//String qr1 = "SELECT color FROM Color GROUP BY color;";
-		//Vector<String> allColors = getSelectQueryResult(qr1);
-		
-		
-		
-		return color2Combo;
-		
-	}
-
+	// Create the status log field
+	//-------------------------------------------------------------
 	protected MessageView createStatusLog(String initialMessage)
 	{
 		statusLog = new MessageView(initialMessage);
 
 		return statusLog;
 	}
+        
+        private void fillArticleTypeComboBox(){
+            myModel.stateChangeRequest("atComboBox", null);
+            try
+		{
+                        ArticleTypeCollection articleTypeCollection = 
+				(ArticleTypeCollection)myModel.getState("ArticleTypeList");
 
-	public void populateFields()
-	{
+	 		Vector entryList = (Vector)articleTypeCollection.getState("ArticleTypes");
+                        
+			if (entryList.size() > 0)
+			{
+				Enumeration entries = entryList.elements();
+				while (entries.hasMoreElements() == true)
+				{
+                                        ArticleType nextAT = (ArticleType)entries.nextElement();
+					articleType.getItems().add(nextAT);				
+				}
+                    }
+                }
+		catch (Exception e) {
+                    System.out.println(e.toString());
+		}
+        }
+        
+        private void fillColorComboBox(){
+            myModel.stateChangeRequest("cComboBox", null);
+            try
+		{
+                        ColorCollection colorCollection = 
+				(ColorCollection)myModel.getState("ColorList");
 
-	}
+	 		Vector entryList = (Vector)colorCollection.getState("Colors");
+                        
+			if (entryList.size() > 0)
+			{
+				Enumeration entries = entryList.elements();
+				while (entries.hasMoreElements() == true)
+				{
+                                        ColorX nextColor = (ColorX)entries.nextElement();
+					color1.getItems().add(nextColor);
+                                        color2.getItems().add(nextColor);
+				}
+                    }
+                }
+		catch (Exception e) {
+                    System.out.println(e.toString());
+		}
+        }
+        
+        private void clearOutlines(){
+            barcode.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            gender.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+            articleType.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+            color1.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+            color2.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+            size.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+            brand.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            notes.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            donorFName.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            donorLName.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            donorPhone.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+            donorEmail.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
+        }
 
+	/**
+	 * Update method
+	 */
+	//---------------------------------------------------------
 	public void updateState(String key, Object value)
 	{
 		clearErrorMessage();
@@ -481,24 +653,39 @@ public class AddClothingItemView extends View
 			{
 				displayMessage(val);
 			}
-
+			
 		}
 	}
 
+	/**
+	 * Display error message
+	 */
+	//----------------------------------------------------------
 	public void displayErrorMessage(String message)
 	{
 		statusLog.displayErrorMessage(message);
 	}
 
-
+	/**
+	 * Display info message
+	 */
+	//----------------------------------------------------------
 	public void displayMessage(String message)
 	{
 		statusLog.displayMessage(message);
 	}
 
+	/**
+	 * Clear error message
+	 */
+	//----------------------------------------------------------
 	public void clearErrorMessage()
 	{
 		statusLog.clearErrorMessage();
 	}
 
 }
+
+//---------------------------------------------------------------
+//	Revision History:
+//

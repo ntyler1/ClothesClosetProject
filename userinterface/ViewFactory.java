@@ -48,6 +48,12 @@ public class ViewFactory {
                     {
                         return new ColorCollectionView(model);
                 }
+                else
+                    if(viewName.equals("AddClothingItemView") == true)
+                    {
+                        return new AddClothingItemView(model);
+                }
+                    
                 /*
 		else if(viewName.equals("DepositTransactionView") == true)
 		{
@@ -80,11 +86,11 @@ public class ViewFactory {
 		else if(viewName.equals("DepositReceipt") == true)
 		{
 			return new DepositReceipt(model);
-		}
-		else if(viewName.equals("InventoryCollectionView") == true)
-		{
-			return new InventoryCollectionView(model);
 		}*/
+		else if(viewName.equals("ListInventoryAvailableView") == true)
+		{
+			return new ListInventoryAvailableView(model);
+		}
 		else
 			return null;
 	}

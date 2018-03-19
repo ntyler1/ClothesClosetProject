@@ -181,6 +181,7 @@ public class ColorCollectionView extends View
                 grid.setPadding(new Insets(0, 25, 10, 0));
 
 		tableOfColors = new TableView<ColorTableModel>();
+                tableOfColors.setEffect(new DropShadow());
                 tableOfColors.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
 		tableOfColors.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 	
@@ -255,7 +256,8 @@ public class ColorCollectionView extends View
                 tableOfColors.setPrefHeight(250);
 		vbox.getChildren().add(tableOfColors);
 		vbox.getChildren().add(btnContainer);
-	
+                vbox.setPadding(new Insets(10,10,10,10));
+                
 		return vbox;
 	}
 
