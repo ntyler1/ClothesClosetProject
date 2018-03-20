@@ -184,7 +184,13 @@ public class AddClothingItemView extends View
                 barcode.setMinWidth(180);
                 grid.add(barcode, 1, 1);
                 barcode.setOnKeyReleased(event -> {
-                        if(barcode.getText().length() == 8 && event.getText().length() == 1){
+                        if(barcode.getText().length() == 0)
+                            gender.getSelectionModel().select(null);
+                        else if(barcode.getText().length() < 3)
+                            articleType.getSelectionModel().select(null);
+                        else if(barcode.getText().length() < 5)
+                            color1.getSelectionModel().select(null);
+                        else if(barcode.getText().length() == 8 && event.getText().length() == 1){
                             clearOutlines();
                             clearErrorMessage();
                             String bc = barcode.getText();
@@ -240,7 +246,11 @@ public class AddClothingItemView extends View
                     }
                 });
                 gender.setOnAction((event) -> {
-                    barcode.setText(gender.getSelectionModel().getSelectedItem().getValue() + barcode.getText().substring(1));
+                    if(gender.getSelectionModel().getSelectedItem() == null)
+                        return;
+                    if(barcode.getText().length() < 8)
+                        barcode.setText("00000001");
+                        barcode.setText(gender.getSelectionModel().getSelectedItem().getValue() + barcode.getText().substring(1));
                 });
 
                 gender.setMaxWidth(180);
@@ -267,6 +277,10 @@ public class AddClothingItemView extends View
                     }
                 });
                 articleType.setOnAction((event) -> {
+                    if(articleType.getSelectionModel().getSelectedItem() == null)
+                        return;
+                    if(barcode.getText().length() < 8)
+                        barcode.setText("00000001");
                     barcode.setText(barcode.getText().substring(0,1) + articleType.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(3));
                 });
                 articleType.setPromptText("Please Select Article Type");
@@ -293,6 +307,10 @@ public class AddClothingItemView extends View
                     }
                 });
                 color1.setOnAction((event) -> {
+                    if(color1.getSelectionModel().getSelectedItem() == null)
+                        return;
+                    if(barcode.getText().length() < 8)
+                        barcode.setText("00000001");
                     barcode.setText(barcode.getText().substring(0,3) + color1.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(5));
                 });
                 color1.setPromptText("Please Select Color 1");
@@ -520,7 +538,7 @@ public class AddClothingItemView extends View
                     else
                     {
                         barcode.setStyle("-fx-border-color: firebrick;");
-                        displayErrorMessage("ERROR: Please enter a valid barcode!");
+                        displayErrorMessage("ERROR: Please Enter a Valid Barcode!");
                     }
                });
                 submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
