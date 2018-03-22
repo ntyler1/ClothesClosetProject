@@ -87,7 +87,7 @@ public class AddClothingItemTransaction extends Transaction
 			{
 				transactionErrorMessage = "ERROR: Multiple inventory records with barcode!";
 				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Found multiple invenotry records with barcode : " + barcode + ". Reason: " + ex2.toString(),
+					"Found multiple inventry records with barcode : " + barcode + ". Reason: " + ex2.toString(),
 					Event.ERROR);
 
 			}

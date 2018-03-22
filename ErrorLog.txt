@@ -6,3 +6,9 @@
 [1/10/18 8:20 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
 [1/11/18 12:00 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 25 already exists!>
 [1/11/18 12:03 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 19 already exists!>
+[3/20/18 6:07 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[com.mysql.jdbc.Driver]>
+[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>

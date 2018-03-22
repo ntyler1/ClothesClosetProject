@@ -2,6 +2,7 @@
 package model;
 
 // system imports
+import java.lang.reflect.InvocationHandler;
 import java.util.Properties;
 import java.util.Vector;
 import javafx.scene.Scene;
@@ -60,7 +61,12 @@ public class InventoryCollection  extends EntityBase implements IView
 
 		}
 	}
-	
+	public void findByBarcode(String barcodePrefix)
+	{
+		String query = "SELECT * FROM " + myTableName + " WHERE ((Barcode = '" + barcodePrefix +
+				"')";
+		populateCollectionHelper(query);
+	}
 	//-----------------------------------------------------------
 	public void findAll()
 	{
@@ -82,6 +88,23 @@ public class InventoryCollection  extends EntityBase implements IView
                 }
                 
             return null;
+	}
+
+	public Inventory retrieve(String barcodePrefix)
+	{
+		Inventory retValue = null;
+		for (int cnt = 0; cnt < inventory.size(); cnt++)
+		{
+			Inventory nextInventory = inventory.elementAt(cnt);
+			String nextBarcodePrefix = (String)nextInventory.getState("BarcodePrefix");
+			if (nextBarcodePrefix.equals(barcodePrefix) == true)
+			{
+				retValue = nextInventory;
+				return retValue; // we should say 'break;' here
+			}
+		}
+
+		return retValue;
 	}
 
 	//----------------------------------------------------------------

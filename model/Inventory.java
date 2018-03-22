@@ -150,7 +150,12 @@ public class Inventory extends EntityBase implements IView
 	{
 		updateStateInDatabase();
 	}
-	
+
+	public void remove()
+	{
+		removeStateInDatabase();
+	}
+
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase() 
 	{
@@ -178,6 +183,22 @@ public class Inventory extends EntityBase implements IView
                     updateStatusMessage = "ERROR in installing inventory data in database!";
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
+	}
+
+	private void removeStateInDatabase() {
+		try {
+			if (persistentState.getProperty("ID") != null) {
+				Properties whereClause = new Properties();
+				whereClause.setProperty("ID", persistentState.getProperty("ID"));
+				updatePersistentState(mySchema, persistentState, whereClause);
+				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " removed successfully!";
+			} else {
+				Integer Id = insertPersistentState(mySchema, persistentState);
+				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " installed successfully";
+			}
+		} catch (SQLException ex) {
+			updateStatusMessage = "Error in removing clothing item data in database!";
+		}
 	}
 
 
