@@ -60,6 +60,13 @@ public class InventoryCollection  extends EntityBase implements IView
 
 		}
 	}
+	//-----------------------------------------------------------
+	public void findByBarcode(String barcode)
+	{
+		String query = "SELECT * FROM " + myTableName + " WHERE ((Barcode = '" + barcode +
+				"')";
+		populateCollectionHelper(query);
+	}
 	
 	//-----------------------------------------------------------
 	public void findAll()
@@ -88,6 +95,24 @@ public class InventoryCollection  extends EntityBase implements IView
 	public void stateChangeRequest(String key, Object value)
 	{
 		myRegistry.updateSubscribers(key, this);
+	}
+
+	//----------------------------------------------------------
+	public Inventory retrieve(String barcode)
+	{
+		Inventory retValue = null;
+		for (int cnt = 0; cnt < inventory.size(); cnt++)
+		{
+			Inventory nextAT = inventory.elementAt(cnt);
+			String nextBarcodePrefix = (String)nextAT.getState("Barcode");
+			if (nextBarcodePrefix.equals(barcode) == true)
+			{
+				retValue = nextAT;
+				return retValue; // we should say 'break;' here
+			}
+		}
+
+		return retValue;
 	}
 
 	/** Called via the IView relationship */
