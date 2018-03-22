@@ -91,24 +91,6 @@ public class InventoryCollection  extends EntityBase implements IView
                 
             return null;
 	}
-
-	public Inventory retrieve(String barcodePrefix)
-	{
-		Inventory retValue = null;
-		for (int cnt = 0; cnt < inventory.size(); cnt++)
-		{
-			Inventory nextInventory = inventory.elementAt(cnt);
-			String nextBarcodePrefix = (String)nextInventory.getState("BarcodePrefix");
-			if (nextBarcodePrefix.equals(barcodePrefix) == true)
-			{
-				retValue = nextInventory;
-				return retValue; // we should say 'break;' here
-			}
-		}
-
-		return retValue;
-	}
-
 	//----------------------------------------------------------------
 	public void stateChangeRequest(String key, Object value)
 	{
