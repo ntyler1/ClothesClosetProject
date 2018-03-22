@@ -32,6 +32,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Vector;
+
+import exception.InvalidPrimaryKeyException;
+import exception.MultiplePrimaryKeysException;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -77,7 +80,7 @@ public class RemoveClothingItemView extends View {
 
 	// constructor for this class -- takes a model object
 	// ----------------------------------------------------------
-	public RemoveClothingItemView(IModel rc) {
+	public RemoveClothingItemView(IModel rc) throws InvalidPrimaryKeyException, MultiplePrimaryKeysException {
 		super(rc, "RemoveClothingItemView");
 
 		// create a container for showing the contents
@@ -644,10 +647,12 @@ public class RemoveClothingItemView extends View {
 
 	/**
 	 * Update method
+	 * @throws MultiplePrimaryKeysException 
+	 * @throws InvalidPrimaryKeyException 
 	 */
 	// ---------------------------------------------------------
 	
-	public void populateFields()
+	public void populateFields() throws InvalidPrimaryKeyException, MultiplePrimaryKeysException
 	{
 		
 		String bc = (String)myModel.getState("Barcode");
@@ -707,7 +712,7 @@ public class RemoveClothingItemView extends View {
 		String gndr = (String)myModel.getState("Gender");
 		if (gndr != null)
 		{
-			gender.getSelectionModel().select(new Gender(gndr));
+			gender.getSelectionModel().select(new Gender(Integer.parseInt(gndr)));
 			gender.setDisable(true);
 		}
 		
@@ -721,21 +726,21 @@ public class RemoveClothingItemView extends View {
 		String arttype = (String)myModel.getState("ArticleType");
 		if (arttype != null)
 		{
-			articleType.getSelectionModel().select(new Gender(gndr));
+			articleType.getSelectionModel().select(new ArticleType(arttype));
 			articleType.setDisable(true);
 		}
 		
 		String col1 = (String)myModel.getState("Color1");
 		if (col1 != null)
 		{
-			color1.getSelectionModel().select(new Gender(gndr));
+			color1.getSelectionModel().select(new ColorX(col1));
 			color1.setDisable(true);
 		}
 		
 		String col2 = (String)myModel.getState("Color2");
 		if (col2 != null)
 		{
-			color2.getSelectionModel().select(new Gender(gndr));
+			color2.getSelectionModel().select(new ColorX(col2));
 			color2.setDisable(true);
 		}
 		
