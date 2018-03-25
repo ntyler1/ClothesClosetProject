@@ -6,9 +6,474 @@
 [1/10/18 8:20 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
 [1/11/18 12:00 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 25 already exists!>
 [1/11/18 12:03 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 19 already exists!>
-[3/20/18 6:07 PM]|JDBCBroker|JDBCBroker|Error|NOTAG|null<Could not load driver class[com.mysql.jdbc.Driver]>
-[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
-[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
-[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
-[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
-[3/20/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/1/18, 9:55 PM]|Closet|Closet.<init>|Error|NOTAG|null<Unable to create Receptionist object>
+[3/1/18, 11:32 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/2/18, 12:04 AM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ArticleTypeCollectionView>
+[3/2/18, 12:05 AM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ArticleTypeCollectionView>
+[3/2/18, 12:05 AM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ArticleTypeCollectionView>
+[3/3/18, 6:22 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/3/18, 6:22 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/3/18, 6:22 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|UpdateColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/3/18, 6:22 PM]|UpdateColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 6:22 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 7:27 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/3/18, 7:56 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/4/18, 11:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/4/18, 11:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/4/18, 11:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/4/18, 11:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:19 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:19 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:28 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:28 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:28 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:28 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:28 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18, 11:28 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/6/18 5:59 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:18 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/7/18 8:18 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/7/18 8:19 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:19 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:19 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:19 AM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/7/18 8:38 AM]|ArticleType|updatePersistentState|Error|NOTAG|null<SQL Exception: 1062: Duplicate entry '3' for key 'PRIMARY'>
+[3/7/18 9:02 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/8/18 4:40 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:40 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:40 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:40 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:40 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:40 PM]|RemoveColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|Color|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|AddColorTransaction|processTransaction|Error|NOTAG|null<Invalid barcode prefix : 111! Must be numerical.>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:41 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:41 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:46 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:46 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:46 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:46 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:46 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:46 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:46 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:46 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:46 PM]|ColorCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1146: Table 'spr18_csc429_ntyle1.color' doesn't exist>
+[3/8/18 4:46 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:52 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:52 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:52 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:52 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:52 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|RemoveColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|RemoveColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|RemoveColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:54 PM]|RemoveColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 4:56 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:00 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:00 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:01 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:01 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:01 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:01 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:01 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 5:01 PM]|UpdateColorTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/8/18 6:41 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/8/18 6:42 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/8/18 6:42 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18 2:00 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18 2:00 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18 2:00 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18 2:00 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18 2:00 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18 2:17 PM]|Closet|Closet.<init>|Error|NOTAG|null<Unable to create Receptionist object>
+[3/12/18 2:23 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/12/18, 5:27 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 11 already exists!>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:14 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:16 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:16 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:16 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:17 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:18 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:19 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:20 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:22 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:25 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:26 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:27 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:27 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:27 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:27 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:31 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:31 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:31 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:31 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:31 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:31 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:32 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:36 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:38 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:39 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:39 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 6:39 PM]|UpdateArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:04 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:04 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:04 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:04 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:04 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:04 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:05 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:05 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:05 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:05 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:05 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:08 PM]|AddColorTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/12/18, 7:28 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:28 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:28 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:28 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:29 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:29 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/12/18, 7:29 PM]|RemoveArticleTypeTransaction|processTransaction|Error|NOTAG|null<Error in creating ModifyArticleTypeView>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:53 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:53 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:53 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:53 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:53 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:53 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 5:56 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 6:07 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/18/18 6:17 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/18/18 6:17 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/18/18 6:17 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/18/18 6:18 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 7:11 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 7:11 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 7:12 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 10:40 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 10:40 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 10:41 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 10:42 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 10:45 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/18/18 11:07 PM]|Inventory|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'ReceiverNetid' doesn't have a default value>
+[3/18/18 11:11 PM]|Inventory|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'ReceiverNetid' doesn't have a default value>
+[3/18/18 11:14 PM]|Inventory|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'ReceiverNetid' doesn't have a default value>
+[3/18/18 11:14 PM]|Inventory|insertAutoIncrementalPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'ReceiverNetid' doesn't have a default value>
+[3/19/18 10:11 AM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/19/18 10:11 AM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/19/18 10:11 AM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/19/18 10:25 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/19/18 10:25 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/19/18 1:48 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/19/18 3:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/19/18 4:17 PM]|InventoryCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.ArticleType, t1.Description as i.Color1, i.Description as i.Color2 FROM `Invent' at line 1>
+[3/19/18 4:30 PM]|ListAvailableInventoryTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/19/18 4:32 PM]|ListAvailableInventoryTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/19/18 4:35 PM]|ListAvailableInventoryTransaction|swapToView|Error|NOTAG|null<Missing view for display >
+[3/20/18 5:10 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[3/22/18 5:17 PM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 0: Data truncation: Data too long for column 'DonorEmail' at row 1>

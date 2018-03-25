@@ -199,13 +199,13 @@ public class AddClothingItemView extends View
                         color1.getSelectionModel().select(null);
                     else if(barcode.getText().length() == 8 && event.getText().length() == 1){
                         String bc = barcode.getText();
-                        String sex = bc.substring(0, 1);
+                        String gen = bc.substring(0, 1);
                         String atPrefix = bc.substring(1, 3);
                         String color1Prefix = bc.substring(3, 5);
                         int cnt = 0;
 
                        try{
-                           gender.getSelectionModel().select(new Gender(Integer.parseInt(sex)));
+                           gender.getSelectionModel().select(new Gender(Integer.parseInt(gen)));
                            cnt++;
                            articleType.getSelectionModel().select(new ArticleType(atPrefix));
                            cnt++;
@@ -640,6 +640,21 @@ public class AddClothingItemView extends View
 		}
         }
         
+        private void clearValues(){
+            barcode.clear();
+            gender.getSelectionModel().select(null);
+            articleType.getSelectionModel().select(null);
+            color1.getSelectionModel().select(null);
+            color2.getSelectionModel().select(null);
+            size.getSelectionModel().select(null);
+            brand.clear();
+            notes.clear();
+            donorFName.clear();
+            donorLName.clear();
+            donorPhone.clear();
+            donorEmail.clear();
+        }
+        
         private void clearOutlines(){
             barcode.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
             gender.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
@@ -672,9 +687,9 @@ public class AddClothingItemView extends View
 			}
 			else
 			{
-				displayMessage(val);
+                                clearValues();
+                                displayMessage(val);
 			}
-			
 		}
 	}
 
