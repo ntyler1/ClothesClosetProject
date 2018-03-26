@@ -53,23 +53,19 @@ public class SearchInventoryView extends View
 	public SearchInventoryView(IModel ic)
 	{
 		super(ic, "SearchInventoryView");
-
 		// create a container for showing the contents
 		VBox container = new VBox(10);
-        container.setStyle("-fx-background-color: slategrey");
+                container.setStyle("-fx-background-color: slategrey");
 		container.setPadding(new Insets(15, 5, 5, 5));
-
 		// Add a title for this panel
 		container.getChildren().add(createTitle());
-		
 		// create our GUI components, add them to this Container
 		container.getChildren().add(createFormContent());
-
 		container.getChildren().add(createStatusLog("             "));
 
 		getChildren().add(container);
 
-		populateFields();
+		//populateFields();
 
 		myModel.subscribe("TransactionError", this);
 	}
@@ -124,57 +120,47 @@ public class SearchInventoryView extends View
 	{
 		VBox vbox = new VBox(10);
 		
-        Text blankText = new Text("  ");
+                Text blankText = new Text("  ");
 		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		blankText.setWrappingWidth(350);
 		blankText.setTextAlignment(TextAlignment.CENTER);
 		blankText.setFill(Color.WHITE);
 		vbox.getChildren().add(blankText);
                 
-		Text prompt1 = new Text("Enter Inventory Barcode:");
-        prompt1.setWrappingWidth(400);
-        prompt1.setTextAlignment(TextAlignment.CENTER);
-        prompt1.setFill(Color.BLACK);
+		Text prompt1 = new Text("Enter Clothing Item Barcode:");
+                prompt1.setWrappingWidth(400);
+                prompt1.setTextAlignment(TextAlignment.CENTER);
+                prompt1.setFill(Color.BLACK);
 		prompt1.setFont(Font.font("Copperplate", FontWeight.SEMI_BOLD, 18));
 		vbox.getChildren().add(prompt1);
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(0, 25, 10, 0));
+                grid.setHgap(10);
+                grid.setVgap(10);
+                grid.setPadding(new Insets(0, 25, 10, 0));
 		
-		Text barcodeLabel = new Text(" Barcode: ");
+		Text barcodeLabel = new Text(" Clothing Barcode : ");
 		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 14);
 		barcodeLabel.setFont(myFont);
-        barcodeLabel.setFill(Color.GOLD);
+                barcodeLabel.setFill(Color.GOLD);
 		barcodeLabel.setWrappingWidth(150);
 		barcodeLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(barcodeLabel, 0, 1);
 
 		barcode = new TextField();
-        barcode.setStyle("-fx-focus-color: darkgreen;");
-		barcode.setOnAction((ActionEvent e) -> {
-                    clearErrorMessage();
-                    Properties props = new Properties();
-                    String bc = barcode.getText();
-                    if (bc.length() > 0)
-                    {
-                        props.setProperty("Barcode", bc);
-                        myModel.stateChangeRequest("SearchInventory", props);
-                    }
-                });
+                barcode.setStyle("-fx-focus-color: darkgreen;");
 		grid.add(barcode, 1, 1);
 		
 		vbox.getChildren().add(grid);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
-        ImageView icon = new ImageView(new Image("/images/searchcolor.png"));
-        icon.setFitHeight(15);
-        icon.setFitWidth(15);
+                ImageView icon = new ImageView(new Image("/images/searchcolor.png"));
+                icon.setFitHeight(15);
+                icon.setFitWidth(15);
 		submitButton = new Button("Search",icon);
-        submitButton.setStyle("-fx-background-color: lightgreen; ");
+                submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -185,6 +171,8 @@ public class SearchInventoryView extends View
                         props.setProperty("Barcode", bc);
                         myModel.stateChangeRequest("SearchInventory", props);
                     }
+                    else
+                        displayErrorMessage("ERROR: Please Enter A Barcode To Search On!");
                 });
                 submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     submitButton.setEffect(new DropShadow());
@@ -194,10 +182,10 @@ public class SearchInventoryView extends View
                 });
 		doneCont.getChildren().add(submitButton);
 		icon = new ImageView(new Image("/images/return.png"));
-        icon.setFitHeight(15);
-        icon.setFitWidth(15);
+                icon.setFitHeight(15);
+                icon.setFitWidth(15);
 		cancelButton = new Button("Return",icon);
-        cancelButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
+                cancelButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -210,10 +198,13 @@ public class SearchInventoryView extends View
                     cancelButton.setEffect(null);
                 });
 		doneCont.getChildren().add(cancelButton);
-	
-		vbox.getChildren().add(grid);
+                blankText = new Text("  ");
+		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText.setWrappingWidth(350);
+		blankText.setTextAlignment(TextAlignment.CENTER);
+		blankText.setFill(Color.WHITE);
+		vbox.getChildren().add(blankText);
 		vbox.getChildren().add(doneCont);
-
 		return vbox;
 	}
 

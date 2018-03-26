@@ -54,30 +54,17 @@ public class TransactionFactory
                         retValue = new RemoveArticleTypeTransaction();
                     }
                 else
-                    if(transType.equals("AddClothingItem") == true){
-                        retValue = new AddClothingItemTransaction();
-                    }
-                    else
-                    	if(transType.equals("RemoveClothingItem") == true) {
-                    			retValue = new RemoveClothingItemTransaction();
-                    	}
-                /*
-		else
-		if (transType.equals("Transfer") == true)
-		{
-			retValue = new TransferTransaction(cust);
-		}
-		else
-		if (transType.equals("BalanceInquiry") == true)
-		{
-			retValue = new BalanceInquiryTransaction(cust);
-		}
-		else
-		if (transType.equals("ImposeServiceCharge") == true)
-		{
-			retValue = new ImposeServiceChargeTransaction(cust);
-		} */
-
+                if(transType.equals("AddClothingItem") == true){
+                    retValue = new AddClothingItemTransaction();
+                }
+                else
+                if(transType.equals("UpdateClothingItem") == true) {
+                    retValue = new UpdateClothingItemTransaction();
+                }
+                else
+                if(transType.equals("RemoveClothingItem") == true) {
+                    retValue = new RemoveClothingItemTransaction();
+                }
 		return retValue;
 	}
 }

@@ -27,7 +27,7 @@ public class ViewFactory {
 		{
 			return new SearchArticleTypeView(model);
 		}
-        else if(viewName.equals("RemoveArticleTypeView") == true)
+                else if(viewName.equals("RemoveArticleTypeView") == true)
 		{
 			return new RemoveArticleTypeView(model);
 		}
@@ -47,60 +47,26 @@ public class ViewFactory {
 		{
 			return new RemoveColorView(model);
 		}
-        else if(viewName.equals("ColorCollectionView") == true)
-        {
-            return new ColorCollectionView(model);
-        }
-        else if(viewName.equals("AddClothingItemView") == true)
-        {
-			return new AddClothingItemView(model);
-        }
-		else if(viewName.equals("ModifyClothingItemView") == true)
-        {
-			return new ModifyClothingItemView(model);
-        }
-		else if(viewName.equals("InventoryCollectionView") == true)
-        {
-			return new InventoryCollectionView(model);
-        }
-		else if(viewName.equals("SearchInventoryView") == true)
-        {
-			return new SearchInventoryView(model);
-        }
-                    
-        /*
-		else if(viewName.equals("DepositTransactionView") == true)
-		{
-			return new DepositTransactionView(model);
-		}
-		else if(viewName.equals("DepositAmountView") == true)
-		{
-			return new DepositAmountView(model);
-		}
-		else if(viewName.equals("WithdrawTransactionView") == true)
-		{
-			return new WithdrawTransactionView(model);
-		}
-		else if(viewName.equals("TransferTransactionView") == true)
-		{
-			return new TransferTransactionView(model);
-		}
-		else if(viewName.equals("BalanceInquiryTransactionView") == true)
-		{
-			return new BalanceInquiryTransactionView(model);
-		}
-		else if(viewName.equals("BalanceInquiryReceipt") == true)
-		{
-			return new BalanceInquiryReceipt(model);
-		}
-		else if(viewName.equals("WithdrawReceipt") == true)
-		{
-			return new WithdrawReceipt(model);
-		}
-		else if(viewName.equals("DepositReceipt") == true)
-		{
-			return new DepositReceipt(model);
-		}*/
+                else if(viewName.equals("ColorCollectionView") == true)
+                {
+                    return new ColorCollectionView(model);
+                }
+                else if(viewName.equals("AddClothingItemView") == true)
+                {
+                    return new AddClothingItemView(model);
+                }
+                else if(viewName.equals("ModifyClothingItemView") == true)
+                {
+                    return new ModifyClothingItemView(model);
+                }
+                else if(viewName.equals("InventoryCollectionView") == true)
+                {
+                    return new InventoryCollectionView(model);
+                }
+                else if(viewName.equals("SearchInventoryView") == true)
+                {
+                    return new SearchInventoryView(model);
+                }
 		else if(viewName.equals("ListInventoryAvailableView") == true)
 		{
 			return new ListInventoryAvailableView(model);
@@ -108,8 +74,4 @@ public class ViewFactory {
 		else
 			return null;
 	}
-
-
-	
-
 }

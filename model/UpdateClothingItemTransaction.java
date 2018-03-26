@@ -20,7 +20,7 @@ import userinterface.ViewFactory;
 public class UpdateClothingItemTransaction extends Transaction
 {
 
-    private InventoryCollection myInventoryList;
+    private Inventory myInventory;
     private Inventory mySelectedInventoy;
 
 
@@ -43,7 +43,7 @@ public class UpdateClothingItemTransaction extends Transaction
     {
         dependencies = new Properties();
         dependencies.setProperty("CancelSearchInventory", "CancelTransaction");
-        dependencies.setProperty("CancelAddI", "CancelTransaction");
+        dependencies.setProperty("CancelModifyI", "CancelTransaction");
         dependencies.setProperty("InventoryData", "TransactionError");
 
         myRegistry.setDependencies(dependencies);
@@ -55,21 +55,30 @@ public class UpdateClothingItemTransaction extends Transaction
     //----------------------------------------------------------
     public void processTransaction(Properties props)
     {
-        myInventoryList = new InventoryCollection();
         if (props.getProperty("Barcode") != null)
         {
             String barcode = props.getProperty("Barcode");
-            myInventoryList.findByBarcode(barcode);
-        }
-        else
-        {
-//            String desc = props.getProperty("Description");
-//            String alfaC = props.getProperty("AlphaCode");
- //           myInventoryList.findByCriteria(props);
+            try{
+                myInventory = new Inventory(barcode);
+            }
+            catch(InvalidPrimaryKeyException e){
+                transactionErrorMessage = "ERROR: No Clothing Item Found With Entered Barcode";
+                new Event(Event.getLeafLevelClassName(this), "processTransaction",
+                            "Inventory with barcode : " + barcode + " does not exist!",
+                            Event.ERROR);
+                return;
+            }
+            catch(MultiplePrimaryKeysException e){
+                transactionErrorMessage = "ERROR: Multiple Clothing Item Found With Entered Barcode";
+                new Event(Event.getLeafLevelClassName(this), "processTransaction",
+                            "Inventory Records with barcode : " + barcode + " is more than one!",
+                            Event.ERROR);
+                return;
+            }
         }
         try
         {
-            Scene newScene = createInventoryCollectionView();
+            Scene newScene = createModifyClothingItemView();
             swapToView(newScene);
         }
         catch (Exception ex)
@@ -222,9 +231,9 @@ public class UpdateClothingItemTransaction extends Transaction
     //-----------------------------------------------------------
     public Object getState(String key)
     {
-        if (key.equals("InventoryList") == true)
+        if (key.equals("Inventory") == true)
         {
-            return myInventoryList;
+            return myInventory;
         }
         else
         if (key.equals("Barcode") == true)
@@ -372,24 +381,6 @@ public class UpdateClothingItemTransaction extends Transaction
             processTransaction((Properties)value);
         }
         else
-        if (key.equals("InventorySelected") == true)
-        {
-            mySelectedInventoy = myInventoryList.retrieve((String)value);
-            try
-            {
-
-                Scene newScene = createModifyClothingItemView();
-
-                swapToView(newScene);
-
-            }
-            catch (Exception ex)
-            {
-                new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                        "Error in creating ModifyClothingItemView", Event.ERROR);
-            }
-        }
-        else
         if (key.equals("InventoryData") == true)
         {
             processInventoryRemove((Properties)value);
@@ -420,19 +411,6 @@ public class UpdateClothingItemTransaction extends Transaction
         {
             return currentScene;
         }
-    }
-
-    /**
-     * Create the view containing the table of all matching article types on the search criteria sents
-     */
-    //------------------------------------------------------
-    protected Scene createInventoryCollectionView()
-    {
-        View newView = ViewFactory.createView("InventoryCollectionView", this);
-        Scene currentScene = new Scene(newView);
-
-        return currentScene;
-
     }
 
     /**

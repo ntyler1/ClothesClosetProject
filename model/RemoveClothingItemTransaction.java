@@ -7,7 +7,8 @@ import java.util.Properties;
 
 // project imports
 import event.Event;
-
+import exception.InvalidPrimaryKeyException;
+import exception.MultiplePrimaryKeysException;
 import userinterface.View;
 import userinterface.ViewFactory;
 
@@ -16,7 +17,7 @@ import userinterface.ViewFactory;
 public class RemoveClothingItemTransaction extends Transaction
 {
 
-    private InventoryCollection myInventoryList;
+    private Inventory mySelectedInventory;
     private Inventory myInventory;
 
     // GUI Components
@@ -38,7 +39,7 @@ public class RemoveClothingItemTransaction extends Transaction
     {
         dependencies = new Properties();
         dependencies.setProperty("CancelSearchInventory", "CancelTransaction");
-        dependencies.setProperty("CancelAddI", "CancelTransaction");
+        dependencies.setProperty("CancelRemoveI", "CancelTransaction");
         dependencies.setProperty("InventoryData", "TransactionError");
 
         myRegistry.setDependencies(dependencies);
@@ -50,15 +51,19 @@ public class RemoveClothingItemTransaction extends Transaction
     //----------------------------------------------------------
     public void processTransaction(Properties props)
     {
-        myInventoryList = new InventoryCollection();
         if (props.getProperty("Barcode") != null)
         {
             String barcode = props.getProperty("Barcode");
-            myInventoryList.findByBarcode(barcode);
+            try{
+                myInventory = new Inventory(barcode);
+            }
+            catch(Exception e){
+                System.out.println("cant make a inventory with the barcode");
+            }
         }
         try
         {
-            Scene newScene = createInventoryCollectionView();
+            Scene newScene = createRemoveClothingItemView();
             swapToView(newScene);
         }
         catch (Exception ex)
@@ -69,7 +74,7 @@ public class RemoveClothingItemTransaction extends Transaction
     }
 
     //----------------------------------------------------------
-    private void processColorRemoval(Properties props)
+    private void processInventoryRemoval(Properties props)
     {
         myInventory.stateChangeRequest("Status", "Inactive");
         myInventory.remove();
@@ -79,17 +84,9 @@ public class RemoveClothingItemTransaction extends Transaction
     //-----------------------------------------------------------
     public Object getState(String key)
     {
-        if (key.equals("InventoryList") == true)
+        if (key.equals("Inventory") == true)
         {
-            return myInventoryList;
-        }
-        else
-        if (key.equals("BarcodePrefix") == true)
-        {
-            if (myInventory != null)
-                return myInventory.getState("BarcodePrefix");
-            else
-                return "";
+            return myInventory;
         }
         else
         if (key.equals("TransactionError") == true)
@@ -110,32 +107,14 @@ public class RemoveClothingItemTransaction extends Transaction
             doYourJob();
         }
         else
-        if (key.equals("SearchColor") == true)
+        if (key.equals("SearchInventory") == true)
         {
             processTransaction((Properties)value);
         }
         else
-        if (key.equals("InventorySelected") == true)
-        {
-            myInventory = myInventoryList.retrieve((String)value);
-            try
-            {
-
-                Scene newScene = createRemoveClothingItemView();
-
-                swapToView(newScene);
-
-            }
-            catch (Exception ex)
-            {
-                new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                        "Error in creating RemoveClothingItemView", Event.ERROR);
-            }
-        }
-        else
         if (key.equals("InventoryData") == true)
         {
-            processColorRemoval((Properties)value);
+            processInventoryRemoval((Properties)value);
         }
 
         myRegistry.updateSubscribers(key, this);
@@ -148,14 +127,14 @@ public class RemoveClothingItemTransaction extends Transaction
     //------------------------------------------------------
     protected Scene createView()                                 //chooses color
     {
-        Scene currentScene = myViews.get("SearchArticleTypeView");
+        Scene currentScene = myViews.get("SearchInventoryView");
 
         if (currentScene == null)
         {
             // create our initial view
-            View newView = ViewFactory.createView("SearchArticleTypeView", this);
+            View newView = ViewFactory.createView("SearchInventoryView", this);
             currentScene = new Scene(newView);
-            myViews.put("SearchArticleTypeView", currentScene);
+            myViews.put("SearchInventoryView", currentScene);
 
             return currentScene;
         }
@@ -163,17 +142,6 @@ public class RemoveClothingItemTransaction extends Transaction
         {
             return currentScene;
         }
-    }
-
-    /**
-     * Create the view containing the table of all matching colors on the search criteria sents
-     */
-    //------------------------------------------------------
-    protected Scene createInventoryCollectionView() {
-        View newView = ViewFactory.createView("InventoryClothingItem", this);
-        Scene currentScene = new Scene(newView);
-
-        return currentScene;
     }
 
     /**
