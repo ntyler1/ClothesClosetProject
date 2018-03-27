@@ -38,21 +38,21 @@ public class RemoveArticleTypeView extends AddArticleTypeView
 		if (bcPrefix != null)
 		{
 			barcodePrefix.setText(bcPrefix);
-                        barcodePrefix.setDisable(true);
 		}
 		String desc = (String)myModel.getState("Description");
 		if (desc != null)
 		{
 			description.setText(desc);
-                        description.setDisable(true);
-
 		}
 		String alfaC = (String)myModel.getState("AlphaCode");
 		if (alfaC != null)
 		{
 			alphaCode.setText(alfaC);
-                        alphaCode.setDisable(true);
 		}
+                
+                barcodePrefix.setDisable(true);
+                alphaCode.setDisable(true);
+                description.setDisable(true);
                 actionText.setFill(Color.PALEVIOLETRED);
                 prompt.setText("Selected Article Type Information:");
                 submitButton.setText("Remove"); //fix submitbutton

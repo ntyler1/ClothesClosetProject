@@ -39,7 +39,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
 		if (bar != null)
 		{
 			barcode.setText(bar);
-                        barcode.setDisable(true);
 		}
 		String gen = (String)myModel.getState("Gender");
 		if (gen != null)
@@ -50,7 +49,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
                     catch(Exception e){
                             gender.getSelectionModel().select(null);
                     }
-                    gender.setDisable(true);
 		}
                 else
                     gender.getSelectionModel().select(null);
@@ -65,7 +63,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
                     catch(Exception e){
                             articleType.getSelectionModel().select(null);
                     }
-                    articleType.setDisable(true);
 		}
                 else
                     articleType.getSelectionModel().select(null);
@@ -80,7 +77,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
                     catch(Exception e){
                             color1.getSelectionModel().select(null);
                     }
-                    color1.setDisable(true);
 		}
                 else
                     color1.getSelectionModel().select(null);
@@ -95,7 +91,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
                     catch(Exception e){
                             color2.getSelectionModel().select(null);
                     }
-                    color2.setDisable(true);
 		}
                 else
                     color2.getSelectionModel().select(null);
@@ -103,7 +98,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
 		if (sz != null)
 		{
                     size.getSelectionModel().select(sz);
-                    size.setDisable(true);
 		}
                 else
                     size.getSelectionModel().select(null);
@@ -111,39 +105,45 @@ public class RemoveClothingItemView extends AddClothingItemView {
 		if (brnd != null)
 		{
 			brand.setText(brnd);
-                        brand.setDisable(true);
 		}
 		String nts = (String)myModel.getState("Notes");
 		if (nts != null)
 		{
 			notes.setText(nts);
-                        notes.setDisable(true);
 		}
 		String donorFirst = (String)myModel.getState("DonorFirstName");
 		if (donorFirst != null)
 		{
 			donorFName.setText(donorFirst);
-                        donorFName.setDisable(true);
 		}
 		String donorLast = (String)myModel.getState("DonorLastName");
 		if (donorLast != null)
 		{
 			donorLName.setText(donorLast);
-                        donorLName.setDisable(true);
 		}
 		String donorP = (String)myModel.getState("DonorPhone");
 		if (donorP != null)
 		{
 			donorPhone.setText(donorP);
-                        donorPhone.setDisable(true);
 		}
 		String donorMail = (String)myModel.getState("DonorEmail");
 		if (donorMail != null)
 		{
 			donorEmail.setText(donorMail);
-                        donorEmail.setDisable(true);
 		}
                 
+                barcode.setDisable(true);
+                gender.setDisable(true);
+                articleType.setDisable(true);
+                color1.setDisable(true);
+                color2.setDisable(true);
+                size.setDisable(true);
+                brand.setDisable(true);
+                notes.setDisable(true);
+                donorFName.setDisable(true);
+                donorLName.setDisable(true);
+                donorPhone.setDisable(true);
+                donorEmail.setDisable(true);
                 actionText.setFill(Color.PALEVIOLETRED);
                 
                 prompt.setText("Clothing Item Information:");

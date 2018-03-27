@@ -162,9 +162,9 @@ public class Inventory extends EntityBase implements IView
 
         private void insertStateInDatabase(){
             try{
-            Integer iID =insertPersistentState(mySchema, persistentState);
-            updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
-					+ " installed successfully!";
+                Integer iID =insertPersistentState(mySchema, persistentState);
+                updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
+                                            + " installed successfully!";
             }
             catch (SQLException ex)
 		{
