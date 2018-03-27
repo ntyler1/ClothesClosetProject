@@ -155,7 +155,23 @@ public class Inventory extends EntityBase implements IView
 	{
 		removeStateInDatabase();
 	}
+        
+        public void insert(){
+            insertStateInDatabase();
+        }
 
+        private void insertStateInDatabase(){
+            try{
+            Integer iID =insertPersistentState(mySchema, persistentState);
+            updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
+					+ " installed successfully!";
+            }
+            catch (SQLException ex)
+		{
+                    System.out.println(ex);
+                    updateStatusMessage = "ERROR in installing inventory data in database!";
+		}
+        }
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase(String barcodeOG) 
 	{
@@ -170,18 +186,11 @@ public class Inventory extends EntityBase implements IView
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
 			}
                         else if(persistentState.getProperty("Barcode") != null){
-                            Properties whereClause = new Properties();
+                                Properties whereClause = new Properties();
 				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
                         }
-			else
-			{
-				Integer iID =
-					insertPersistentState(mySchema, persistentState);
-				updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
-					+ " installed successfully!";
-			}
 		}
 		catch (SQLException ex)
 		{

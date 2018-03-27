@@ -12,7 +12,7 @@ import exception.MultiplePrimaryKeysException;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-/** The class containing the RemoveColorTransaction for the Professional Clothes Closet application */
+/** The class containing the RemoveClothingItemTransaction for the Professional Clothes Closet application */
 //==============================================================
 public class RemoveClothingItemTransaction extends Transaction
 {
@@ -48,7 +48,7 @@ public class RemoveClothingItemTransaction extends Transaction
     }
 
     /**
-     * This method encapsulates all the logic of creating the color collection and showing the view
+     * This method encapsulates all the logic of creating the inventory object and showing the view
      */
     //----------------------------------------------------------
     public void processTransaction(Properties props)
