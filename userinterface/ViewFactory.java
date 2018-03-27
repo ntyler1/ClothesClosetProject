@@ -59,6 +59,10 @@ public class ViewFactory {
                 {
                     return new ModifyClothingItemView(model);
                 }
+                else if(viewName.equals("RemoveClothingItemView") == true)
+                {
+                    return new RemoveClothingItemView(model);
+                }
                 else if(viewName.equals("InventoryCollectionView") == true)
                 {
                     return new InventoryCollectionView(model);

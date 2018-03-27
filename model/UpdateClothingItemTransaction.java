@@ -21,7 +21,8 @@ public class UpdateClothingItemTransaction extends Transaction
 {
 
     private Inventory myInventory;
-    private Inventory mySelectedInventoy;
+    private ArticleTypeCollection myArticleTypeList;
+    private ColorCollection myColorList;
 
 
     // GUI Components
@@ -43,8 +44,8 @@ public class UpdateClothingItemTransaction extends Transaction
     {
         dependencies = new Properties();
         dependencies.setProperty("CancelSearchInventory", "CancelTransaction");
-        dependencies.setProperty("CancelModifyI", "CancelTransaction");
-        dependencies.setProperty("InventoryData", "TransactionError");
+        dependencies.setProperty("CancelAddCI", "CancelTransaction");
+        dependencies.setProperty("ClothingItemData", "TransactionError");
 
         myRegistry.setDependencies(dependencies);
     }
@@ -66,14 +67,12 @@ public class UpdateClothingItemTransaction extends Transaction
                 new Event(Event.getLeafLevelClassName(this), "processTransaction",
                             "Inventory with barcode : " + barcode + " does not exist!",
                             Event.ERROR);
-                return;
             }
             catch(MultiplePrimaryKeysException e){
                 transactionErrorMessage = "ERROR: Multiple Clothing Item Found With Entered Barcode";
                 new Event(Event.getLeafLevelClassName(this), "processTransaction",
                             "Inventory Records with barcode : " + barcode + " is more than one!",
                             Event.ERROR);
-                return;
             }
         }
         try
@@ -96,74 +95,50 @@ public class UpdateClothingItemTransaction extends Transaction
     {
         String gender = props.getProperty("Gender");
         if (gender != null) {
-            mySelectedInventoy.stateChangeRequest("Gender", gender);
+            myInventory.stateChangeRequest("Gender", gender);
         }
         String size = props.getProperty("Size");
         if (size != null) {
-            mySelectedInventoy.stateChangeRequest("Size", size);
+            myInventory.stateChangeRequest("Size", size);
         }
         String ArticleType = props.getProperty("ArticleType");
         if (ArticleType != null) {
-            mySelectedInventoy.stateChangeRequest("ArticleType", ArticleType);
+            myInventory.stateChangeRequest("ArticleType", ArticleType);
         }
         String Color1 = props.getProperty("Color1");
         if (Color1 != null) {
-            mySelectedInventoy.stateChangeRequest("Color1", Color1);
+            myInventory.stateChangeRequest("Color1", Color1);
         }
         String Color2 = props.getProperty("Color2");
         if (Color2 != null) {
-            mySelectedInventoy.stateChangeRequest("Color2", Color2);
+            myInventory.stateChangeRequest("Color2", Color2);
         }
         String Brand = props.getProperty("Brand");
         if (Brand.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("Brand", Brand);
+            myInventory.stateChangeRequest("Brand", Brand);
         }
         String Notes = props.getProperty("Notes");
         if (Notes.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("Notes", Notes);
-        }
-        String Status = props.getProperty("Status");
-        if (Status.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("Status", Status);
+            myInventory.stateChangeRequest("Notes", Notes);
         }
         String DonorLastName = props.getProperty("DonorLastName");
         if (DonorLastName.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("DonorLastName", DonorLastName);
+            myInventory.stateChangeRequest("DonorLastName", DonorLastName);
         }
         String DonorFirstName = props.getProperty("DonorFirstName");
         if (DonorFirstName.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("DonorFirstName", DonorFirstName);
+            myInventory.stateChangeRequest("DonorFirstName", DonorFirstName);
         }
         String DonorPhone = props.getProperty("DonorPhone");
         if (DonorPhone.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("DonorPhone", DonorPhone);
+            myInventory.stateChangeRequest("DonorPhone", DonorPhone);
         }
         String DonorEmail = props.getProperty("DonorEmail");
         if (DonorEmail.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("DonorEmail", DonorEmail);
+            myInventory.stateChangeRequest("DonorEmail", DonorEmail);
         }
-        String ReceiverNetid = props.getProperty("ReceiverNetid");
-        if (ReceiverNetid.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("ReceiverNetid", ReceiverNetid);
-        }
-        String ReceiverLastName = props.getProperty("ReceiverLastName");
-        if (ReceiverLastName.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("ReceiverLastName", ReceiverLastName);
-        }
-        String ReceiverFirstName = props.getProperty("ReceiverFirstName");
-        if (ReceiverFirstName.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("ReceiverFirstName", ReceiverFirstName);
-        }
-        String DateDonated = props.getProperty("DateDonated");
-        if (DateDonated.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("DateDonated", DateDonated);
-        }
-        String DateTaken = props.getProperty("DateTaken");
-        if (DateTaken.length() > 0) {
-            mySelectedInventoy.stateChangeRequest("DateTaken", DateTaken);
-        }
-        mySelectedInventoy.update();
-        transactionErrorMessage = (String)mySelectedInventoy.getState("UpdateStatusMessage");
+        myInventory.update(props.getProperty("BarcodeOG"));
+        transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
     }
 
     /**
@@ -176,7 +151,7 @@ public class UpdateClothingItemTransaction extends Transaction
         if (props.getProperty("Barcode") != null)
         {
             String barcode = props.getProperty("Barcode");
-            String originalBarcode = (String)mySelectedInventoy.getState("Barcode");
+            String originalBarcode = (String)myInventory.getState("Barcode");
             if (barcode.equals(originalBarcode) == false)
             {
                 try
@@ -193,11 +168,16 @@ public class UpdateClothingItemTransaction extends Transaction
                     // Barcode  does not exist, validate data
                     try
                     {
+                        System.out.println(barcode);
                         int barcodeVal = Integer.parseInt(barcode);
                         // Barcode prefix ok, so set it
-                        mySelectedInventoy.stateChangeRequest("BarcodePrefix", barcode);
+                        myInventory.stateChangeRequest("Barcode", barcode);
+                        props.setProperty("BarcodeOG", originalBarcode);
+                        System.out.println("bruh");
+                        
                         // Process the rest (description, alpha code). Helper does all that
                         InventoryModificationHelper(props);
+                        System.out.println("yay");
                     }
                     catch (Exception excep)
                     {
@@ -235,125 +215,141 @@ public class UpdateClothingItemTransaction extends Transaction
         {
             return myInventory;
         }
+         if (key.equals("ArticleTypeList") == true)
+        {
+                return myArticleTypeList;
+        }
+        else
+            if (key.equals("ColorList") == true)
+        {
+                return myColorList;
+        }
         else
         if (key.equals("Barcode") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Barcode");
+            if (myInventory != null)
+                return myInventory.getState("Barcode");
             else
                 return "";
         }
         else
         if (key.equals("Gender") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Gender");
+            if (myInventory != null)
+                return myInventory.getState("Gender");
             else
                 return "";
         }
         else
+        if (key.equals("ArticleType") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("ArticleType");
+            else
+                return "";
+        }
         if (key.equals("Size") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Size");
+            if (myInventory != null)
+                return myInventory.getState("Size");
             else
                 return "";
         }
         if (key.equals("Color1") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Color1");
+            if (myInventory != null)
+                return myInventory.getState("Color1");
             else
                 return "";
         }
         if (key.equals("Color2") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Color2");
+            if (myInventory != null)
+                return myInventory.getState("Color2");
             else
                 return "";
         }
         if (key.equals("Brand") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Brand");
+            if (myInventory != null)
+                return myInventory.getState("Brand");
             else
                 return "";
         }
         if (key.equals("Notes") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Notes");
+            if (myInventory != null)
+                return myInventory.getState("Notes");
             else
                 return "";
         }
         if (key.equals("Status") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("Status");
+            if (myInventory != null)
+                return myInventory.getState("Status");
             else
                 return "";
         }
         if (key.equals("DonorLastName") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("DonorLastName");
+            if (myInventory != null)
+                return myInventory.getState("DonorLastName");
             else
                 return "";
         }
         if (key.equals("DonorFirstName") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("DonorFirstName");
+            if (myInventory != null)
+                return myInventory.getState("DonorFirstName");
             else
                 return "";
         }
         if (key.equals("DonorPhone") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("DonorPhone");
+            if (myInventory != null)
+                return myInventory.getState("DonorPhone");
             else
                 return "";
         }
         if (key.equals("DonorEmail") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("DonorEmail");
+            if (myInventory != null)
+                return myInventory.getState("DonorEmail");
             else
                 return "";
         }
         if (key.equals("ReceiverNetid") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("ReceiverNetid");
+            if (myInventory != null)
+                return myInventory.getState("ReceiverNetid");
             else
                 return "";
         }
         if (key.equals("ReceiverLastName") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("ReceiverLastName");
+            if (myInventory != null)
+                return myInventory.getState("ReceiverLastName");
             else
                 return "";
         }
         if (key.equals("ReceiverFirstName") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("ReceiverFirstName");
+            if (myInventory != null)
+                return myInventory.getState("ReceiverFirstName");
             else
                 return "";
         }
         if (key.equals("DateDonated") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("DateDonated");
+            if (myInventory != null)
+                return myInventory.getState("DateDonated");
             else
                 return "";
         }
         if (key.equals("DateTaken") == true)
         {
-            if (mySelectedInventoy != null)
-                return mySelectedInventoy.getState("DateTaken");
+            if (myInventory != null)
+                return myInventory.getState("DateTaken");
             else
                 return "";
         }
@@ -375,13 +371,21 @@ public class UpdateClothingItemTransaction extends Transaction
         {
             doYourJob();
         }
-        else
+        else if (key.equals("atComboBox") == true)
+        {
+                myArticleTypeList = new ArticleTypeCollection();
+                myArticleTypeList.findAll();
+        }else if (key.equals("cComboBox") == true)
+        {
+                myColorList = new ColorCollection();
+                myColorList.findAll();
+        }
         if (key.equals("SearchInventory") == true)
         {
             processTransaction((Properties)value);
         }
         else
-        if (key.equals("InventoryData") == true)
+        if (key.equals("ClothingItemData") == true)
         {
             processInventoryRemove((Properties)value);
         }

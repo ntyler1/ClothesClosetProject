@@ -21,6 +21,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 {
 
 	private ArticleTypeCollection myArticleTypeList;
+        private ColorCollection myColorList;
 	private ArticleType mySelectedArticleType;
 	
 

@@ -2,16 +2,11 @@
 package userinterface;
 
 // system imports
-import javafx.event.Event;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -21,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.Properties;
@@ -32,10 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Enumeration;
 import java.util.Vector;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.Gender;
 import model.ArticleType;
 import model.ColorX;
@@ -91,10 +82,12 @@ public class AddClothingItemView extends View
 		
 		// create our GUI components, add them to this Container
 		container.getChildren().add(createFormContent());
-
+ 
 		container.getChildren().add(createStatusLog("             "));
 
 		getChildren().add(container);
+                
+                populateFields();
 
 		myModel.subscribe("TransactionError", this);
 	}
@@ -104,6 +97,10 @@ public class AddClothingItemView extends View
 	{
 		return "** ADDING NEW CLOTHING ITEM **";
 	}
+        
+        public void populateFields(){
+            
+        }
 
 	// Create the title container
 	//-------------------------------------------------------------
@@ -211,7 +208,7 @@ public class AddClothingItemView extends View
                            cnt++;
                            color1.getSelectionModel().select(new ColorX(color1Prefix));
                        }
-                       catch(Exception InvalidPrimaryKeyException){
+                       catch(Exception e){
                             switch (cnt) {
                                 case 0:
                                     gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
@@ -238,7 +235,7 @@ public class AddClothingItemView extends View
 
 		gender = new ComboBox<Gender>();
                 gender.setItems(FXCollections.observableArrayList(
-                    new Gender("Male",0), new Gender("Female",1)));
+                    new Gender("Male"), new Gender("Female")));
                 gender.setPromptText("Please Select Gender");
                 gender.setConverter(new StringConverter<Gender>() {
                     @Override

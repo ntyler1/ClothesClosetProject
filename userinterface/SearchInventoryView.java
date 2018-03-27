@@ -61,6 +61,7 @@ public class SearchInventoryView extends View
 		container.getChildren().add(createTitle());
 		// create our GUI components, add them to this Container
 		container.getChildren().add(createFormContent());
+
 		container.getChildren().add(createStatusLog("             "));
 
 		getChildren().add(container);
@@ -170,6 +171,7 @@ public class SearchInventoryView extends View
                     {
                         props.setProperty("Barcode", bc);
                         myModel.stateChangeRequest("SearchInventory", props);
+                        displayErrorMessage("ERROR: No Inventory Record Found!");
                     }
                     else
                         displayErrorMessage("ERROR: Please Enter A Barcode To Search On!");

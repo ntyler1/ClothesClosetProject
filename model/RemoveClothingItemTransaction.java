@@ -18,6 +18,8 @@ public class RemoveClothingItemTransaction extends Transaction
 {
 
     private Inventory mySelectedInventory;
+    private ArticleTypeCollection myArticleTypeList;
+    private ColorCollection myColorList;
     private Inventory myInventory;
 
     // GUI Components
@@ -39,8 +41,8 @@ public class RemoveClothingItemTransaction extends Transaction
     {
         dependencies = new Properties();
         dependencies.setProperty("CancelSearchInventory", "CancelTransaction");
-        dependencies.setProperty("CancelRemoveI", "CancelTransaction");
-        dependencies.setProperty("InventoryData", "TransactionError");
+        dependencies.setProperty("CancelAddCI", "CancelTransaction");
+        dependencies.setProperty("ClothingItemData", "TransactionError");
 
         myRegistry.setDependencies(dependencies);
     }
@@ -57,8 +59,17 @@ public class RemoveClothingItemTransaction extends Transaction
             try{
                 myInventory = new Inventory(barcode);
             }
-            catch(Exception e){
-                System.out.println("cant make a inventory with the barcode");
+            catch(InvalidPrimaryKeyException e){
+                transactionErrorMessage = "ERROR: No Clothing Item Found With Entered Barcode";
+                new Event(Event.getLeafLevelClassName(this), "processTransaction",
+                            "Inventory with barcode : " + barcode + " does not exist!",
+                            Event.ERROR);
+            }
+            catch(MultiplePrimaryKeysException e){
+                transactionErrorMessage = "ERROR: Multiple Clothing Item Found With Entered Barcode";
+                new Event(Event.getLeafLevelClassName(this), "processTransaction",
+                            "Inventory Records with barcode : " + barcode + " is more than one!",
+                            Event.ERROR);
             }
         }
         try
@@ -76,7 +87,7 @@ public class RemoveClothingItemTransaction extends Transaction
     //----------------------------------------------------------
     private void processInventoryRemoval(Properties props)
     {
-        myInventory.stateChangeRequest("Status", "Inactive");
+        myInventory.stateChangeRequest("Status", "Removed");
         myInventory.remove();
         transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
     }
@@ -87,6 +98,144 @@ public class RemoveClothingItemTransaction extends Transaction
         if (key.equals("Inventory") == true)
         {
             return myInventory;
+        }
+       if (key.equals("ArticleTypeList") == true)
+        {
+                return myArticleTypeList;
+        }
+        else
+            if (key.equals("ColorList") == true)
+        {
+                return myColorList;
+        }
+        else
+        if (key.equals("Barcode") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Barcode");
+            else
+                return "";
+        }
+        else
+        if (key.equals("Gender") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Gender");
+            else
+                return "";
+        }
+        else
+        if (key.equals("ArticleType") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("ArticleType");
+            else
+                return "";
+        }
+        if (key.equals("Size") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Size");
+            else
+                return "";
+        }
+        if (key.equals("Color1") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Color1");
+            else
+                return "";
+        }
+        if (key.equals("Color2") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Color2");
+            else
+                return "";
+        }
+        if (key.equals("Brand") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Brand");
+            else
+                return "";
+        }
+        if (key.equals("Notes") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Notes");
+            else
+                return "";
+        }
+        if (key.equals("Status") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("Status");
+            else
+                return "";
+        }
+        if (key.equals("DonorLastName") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("DonorLastName");
+            else
+                return "";
+        }
+        if (key.equals("DonorFirstName") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("DonorFirstName");
+            else
+                return "";
+        }
+        if (key.equals("DonorPhone") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("DonorPhone");
+            else
+                return "";
+        }
+        if (key.equals("DonorEmail") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("DonorEmail");
+            else
+                return "";
+        }
+        if (key.equals("ReceiverNetid") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("ReceiverNetid");
+            else
+                return "";
+        }
+        if (key.equals("ReceiverLastName") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("ReceiverLastName");
+            else
+                return "";
+        }
+        if (key.equals("ReceiverFirstName") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("ReceiverFirstName");
+            else
+                return "";
+        }
+        if (key.equals("DateDonated") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("DateDonated");
+            else
+                return "";
+        }
+        if (key.equals("DateTaken") == true)
+        {
+            if (myInventory != null)
+                return myInventory.getState("DateTaken");
+            else
+                return "";
         }
         else
         if (key.equals("TransactionError") == true)
@@ -107,12 +256,21 @@ public class RemoveClothingItemTransaction extends Transaction
             doYourJob();
         }
         else
+        if (key.equals("atComboBox") == true)
+        {
+                myArticleTypeList = new ArticleTypeCollection();
+                myArticleTypeList.findAll();
+        }else if (key.equals("cComboBox") == true)
+        {
+                myColorList = new ColorCollection();
+                myColorList.findAll();
+        }else
         if (key.equals("SearchInventory") == true)
         {
             processTransaction((Properties)value);
         }
         else
-        if (key.equals("InventoryData") == true)
+        if (key.equals("ClothingItemData") == true)
         {
             processInventoryRemoval((Properties)value);
         }
@@ -150,7 +308,7 @@ public class RemoveClothingItemTransaction extends Transaction
     //------------------------------------------------------
     protected Scene createRemoveClothingItemView()
     {
-        View newView = ViewFactory.createView("RemoveClothingItem", this);
+        View newView = ViewFactory.createView("RemoveClothingItemView", this);
         Scene currentScene = new Scene(newView);
 
         return currentScene;

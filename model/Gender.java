@@ -12,9 +12,12 @@ public class Gender {
         return name;
     }
 
-    public Gender(String name, int value) {
+    public Gender(String name) {
         this.name = name;
-        this.value = value;
+        if(name.equals("Male"))
+            this.value = 0;
+        else
+            this.value = 1;
     }
     
     public Gender(int value){
@@ -24,4 +27,5 @@ public class Gender {
             this.name = "Male";
         this.value = value;
     }
+    
 }

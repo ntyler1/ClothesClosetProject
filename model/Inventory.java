@@ -146,9 +146,9 @@ public class Inventory extends EntityBase implements IView
 	}
 
 	//-----------------------------------------------------------------------------------
-	public void update()
+	public void update(String ogBarcode)
 	{
-		updateStateInDatabase();
+		updateStateInDatabase(ogBarcode);
 	}
 
 	public void remove()
@@ -157,18 +157,24 @@ public class Inventory extends EntityBase implements IView
 	}
 
 	//-----------------------------------------------------------------------------------
-	private void updateStateInDatabase() 
+	private void updateStateInDatabase(String barcodeOG) 
 	{
 		try
 		{
                     
-			if (persistentState.getProperty("ID") != null)
+			if (barcodeOG != null)
 			{
 				Properties whereClause = new Properties();
-				whereClause.setProperty("ID", persistentState.getProperty("ID"));
+				whereClause.setProperty("Barcode", barcodeOG);
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
 			}
+                        else if(persistentState.getProperty("Barcode") != null){
+                            Properties whereClause = new Properties();
+				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
+				updatePersistentState(mySchema, persistentState, whereClause);
+				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
+                        }
 			else
 			{
 				Integer iID =
@@ -187,9 +193,9 @@ public class Inventory extends EntityBase implements IView
 
 	private void removeStateInDatabase() {
 		try {
-			if (persistentState.getProperty("ID") != null) {
+			if (persistentState.getProperty("Barcode") != null) {
 				Properties whereClause = new Properties();
-				whereClause.setProperty("ID", persistentState.getProperty("ID"));
+				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " removed successfully!";
 			} else {

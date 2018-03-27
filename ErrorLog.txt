@@ -529,3 +529,116 @@
 [3/26/18 6:13 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
 [3/26/18 6:13 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
 [3/26/18 6:13 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 8:39 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 111 does not exist!>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:25 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:28 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:28 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:28 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:28 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:29 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:31 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:52 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:53 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 10:54 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:11 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:12 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:12 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:12 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11 does not exist!>
+[3/27/18 11:12 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 01 does not exist!>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 01 does not exist!>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 01 does not exist!>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 01 does not exist!>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 01 does not exist!>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 01 does not exist!>
+[3/27/18 11:13 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 11:16 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 1111 does not exist!>
+[3/27/18 11:16 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 11:16 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 1111 does not exist!>
+[3/27/18 11:16 AM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[3/27/18 11:20 AM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 1265: Data truncated for column 'Status' at row 1>
+[3/27/18 11:22 AM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 1062: Duplicate entry '11111111' for key 'PRIMARY'>
+[3/27/18 11:26 AM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 1062: Duplicate entry '11111111' for key 'PRIMARY'>
+[3/27/18 11:32 AM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 1062: Duplicate entry '11111111' for key 'PRIMARY'>
+[3/27/18 11:35 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/27/18 11:35 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/27/18 11:35 AM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/27/18 11:35 AM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 1062: Duplicate entry '11111111' for key 'PRIMARY'>
+[3/27/18 11:50 AM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11411111! Must be numerical.>
+[3/27/18 12:11 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 12111111! Must be numerical.>
+[3/27/18 12:13 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11148111! Must be numerical.>
+[3/27/18 12:14 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11119111! Must be numerical.>
+[3/27/18 12:21 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11148111! Must be numerical.>
+[3/27/18 12:24 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11102111! Must be numerical.>
+[3/27/18 12:25 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11411111! Must be numerical.>
+[3/27/18 12:26 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11411111! Must be numerical.>
+[3/27/18 12:27 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11116111! Must be numerical.>
+[3/27/18 12:27 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11411111! Must be numerical.>

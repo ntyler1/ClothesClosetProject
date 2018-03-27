@@ -71,7 +71,7 @@ public class AddClothingItemTransaction extends Transaction
 				// Barcode does not exist, validate data
 				try{
                                         Inventory newInventory = new Inventory(props);
-                                        newInventory.update();
+                                        newInventory.update(null);
                                         transactionErrorMessage = (String)newInventory.getState("UpdateStatusMessage");
 				}
 				catch (Exception excep)
