@@ -61,15 +61,9 @@ public class RemoveClothingItemTransaction extends Transaction
             }
             catch(InvalidPrimaryKeyException e){
                 transactionErrorMessage = "ERROR: No Clothing Item Found With Entered Barcode";
-                new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                            "Inventory with barcode : " + barcode + " does not exist!",
-                            Event.ERROR);
             }
             catch(MultiplePrimaryKeysException e){
                 transactionErrorMessage = "ERROR: Multiple Clothing Item Found With Entered Barcode";
-                new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                            "Inventory Records with barcode : " + barcode + " is more than one!",
-                            Event.ERROR);
             }
         }
         try

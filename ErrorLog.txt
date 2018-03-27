@@ -642,3 +642,10 @@
 [3/27/18 12:26 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11411111! Must be numerical.>
 [3/27/18 12:27 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11116111! Must be numerical.>
 [3/27/18 12:27 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Invalid barcode : 11411111! Must be numerical.>
+[3/27/18 1:55 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/27/18 1:55 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[3/27/18 2:11 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 11611111 does not exist!>
+[3/27/18 2:11 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 2:35 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 111 does not exist!>
+[3/27/18 2:35 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/27/18 2:42 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>

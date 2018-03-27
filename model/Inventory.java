@@ -38,7 +38,7 @@ public class Inventory extends EntityBase implements IView
 		super(myTableName);
 
 		barcode = barcode.trim();
-		String query = "SELECT * FROM " + myTableName + " WHERE (Barcode = '" + barcode + "')";
+		String query = "SELECT * FROM " + myTableName + " WHERE (Barcode = '" + barcode + "') AND (Status != 'Removed')";
 
 		Vector<Properties> allDataRetrieved = getSelectQueryResult(query);
 

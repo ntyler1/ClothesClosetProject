@@ -637,7 +637,7 @@ public class AddClothingItemView extends View
 		}
         }
         
-        private void clearValues(){
+        public void clearValues(){
             barcode.clear();
             gender.getSelectionModel().select(null);
             articleType.getSelectionModel().select(null);

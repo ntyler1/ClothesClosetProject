@@ -170,7 +170,7 @@ public class SearchColorView extends View
 		
 		vbox.getChildren().add(grid0);
 		
-		Text prompt2 = new Text(" Enter Other Search Criteria: ");
+		Text prompt2 = new Text(" Enter Other Color Search Criteria: ");
                 prompt2.setWrappingWidth(400);
                 prompt2.setTextAlignment(TextAlignment.CENTER);
                 prompt2.setFill(Color.BLACK);
@@ -267,6 +267,12 @@ public class SearchColorView extends View
 		doneCont.getChildren().add(cancelButton);
 	
 		vbox.getChildren().add(grid);
+                Text blankText2 = new Text("  ");
+		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText2.setWrappingWidth(350);
+		blankText2.setTextAlignment(TextAlignment.CENTER);
+		blankText2.setFill(Color.WHITE);
+                vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
 
 		return vbox;

@@ -2,16 +2,11 @@
 package userinterface;
 
 // system imports
-import javafx.event.Event;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -21,7 +16,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 
 import java.util.Properties;
 
@@ -251,6 +245,12 @@ public class AddColorView extends View
 		doneCont.getChildren().add(cancelButton);
 	
 		vbox.getChildren().add(grid);
+                Text blankText2 = new Text("  ");
+		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText2.setWrappingWidth(350);
+		blankText2.setTextAlignment(TextAlignment.CENTER);
+		blankText2.setFill(Color.WHITE);
+                vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
                 clearOutlines();
 		return vbox;
@@ -277,6 +277,12 @@ public class AddColorView extends View
 	{
 		
 	}
+        
+        public void clearValues(){
+            barcodePrefix.clear();
+            description.clear();
+            alphaCode.clear();
+        }
 
 	/**
 	 * Update method

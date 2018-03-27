@@ -2,52 +2,15 @@
 package userinterface;
 
 // system imports
-import javafx.event.Event;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.util.Properties;
 
 // project imports
 import impresario.IModel;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Vector;
-
-import exception.InvalidPrimaryKeyException;
-import exception.MultiplePrimaryKeysException;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import model.Gender;
 import model.ArticleType;
 import model.ColorX;
-import model.ArticleTypeCollection;
-import model.ColorCollection;
-import javafx.scene.control.ComboBox;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.input.MouseEvent;
-import javafx.util.StringConverter;
 
 /**
  * The class containing the Remove Clothing Item View for the Professional Clothes
