@@ -58,7 +58,7 @@ public class AddClothingItemView extends View
 	protected Button submitButton;
 	protected Button cancelButton;
         protected ComboBox<Gender> gender;
-        protected ComboBox<String> size;
+        protected TextField size;
         protected ComboBox<ArticleType> articleType;
         protected ComboBox<ColorX> color1;
         protected ComboBox<ColorX> color2;
@@ -356,15 +356,8 @@ public class AddClothingItemView extends View
 		sizeLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(sizeLabel, 0, 6);
 
-                size = new ComboBox<>();
-                size.setItems(FXCollections.observableArrayList(
-                    "S",
-                    "M",
-                    "L",
-                    "XL",
-                    "XXL"));
-                size.setPromptText("Please Select Size");
-                size.setMaxWidth(185);
+                size = new TextField();
+                size.setMinWidth(180);
 		grid.add(size, 1, 6);
                 
                 Text brandLabel = new Text(" Brand : ");
