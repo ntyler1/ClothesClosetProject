@@ -58,7 +58,7 @@ public class AddClothingItemView extends View
 	protected Button submitButton;
 	protected Button cancelButton;
         protected ComboBox<Gender> gender;
-        protected ComboBox<String> size;
+        protected TextField size;
         protected ComboBox<ArticleType> articleType;
         protected ComboBox<ColorX> color1;
         protected ComboBox<ColorX> color2;
@@ -369,15 +369,8 @@ public class AddClothingItemView extends View
 		sizeLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(sizeLabel, 0, 6);
 
-                size = new ComboBox<>();
-                size.setItems(FXCollections.observableArrayList(
-                    "S",
-                    "M",
-                    "L",
-                    "XL",
-                    "XXL"));
-                size.setPromptText("Please Select Size");
-                size.setMaxWidth(185);
+                size = new TextField();
+                size.setMinWidth(180);
 		grid.add(size, 1, 6);
                 
                 Text brandLabel = new Text(" Brand : ");
@@ -469,7 +462,8 @@ public class AddClothingItemView extends View
                         if(gender.getSelectionModel().getSelectedItem() != null){
                             if(articleType.getSelectionModel().getSelectedItem() != null){
                                 if(color1.getSelectionModel().getSelectedItem() != null){
-                                    if(size.getSelectionModel().getSelectedItem() != null){
+				 String sz = size.getText();
+                                    if(sz.length() > 0){
                                         String brandStr = brand.getText();
                                         if(brandStr.length() > 0){
                                             String notesStr = notes.getText();
@@ -484,7 +478,7 @@ public class AddClothingItemView extends View
                                                             if(donorEmailStr.length() > 0){
                                                                 props.setProperty("Barcode", bc);
                                                                 props.setProperty("Gender", gender.getSelectionModel().getSelectedItem().getName());
-                                                                props.setProperty("Size", size.getSelectionModel().getSelectedItem());
+                                                                props.setProperty("Size", sz);
                                                                 props.setProperty("ArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());
                                                                 props.setProperty("Color1", color1.getSelectionModel().getSelectedItem().getBarcodePrefix());
                                                                 if(color2.getSelectionModel().getSelectedItem() != null)
@@ -656,7 +650,7 @@ public class AddClothingItemView extends View
             articleType.getSelectionModel().select(null);
             color1.getSelectionModel().select(null);
             color2.getSelectionModel().select(null);
-            size.getSelectionModel().select(null);
+            size.clear();
             brand.clear();
             notes.clear();
             donorFName.clear();
