@@ -21,6 +21,8 @@ public class AddClothingItemTransaction extends Transaction
 {
 	private ArticleTypeCollection myArticleTypeList;
         private ColorCollection myColorList;
+        private ArticleType at;
+        private ColorX color;
 
 	// GUI Components
 
@@ -111,6 +113,16 @@ public class AddClothingItemTransaction extends Transaction
 		{
 			return myColorList;
 		}
+                 else
+                    if (key.equals("AtSelect") == true)
+		{
+			return at;
+		}
+                 else
+                    if (key.equals("ColorSelect") == true)
+		{
+			return color;
+		}
              
 		return null;
 	}
@@ -132,10 +144,27 @@ public class AddClothingItemTransaction extends Transaction
 		{
 			myColorList = new ColorCollection();
                         myColorList.findAll();
-		} else
-		if (key.equals("ClothingItemData") == true)
+		} else if (key.equals("ArticleTypeSelection"))
+                {
+                    try{
+                        at = new ArticleType((String)value);
+                    }
+                    catch(Exception e){
+                        at = null;
+                    }
+                }
+                else if (key.equals("ColorSelection"))
+                {
+                    try{
+                        color = new ColorX((String)value);
+                    }
+                    catch(Exception e){
+                        color = null;
+                    }
+                }
+                else if (key.equals("ClothingItemData") == true)
 		{
-			processTransaction((Properties)value);
+                    processTransaction((Properties)value);
 		}
 
 		myRegistry.updateSubscribers(key, this);

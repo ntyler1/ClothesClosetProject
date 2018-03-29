@@ -204,9 +204,22 @@ public class AddClothingItemView extends View
                        try{
                            gender.getSelectionModel().select(new Gender(Integer.parseInt(gen)));
                            cnt++;
-                           articleType.getSelectionModel().select(new ArticleType(atPrefix));
-                           cnt++;
-                           color1.getSelectionModel().select(new ColorX(color1Prefix));
+                           myModel.stateChangeRequest("ArticleTypeSelection", atPrefix);
+                           ArticleType at = (ArticleType)myModel.getState("AtSelect");
+                           if(at != null){
+                                articleType.getSelectionModel().select(at);
+                                cnt++;
+                           }
+                           else 
+                               throw new Exception();
+                           myModel.stateChangeRequest("ColorSelection", color1Prefix);
+                           ColorX col = (ColorX)myModel.getState("ColorSelect");
+                           if(col != null){
+                                color1.getSelectionModel().select(col);
+                                cnt++;
+                           }
+                           else
+                               throw new Exception();
                        }
                        catch(Exception e){
                             switch (cnt) {

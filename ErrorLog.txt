@@ -649,3 +649,4 @@
 [3/27/18 2:35 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Inventory with barcode : 111 does not exist!>
 [3/27/18 2:35 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
 [3/27/18 2:42 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[3/29/18 6:11 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>

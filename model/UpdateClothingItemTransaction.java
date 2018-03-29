@@ -21,6 +21,8 @@ public class UpdateClothingItemTransaction extends Transaction
 {
 
     private Inventory myInventory;
+    private ArticleType at;
+    private ColorX color;
     private ArticleTypeCollection myArticleTypeList;
     private ColorCollection myColorList;
 
@@ -219,6 +221,16 @@ public class UpdateClothingItemTransaction extends Transaction
                 return myColorList;
         }
         else
+            if (key.equals("AtSelect") == true)
+        {
+                return at;
+        }
+         else
+            if (key.equals("ColorSelect") == true)
+        {
+                return color;
+        }
+        else
         if (key.equals("Barcode") == true)
         {
             if (myInventory != null)
@@ -382,6 +394,24 @@ public class UpdateClothingItemTransaction extends Transaction
         if (key.equals("ClothingItemData") == true)
         {
             processInventoryRemove((Properties)value);
+        }
+        else if (key.equals("ArticleTypeSelection"))
+        {
+            try{
+                at = new ArticleType((String)value);
+            }
+            catch(Exception e){
+                at = null;
+            }
+        }
+        else if (key.equals("ColorSelection"))
+        {
+            try{
+                color = new ColorX((String)value);
+            }
+            catch(Exception e){
+                color = null;
+            }
         }
 
         myRegistry.updateSubscribers(key, this);

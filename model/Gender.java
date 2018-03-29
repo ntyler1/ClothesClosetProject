@@ -15,13 +15,13 @@ public class Gender {
     public Gender(String name) {
         this.name = name;
         if(name.equals("Male"))
-            this.value = 0;
-        else
             this.value = 1;
+        else
+            this.value = 0;
     }
     
     public Gender(int value){
-        if(value == 1)
+        if(value == 0)
             this.name = "Female";
         else
             this.name = "Male";

@@ -16,8 +16,8 @@ import userinterface.ViewFactory;
 //==============================================================
 public class RemoveClothingItemTransaction extends Transaction
 {
-
-    private Inventory mySelectedInventory;
+    private ArticleType at;
+    private ColorX color;
     private ArticleTypeCollection myArticleTypeList;
     private ColorCollection myColorList;
     private Inventory myInventory;
@@ -101,6 +101,16 @@ public class RemoveClothingItemTransaction extends Transaction
             if (key.equals("ColorList") == true)
         {
                 return myColorList;
+        }
+        else
+            if (key.equals("AtSelect") == true)
+        {
+                return at;
+        }
+         else
+            if (key.equals("ColorSelect") == true)
+        {
+                return color;
         }
         else
         if (key.equals("Barcode") == true)
@@ -258,8 +268,28 @@ public class RemoveClothingItemTransaction extends Transaction
         {
                 myColorList = new ColorCollection();
                 myColorList.findAll();
-        }else
-        if (key.equals("SearchInventory") == true)
+        }
+        else if (key.equals("ArticleTypeSelection"))
+        {
+            try{
+                at = new ArticleType((String)value);
+            }
+            catch(Exception e){
+                at = null;
+            }
+        }
+        else 
+            if (key.equals("ColorSelection"))
+        {
+            try{
+                color = new ColorX((String)value);
+            }
+            catch(Exception e){
+                color = null;
+            }
+        }
+        else
+            if (key.equals("SearchInventory") == true)
         {
             processTransaction((Properties)value);
         }

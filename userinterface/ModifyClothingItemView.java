@@ -57,16 +57,13 @@ public class ModifyClothingItemView extends AddClothingItemView
                     gender.getSelectionModel().select(null);
 		String article = (String)myModel.getState("ArticleType");
 		if (article != null)
-		{
+                {
                     if(Integer.parseInt(article) < 10)
                         article = "0"+article;
-                    try{
-                      articleType.getSelectionModel().select(new ArticleType(article));
-                    }
-                    catch(Exception e){
-                            articleType.getSelectionModel().select(null);
-                    }
-		}
+                    myModel.stateChangeRequest("ArticleTypeSelection", article);
+                    ArticleType at = (ArticleType)myModel.getState("AtSelect");
+                    articleType.getSelectionModel().select(at);
+                }
                 else
                     articleType.getSelectionModel().select(null);
 		String col1 = (String)myModel.getState("Color1");
@@ -74,12 +71,9 @@ public class ModifyClothingItemView extends AddClothingItemView
 		{
                     if(Integer.parseInt(col1) < 10)
                         col1 = "0"+col1;
-                    try{
-                      color1.getSelectionModel().select(new ColorX(col1));
-                    }
-                    catch(Exception e){
-                            color1.getSelectionModel().select(null);
-                    }
+                    myModel.stateChangeRequest("ColorSelection", col1);
+                    ColorX col = (ColorX)myModel.getState("ColorSelect");
+                    color1.getSelectionModel().select(col);
 		}
                 else
                     color1.getSelectionModel().select(null);
@@ -88,12 +82,9 @@ public class ModifyClothingItemView extends AddClothingItemView
 		{
                     if(Integer.parseInt(col2) < 10)
                         col2 = "0"+col2;
-                    try{
-                      color2.getSelectionModel().select(new ColorX(col2));
-                    }
-                    catch(Exception e){
-                            color2.getSelectionModel().select(null);
-                    }
+                    myModel.stateChangeRequest("ColorSelection", col2);
+                    ColorX col = (ColorX)myModel.getState("ColorSelect");
+                    color2.getSelectionModel().select(col);
 		}
                 else
                     color2.getSelectionModel().select(null);
