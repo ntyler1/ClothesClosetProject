@@ -100,10 +100,8 @@ public class ModifyClothingItemView extends AddClothingItemView
 		String sz = (String)myModel.getState("Size");
 		if (sz != null)
 		{
-                    size.getSelectionModel().select(sz);
+			size.setText(sz);
 		}
-                else
-                    size.getSelectionModel().select(null);
 		String brnd = (String)myModel.getState("Brand");
 		if (brnd != null)
 		{
