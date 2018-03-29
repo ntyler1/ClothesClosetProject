@@ -449,7 +449,8 @@ public class AddClothingItemView extends View
                         if(gender.getSelectionModel().getSelectedItem() != null){
                             if(articleType.getSelectionModel().getSelectedItem() != null){
                                 if(color1.getSelectionModel().getSelectedItem() != null){
-                                    if(size.getSelectionModel().getSelectedItem() != null){
+				 String sz = size.getText();
+                                    if(sz.length() > 0){
                                         String brandStr = brand.getText();
                                         if(brandStr.length() > 0){
                                             String notesStr = notes.getText();
@@ -464,7 +465,7 @@ public class AddClothingItemView extends View
                                                             if(donorEmailStr.length() > 0){
                                                                 props.setProperty("Barcode", bc);
                                                                 props.setProperty("Gender", gender.getSelectionModel().getSelectedItem().getName());
-                                                                props.setProperty("Size", size.getSelectionModel().getSelectedItem());
+                                                                props.setProperty("Size", sz);
                                                                 props.setProperty("ArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());
                                                                 props.setProperty("Color1", color1.getSelectionModel().getSelectedItem().getBarcodePrefix());
                                                                 if(color2.getSelectionModel().getSelectedItem() != null)
@@ -636,7 +637,7 @@ public class AddClothingItemView extends View
             articleType.getSelectionModel().select(null);
             color1.getSelectionModel().select(null);
             color2.getSelectionModel().select(null);
-            size.getSelectionModel().select(null);
+            size.clear();
             brand.clear();
             notes.clear();
             donorFName.clear();
