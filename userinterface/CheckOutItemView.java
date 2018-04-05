@@ -40,7 +40,7 @@ public class CheckOutItemView extends SearchInventoryView
 {
 
 	//----------------------------------------------------------
-	public SearchInventoryView(IModel ci)
+	public CheckOutItemView(IModel ci)
 	{
 		super(ci);
 	}
