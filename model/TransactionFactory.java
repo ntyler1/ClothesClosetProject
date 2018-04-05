@@ -65,6 +65,14 @@ public class TransactionFactory
                 if(transType.equals("RemoveClothingItem") == true) {
                     retValue = new RemoveClothingItemTransaction();
                 }
+				else
+                if(transType.equals("RemoveClothingItem") == true) {
+                    retValue = new RemoveClothingItemTransaction();
+                }
+				else
+                if(transType.equals("CheckoutClothingItem") == true) {
+                    retValue = new CheckoutClothingItemTransaction();
+                }
 		return retValue;
 	}
 }
