@@ -36,16 +36,16 @@ public class InventoryCollection  extends EntityBase implements IView
 		super(myTableName);
 
 	}
-	
+
 	//-----------------------------------------------------------
 	private void populateCollectionHelper(String query)
 	{
-		
+
 		Vector<Properties> allDataRetrieved = getSelectQueryResult(query);
 
 		if (allDataRetrieved != null)
 		{
-                        inventory = new Vector<Inventory>();
+			inventory = new Vector<Inventory>();
 
 			for (int cnt = 0; cnt < allDataRetrieved.size(); cnt++)
 			{
@@ -54,8 +54,8 @@ public class InventoryCollection  extends EntityBase implements IView
 
 				if (i != null)
 				{      
-                                    inventory.add(i);
-                                    
+					inventory.add(i);
+
 				}
 			}
 
@@ -68,7 +68,7 @@ public class InventoryCollection  extends EntityBase implements IView
 				"')";
 		populateCollectionHelper(query);
 	}
-	
+
 	//-----------------------------------------------------------
 	public void findAll()
 	{
@@ -81,15 +81,15 @@ public class InventoryCollection  extends EntityBase implements IView
 	//----------------------------------------------------------
 	public Object getState(String key)
 	{
-            if (key.equals("Inventory")){
-                    return inventory;                     
-                }
+		if (key.equals("Inventory")){
+			return inventory;                     
+		}
 		else
-		if (key.equals("InventoryList")){
-                     return this;
-                }
-                
-            return null;
+			if (key.equals("InventoryList")){
+				return this;
+			}
+
+		return null;
 	}
 	//----------------------------------------------------------------
 	public void stateChangeRequest(String key, Object value)
@@ -130,14 +130,14 @@ public class InventoryCollection  extends EntityBase implements IView
 
 		if (localScene == null)
 		{
-				// create our new view
-				View newView = ViewFactory.createView("InventoryCollectionView", this);
-				localScene = new Scene(newView);
-				myViews.put("InventoryCollectionView", localScene);
+			// create our new view
+			View newView = ViewFactory.createView("InventoryCollectionView", this);
+			localScene = new Scene(newView);
+			myViews.put("InventoryCollectionView", localScene);
 		}
 		// make the view visible by installing it into the frame
 		swapToView(localScene);
-		
+
 	}
 
 	//-----------------------------------------------------------------------------------

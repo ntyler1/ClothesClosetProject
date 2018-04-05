@@ -2,6 +2,7 @@
 package model;
 
 // system imports
+import utilities.GlobalVariables;
 import java.util.Properties;
 import java.util.Vector;
 import javafx.scene.Scene;
@@ -80,21 +81,21 @@ public class ColorCollection  extends EntityBase implements IView
 	public void findByCriteria(String description, String alphaCode)
 	{
 		String query = "SELECT * FROM " + myTableName;
-		if (((description != null) && (description.length() > 0))&& 
-			((alphaCode != null) && (alphaCode.length() > 0)))
+		if (((description != null) && (description.length() > GlobalVariables.DESC_MIN_LENGTH))&& 
+			((alphaCode != null) && (alphaCode.length() > GlobalVariables.ALPHAC_MIN_LENGTH)))
 		{
 			// both values get into criteria
 			query += " WHERE ((Status = 'Active') AND (Description LIKE '%" + description + "%') AND (AlphaCode LIKE '%" +
 				alphaCode + "%'))";
 		}
 		else 
-		if ((description != null) && (description.length() > 0))
+		if ((description != null) && (description.length() > GlobalVariables.DESC_MIN_LENGTH))
 		{
 			// only description gets into criteria
 			query += " WHERE ((Status = 'Active') AND (Description LIKE '%" + description + "%'))";
 		}
 		else
-		if ((alphaCode != null) && (alphaCode.length() > 0))
+		if ((alphaCode != null) && (alphaCode.length() > GlobalVariables.ALPHAC_MIN_LENGTH))
 		{
 			// only alphaCode gets into criteria
 			query += " WHERE ((Status = 'Active') AND (AlphaCode LIKE '%" + alphaCode + "%'))";

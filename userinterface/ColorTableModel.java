@@ -23,42 +23,42 @@ public class ColorTableModel
 
 	//----------------------------------------------------------------------------
 	public String getBarcodePrefix() {
-        return barcodePrefix.get();
-    }
+		return barcodePrefix.get();
+	}
 
 	//----------------------------------------------------------------------------
-    public void setBarcodePrefix(String pref) {
-        barcodePrefix.set(pref);
-    }
+	public void setBarcodePrefix(String pref) {
+		barcodePrefix.set(pref);
+	}
 
-    //----------------------------------------------------------------------------
-    public String getDescription() {
-        return description.get();
-    }
+	//----------------------------------------------------------------------------
+	public String getDescription() {
+		return description.get();
+	}
 
-    //----------------------------------------------------------------------------
-    public void setDescription(String desc) {
-        description.set(desc);
-    }
+	//----------------------------------------------------------------------------
+	public void setDescription(String desc) {
+		description.set(desc);
+	}
 
-    //----------------------------------------------------------------------------
-    public String getAlphaCode() {
-        return alphaCode.get();
-    }
+	//----------------------------------------------------------------------------
+	public String getAlphaCode() {
+		return alphaCode.get();
+	}
 
-    //----------------------------------------------------------------------------
-    public void setAlphaCode(String code) {
-        alphaCode.set(code);
-    }
-    
-    //----------------------------------------------------------------------------
-    public String getStatus() {
-        return status.get();
-    }
+	//----------------------------------------------------------------------------
+	public void setAlphaCode(String code) {
+		alphaCode.set(code);
+	}
 
-    //----------------------------------------------------------------------------
-    public void setStatus(String stat)
-    {
-    	status.set(stat);
-    }
+	//----------------------------------------------------------------------------
+	public String getStatus() {
+		return status.get();
+	}
+
+	//----------------------------------------------------------------------------
+	public void setStatus(String stat)
+	{
+		status.set(stat);
+	}
 }

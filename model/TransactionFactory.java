@@ -15,11 +15,10 @@ public class TransactionFactory
 {
 
 	/**
-	 *
+	 *  Transactions created to handle specific cases
 	 */
 	//----------------------------------------------------------
-	public static Transaction createTransaction(String transType)
-		throws Exception
+	public static Transaction createTransaction(String transType) throws Exception
 	{
 		Transaction retValue = null;
 
@@ -27,52 +26,43 @@ public class TransactionFactory
 		{
 			retValue = new AddArticleTypeTransaction();
 		} 
-		else
-		if (transType.equals("UpdateArticleType") == true)
+		else if (transType.equals("UpdateArticleType") == true)
 		{
 			retValue = new UpdateArticleTypeTransaction();
 		}
-		else
-		if(transType.equals("AddColor") == true)
+		else if(transType.equals("AddColor") == true)
 		{
 			retValue = new AddColorTransaction();
 		}
-		else
-		if(transType.equals("UpdateColor") == true)
+		else if(transType.equals("UpdateColor") == true)
 		{
 			retValue = new UpdateColorTransaction();
 		}
-                else if(transType.equals("RemoveColor") == true){
-                    retValue = new RemoveColorTransaction();
-                }
-                else
-                if(transType.equals("ListAvailableInventory") == true){
-                        retValue = new ListAvailableInventoryTransaction();
-                    }
-                else
-                    if(transType.equals("RemoveArticleType") == true){
-                        retValue = new RemoveArticleTypeTransaction();
-                    }
-                else
-                if(transType.equals("AddClothingItem") == true){
-                    retValue = new AddClothingItemTransaction();
-                }
-                else
-                if(transType.equals("UpdateClothingItem") == true) {
-                    retValue = new UpdateClothingItemTransaction();
-                }
-                else
-                if(transType.equals("RemoveClothingItem") == true) {
-                    retValue = new RemoveClothingItemTransaction();
-                }
-				else
-                if(transType.equals("RemoveClothingItem") == true) {
-                    retValue = new RemoveClothingItemTransaction();
-                }
-				else
-                if(transType.equals("CheckoutClothingItem") == true) {
-                    retValue = new CheckoutClothingItemTransaction();
-                }
+        else if(transType.equals("RemoveColor") == true)
+        {
+            retValue = new RemoveColorTransaction();
+        }
+        else if(transType.equals("ListAvailableInventory") == true)
+        {
+            retValue = new ListAvailableInventoryTransaction();
+        }
+        else if(transType.equals("RemoveArticleType") == true)
+        {
+            retValue = new RemoveArticleTypeTransaction();
+        }
+        else if(transType.equals("AddClothingItem") == true)
+        {
+            retValue = new AddClothingItemTransaction();
+        }
+        else if(transType.equals("UpdateClothingItem") == true) 
+        {
+            retValue = new UpdateClothingItemTransaction();
+        }
+        else if(transType.equals("RemoveClothingItem") == true) 
+        {
+            retValue = new RemoveClothingItemTransaction();
+        }
+		
 		return retValue;
 	}
 }

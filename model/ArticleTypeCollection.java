@@ -2,6 +2,7 @@
 package model;
 
 // system imports
+import utilities.GlobalVariables;
 import java.util.Properties;
 import java.util.Vector;
 import javafx.scene.Scene;
@@ -35,11 +36,11 @@ public class ArticleTypeCollection  extends EntityBase implements IView
 		super(myTableName);
 
 	}
-	
+
 	//-----------------------------------------------------------
 	private void populateCollectionHelper(String query)
 	{
-		
+
 		Vector<Properties> allDataRetrieved = getSelectQueryResult(query);
 
 		if (allDataRetrieved != null)
@@ -60,54 +61,54 @@ public class ArticleTypeCollection  extends EntityBase implements IView
 
 		}
 	}
-	
+
 	//-----------------------------------------------------------
 	public void findByBarcodePrefix(String barcodePrefix)
 	{
 		String query = "SELECT * FROM " + myTableName + " WHERE ((BarcodePrefix = '" + barcodePrefix + 
-			"') AND (Status = 'Active'))";
+				"') AND (Status = 'Active'))";
 		populateCollectionHelper(query);
 	}
-	
+
 	//-----------------------------------------------------------
 	public void findAll()
 	{
 		String query = "SELECT * FROM " + myTableName + " WHERE (Status = 'Active')";
 		populateCollectionHelper(query);
 	}
-		
+
 	//-----------------------------------------------------------
 	public void findByCriteria(String description, String alphaCode)
 	{
 		String query = "SELECT * FROM " + myTableName;
-		if (((description != null) && (description.length() > 0))&& 
-			((alphaCode != null) && (alphaCode.length() > 0)))
+		if (((description != null) && (description.length() > GlobalVariables.DESC_MIN_LENGTH))&& 
+				((alphaCode != null) && (alphaCode.length() > GlobalVariables.ALPHAC_MIN_LENGTH)))
 		{
 			// both values get into criteria
 			query += " WHERE ((Status = 'Active') AND (Description LIKE '%" + description + "%') AND (AlphaCode LIKE '%" +
-				alphaCode + "%'))";
+					alphaCode + "%'))";
 		}
 		else 
-		if ((description != null) && (description.length() > 0))
-		{
-			// only description gets into criteria
-			query += " WHERE ((Status = 'Active') AND (Description LIKE '%" + description + "%'))";
-		}
-		else
-		if ((alphaCode != null) && (alphaCode.length() > 0))
-		{
-			// only alphaCode gets into criteria
-			query += " WHERE ((Status = 'Active') AND (AlphaCode LIKE '%" + alphaCode + "%'))";
-		}
-		else
-		{
-			query += " WHERE (Status = 'Active')";
-		}
-		
+			if ((description != null) && (description.length() > GlobalVariables.DESC_MIN_LENGTH))
+			{
+				// only description gets into criteria
+				query += " WHERE ((Status = 'Active') AND (Description LIKE '%" + description + "%'))";
+			}
+			else
+				if ((alphaCode != null) && (alphaCode.length() > GlobalVariables.ALPHAC_MIN_LENGTH))
+				{
+					// only alphaCode gets into criteria
+					query += " WHERE ((Status = 'Active') AND (AlphaCode LIKE '%" + alphaCode + "%'))";
+				}
+				else
+				{
+					query += " WHERE (Status = 'Active')";
+				}
+
 		populateCollectionHelper(query);
 	}
-		
-	
+
+
 	//----------------------------------------------------------------------------------
 	private void addArticleType(ArticleType a)
 	{
@@ -156,8 +157,8 @@ public class ArticleTypeCollection  extends EntityBase implements IView
 		if (key.equals("ArticleTypes"))
 			return articleTypes;
 		else
-		if (key.equals("ArticleTypeList"))
-			return this;
+			if (key.equals("ArticleTypeList"))
+				return this;
 		return null;
 	}
 
@@ -199,10 +200,10 @@ public class ArticleTypeCollection  extends EntityBase implements IView
 
 		if (localScene == null)
 		{
-				// create our new view
-				View newView = ViewFactory.createView("ArticleTypeCollectionView", this);
-				localScene = new Scene(newView);
-				myViews.put("ArticleTypeCollectionView", localScene);
+			// create our new view
+			View newView = ViewFactory.createView("ArticleTypeCollectionView", this);
+			localScene = new Scene(newView);
+			myViews.put("ArticleTypeCollectionView", localScene);
 		}
 		// make the view visible by installing it into the frame
 		swapToView(localScene);	

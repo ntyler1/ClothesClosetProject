@@ -20,9 +20,9 @@ import userinterface.ViewFactory;
 public class AddClothingItemTransaction extends Transaction
 {
 	private ArticleTypeCollection myArticleTypeList;
-        private ColorCollection myColorList;
-        private ArticleType at;
-        private ColorX color;
+	private ColorCollection myColorList;
+	private ArticleType at;
+	private ColorX color;
 
 	// GUI Components
 
@@ -72,29 +72,29 @@ public class AddClothingItemTransaction extends Transaction
 			{
 				// Barcode does not exist, validate data
 				try{
-                                        Inventory newInventory = new Inventory(props);
-                                        newInventory.insert();
-                                        transactionErrorMessage = (String)newInventory.getState("UpdateStatusMessage");
+					Inventory newInventory = new Inventory(props);
+					newInventory.insert();
+					transactionErrorMessage = (String)newInventory.getState("UpdateStatusMessage");
 				}
 				catch (Exception excep)
 				{
 					transactionErrorMessage = "ERROR: Invalid barcode : " + barcode
-						+ "! Must be numerical.";
+							+ "! Must be numerical.";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Invalid barcode : " + barcode + "! Must be numerical.",
-						Event.ERROR);
+							"Invalid barcode : " + barcode + "! Must be numerical.",
+							Event.ERROR);
 				}
 			}
 			catch (MultiplePrimaryKeysException ex2)
 			{
 				transactionErrorMessage = "ERROR: Multiple inventory records with barcode!";
 				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Found multiple invenotry records with barcode : " + barcode + ". Reason: " + ex2.toString(),
-					Event.ERROR);
+						"Found multiple invenotry records with barcode : " + barcode + ". Reason: " + ex2.toString(),
+						Event.ERROR);
 
 			}
 		}
-		
+
 	}
 
 	//-----------------------------------------------------------
@@ -104,26 +104,26 @@ public class AddClothingItemTransaction extends Transaction
 		{
 			return transactionErrorMessage;
 		}else
-                    if (key.equals("ArticleTypeList") == true)
-		{
-			return myArticleTypeList;
-		}
-                else
-                    if (key.equals("ColorList") == true)
-		{
-			return myColorList;
-		}
-                 else
-                    if (key.equals("AtSelect") == true)
-		{
-			return at;
-		}
-                 else
-                    if (key.equals("ColorSelect") == true)
-		{
-			return color;
-		}
-             
+			if (key.equals("ArticleTypeList") == true)
+			{
+				return myArticleTypeList;
+			}
+			else
+				if (key.equals("ColorList") == true)
+				{
+					return myColorList;
+				}
+				else
+					if (key.equals("AtSelect") == true)
+					{
+						return at;
+					}
+					else
+						if (key.equals("ColorSelect") == true)
+						{
+							return color;
+						}
+
 		return null;
 	}
 
@@ -134,37 +134,37 @@ public class AddClothingItemTransaction extends Transaction
 
 		if (key.equals("DoYourJob") == true)
 		{
-                    doYourJob();
+			doYourJob();
 		}
-                else if (key.equals("atComboBox") == true)
+		else if (key.equals("atComboBox") == true)
 		{
 			myArticleTypeList = new ArticleTypeCollection();
-                        myArticleTypeList.findAll();
+			myArticleTypeList.findAll();
 		}else if (key.equals("cComboBox") == true)
 		{
 			myColorList = new ColorCollection();
-                        myColorList.findAll();
+			myColorList.findAll();
 		} else if (key.equals("ArticleTypeSelection"))
-                {
-                    try{
-                        at = new ArticleType((String)value);
-                    }
-                    catch(Exception e){
-                        at = null;
-                    }
-                }
-                else if (key.equals("ColorSelection"))
-                {
-                    try{
-                        color = new ColorX((String)value);
-                    }
-                    catch(Exception e){
-                        color = null;
-                    }
-                }
-                else if (key.equals("ClothingItemData") == true)
 		{
-                    processTransaction((Properties)value);
+			try{
+				at = new ArticleType((String)value);
+			}
+			catch(Exception e){
+				at = null;
+			}
+		}
+		else if (key.equals("ColorSelection"))
+		{
+			try{
+				color = new ColorX((String)value);
+			}
+			catch(Exception e){
+				color = null;
+			}
+		}
+		else if (key.equals("ClothingItemData") == true)
+		{
+			processTransaction((Properties)value);
 		}
 
 		myRegistry.updateSubscribers(key, this);

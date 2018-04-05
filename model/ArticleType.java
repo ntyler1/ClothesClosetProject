@@ -38,7 +38,7 @@ public class ArticleType extends EntityBase implements IView
 		super(myTableName);
 
 		setDependencies();
-		
+
 		barcodePrefix = barcodePrefix.trim();
 		String query = "SELECT * FROM " + myTableName + " WHERE (BarcodePrefix = '" + barcodePrefix + "')";
 
@@ -52,42 +52,42 @@ public class ArticleType extends EntityBase implements IView
 			if (size == 0)
 			{
 				throw new InvalidPrimaryKeyException("No article type matching barcode prefix : "
-				+ barcodePrefix + " found.");
+						+ barcodePrefix + " found.");
 			}
 			else
-			// There should be EXACTLY one article type. More than that is an error
-			if (size != 1)
-			{
-				
-				throw new MultiplePrimaryKeysException("Multiple article types matching barcode prefix : "
-					+ barcodePrefix + " found.");
-			}
-			else
-			{
-				// copy all the retrieved data into persistent state
-				Properties retrievedATData = allDataRetrieved.elementAt(0);
-				persistentState = new Properties();
-
-				Enumeration allKeys = retrievedATData.propertyNames();
-				while (allKeys.hasMoreElements() == true)
+				// There should be EXACTLY one article type. More than that is an error
+				if (size != 1)
 				{
-					String nextKey = (String)allKeys.nextElement();
-					String nextValue = retrievedATData.getProperty(nextKey);
-					// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
 
-					if (nextValue != null)
-					{
-						persistentState.setProperty(nextKey, nextValue);
-					}
+					throw new MultiplePrimaryKeysException("Multiple article types matching barcode prefix : "
+							+ barcodePrefix + " found.");
 				}
+				else
+				{
+					// copy all the retrieved data into persistent state
+					Properties retrievedATData = allDataRetrieved.elementAt(0);
+					persistentState = new Properties();
 
-			}
+					Enumeration allKeys = retrievedATData.propertyNames();
+					while (allKeys.hasMoreElements() == true)
+					{
+						String nextKey = (String)allKeys.nextElement();
+						String nextValue = retrievedATData.getProperty(nextKey);
+						// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
+
+						if (nextValue != null)
+						{
+							persistentState.setProperty(nextKey, nextValue);
+						}
+					}
+
+				}
 		}
 		// If no article type found for this barcode prefix, throw an Invalid Primary key exception
 		else
 		{
 			throw new InvalidPrimaryKeyException("No article type matching barcode prefix : "
-				+ barcodePrefix + " found.");
+					+ barcodePrefix + " found.");
 		}
 	}
 
@@ -118,7 +118,7 @@ public class ArticleType extends EntityBase implements IView
 	private void setDependencies()
 	{
 		dependencies = new Properties();
-	
+
 		myRegistry.setDependencies(dependencies);
 	}
 
@@ -148,7 +148,7 @@ public class ArticleType extends EntityBase implements IView
 		stateChangeRequest(key, value);
 	}
 
-	
+
 	//-----------------------------------------------------------------------------------
 	public static int compare(ArticleType a, ArticleType b)
 	{
@@ -164,8 +164,8 @@ public class ArticleType extends EntityBase implements IView
 		updateStateInDatabase();
 	}
 	public void remove(){
-            removeStateInDatabase();
-        }
+		removeStateInDatabase();
+	}
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase() 
 	{
@@ -181,10 +181,10 @@ public class ArticleType extends EntityBase implements IView
 			else
 			{
 				Integer atID =
-					insertAutoIncrementalPersistentState(mySchema, persistentState);
+						insertAutoIncrementalPersistentState(mySchema, persistentState);
 				persistentState.setProperty("ID", "" + atID.intValue());
 				updateStatusMessage = "Article type with prefix : " +  persistentState.getProperty("BarcodePrefix")
-					+ " installed successfully!";
+				+ " installed successfully!";
 			}
 		}
 		catch (SQLException ex)
@@ -194,7 +194,7 @@ public class ArticleType extends EntityBase implements IView
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
 
-        private void removeStateInDatabase() 
+	private void removeStateInDatabase() 
 	{
 		try
 		{
@@ -228,14 +228,14 @@ public class ArticleType extends EntityBase implements IView
 
 		return v;
 	}
-        
-        public String getBarcodePrefix(){
-            return persistentState.getProperty("BarcodePrefix");
-        }
-        
-        public String getDescription(){
-            return persistentState.getProperty("Description");
-        }
+
+	public String getBarcodePrefix(){
+		return persistentState.getProperty("BarcodePrefix");
+	}
+
+	public String getDescription(){
+		return persistentState.getProperty("Description");
+	}
 
 	//-----------------------------------------------------------------------------------
 	protected void initializeSchema(String tableName)

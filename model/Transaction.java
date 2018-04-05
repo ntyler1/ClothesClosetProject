@@ -30,7 +30,7 @@ abstract public class Transaction implements IView, IModel
 	protected Stage myStage;
 	protected Hashtable<String, Scene> myViews;
 
-	
+
 	// GUI Components
 
 	/**
@@ -44,13 +44,13 @@ abstract public class Transaction implements IView, IModel
 
 		myStage = MainStageContainer.getInstance();
 		myViews = new Hashtable<String, Scene>();
-	
+
 
 		myRegistry = new ModelRegistry("Transaction");
 		if(myRegistry == null)
 		{
 			new Event(Event.getLeafLevelClassName(this), "Transaction",
-				"Could not instantiate Registry", Event.ERROR);
+					"Could not instantiate Registry", Event.ERROR);
 		}
 		setDependencies();
 
@@ -72,15 +72,15 @@ abstract public class Transaction implements IView, IModel
 
 		try
 		{
-					
+
 			Scene newScene = createView();
-			
+
 			swapToView(newScene);
 
 		}
 		catch (Exception ex)
 		{
-				new Event(Event.getLeafLevelClassName(this), "Transaction",
+			new Event(Event.getLeafLevelClassName(this), "Transaction",
 					"Error in creating Transaction view", Event.ERROR);
 		}
 	}
@@ -119,24 +119,24 @@ abstract public class Transaction implements IView, IModel
 		myRegistry.unSubscribe(key, subscriber);
 	}
 
-	
+
 	//-----------------------------------------------------------------------------
 	public void swapToView(Scene newScene)
 	{
-		
+
 		if (newScene == null)
 		{
 			System.out.println("Transaction.swapToView(): Missing view for display");
 			new Event(Event.getLeafLevelClassName(this), "swapToView",
-				"Missing view for display ", Event.ERROR);
+					"Missing view for display ", Event.ERROR);
 			return;
 		}
 
-		
+
 		myStage.setScene(newScene);
 		myStage.sizeToScene();
-		
-			
+
+
 		//Place in center
 		WindowPosition.placeCenter(myStage);
 

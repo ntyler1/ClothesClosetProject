@@ -2,6 +2,7 @@
 package model;
 
 // system imports
+import utilities.GlobalVariables;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.Properties;
@@ -22,7 +23,7 @@ public class UpdateColorTransaction extends Transaction
 
 	private ColorCollection myColorList;
 	private ColorX mySelectedColor;
-	
+
 
 	// GUI Components
 
@@ -74,7 +75,7 @@ public class UpdateColorTransaction extends Transaction
 		}
 		catch (Exception ex)
 		{
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
+			new Event(Event.getLeafLevelClassName(this), "processTransaction",
 					"Error in creating ColorCollectionView", Event.ERROR);
 		}
 	}
@@ -86,21 +87,22 @@ public class UpdateColorTransaction extends Transaction
 	private void colorModificationHelper(Properties props)
 	{
 		String descriptionOfC = props.getProperty("Description");
-		if (descriptionOfC.length() > 30)
+		if (descriptionOfC.length() > GlobalVariables.DESC_MAX_LENGTH)
 		{
 			transactionErrorMessage = "ERROR: Color Description too long! ";
 		}
 		else
 		{
 			String alphaCode = props.getProperty("AlphaCode");
-			if (alphaCode.length() > 5)
+			if (alphaCode.length() > GlobalVariables.ALPHAC_MAX_LENGTH)
 			{
-				transactionErrorMessage = "ERROR: Alpha code too long (max length = 5)! ";
+				transactionErrorMessage = "ERROR: Alpha code too long (max length = "
+						+ GlobalVariables.ALPHAC_MAX_LENGTH + ")! ";
 			}
 			else
 			{
 				// Everything OK
-				
+
 				mySelectedColor.stateChangeRequest("Description", descriptionOfC);
 				mySelectedColor.stateChangeRequest("AlphaCode", alphaCode);
 				mySelectedColor.update();
@@ -108,7 +110,7 @@ public class UpdateColorTransaction extends Transaction
 			}
 		}
 	}
-	
+
 	/**
 	 * This method encapsulates all the logic of modifiying the article type,
 	 * verifying the new barcode, etc.
@@ -126,10 +128,10 @@ public class UpdateColorTransaction extends Transaction
 				{
 					ColorX oldColor = new ColorX(barcodePrefix);
 					transactionErrorMessage = "ERROR: Barcode Prefix " + barcodePrefix 
-						+ " already exists!";
+							+ " already exists!";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Color with barcode prefix : " + barcodePrefix + " already exists!",
-						Event.ERROR);
+							"Color with barcode prefix : " + barcodePrefix + " already exists!",
+							Event.ERROR);
 				}
 				catch (InvalidPrimaryKeyException ex)
 				{
@@ -145,10 +147,10 @@ public class UpdateColorTransaction extends Transaction
 					catch (Exception excep)
 					{
 						transactionErrorMessage = "ERROR: Invalid barcode prefix: " + barcodePrefix 
-							+ "! Must be numerical.";
+								+ "! Must be numerical.";
 						new Event(Event.getLeafLevelClassName(this), "processTransaction",
-							"Invalid barcode prefix : " + barcodePrefix + "! Must be numerical.",
-							Event.ERROR);
+								"Invalid barcode prefix : " + barcodePrefix + "! Must be numerical.",
+								Event.ERROR);
 					}
 
 				}
@@ -156,8 +158,8 @@ public class UpdateColorTransaction extends Transaction
 				{
 					transactionErrorMessage = "ERROR: Multiple colors with barcode prefix!";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Found multiple colors with barcode prefix : " + barcodePrefix + ". Reason: " + ex2.toString(),
-						Event.ERROR);
+							"Found multiple colors with barcode prefix : " + barcodePrefix + ". Reason: " + ex2.toString(),
+							Event.ERROR);
 
 				}
 			}
@@ -166,11 +168,11 @@ public class UpdateColorTransaction extends Transaction
 				// No change in barcode prefix, so just process the rest (description, alpha code). Helper does all that
 				colorModificationHelper(props);
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	//-----------------------------------------------------------
 	public Object getState(String key)
 	{
@@ -179,35 +181,35 @@ public class UpdateColorTransaction extends Transaction
 			return myColorList;
 		}
 		else
-		if (key.equals("BarcodePrefix") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("BarcodePrefix");
+			if (key.equals("BarcodePrefix") == true)
+			{
+				if (mySelectedColor != null)
+					return mySelectedColor.getState("BarcodePrefix");
+				else
+					return "";
+			}
 			else
-				return "";
-		}
-		else
-		if (key.equals("Description") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("Description");
-			else
-				return "";
-		}
-		else
-		if (key.equals("AlphaCode") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("AlphaCode");
-			else
-				return "";
-		}
-		else
-		if (key.equals("TransactionError") == true)
-		{
-			return transactionErrorMessage;
-		}
-		
+				if (key.equals("Description") == true)
+				{
+					if (mySelectedColor != null)
+						return mySelectedColor.getState("Description");
+					else
+						return "";
+				}
+				else
+					if (key.equals("AlphaCode") == true)
+					{
+						if (mySelectedColor != null)
+							return mySelectedColor.getState("AlphaCode");
+						else
+							return "";
+					}
+					else
+						if (key.equals("TransactionError") == true)
+						{
+							return transactionErrorMessage;
+						}
+
 		return null;
 	}
 
@@ -221,33 +223,33 @@ public class UpdateColorTransaction extends Transaction
 			doYourJob();
 		}
 		else
-		if (key.equals("SearchColor") == true)
-		{
-			processTransaction((Properties)value);
-		}
-		else
-		if (key.equals("ColorSelected") == true)
-		{
-			mySelectedColor = myColorList.retrieve((String)value);
-			try
+			if (key.equals("SearchColor") == true)
 			{
-				
-				Scene newScene = createModifyColorView();
-			
-				swapToView(newScene);
+				processTransaction((Properties)value);
+			}
+			else
+				if (key.equals("ColorSelected") == true)
+				{
+					mySelectedColor = myColorList.retrieve((String)value);
+					try
+					{
 
-			}
-			catch (Exception ex)
-			{
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Error in creating ModifyColorView", Event.ERROR);
-			}
-		}
-		else
-		if (key.equals("ColorData") == true)
-		{
-			processColorModification((Properties)value);
-		}
+						Scene newScene = createModifyColorView();
+
+						swapToView(newScene);
+
+					}
+					catch (Exception ex)
+					{
+						new Event(Event.getLeafLevelClassName(this), "processTransaction",
+								"Error in creating ModifyColorView", Event.ERROR);
+					}
+				}
+				else
+					if (key.equals("ColorData") == true)
+					{
+						processColorModification((Properties)value);
+					}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -275,7 +277,7 @@ public class UpdateColorTransaction extends Transaction
 			return currentScene;
 		}
 	}
-	
+
 	/**
 	 * Create the view containing the table of all matching colors on the search criteria sents
 	 */
@@ -286,9 +288,9 @@ public class UpdateColorTransaction extends Transaction
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;
-		
+
 	}
-	
+
 	/**
 	 * Create the view using which data about selected color can be modified
 	 */
@@ -299,7 +301,7 @@ public class UpdateColorTransaction extends Transaction
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;
-		
+
 	}
 
 }

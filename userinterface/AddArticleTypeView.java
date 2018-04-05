@@ -2,6 +2,7 @@
 package userinterface;
 
 // system imports
+import utilities.GlobalVariables;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -36,11 +37,13 @@ public class AddArticleTypeView extends View
 	protected TextField barcodePrefix;
 	protected TextField description;
 	protected TextField alphaCode;
-        protected Text actionText;
-        protected Text prompt;
+    protected Text actionText;
+    protected Text prompt;
 
 	protected Button submitButton;
 	protected Button cancelButton;
+	
+	//Valid variable lengths
 
 	// For showing error message
 	protected MessageView statusLog;
@@ -121,7 +124,7 @@ public class AddArticleTypeView extends View
 	{
 		VBox vbox = new VBox(10);
                 
-                Text blankText = new Text("  ");
+        Text blankText = new Text("  ");
 		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		blankText.setWrappingWidth(350);
 		blankText.setTextAlignment(TextAlignment.CENTER);
@@ -145,7 +148,7 @@ public class AddArticleTypeView extends View
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
 		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
                 
-                barcodePrefixLabel.setFill(Color.GOLD);
+        barcodePrefixLabel.setFill(Color.GOLD);
 		barcodePrefixLabel.setFont(myFont);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -156,24 +159,24 @@ public class AddArticleTypeView extends View
 
 		Text descripLabel = new Text(" Description : ");
                 
-                descripLabel.setFill(Color.GOLD);
+        descripLabel.setFill(Color.GOLD);
 		descripLabel.setFont(myFont);
 		descripLabel.setWrappingWidth(150);
 		descripLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(descripLabel, 0, 2);
 
 		description = new TextField();
-                grid.add(description, 1, 2);
+        grid.add(description, 1, 2);
 
 		Text alphaCodeLabel = new Text(" Alpha Code : ");
-                alphaCodeLabel.setFill(Color.GOLD);
+        alphaCodeLabel.setFill(Color.GOLD);
 		alphaCodeLabel.setFont(myFont);
 		alphaCodeLabel.setWrappingWidth(150);
 		alphaCodeLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(alphaCodeLabel, 0, 3);
 
 		alphaCode = new TextField();
-                grid.add(alphaCode, 1, 3);
+        grid.add(alphaCode, 1, 3);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
@@ -181,22 +184,23 @@ public class AddArticleTypeView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
-                submitButton.setStyle("-fx-background-color: lightgreen; ");
+        submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
                     clearOutlines();
                     Properties props = new Properties();
                     String bcPrfx = barcodePrefix.getText();
-                    if (bcPrfx.length() > 0)
+                    if (bcPrfx.length() > GlobalVariables.BCPRFX_MIN_LENGTH)
                     {
                         props.setProperty("BarcodePrefix", bcPrfx);
                         String descrip = description.getText();
-                        if (descrip.length() > 0)
+                        if (descrip.length() > GlobalVariables.DESC_MIN_LENGTH)
                         {
+							
                             props.setProperty("Description", descrip);
                             String alfaC = alphaCode.getText();
-                            if (alfaC.length() > 0)
+                            if (alfaC.length() > GlobalVariables.ALPHAC_MIN_LENGTH)
                             {
                                 props.setProperty("AlphaCode", alfaC);
                                 myModel.stateChangeRequest("ArticleTypeData", props);
@@ -246,14 +250,16 @@ public class AddArticleTypeView extends View
 		doneCont.getChildren().add(cancelButton);
 	
 		vbox.getChildren().add(grid);
-                Text blankText2 = new Text("  ");
+        
+		Text blankText2 = new Text("  ");
 		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		blankText2.setWrappingWidth(350);
 		blankText2.setTextAlignment(TextAlignment.CENTER);
 		blankText2.setFill(Color.WHITE);
-                vbox.getChildren().add(blankText2);
+        vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
                 clearOutlines();
+				
 		return vbox;
 	}
 
@@ -278,11 +284,12 @@ public class AddArticleTypeView extends View
 		
 	}
 
-        public void clearValues(){
-            barcodePrefix.clear();
-            description.clear();
-            alphaCode.clear();
-        }
+    public void clearValues()
+	{
+        barcodePrefix.clear();
+        description.clear();
+        alphaCode.clear();
+    }
 	/**
 	 * Update method
 	 */
@@ -300,8 +307,8 @@ public class AddArticleTypeView extends View
 			}
 			else
 			{
-                            clearValues();
-                            displayMessage(val);
+                clearValues();
+                displayMessage(val);
 			}
 			
 		}

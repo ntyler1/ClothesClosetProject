@@ -38,7 +38,7 @@ public class ColorX extends EntityBase implements IView
 		super(myTableName);
 
 		setDependencies();
-		
+
 		barcodePrefix = barcodePrefix.trim();
 		String query = "SELECT * FROM " + myTableName + " WHERE (BarcodePrefix = '" + barcodePrefix + "')";
 
@@ -52,42 +52,42 @@ public class ColorX extends EntityBase implements IView
 			if (size == 0)
 			{
 				throw new InvalidPrimaryKeyException("No color matching barcode prefix : "
-				+ barcodePrefix + " found.");
+						+ barcodePrefix + " found.");
 			}
 			else
-			// There should be EXACTLY one color. More than that is an error
-			if (size != 1)
-			{
-				
-				throw new MultiplePrimaryKeysException("Multiple colors matching barcode prefix : "
-					+ barcodePrefix + " found.");
-			}
-			else
-			{
-				// copy all the retrieved data into persistent state
-				Properties retrievedCData = allDataRetrieved.elementAt(0);
-				persistentState = new Properties();
-
-				Enumeration allKeys = retrievedCData.propertyNames();
-				while (allKeys.hasMoreElements() == true)
+				// There should be EXACTLY one color. More than that is an error
+				if (size != 1)
 				{
-					String nextKey = (String)allKeys.nextElement();
-					String nextValue = retrievedCData.getProperty(nextKey);
-					// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
 
-					if (nextValue != null)
-					{
-						persistentState.setProperty(nextKey, nextValue);
-					}
+					throw new MultiplePrimaryKeysException("Multiple colors matching barcode prefix : "
+							+ barcodePrefix + " found.");
 				}
+				else
+				{
+					// copy all the retrieved data into persistent state
+					Properties retrievedCData = allDataRetrieved.elementAt(0);
+					persistentState = new Properties();
 
-			}
+					Enumeration allKeys = retrievedCData.propertyNames();
+					while (allKeys.hasMoreElements() == true)
+					{
+						String nextKey = (String)allKeys.nextElement();
+						String nextValue = retrievedCData.getProperty(nextKey);
+						// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
+
+						if (nextValue != null)
+						{
+							persistentState.setProperty(nextKey, nextValue);
+						}
+					}
+
+				}
 		}
 		// If no color found for this barcode prefix, throw an Invalid Primary key exception
 		else
 		{
 			throw new InvalidPrimaryKeyException("No color matching barcode prefix : "
-				+ barcodePrefix + " found.");
+					+ barcodePrefix + " found.");
 		}
 	}
 
@@ -118,7 +118,7 @@ public class ColorX extends EntityBase implements IView
 	private void setDependencies()
 	{
 		dependencies = new Properties();
-	
+
 		myRegistry.setDependencies(dependencies);
 	}
 
@@ -148,7 +148,7 @@ public class ColorX extends EntityBase implements IView
 		stateChangeRequest(key, value);
 	}
 
-	
+
 	//-----------------------------------------------------------------------------------
 	public static int compare(ColorX a, ColorX b)
 	{
@@ -163,12 +163,12 @@ public class ColorX extends EntityBase implements IView
 	{
 		updateStateInDatabase();
 	}
-	
+
 	public void remove()
 	{
-         removeStateInDatabase();
-    }
-	
+		removeStateInDatabase();
+	}
+
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase() 
 	{
@@ -184,10 +184,10 @@ public class ColorX extends EntityBase implements IView
 			else
 			{
 				Integer atID =
-					insertAutoIncrementalPersistentState(mySchema, persistentState);
+						insertAutoIncrementalPersistentState(mySchema, persistentState);
 				persistentState.setProperty("ID", "" + atID.intValue());
 				updateStatusMessage = "Color with prefix : " +  persistentState.getProperty("BarcodePrefix")
-					+ " installed successfully!";
+				+ " installed successfully!";
 			}
 		}
 		catch (SQLException ex)
@@ -196,7 +196,7 @@ public class ColorX extends EntityBase implements IView
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
-	
+
 	private void removeStateInDatabase() 
 	{
 		try
@@ -208,7 +208,7 @@ public class ColorX extends EntityBase implements IView
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Color with prefix : " + persistentState.getProperty("BarcodePrefix") + " removed successfully!";
 			}
-			
+
 		}
 		catch (SQLException ex)
 		{
@@ -216,14 +216,14 @@ public class ColorX extends EntityBase implements IView
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
-        
-        public String getBarcodePrefix(){
-            return persistentState.getProperty("BarcodePrefix");
-        }
-        
-        public String getDescription(){
-            return persistentState.getProperty("Description");
-        }
+
+	public String getBarcodePrefix(){
+		return persistentState.getProperty("BarcodePrefix");
+	}
+
+	public String getDescription(){
+		return persistentState.getProperty("Description");
+	}
 
 	/**
 	 * This method is needed solely to enable the Color information to be displayable in a table

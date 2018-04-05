@@ -2,6 +2,7 @@
 package model;
 
 // system imports
+import utilities.GlobalVariables;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.Properties;
@@ -21,9 +22,9 @@ public class UpdateArticleTypeTransaction extends Transaction
 {
 
 	private ArticleTypeCollection myArticleTypeList;
-        private ColorCollection myColorList;
+	private ColorCollection myColorList;
 	private ArticleType mySelectedArticleType;
-	
+
 
 	// GUI Components
 
@@ -75,7 +76,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 		}
 		catch (Exception ex)
 		{
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
+			new Event(Event.getLeafLevelClassName(this), "processTransaction",
 					"Error in creating ArticleTypeCollectionView", Event.ERROR);
 		}
 	}
@@ -87,21 +88,22 @@ public class UpdateArticleTypeTransaction extends Transaction
 	private void articleTypeModificationHelper(Properties props)
 	{
 		String descriptionOfAT = props.getProperty("Description");
-		if (descriptionOfAT.length() > 30)
+		if (descriptionOfAT.length() > GlobalVariables.DESC_MAX_LENGTH)
 		{
 			transactionErrorMessage = "ERROR: Article Type Description too long! ";
 		}
 		else
 		{
 			String alphaCode = props.getProperty("AlphaCode");
-			if (alphaCode.length() > 5)
+			if (alphaCode.length() > GlobalVariables.DESC_MAX_LENGTH)
 			{
-				transactionErrorMessage = "ERROR: Alpha code too long (max length = 5)! ";
+				transactionErrorMessage = "ERROR: Alpha code too long (max length = " 
+						+ GlobalVariables.DESC_MAX_LENGTH + ")! ";
 			}
 			else
 			{
 				// Everything OK
-				
+
 				mySelectedArticleType.stateChangeRequest("Description", descriptionOfAT);
 				mySelectedArticleType.stateChangeRequest("AlphaCode", alphaCode);
 				mySelectedArticleType.update();
@@ -109,7 +111,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 			}
 		}
 	}
-	
+
 	/**
 	 * This method encapsulates all the logic of modifiying the article type,
 	 * verifying the new barcode, etc.
@@ -127,10 +129,10 @@ public class UpdateArticleTypeTransaction extends Transaction
 				{
 					ArticleType oldArticleType = new ArticleType(barcodePrefix);
 					transactionErrorMessage = "ERROR: Barcode Prefix " + barcodePrefix 
-						+ " already exists!";
+							+ " already exists!";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Article type with barcode prefix : " + barcodePrefix + " already exists!",
-						Event.ERROR);
+							"Article type with barcode prefix : " + barcodePrefix + " already exists!",
+							Event.ERROR);
 				}
 				catch (InvalidPrimaryKeyException ex)
 				{
@@ -146,10 +148,10 @@ public class UpdateArticleTypeTransaction extends Transaction
 					catch (Exception excep)
 					{
 						transactionErrorMessage = "ERROR: Invalid barcode prefix: " + barcodePrefix 
-							+ "! Must be numerical.";
+								+ "! Must be numerical.";
 						new Event(Event.getLeafLevelClassName(this), "processTransaction",
-							"Invalid barcode prefix : " + barcodePrefix + "! Must be numerical.",
-							Event.ERROR);
+								"Invalid barcode prefix : " + barcodePrefix + "! Must be numerical.",
+								Event.ERROR);
 					}
 
 				}
@@ -157,8 +159,8 @@ public class UpdateArticleTypeTransaction extends Transaction
 				{
 					transactionErrorMessage = "ERROR: Multiple article types with barcode prefix!";
 					new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Found multiple article types with barcode prefix : " + barcodePrefix + ". Reason: " + ex2.toString(),
-						Event.ERROR);
+							"Found multiple article types with barcode prefix : " + barcodePrefix + ". Reason: " + ex2.toString(),
+							Event.ERROR);
 
 				}
 			}
@@ -167,11 +169,11 @@ public class UpdateArticleTypeTransaction extends Transaction
 				// No change in barcode prefix, so just process the rest (description, alpha code). Helper does all that
 				articleTypeModificationHelper(props);
 			}
-			
+
 		}
-		
+
 	}
-	
+
 	//-----------------------------------------------------------
 	public Object getState(String key)
 	{
@@ -180,35 +182,35 @@ public class UpdateArticleTypeTransaction extends Transaction
 			return myArticleTypeList;
 		}
 		else
-		if (key.equals("BarcodePrefix") == true)
-		{
-			if (mySelectedArticleType != null)
-				return mySelectedArticleType.getState("BarcodePrefix");
+			if (key.equals("BarcodePrefix") == true)
+			{
+				if (mySelectedArticleType != null)
+					return mySelectedArticleType.getState("BarcodePrefix");
+				else
+					return "";
+			}
 			else
-				return "";
-		}
-		else
-		if (key.equals("Description") == true)
-		{
-			if (mySelectedArticleType != null)
-				return mySelectedArticleType.getState("Description");
-			else
-				return "";
-		}
-		else
-		if (key.equals("AlphaCode") == true)
-		{
-			if (mySelectedArticleType != null)
-				return mySelectedArticleType.getState("AlphaCode");
-			else
-				return "";
-		}
-		else
-		if (key.equals("TransactionError") == true)
-		{
-			return transactionErrorMessage;
-		}
-		
+				if (key.equals("Description") == true)
+				{
+					if (mySelectedArticleType != null)
+						return mySelectedArticleType.getState("Description");
+					else
+						return "";
+				}
+				else
+					if (key.equals("AlphaCode") == true)
+					{
+						if (mySelectedArticleType != null)
+							return mySelectedArticleType.getState("AlphaCode");
+						else
+							return "";
+					}
+					else
+						if (key.equals("TransactionError") == true)
+						{
+							return transactionErrorMessage;
+						}
+
 		return null;
 	}
 
@@ -222,33 +224,33 @@ public class UpdateArticleTypeTransaction extends Transaction
 			doYourJob();
 		}
 		else
-		if (key.equals("SearchArticleType") == true)
-		{
-			processTransaction((Properties)value);
-		}
-		else
-		if (key.equals("ArticleTypeSelected") == true)
-		{
-			mySelectedArticleType = myArticleTypeList.retrieve((String)value);
-			try
+			if (key.equals("SearchArticleType") == true)
 			{
-				
-				Scene newScene = createModifyArticleTypeView();
-			
-				swapToView(newScene);
+				processTransaction((Properties)value);
+			}
+			else
+				if (key.equals("ArticleTypeSelected") == true)
+				{
+					mySelectedArticleType = myArticleTypeList.retrieve((String)value);
+					try
+					{
 
-			}
-			catch (Exception ex)
-			{
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Error in creating ModifyArticleTypeView", Event.ERROR);
-			}
-		}
-		else
-		if (key.equals("ArticleTypeData") == true)
-		{
-			processArticleTypeRemove((Properties)value);
-		}
+						Scene newScene = createModifyArticleTypeView();
+
+						swapToView(newScene);
+
+					}
+					catch (Exception ex)
+					{
+						new Event(Event.getLeafLevelClassName(this), "processTransaction",
+								"Error in creating ModifyArticleTypeView", Event.ERROR);
+					}
+				}
+				else
+					if (key.equals("ArticleTypeData") == true)
+					{
+						processArticleTypeRemove((Properties)value);
+					}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -276,7 +278,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 			return currentScene;
 		}
 	}
-	
+
 	/**
 	 * Create the view containing the table of all matching article types on the search criteria sents
 	 */
@@ -287,9 +289,9 @@ public class UpdateArticleTypeTransaction extends Transaction
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;
-		
+
 	}
-	
+
 	/**
 	 * Create the view using which data about selected article type can be modified
 	 */
@@ -300,7 +302,7 @@ public class UpdateArticleTypeTransaction extends Transaction
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;
-		
+
 	}
 
 }
