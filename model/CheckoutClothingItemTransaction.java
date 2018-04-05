@@ -98,8 +98,8 @@ public class CheckoutClothingItemTransaction extends Transaction
 		if (firstName != null) {
             myInventory.stateChangeRequest("ReceiverFirstName", lastName);
         }
-        myInventory.stateChangeRequest("DateDonated", props.getProperty("DateDonated");
-		myInventory.stateChangeRequest("Status", "Received")
+        myInventory.stateChangeRequest("DateDonated", props.getProperty("DateDonated"));
+		myInventory.stateChangeRequest("Status", "Received");
 		myInventory.update(null);
         transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
     }
