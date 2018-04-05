@@ -70,7 +70,7 @@ public class CheckoutClothingItemTransaction extends Transaction
         }
         try
         {
-            Scene newScene = createEnterRecipientInfoView();
+            Scene newScene = createEnterRecepientInfoView();
             swapToView(newScene);
         }
         catch (Exception ex)
@@ -295,9 +295,9 @@ public class CheckoutClothingItemTransaction extends Transaction
      * Create the view using which data about selected article type can be modified
      */
     //------------------------------------------------------
-    protected Scene createEnterRecipientInfoView()
+    protected Scene createEnterRecepientInfoView()
     {
-        View newView = ViewFactory.createView("EnterRecipientInfoView", this);
+        View newView = ViewFactory.createView("EnterRecepientInfoView", this);
         Scene currentScene = new Scene(newView);
 
         return currentScene;
