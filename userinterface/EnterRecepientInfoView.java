@@ -29,7 +29,6 @@ import java.util.Vector;
 import javafx.beans.property.SetProperty;
 import javafx.collections.FXCollections;
 import model.Gender;
-import sun.security.util.Length;
 import model.ArticleType;
 import model.ColorX;
 import model.ArticleTypeCollection;
@@ -163,10 +162,10 @@ public class EnterRecepientInfoView extends View {
 		grid.add(netIdLabel, 0, 1);
 
 		netId = new TextField();
-		barcode.setMinWidth(180);
-		grid.add(barcode, 1, 1);
+		netId.setMinWidth(180);
+		grid.add(netId, 1, 1);
 
-		Text firstNameLabel = new Text()
+		Text firstNameLabel = new Text();
 				firstNameLabel.setFill(Color.GOLD);
 		firstNameLabel.setFont(myFont);
 		firstNameLabel.setWrappingWidth(145);
@@ -199,7 +198,7 @@ public class EnterRecepientInfoView extends View {
 					String recepientLastName = lastName.getText();
 					if (recepientLastName.length() > 0)
 					{
-						props.SetProperty("NetId", recepientNetID);
+						props.setProperty("NetId", recepientNetID);
 						props.setProperty("FirstName", recepientFirstName);
 						props.setProperty("LastName", recepientLastName);
 						myModel.stateChangeRequest("RecepientData", props);
