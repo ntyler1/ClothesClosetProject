@@ -2,6 +2,7 @@
 package userinterface;
 
 // system imports
+import utilities.GlobalVariables;
 import javafx.event.Event;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -160,7 +161,7 @@ public class SearchColorView extends View
                     clearErrorMessage();
                     Properties props = new Properties();
                     String bcPrfx = barcodePrefix.getText();
-                    if (bcPrfx.length() > 0)
+                    if (bcPrfx.length() > GlobalVariables.BCPRFX_MIN_LENGTH)
                     {
                         props.setProperty("BarcodePrefix", bcPrfx);
                         myModel.stateChangeRequest("SearchColor", props);
@@ -227,7 +228,7 @@ public class SearchColorView extends View
                     clearErrorMessage();
                     Properties props = new Properties();
                     String bcPrfx = barcodePrefix.getText();
-                    if (bcPrfx.length() > 0)
+                    if (bcPrfx.length() > GlobalVariables.BCPRFX_MIN_LENGTH)
                     {
                         props.setProperty("BarcodePrefix", bcPrfx);
                         myModel.stateChangeRequest("SearchColor", props);

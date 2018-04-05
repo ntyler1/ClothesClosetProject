@@ -50,42 +50,42 @@ public class Inventory extends EntityBase implements IView
 			if (size == 0)
 			{
 				throw new InvalidPrimaryKeyException("No clothing item matching barcode : "
-				+ barcode + " found.");
+						+ barcode + " found.");
 			}
 			else
-			// There should be EXACTLY one article type. More than that is an error
-			if (size != 1)
-			{
-				
-				throw new MultiplePrimaryKeysException("Multiple clothing items matching barcode : "
-					+ barcode + " found.");
-			}
-			else
-			{
-				// copy all the retrieved data into persistent state
-				Properties retrievedATData = allDataRetrieved.elementAt(0);
-				persistentState = new Properties();
-
-				Enumeration allKeys = retrievedATData.propertyNames();
-				while (allKeys.hasMoreElements() == true)
+				// There should be EXACTLY one article type. More than that is an error
+				if (size != 1)
 				{
-					String nextKey = (String)allKeys.nextElement();
-					String nextValue = retrievedATData.getProperty(nextKey);
-					// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
 
-					if (nextValue != null)
-					{
-						persistentState.setProperty(nextKey, nextValue);
-					}
+					throw new MultiplePrimaryKeysException("Multiple clothing items matching barcode : "
+							+ barcode + " found.");
 				}
+				else
+				{
+					// copy all the retrieved data into persistent state
+					Properties retrievedATData = allDataRetrieved.elementAt(0);
+					persistentState = new Properties();
 
-			}
+					Enumeration allKeys = retrievedATData.propertyNames();
+					while (allKeys.hasMoreElements() == true)
+					{
+						String nextKey = (String)allKeys.nextElement();
+						String nextValue = retrievedATData.getProperty(nextKey);
+						// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
+
+						if (nextValue != null)
+						{
+							persistentState.setProperty(nextKey, nextValue);
+						}
+					}
+
+				}
 		}
 		// If no article type found for this barcode prefix, throw an Invalid Primary key exception
 		else
 		{
 			throw new InvalidPrimaryKeyException("No cloting item matching barcode prefix : "
-				+ barcode + " found.");
+					+ barcode + " found.");
 		}
 	}
 	/**
@@ -108,14 +108,14 @@ public class Inventory extends EntityBase implements IView
 				persistentState.setProperty(nextKey, nextValue);
 			}
 		}
-                
+
 	}
 
 	//-----------------------------------------------------------------------------------
 	private void setDependencies()
 	{
 		dependencies = new Properties();
-	
+
 		myRegistry.setDependencies(dependencies);
 	}
 
@@ -155,29 +155,29 @@ public class Inventory extends EntityBase implements IView
 	{
 		removeStateInDatabase();
 	}
-        
-        public void insert(){
-            insertStateInDatabase();
-        }
 
-        private void insertStateInDatabase(){
-            try{
-                Integer iID =insertPersistentState(mySchema, persistentState);
-                updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
-                                            + " installed successfully!";
-            }
-            catch (SQLException ex)
-		{
-                    System.out.println(ex);
-                    updateStatusMessage = "ERROR in installing inventory data in database!";
+	public void insert(){
+		insertStateInDatabase();
+	}
+
+	private void insertStateInDatabase(){
+		try{
+			Integer iID =insertPersistentState(mySchema, persistentState);
+			updateStatusMessage = "Inventory Record with barcode : " +  persistentState.getProperty("Barcode")
+			+ " installed successfully!";
 		}
-        }
+		catch (SQLException ex)
+		{
+			System.out.println(ex);
+			updateStatusMessage = "ERROR in installing inventory data in database!";
+		}
+	}
 	//-----------------------------------------------------------------------------------
 	private void updateStateInDatabase(String barcodeOG) 
 	{
 		try
 		{
-                    
+
 			if (barcodeOG != null)
 			{
 				Properties whereClause = new Properties();
@@ -185,17 +185,17 @@ public class Inventory extends EntityBase implements IView
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
 			}
-                        else if(persistentState.getProperty("Barcode") != null){
-                                Properties whereClause = new Properties();
+			else if(persistentState.getProperty("Barcode") != null){
+				Properties whereClause = new Properties();
 				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
-                        }
+			}
 		}
 		catch (SQLException ex)
 		{
-                    System.out.println(ex);
-                    updateStatusMessage = "ERROR in installing inventory data in database!";
+			System.out.println(ex);
+			updateStatusMessage = "ERROR in installing inventory data in database!";
 		}
 		//DEBUG System.out.println("updateStateInDatabase " + updateStatusMessage);
 	}
@@ -230,17 +230,17 @@ public class Inventory extends EntityBase implements IView
 		v.addElement(persistentState.getProperty("Gender"));
 		v.addElement(persistentState.getProperty("Size"));
 		v.addElement(persistentState.getProperty("ArticleType"));
-                v.addElement(persistentState.getProperty("Color1"));
+		v.addElement(persistentState.getProperty("Color1"));
 		v.addElement(persistentState.getProperty("Color2"));
 		v.addElement(persistentState.getProperty("Brand"));
 		v.addElement(persistentState.getProperty("Notes"));
-                v.addElement(persistentState.getProperty("Status"));
+		v.addElement(persistentState.getProperty("Status"));
 		v.addElement(persistentState.getProperty("DonorLastName"));
 		v.addElement(persistentState.getProperty("DonorFirstName"));
 		v.addElement(persistentState.getProperty("DonorPhone"));
-                v.addElement(persistentState.getProperty("DonorEmail"));
+		v.addElement(persistentState.getProperty("DonorEmail"));
 		v.addElement(persistentState.getProperty("ReceiverNetid"));
-                v.addElement(persistentState.getProperty("ReceiverLastName"));
+		v.addElement(persistentState.getProperty("ReceiverLastName"));
 		v.addElement(persistentState.getProperty("ReceiverFirstName"));
 		v.addElement(persistentState.getProperty("DateDonated"));
 		v.addElement(persistentState.getProperty("DateTaken"));

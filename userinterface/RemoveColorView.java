@@ -38,8 +38,8 @@ public class RemoveColorView extends AddColorView
 		if (code != null)
 		{
 			barcodePrefix.setText(code);
-                }
-                String desc = (String)myModel.getState("Description");
+		}
+		String desc = (String)myModel.getState("Description");
 		if (desc != null)
 		{
 			description.setText(desc);
@@ -49,22 +49,22 @@ public class RemoveColorView extends AddColorView
 		{
 			alphaCode.setText(alfaC);
 		}
-                
-                barcodePrefix.setDisable(true);
-                alphaCode.setDisable(true);
-                description.setDisable(true);
-                actionText.setFill(Color.PALEVIOLETRED);
-                prompt.setText("Selected Color Information:");
-                submitButton.setText("Remove"); //fix submitbutton
-                ImageView icon = new ImageView(new Image("/images/trashcolor.png"));
-                icon.setFitHeight(15);
-                icon.setFitWidth(15);
-                submitButton.setGraphic(icon);
+
+		barcodePrefix.setDisable(true);
+		alphaCode.setDisable(true);
+		description.setDisable(true);
+		actionText.setFill(Color.PALEVIOLETRED);
+		prompt.setText("Selected Color Information:");
+		submitButton.setText("Remove"); //fix submitbutton
+		ImageView icon = new ImageView(new Image("/images/trashcolor.png"));
+		icon.setFitHeight(15);
+		icon.setFitWidth(15);
+		submitButton.setGraphic(icon);
 	}
 
-        public void clearValues(){
-            
-        }
+	public void clearValues(){
+
+	}
 }
 
 //---------------------------------------------------------------

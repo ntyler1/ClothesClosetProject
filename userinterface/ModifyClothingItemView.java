@@ -38,70 +38,70 @@ public class ModifyClothingItemView extends AddClothingItemView
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
-                String bar = (String)myModel.getState("Barcode");
-		if (bar != null)
+		String barcodeStr = (String)myModel.getState("Barcode");
+		if (barcodeStr != null)
 		{
-			barcode.setText(bar);
+			barcode.setText(barcodeStr);
 		}
-		String gen = (String)myModel.getState("Gender");
-		if (gen != null)
+		String genderStr = (String)myModel.getState("Gender");
+		if (genderStr != null)
 		{
-                    try{
-                       gender.getSelectionModel().select(new Gender(gen));
-                    }
-                    catch(Exception e){
-                            gender.getSelectionModel().select(null);
-                    }
+			try{
+				gender.getSelectionModel().select(new Gender(genderStr));
+			}
+			catch(Exception e){
+				gender.getSelectionModel().select(null);
+			}
 		}
-                else
-                    gender.getSelectionModel().select(null);
+		else
+			gender.getSelectionModel().select(null);
 		String article = (String)myModel.getState("ArticleType");
 		if (article != null)
-                {
-                    if(Integer.parseInt(article) < 10)
-                        article = "0"+article;
-                    myModel.stateChangeRequest("ArticleTypeSelection", article);
-                    ArticleType at = (ArticleType)myModel.getState("AtSelect");
-                    articleType.getSelectionModel().select(at);
-                }
-                else
-                    articleType.getSelectionModel().select(null);
-		String col1 = (String)myModel.getState("Color1");
-		if (col1 != null)
 		{
-                    if(Integer.parseInt(col1) < 10)
-                        col1 = "0"+col1;
-                    myModel.stateChangeRequest("ColorSelection", col1);
-                    ColorX col = (ColorX)myModel.getState("ColorSelect");
-                    color1.getSelectionModel().select(col);
+			if(Integer.parseInt(article) < 10)
+				article = "0"+article;
+			myModel.stateChangeRequest("ArticleTypeSelection", article);
+			ArticleType at = (ArticleType)myModel.getState("AtSelect");
+			articleType.getSelectionModel().select(at);
 		}
-                else
-                    color1.getSelectionModel().select(null);
-		String col2 = (String)myModel.getState("Color2");
-		if (col2 != null)
+		else
+			articleType.getSelectionModel().select(null);
+		String color1Str = (String)myModel.getState("Color1");
+		if (color1Str != null)
 		{
-                    if(Integer.parseInt(col2) < 10)
-                        col2 = "0"+col2;
-                    myModel.stateChangeRequest("ColorSelection", col2);
-                    ColorX col = (ColorX)myModel.getState("ColorSelect");
-                    color2.getSelectionModel().select(col);
+			if(Integer.parseInt(color1Str) < 10)
+				color1Str = "0"+color1Str;
+			myModel.stateChangeRequest("ColorSelection", color1Str);
+			ColorX col = (ColorX)myModel.getState("ColorSelect");
+			color1.getSelectionModel().select(col);
 		}
-                else
-                    color2.getSelectionModel().select(null);
-		String sz = (String)myModel.getState("Size");
-		if (sz != null)
+		else
+			color1.getSelectionModel().select(null);
+		String color2Str = (String)myModel.getState("Color2");
+		if (color2Str != null)
 		{
-			size.setText(sz);
+			if(Integer.parseInt(color2Str) < 10)
+				color2Str = "0"+color2Str;
+			myModel.stateChangeRequest("ColorSelection", color2Str);
+			ColorX col = (ColorX)myModel.getState("ColorSelect");
+			color2.getSelectionModel().select(col);
 		}
-		String brnd = (String)myModel.getState("Brand");
-		if (brnd != null)
+		else
+			color2.getSelectionModel().select(null);
+		String sizeStr = (String)myModel.getState("Size");
+		if (sizeStr != null)
 		{
-			brand.setText(brnd);
+			size.setText(sizeStr);
 		}
-		String nts = (String)myModel.getState("Notes");
-		if (nts != null)
+		String brandStr = (String)myModel.getState("Brand");
+		if (brandStr != null)
 		{
-			notes.setText(nts);
+			brand.setText(brandStr);
+		}
+		String notesStr = (String)myModel.getState("Notes");
+		if (notesStr != null)
+		{
+			notes.setText(notesStr);
 		}
 		String donorFirst = (String)myModel.getState("DonorFirstName");
 		if (donorFirst != null)
@@ -113,26 +113,26 @@ public class ModifyClothingItemView extends AddClothingItemView
 		{
 			donorLName.setText(donorLast);
 		}
-		String donorP = (String)myModel.getState("DonorPhone");
-		if (donorP != null)
+		String donorPhoneStr = (String)myModel.getState("DonorPhone");
+		if (donorPhoneStr != null)
 		{
-			donorPhone.setText(donorP);
+			donorPhone.setText(donorPhoneStr);
 		}
-		String donorMail = (String)myModel.getState("DonorEmail");
-		if (donorMail != null)
+		String donorEmailStr = (String)myModel.getState("DonorEmail");
+		if (donorEmailStr != null)
 		{
-			donorEmail.setText(donorMail);
+			donorEmail.setText(donorEmailStr);
 		}
-		
-                actionText.setFill(Color.LIGHTBLUE);
-                submitButton.setText("Update"); //fix submitbutton
-                ImageView icon = new ImageView(new Image("/images/savecolor.png"));
-                icon.setFitHeight(15);
-                icon.setFitWidth(15);
-                submitButton.setGraphic(icon);
+
+		actionText.setFill(Color.LIGHTBLUE);
+		submitButton.setText("Update"); //fix submitbutton
+		ImageView icon = new ImageView(new Image("/images/savecolor.png"));
+		icon.setFitHeight(15);
+		icon.setFitWidth(15);
+		submitButton.setGraphic(icon);
 	}
-        
-        public void clearValues(){
-            
-        }
+
+	public void clearValues(){
+
+	}
 }

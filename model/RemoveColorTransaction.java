@@ -22,7 +22,7 @@ public class RemoveColorTransaction extends Transaction
 
 	private ColorCollection myColorList;
 	private ColorX mySelectedColor;
-	
+
 
 	// GUI Components
 
@@ -74,7 +74,7 @@ public class RemoveColorTransaction extends Transaction
 		}
 		catch (Exception ex)
 		{
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
+			new Event(Event.getLeafLevelClassName(this), "processTransaction",
 					"Error in creating ColorCollectionView", Event.ERROR);
 		}
 	}
@@ -86,9 +86,9 @@ public class RemoveColorTransaction extends Transaction
 		mySelectedColor.stateChangeRequest("Status", "Inactive");
 		mySelectedColor.remove();
 		transactionErrorMessage = (String)mySelectedColor.getState("UpdateStatusMessage");	
-		
+
 	}
-	
+
 	//-----------------------------------------------------------
 	public Object getState(String key)
 	{
@@ -97,35 +97,35 @@ public class RemoveColorTransaction extends Transaction
 			return myColorList;
 		}
 		else
-		if (key.equals("BarcodePrefix") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("BarcodePrefix");
+			if (key.equals("BarcodePrefix") == true)
+			{
+				if (mySelectedColor != null)
+					return mySelectedColor.getState("BarcodePrefix");
+				else
+					return "";
+			}
 			else
-				return "";
-		}
-		else
-		if (key.equals("Description") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("Description");
-			else
-				return "";
-		}
-		else
-		if (key.equals("AlphaCode") == true)
-		{
-			if (mySelectedColor != null)
-				return mySelectedColor.getState("AlphaCode");
-			else
-				return "";
-		}
-		else
-		if (key.equals("TransactionError") == true)
-		{
-			return transactionErrorMessage;
-		}
-		
+				if (key.equals("Description") == true)
+				{
+					if (mySelectedColor != null)
+						return mySelectedColor.getState("Description");
+					else
+						return "";
+				}
+				else
+					if (key.equals("AlphaCode") == true)
+					{
+						if (mySelectedColor != null)
+							return mySelectedColor.getState("AlphaCode");
+						else
+							return "";
+					}
+					else
+						if (key.equals("TransactionError") == true)
+						{
+							return transactionErrorMessage;
+						}
+
 		return null;
 	}
 
@@ -139,33 +139,33 @@ public class RemoveColorTransaction extends Transaction
 			doYourJob();
 		}
 		else
-		if (key.equals("SearchColor") == true)
-		{
-			processTransaction((Properties)value);
-		}
-		else
-		if (key.equals("ColorSelected") == true)
-		{
-			mySelectedColor = myColorList.retrieve((String)value);
-			try
+			if (key.equals("SearchColor") == true)
 			{
-				
-				Scene newScene = createRemoveColorView();
-			
-				swapToView(newScene);
+				processTransaction((Properties)value);
+			}
+			else
+				if (key.equals("ColorSelected") == true)
+				{
+					mySelectedColor = myColorList.retrieve((String)value);
+					try
+					{
 
-			}
-			catch (Exception ex)
-			{
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Error in creating RemoveColorView", Event.ERROR);
-			}
-		}
-		else
-		if (key.equals("ColorData") == true)
-		{
-			processColorRemoval((Properties)value);
-		}
+						Scene newScene = createRemoveColorView();
+
+						swapToView(newScene);
+
+					}
+					catch (Exception ex)
+					{
+						new Event(Event.getLeafLevelClassName(this), "processTransaction",
+								"Error in creating RemoveColorView", Event.ERROR);
+					}
+				}
+				else
+					if (key.equals("ColorData") == true)
+					{
+						processColorRemoval((Properties)value);
+					}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -193,7 +193,7 @@ public class RemoveColorTransaction extends Transaction
 			return currentScene;
 		}
 	}
-	
+
 	/**
 	 * Create the view containing the table of all matching colors on the search criteria sents
 	 */
@@ -204,9 +204,9 @@ public class RemoveColorTransaction extends Transaction
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;
-		
+
 	}
-	
+
 	/**
 	 * Create the view using which data about selected color can be removed
 	 */
@@ -217,7 +217,7 @@ public class RemoveColorTransaction extends Transaction
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;
-		
+
 	}
 
 }

@@ -24,10 +24,10 @@ import javafx.stage.Stage;
 //==============================================================
 public class MainStageContainer
 {
-   	// data members
-	
+	// data members
+
 	private static Stage myInstance = null;
-	
+
 	// class constructor
 	//----------------------------------------------------------
 	private MainStageContainer ()
@@ -39,7 +39,7 @@ public class MainStageContainer
 	{
 		return myInstance; 
 	}
-	
+
 	//-----------------------------------------------------------
 	public static void setStage(Stage st, String title)
 	{
@@ -47,7 +47,7 @@ public class MainStageContainer
 		myInstance.setTitle(title);
 		myInstance.setResizable(false);
 	}
-		
+
 }
 
 

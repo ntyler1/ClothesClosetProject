@@ -52,7 +52,7 @@ public class Receptionist implements IView, IModel
 		if(myRegistry == null)
 		{
 			new Event(Event.getLeafLevelClassName(this), "Receptionist",
-				"Could not instantiate Registry", Event.ERROR);
+					"Could not instantiate Registry", Event.ERROR);
 		}
 
 		// STEP 3.2: Be sure to set the dependencies correctly
@@ -67,7 +67,7 @@ public class Receptionist implements IView, IModel
 	{
 		dependencies = new Properties();
 		//dependencies.setProperty("Login", "LoginError");
-	
+
 
 		myRegistry.setDependencies(dependencies);
 	}
@@ -87,9 +87,9 @@ public class Receptionist implements IView, IModel
 		{
 			return loginErrorMessage;
 		}
-	
+
 		else */
-			return "";
+		return "";
 	}
 
 	//----------------------------------------------------------------
@@ -104,26 +104,26 @@ public class Receptionist implements IView, IModel
 			createAndShowReceptionistView();
 		}
 		else
-		if (key.equals("ExitSystem") == true)
-		{
-			System.exit(0);
-		}	
-		else
-		if ((key.equals("AddArticleType") == true) || (key.equals("UpdateArticleType") == true) ||
-			(key.equals("RemoveArticleType") == true) || (key.equals("AddColor") == true) ||
-			(key.equals("UpdateColor") == true) || (key.equals("RemoveColor") == true) ||
-			(key.equals("AddClothingItem") == true) || (key.equals("UpdateClothingItem") == true) ||
-			(key.equals("RemoveClothingItem") == true) || (key.equals("CheckoutClothingItem") == true) ||
-			(key.equals("LogRequest") == true) || (key.equals("FulfillRequest") == true) ||
-			(key.equals("RemoveRequest") == true) || (key.equals("ListAvailableInventory") == true)
-			)
-		{
-			String transType = key;
+			if (key.equals("ExitSystem") == true)
+			{
+				System.exit(0);
+			}	
+			else
+				if ((key.equals("AddArticleType") == true) || (key.equals("UpdateArticleType") == true) ||
+						(key.equals("RemoveArticleType") == true) || (key.equals("AddColor") == true) ||
+						(key.equals("UpdateColor") == true) || (key.equals("RemoveColor") == true) ||
+						(key.equals("AddClothingItem") == true) || (key.equals("UpdateClothingItem") == true) ||
+						(key.equals("RemoveClothingItem") == true) || (key.equals("CheckoutClothingItem") == true) ||
+						(key.equals("LogRequest") == true) || (key.equals("FulfillRequest") == true) ||
+						(key.equals("RemoveRequest") == true) || (key.equals("ListAvailableInventory") == true)
+						)
+				{
+					String transType = key;
 
-			transType = transType.trim();
-			
-			doTransaction(transType);
-		}
+					transType = transType.trim();
+
+					doTransaction(transType);
+				}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -148,7 +148,7 @@ public class Receptionist implements IView, IModel
 		try
 		{
 			Transaction trans = TransactionFactory.createTransaction(
-				transactionType);
+					transactionType);
 
 			trans.subscribe("CancelTransaction", this);
 			trans.stateChangeRequest("DoYourJob", "");
@@ -175,9 +175,9 @@ public class Receptionist implements IView, IModel
 			currentScene = new Scene(newView);
 			myViews.put("ReceptionistView", currentScene);
 		}
-				
+
 		swapToView(currentScene);
-		
+
 	}
 
 
@@ -206,14 +206,14 @@ public class Receptionist implements IView, IModel
 		{
 			System.out.println("Receptionist.swapToView(): Missing view for display");
 			new Event(Event.getLeafLevelClassName(this), "swapToView",
-				"Missing view for display ", Event.ERROR);
+					"Missing view for display ", Event.ERROR);
 			return;
 		}
 
 		myStage.setScene(newScene);
 		myStage.sizeToScene();
-		
-			
+
+
 		//Place in center
 		WindowPosition.placeCenter(myStage);
 	}

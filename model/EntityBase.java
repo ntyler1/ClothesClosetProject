@@ -39,7 +39,7 @@ import userinterface.WindowPosition;
  *  Persistable */
 //==============================================================
 public abstract class EntityBase extends Persistable
-	implements IModel
+implements IModel
 {
 	protected ModelRegistry myRegistry;	// registry for entities interested in our events
 	private int referenceCount;		// the number of others using us
@@ -80,7 +80,7 @@ public abstract class EntityBase extends Persistable
 		referenceCount = 0;
 		// indicate the data in persistentState matches the database contents
 		dirty = false;
-    }
+	}
 
 	/** Register objects to receive state updates. */
 	//----------------------------------------------------------
@@ -101,51 +101,51 @@ public abstract class EntityBase extends Persistable
 	}
 
 
-    //-----------------------------------------------------------------------------------
-    // package level permission, only ObjectFactory should modify
-    void incrementReferenceCount()
-    {
+	//-----------------------------------------------------------------------------------
+	// package level permission, only ObjectFactory should modify
+	void incrementReferenceCount()
+	{
 		referenceCount++;
-    }
-
-    //-----------------------------------------------------------------------------------
-    // package level permission, only ObjectFactory should modify
-    void decrementReferenceCount()
-    {
-		referenceCount--;
-    }
-
-    //-----------------------------------------------------------------------------------
-    // package level permission, only ObjectFactory should modify
-    int getReferenceCount()
-    {
-		return referenceCount;
-    }
+	}
 
 	//-----------------------------------------------------------------------------------
-    // package level permission, only ObjectFactory and others in same package should invoke
-    void releaseAggregates()
-    {
-    }	
+	// package level permission, only ObjectFactory should modify
+	void decrementReferenceCount()
+	{
+		referenceCount--;
+	}
 
-     //-----------------------------------------------------------------------------
-     public void swapToView(Scene otherView)
-     {
+	//-----------------------------------------------------------------------------------
+	// package level permission, only ObjectFactory should modify
+	int getReferenceCount()
+	{
+		return referenceCount;
+	}
+
+	//-----------------------------------------------------------------------------------
+	// package level permission, only ObjectFactory and others in same package should invoke
+	void releaseAggregates()
+	{
+	}	
+
+	//-----------------------------------------------------------------------------
+	public void swapToView(Scene otherView)
+	{
 
 		if (otherView == null)
 		{
 			new Event(Event.getLeafLevelClassName(this), "swapToView",
-				"Missing view for display ", Event.ERROR);
+					"Missing view for display ", Event.ERROR);
 			return;
 		}
 
 		myStage.setScene(otherView);
 		myStage.sizeToScene();
-			
+
 		//Place in center
 		WindowPosition.placeCenter(myStage);
-		
-    }
+
+	}
 
 }
 

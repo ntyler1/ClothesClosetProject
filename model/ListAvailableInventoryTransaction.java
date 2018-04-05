@@ -52,18 +52,18 @@ public class ListAvailableInventoryTransaction extends Transaction
 	//----------------------------------------------------------
 	public void processTransaction(Properties props)
 	{
-            myInventoryList = new InventoryCollection();
-            myInventoryList.findAll();
-            try
-               {	    
-                       Scene newScene = createListInventoryAvailableView();	
-                       swapToView(newScene);
-               }
-               catch (Exception ex)
-               {
-                               new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                                       "Error in creating InventoryCollectionView", Event.ERROR);
-               }
+		myInventoryList = new InventoryCollection();
+		myInventoryList.findAll();
+		try
+		{	    
+			Scene newScene = createListInventoryAvailableView();	
+			swapToView(newScene);
+		}
+		catch (Exception ex)
+		{
+			new Event(Event.getLeafLevelClassName(this), "processTransaction",
+					"Error in creating InventoryCollectionView", Event.ERROR);
+		}
 	}
 	//-----------------------------------------------------------
 	public Object getState(String key)
@@ -72,11 +72,11 @@ public class ListAvailableInventoryTransaction extends Transaction
 		{
 			return transactionErrorMessage;
 		}
-                else if (key.equals("InventoryList") == true)
+		else if (key.equals("InventoryList") == true)
 		{
 			return myInventoryList;
 		}
-		
+
 		return null;
 	}
 
@@ -85,37 +85,37 @@ public class ListAvailableInventoryTransaction extends Transaction
 	{
 		//System.out.println("UpdateArticleTypeTransaction.sCR: key: " + key);
 
-                if(key.equals("CancelInventoryList") == true){
-                    doYourJob();
-                }
-                else
-                if (key.equals("DoYourJob") == true)
-		{
-			processTransaction(null);
+		if(key.equals("CancelInventoryList") == true){
+			doYourJob();
 		}
-//		else
-//		if (key.equals("ArticleTypeSelected") == true)
-//		{
-//			mySelectedArticleType = myArticleTypeList.retrieve((String)value);
-//			try
-//			{
-//				
-//				Scene newScene = createModifyArticleTypeView();
-//			
-//				swapToView(newScene);
-//
-//			}
-//			catch (Exception ex)
-//			{
-//				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-//					"Error in creating ModifyArticleTypeView", Event.ERROR);
-//			}
-//		}
-//		else
-//		if (key.equals("ArticleTypeData") == true)
-//		{
-//			processArticleTypeModification((Properties)value);
-//		}
+		else
+			if (key.equals("DoYourJob") == true)
+			{
+				processTransaction(null);
+			}
+		//		else
+		//		if (key.equals("ArticleTypeSelected") == true)
+		//		{
+		//			mySelectedArticleType = myArticleTypeList.retrieve((String)value);
+		//			try
+		//			{
+		//				
+		//				Scene newScene = createModifyArticleTypeView();
+		//			
+		//				swapToView(newScene);
+		//
+		//			}
+		//			catch (Exception ex)
+		//			{
+		//				new Event(Event.getLeafLevelClassName(this), "processTransaction",
+		//					"Error in creating ModifyArticleTypeView", Event.ERROR);
+		//			}
+		//		}
+		//		else
+		//		if (key.equals("ArticleTypeData") == true)
+		//		{
+		//			processArticleTypeModification((Properties)value);
+		//		}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -127,7 +127,7 @@ public class ListAvailableInventoryTransaction extends Transaction
 	//------------------------------------------------------
 	protected Scene createView()
 	{
-            Scene currentScene = myViews.get("ListInventoryAvailableView");
+		Scene currentScene = myViews.get("ListInventoryAvailableView");
 		if (currentScene == null)
 		{
 			// create our initial view
@@ -142,7 +142,7 @@ public class ListAvailableInventoryTransaction extends Transaction
 			return currentScene;
 		}
 	}
-	
+
 	/**
 	 * Create the view containing the table of all matching article types on the search criteria sents
 	 */
