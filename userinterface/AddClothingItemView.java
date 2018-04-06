@@ -664,7 +664,7 @@ public class AddClothingItemView extends View
 			int barcode = (Integer)myModel.getState("BarcodeFill");
 			barcode ++;
 			StringBuilder s = new StringBuilder(Integer.toString(barcode));
-			while(s.length() < 3)
+			while(s.length() < GlobalVariables.MAX_BARCODE_EXTENSION_LENGTH)
 				s.append(0);
 			return s.toString();
 			}
