@@ -267,6 +267,10 @@ public class AddClothingItemView extends View
 			if(barcode.getText().length() == 0)
 				barcode.setText("00000001");
 			barcode.setText(gender.getSelectionModel().getSelectedItem().getValue() + barcode.getText().substring(1));
+			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
+				String bc = barcode.getText();
+				barcode.setText(bc.substring(0,5) + fillBarcode(bc.substring(0,5)));
+			}
 		});
 
 		gender.setMaxWidth(180);
@@ -300,6 +304,10 @@ public class AddClothingItemView extends View
 			if(barcode.getText().length() == 0)
 				barcode.setText("00000001");
 			barcode.setText(barcode.getText().substring(0,1) + articleType.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(3));
+			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
+				String bc = barcode.getText();
+				barcode.setText(bc.substring(0,5) + fillBarcode(bc.substring(0,5)));
+			}
 		});
 		articleType.setPromptText("Please Select Article Type");
 		articleType.setMaxWidth(180);
@@ -332,6 +340,10 @@ public class AddClothingItemView extends View
 			if(barcode.getText().length() == 0)
 				barcode.setText("00000001");
 			barcode.setText(barcode.getText().substring(0,3) + color1.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(5));
+			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
+				String bc = barcode.getText();
+				barcode.setText(bc.substring(0,5) + fillBarcode(bc.substring(0,5)));
+			}
 		});
 		color1.setPromptText("Please Select Color 1");
 		color1.setMaxWidth(185);
@@ -644,6 +656,18 @@ public class AddClothingItemView extends View
 			System.out.println(e.toString());
 		}
 	}
+	
+	private String fillBarcode(String bar){
+			Properties props = new Properties();
+			props.setProperty("Barcode", bar);
+            myModel.stateChangeRequest("fillBarcode", props);
+			int barcode = (Integer)myModel.getState("BarcodeFill");
+			barcode ++;
+			StringBuilder s = new StringBuilder(Integer.toString(barcode));
+			while(s.length() < 3)
+				s.append(0);
+			return s.toString();
+			}
 
 	public void clearValues(){
 		barcode.clear();
