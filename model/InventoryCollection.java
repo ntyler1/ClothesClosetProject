@@ -68,6 +68,13 @@ public class InventoryCollection  extends EntityBase implements IView
 				"')";
 		populateCollectionHelper(query);
 	}
+	
+	public void findByLikeBarcode(String barcode)
+	{
+		String query = "SELECT * FROM " + myTableName + " WHERE (Barcode LIKE '" + barcode + "%" +
+				"')";
+		populateCollectionHelper(query);
+	}
 
 	//-----------------------------------------------------------
 	public void findAll()
@@ -113,6 +120,14 @@ public class InventoryCollection  extends EntityBase implements IView
 		}
 
 		return retValue;
+	}
+	
+	public int retrieveCount()
+	{
+		if(inventory != null)
+			return inventory.size();
+		else
+			return 0;
 	}
 
 	/** Called via the IView relationship */

@@ -21,8 +21,10 @@ public class AddClothingItemTransaction extends Transaction
 {
 	private ArticleTypeCollection myArticleTypeList;
 	private ColorCollection myColorList;
+	private InventoryCollection myInventoryList;
 	private ArticleType at;
 	private ColorX color;
+	private int barcodeFill = 0;
 
 	// GUI Components
 
@@ -96,6 +98,16 @@ public class AddClothingItemTransaction extends Transaction
 		}
 
 	}
+	
+	public void processBarcode(Properties props)
+	{
+		if(props.getProperty("Barcode") != null){
+			String barcode = props.getProperty("Barcode");
+			myInventoryList = new InventoryCollection();
+			myInventoryList.findByLikeBarcode(barcode);
+			barcodeFill = myInventoryList.retrieveCount();
+		}
+	}
 
 	//-----------------------------------------------------------
 	public Object getState(String key)
@@ -123,6 +135,15 @@ public class AddClothingItemTransaction extends Transaction
 						{
 							return color;
 						}
+		
+		else if (key.equals("InventoryList") == true)
+		{
+			return myInventoryList;
+		}
+		else if (key.equals("BarcodeFill") == true)
+		{
+			return (Integer)barcodeFill;
+		}
 
 		return null;
 	}
@@ -165,6 +186,11 @@ public class AddClothingItemTransaction extends Transaction
 		else if (key.equals("ClothingItemData") == true)
 		{
 			processTransaction((Properties)value);
+		}
+		else if (key.equals("fillBarcode") == true)
+		{
+			processBarcode((Properties)value);
+			
 		}
 
 		myRegistry.updateSubscribers(key, this);
