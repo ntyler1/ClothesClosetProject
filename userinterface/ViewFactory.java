@@ -71,6 +71,14 @@ public class ViewFactory {
 		{
 			return new SearchInventoryView(model);
 		}
+		else if(viewName.equals("CheckOutItemView") == true)
+		{
+			return new CheckOutItemView(model);
+		}
+		else if(viewName.equals("EnterRecepientInfoView") == true)
+		{
+			return new EnterRecepientInfoView(model);
+		}
 		else if(viewName.equals("ListInventoryAvailableView") == true)
 		{
 			return new ListInventoryAvailableView(model);
