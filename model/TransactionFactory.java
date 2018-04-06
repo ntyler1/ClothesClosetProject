@@ -62,6 +62,10 @@ public class TransactionFactory
         {
             retValue = new RemoveClothingItemTransaction();
         }
+		else if(transType.equals("CheckoutClothingItem") == true) 
+        {
+            retValue = new CheckoutClothingItemTransaction();
+        }
 		
 		return retValue;
 	}
