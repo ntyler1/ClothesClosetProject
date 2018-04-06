@@ -16,6 +16,7 @@ public class GlobalVariables
 	public static final int MIN_LNAME_LENGTH = 0;
 	public static final int MIN_PHONENUM_LENGTH = 0;
 	public static final int MIN_EMAIL_LENGTH = 0;
+	public static final int MAX_BARCODE_EXTENSION_LENGTH = 3;
 	
 	//Used by article types and colors
 	public static final int BCPRFX_MIN_LENGTH = 0;
