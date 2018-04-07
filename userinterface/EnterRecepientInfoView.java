@@ -198,9 +198,9 @@ public class EnterRecepientInfoView extends View {
 					String recepientLastName = lastName.getText();
 					if (recepientLastName.length() > 0)
 					{
-						props.setProperty("NetId", recepientNetID);
-						props.setProperty("FirstName", recepientFirstName);
-						props.setProperty("LastName", recepientLastName);
+						props.setProperty("RecieverNetId", recepientNetID);
+						props.setProperty("ReceiverFirstName", recepientFirstName);
+						props.setProperty("ReceiverLastName", recepientLastName);
 						myModel.stateChangeRequest("RecepientData", props);
 					}
 					else {
