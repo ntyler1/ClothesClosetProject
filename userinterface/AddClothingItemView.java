@@ -265,7 +265,7 @@ public class AddClothingItemView extends View
 			if(gender.getSelectionModel().getSelectedItem() == null)
 				return;
 			if(barcode.getText().length() == 0)
-				barcode.setText("00000001");
+				barcode.setText("00000000");
 			barcode.setText(gender.getSelectionModel().getSelectedItem().getValue() + barcode.getText().substring(1));
 			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
 				String bc = barcode.getText();
@@ -302,7 +302,7 @@ public class AddClothingItemView extends View
 			if(articleType.getSelectionModel().getSelectedItem() == null)
 				return;
 			if(barcode.getText().length() == 0)
-				barcode.setText("00000001");
+				barcode.setText("00000000");
 			barcode.setText(barcode.getText().substring(0,1) + articleType.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(3));
 			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
 				String bc = barcode.getText();
@@ -338,7 +338,7 @@ public class AddClothingItemView extends View
 			if(color1.getSelectionModel().getSelectedItem() == null)
 				return;
 			if(barcode.getText().length() == 0)
-				barcode.setText("00000001");
+				barcode.setText("00000000");
 			barcode.setText(barcode.getText().substring(0,3) + color1.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(5));
 			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
 				String bc = barcode.getText();
