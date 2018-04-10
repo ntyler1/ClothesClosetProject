@@ -1,5 +1,5 @@
 // specify the package
-package Utilities;
+package utilities;
 
 // system imports
 import java.text.ParseException;

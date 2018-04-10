@@ -650,3 +650,4 @@
 [3/27/18 2:35 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
 [3/27/18 2:42 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
 [3/29/18 6:11 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[4/10/18 2:47 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
