@@ -54,8 +54,7 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 
 				if (r != null)
 				{      
-                                    request.add(r);
-                                    
+                                    request.add(r);  
 				}
 			}
 

@@ -69,6 +69,7 @@ public class ClothingRequest extends EntityBase implements IView
 				{
 					String nextKey = (String)allKeys.nextElement();
 					String nextValue = retrievedATData.getProperty(nextKey);
+                                        
 					// accountNumber = Integer.parseInt(retrievedAccountData.getProperty("accountNumber"));
 
 					if (nextValue != null)
