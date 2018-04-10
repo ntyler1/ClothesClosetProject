@@ -27,7 +27,7 @@ public class ViewFactory {
 		{
 			return new SearchArticleTypeView(model);
 		}
-		else if(viewName.equals("RemoveArticleTypeView") == true)
+                else if(viewName.equals("RemoveArticleTypeView") == true)
 		{
 			return new RemoveArticleTypeView(model);
 		}
@@ -47,41 +47,37 @@ public class ViewFactory {
 		{
 			return new RemoveColorView(model);
 		}
-		else if(viewName.equals("ColorCollectionView") == true)
-		{
-			return new ColorCollectionView(model);
-		}
-		else if(viewName.equals("AddClothingItemView") == true)
-		{
-			return new AddClothingItemView(model);
-		}
-		else if(viewName.equals("ModifyClothingItemView") == true)
-		{
-			return new ModifyClothingItemView(model);
-		}
-		else if(viewName.equals("RemoveClothingItemView") == true)
-		{
-			return new RemoveClothingItemView(model);
-		}
-		else if(viewName.equals("InventoryCollectionView") == true)
-		{
-			return new InventoryCollectionView(model);
-		}
-		else if(viewName.equals("SearchInventoryView") == true)
-		{
-			return new SearchInventoryView(model);
-		}
-		else if(viewName.equals("CheckOutItemView") == true)
-		{
-			return new CheckOutItemView(model);
-		}
-		else if(viewName.equals("EnterRecepientInfoView") == true)
-		{
-			return new EnterRecepientInfoView(model);
-		}
+                else if(viewName.equals("ColorCollectionView") == true)
+                {
+                    return new ColorCollectionView(model);
+                }
+                else if(viewName.equals("AddClothingItemView") == true)
+                {
+                    return new AddClothingItemView(model);
+                }
+                else if(viewName.equals("ModifyClothingItemView") == true)
+                {
+                    return new ModifyClothingItemView(model);
+                }
+                else if(viewName.equals("RemoveClothingItemView") == true)
+                {
+                    return new RemoveClothingItemView(model);
+                }
+                else if(viewName.equals("InventoryCollectionView") == true)
+                {
+                    return new InventoryCollectionView(model);
+                }
+                else if(viewName.equals("SearchInventoryView") == true)
+                {
+                    return new SearchInventoryView(model);
+                }
 		else if(viewName.equals("ListInventoryAvailableView") == true)
 		{
 			return new ListInventoryAvailableView(model);
+		}
+                else if(viewName.equals("ClothingRequestCollectionView") == true)
+		{
+			return new ClothingRequestCollectionView(model);
 		}
 		else
 			return null;
