@@ -79,7 +79,7 @@ public class EnterRecepientInfoView extends View {
 	}
 
 	protected String getActionText() {
-		return "*** ENTER RECEPIENT INFORMATION ***";
+		return "** ENTER RECEPIENT INFORMATION **";
 	}
 
 	// -------------------------------------------------------------
@@ -166,7 +166,7 @@ public class EnterRecepientInfoView extends View {
 		grid.add(netId, 1, 1);
 
 		Text firstNameLabel = new Text();
-				firstNameLabel.setFill(Color.GOLD);
+		firstNameLabel.setFill(Color.GOLD);
 		firstNameLabel.setFont(myFont);
 		firstNameLabel.setWrappingWidth(145);
 		firstNameLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -175,6 +175,17 @@ public class EnterRecepientInfoView extends View {
 		firstName = new TextField();
 		firstName.setMinWidth(180);
 		grid.add(firstName, 1, 1);
+
+		Text lastNameLabel = new Text();
+		lastNameLabel.setFill(Color.GOLD);
+		lastNameLabel.setFont(myFont);
+		lastNameLabel.setWrappingWidth(145);
+		lastNameLabel.setTextAlignment(TextAlignment.RIGHT);
+		grid.add(lastNameLabel, 0, 1);
+
+		lastName = new TextField();
+		lastName.setMinWidth(180);
+		grid.add(lastName, 1, 1);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
