@@ -170,22 +170,22 @@ public class EnterRecepientInfoView extends View {
 		firstNameLabel.setFont(myFont);
 		firstNameLabel.setWrappingWidth(145);
 		firstNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(firstNameLabel, 0, 1);
+		grid.add(firstNameLabel, 0, 2);
 
 		firstName = new TextField();
 		firstName.setMinWidth(180);
-		grid.add(firstName, 1, 1);
+		grid.add(firstName, 1, 2);
 
 		Text lastNameLabel = new Text();
 		lastNameLabel.setFill(Color.GOLD);
 		lastNameLabel.setFont(myFont);
 		lastNameLabel.setWrappingWidth(145);
 		lastNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(lastNameLabel, 0, 1);
+		grid.add(lastNameLabel, 0, 3);
 
 		lastName = new TextField();
 		lastName.setMinWidth(180);
-		grid.add(lastName, 1, 1);
+		grid.add(lastName, 1, 3);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
