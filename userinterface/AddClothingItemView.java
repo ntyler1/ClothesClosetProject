@@ -663,10 +663,15 @@ public class AddClothingItemView extends View
             myModel.stateChangeRequest("fillBarcode", props);
 			int barcode = (Integer)myModel.getState("BarcodeFill");
 			barcode ++;
-			StringBuilder s = new StringBuilder(Integer.toString(barcode));
-			while(s.length() < GlobalVariables.MAX_BARCODE_EXTENSION_LENGTH)
-				s.append(0);
-			return s.toString();
+			StringBuilder returnString = new StringBuilder();
+			String s = new String(Integer.toString(barcode));
+			int x = s.length();
+			while(x < GlobalVariables.MAX_BARCODE_EXTENSION_LENGTH){
+				returnString.append(0);
+				x++;
+			}
+			returnString.append(s);
+			return returnString.toString();
 			}
 
 	public void clearValues(){

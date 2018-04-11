@@ -75,10 +75,18 @@ public class ViewFactory {
 		{
 			return new ListInventoryAvailableView(model);
 		}
-                else if(viewName.equals("ClothingRequestCollectionView") == true)
+        else if(viewName.equals("ClothingRequestCollectionView") == true)
 		{
 			return new ClothingRequestCollectionView(model);
 		}
+		else if(viewName.equals("CheckOutItemView") == true)
+                {
+                    return new CheckOutItemView(model);
+                }
+				else if(viewName.equals("EnterRecepientInfoView") == true)
+                {
+                    return new EnterRecepientInfoView(model);
+                }
 		else
 			return null;
 	}
