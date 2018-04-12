@@ -5,7 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -165,7 +168,7 @@ public class EnterRecepientInfoView extends View {
 		netId.setMinWidth(180);
 		grid.add(netId, 1, 1);
 
-		Text firstNameLabel = new Text();
+		Text firstNameLabel = new Text(" First Name : ");
 		firstNameLabel.setFill(Color.GOLD);
 		firstNameLabel.setFont(myFont);
 		firstNameLabel.setWrappingWidth(145);
@@ -176,7 +179,7 @@ public class EnterRecepientInfoView extends View {
 		firstName.setMinWidth(180);
 		grid.add(firstName, 1, 2);
 
-		Text lastNameLabel = new Text();
+		Text lastNameLabel = new Text(" Last Name : ");
 		lastNameLabel.setFill(Color.GOLD);
 		lastNameLabel.setFont(myFont);
 		lastNameLabel.setWrappingWidth(145);
@@ -212,6 +215,23 @@ public class EnterRecepientInfoView extends View {
 						props.setProperty("RecieverNetId", recepientNetID);
 						props.setProperty("ReceiverFirstName", recepientFirstName);
 						props.setProperty("ReceiverLastName", recepientLastName);
+						
+						//Need Code here to check If the Date is within 6 months of last checkout
+						
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmation Dialog");
+						alert.setHeaderText("Too Many Checkouts!");
+						alert.setContentText("This person has checked out an item within the past 6 months. Are you sure you would like to continue?");
+						Optional<ButtonType> result = alert.showAndWait();
+						
+						if (result.get() == ButtonType.OK)
+						{
+							
+						}
+						else
+							myModel.stateChangeRequest("CancelCheckOutCI", null);
+						
+						
 						myModel.stateChangeRequest("RecepientData", props);
 					}
 					else {
