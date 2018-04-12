@@ -195,7 +195,6 @@ public class Inventory extends EntityBase implements IView
 				Properties whereClause = new Properties();
 				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
 				updatePersistentState(mySchema, persistentState, whereClause);
-				System.out.println(persistentState.getProperty("DateTaken"));
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
 			}
 		}
