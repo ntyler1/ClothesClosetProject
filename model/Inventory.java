@@ -131,11 +131,17 @@ public class Inventory extends EntityBase implements IView
 	//----------------------------------------------------------------
 	public void stateChangeRequest(String key, Object value)
 	{
+		
 		if (persistentState.getProperty(key) != null)
 		{
 			persistentState.setProperty(key, (String)value);
 		}
 		myRegistry.updateSubscribers(key, this);
+	}
+	public void setProperty(String key, String value){
+		
+		persistentState.setProperty(key, value);
+		
 	}
 
 	/** Called via the IView relationship */
@@ -189,6 +195,7 @@ public class Inventory extends EntityBase implements IView
 				Properties whereClause = new Properties();
 				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
 				updatePersistentState(mySchema, persistentState, whereClause);
+				System.out.println(persistentState.getProperty("DateTaken"));
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " updated successfully!";
 			}
 		}
