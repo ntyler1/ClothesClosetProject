@@ -67,6 +67,7 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 		String query = "SELECT * FROM " + myTableName + " WHERE Status = 'Pending'";
 		populateCollectionHelper(query);
 	}
+
 	/**
 	 *
 	 */
@@ -106,6 +107,24 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 //
 //		return retValue;
 //	}
+
+	//----------------------------------------------------------
+	public ClothingRequest retrieve(String id)
+	{
+		ClothingRequest retValue = null;
+		for (int cnt = 0; cnt < request.size(); cnt++)
+		{
+			ClothingRequest nextCR = request.elementAt(cnt);
+			String nextID = (String)nextCR.getState("Id");
+			if (nextID.equals(id) == true)
+			{
+				retValue = nextCR;
+				return retValue; // we should say 'break;' here
+			}
+		}
+
+		return retValue;
+	}
 
 	/** Called via the IView relationship */
 	//----------------------------------------------------------
