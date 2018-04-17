@@ -67,6 +67,9 @@ public class TransactionFactory
                 }else
                 if(transType.equals("FulfillRequest") == true) {
                     retValue = new FulfillRequestTransaction();
+                }else
+                if(transType.equals("RemoveRequest") == true) {
+                    retValue = new RemoveRequestTransaction();
                 }
 				else
                 if(transType.equals("CheckoutClothingItem") == true) {
