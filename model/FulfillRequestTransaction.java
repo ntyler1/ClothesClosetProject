@@ -117,7 +117,7 @@ public class FulfillRequestTransaction extends Transaction
 //			swapToView(newScene);
                     }
                     catch(Exception e){
-                        transactionErrorMessage = "Request Has Been Successfully Fulfilled!";
+                        transactionErrorMessage = "ERROR Occured When Fulfilling Request!";
                     }
 		}
 
