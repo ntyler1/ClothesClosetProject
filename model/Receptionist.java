@@ -34,6 +34,7 @@ public class Receptionist implements IView, IModel
 
 
 	// GUI Components
+        private ClothingRequestCollection requestsCanBeFulfilled;
 	private Hashtable<String, Scene> myViews;
 	private Stage myStage;
 
@@ -83,12 +84,12 @@ public class Receptionist implements IView, IModel
 	//----------------------------------------------------------
 	public Object getState(String key)
 	{
-		/*if (key.equals("LoginError") == true)
+		if (key.equals("MatchingRequests") == true)
 		{
-			return loginErrorMessage;
+                    findMatching();
+                    return requestsCanBeFulfilled;
 		}
-
-		else */
+		else
 		return "";
 	}
 
@@ -136,7 +137,11 @@ public class Receptionist implements IView, IModel
 
 		stateChangeRequest(key, value);
 	}
-
+        
+        public void findMatching(){
+            requestsCanBeFulfilled = new ClothingRequestCollection();
+            requestsCanBeFulfilled.findMatchingIds();
+        }
 	/**
 	 * Create a Transaction depending on the Transaction type (deposit,
 	 * withdraw, transfer, etc.). Use the AccountHolder holder data to do the
@@ -166,17 +171,11 @@ public class Receptionist implements IView, IModel
 	//------------------------------------------------------------
 	private void createAndShowReceptionistView()
 	{
-		Scene currentScene = (Scene)myViews.get("ReceptionistView");
+            // create our initial view
+            View newView = ViewFactory.createView("ReceptionistView", this); // USE VIEW FACTORY
+            Scene currentScene = new Scene(newView);
 
-		if (currentScene == null)
-		{
-			// create our initial view
-			View newView = ViewFactory.createView("ReceptionistView", this); // USE VIEW FACTORY
-			currentScene = new Scene(newView);
-			myViews.put("ReceptionistView", currentScene);
-		}
-
-		swapToView(currentScene);
+            swapToView(currentScene);
 
 	}
 

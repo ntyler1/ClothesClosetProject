@@ -45,6 +45,7 @@ public class FulfillRequestTransaction extends Transaction
 	{
 		dependencies = new Properties();
 		dependencies.setProperty("CancelFulfillRequest", "CancelTransaction");
+                dependencies.setProperty("CancelMatchingInventory", "DoYourJob");
                 dependencies.setProperty("InventorySelected", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
@@ -63,7 +64,6 @@ public class FulfillRequestTransaction extends Transaction
 	{
 		if (key.equals("TransactionError") == true)
 		{
-                    System.out.println(transactionErrorMessage);
                     return transactionErrorMessage;
 		}
                 else if(key.equals("InventoryList")){
@@ -87,6 +87,10 @@ public class FulfillRequestTransaction extends Transaction
 		{
 			doYourJob();
 		}
+                else
+                    if(key.equals("CancelMatchingInventory") == true){
+                        swapToView(createView());
+                    }
 		else
 		if (key.equals("ClothingRequestSelected") == true)
 		{
@@ -111,10 +115,6 @@ public class FulfillRequestTransaction extends Transaction
                     try{
                         fulfillRequest((String)value);
                         transactionErrorMessage = "Request Has Been Successfully Fulfilled!";
-//                        
-//                        Scene newScene = createFulfilledRequestView();
-//			
-//			swapToView(newScene);
                     }
                     catch(Exception e){
                         transactionErrorMessage = "ERROR Occured When Fulfilling Request!";

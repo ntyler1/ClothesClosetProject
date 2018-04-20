@@ -27,10 +27,13 @@ import javafx.scene.image.ImageView;
 
 // project imports
 import impresario.IModel;
+import java.util.Vector;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import model.ClothingRequest;
+import model.ClothingRequestCollection;
 
 /** The class containing the Transaction Choice View  for the ATM application */
 //==============================================================
@@ -451,8 +454,20 @@ public class ReceptionistView extends View
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
+            try{
+                ClothingRequestCollection requestCollection = 
+                        (ClothingRequestCollection)myModel.getState("MatchingRequests");
 
+                Vector entryList = (Vector)requestCollection.getState("ClothingRequest");
+                if(entryList.size() > 0)
+                    fulfillRequestButton.setText("Fulfill ("+entryList.size()+")");
+                    
+            }	
+		catch (Exception e) {//SQLException e)
+			System.out.println(e);
+		}
 	}
+        
 
 
 	//---------------------------------------------------------

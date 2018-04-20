@@ -59,6 +59,11 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 
 		}
 	}
+        
+        public void findAll(){
+            String query = "SELECT * FROM "+myTableName;
+            populateCollectionHelper(query);
+        }
 	
 	//-----------------------------------------------------------
 	public void findAllPending()
@@ -73,6 +78,12 @@ public class ClothingRequestCollection  extends EntityBase implements IView
                         + "WHERE "+myTableName+".Status = 'Pending'";
                 populateCollectionHelper(query);
 	}
+        
+        public void findMatchingIds(){
+            String query = "Select ID FROM "+myTableName+" INNER JOIN Inventory ON RequestedArticleType = ArticleType "
+                        +"AND RequestedGender = Gender AND RequestedSize = Size WHERE "+myTableName+".Status = 'Pending'";
+            populateCollectionHelper(query);
+        }
 
 	/**
 	 *
@@ -112,26 +123,7 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 		}
 
 		return retValue;
-	}
-
-	//----------------------------------------------------------
-	public ClothingRequest retrieve(String id)
-	{
-		ClothingRequest retValue = null;
-		for (int cnt = 0; cnt < request.size(); cnt++)
-		{
-			ClothingRequest nextCR = request.elementAt(cnt);
-			String nextID = (String)nextCR.getState("Id");
-			if (nextID.equals(id) == true)
-			{
-				retValue = nextCR;
-				return retValue; // we should say 'break;' here
-			}
-		}
-
-		return retValue;
-	}
-
+        }
 	/** Called via the IView relationship */
 	//----------------------------------------------------------
 	public void updateState(String key, Object value)

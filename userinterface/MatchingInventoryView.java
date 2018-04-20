@@ -45,6 +45,11 @@ public class MatchingInventoryView extends AvailableInventoryView
 	protected void populateFields()
 	{
 		actionText.setFill(Color.LIGHTBLUE);
+                tableOfInventory.setOnMousePressed((MouseEvent event) -> {
+                    if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
+                        processClothingItemSelected();
+                    }
+                });
                 ImageView icon = new ImageView(new Image("/images/check.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
@@ -68,7 +73,7 @@ public class MatchingInventoryView extends AvailableInventoryView
 			@Override
 			public void handle(ActionEvent e) {
 				clearErrorMessage();
-				myModel.stateChangeRequest("CancelFulfillRequest", null); 
+				myModel.stateChangeRequest("CancelMatchingInventory", null); 
 			}
 		});
                 btnContainer.getChildren().clear();

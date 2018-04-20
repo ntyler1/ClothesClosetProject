@@ -75,7 +75,7 @@ public class ViewFactory {
 		{
 			return new AvailableInventoryView(model);
 		}
-                else if(viewName.equals("ClothingRequestCollectionView") == true)
+                else if(viewName.equals("ClothingRequestPendingCollectionView") == true)
 		{
 			return new ClothingRequestPendingCollectionView(model);
 		}
