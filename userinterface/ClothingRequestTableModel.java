@@ -35,7 +35,7 @@ public class ClothingRequestTableModel
 		requestedAT =  new SimpleStringProperty(atData.elementAt(6));
 		requestedC1 =  new SimpleStringProperty(atData.elementAt(7));
                 requestedC2 =  new SimpleStringProperty(atData.elementAt(8));
-		requestedSize =  new SimpleStringProperty(atData.elementAt(9));
+                requestedSize =  new SimpleStringProperty(atData.elementAt(9));
 		requestedBrand =  new SimpleStringProperty(atData.elementAt(10));
 		status =  new SimpleStringProperty(atData.elementAt(11));
                 fulfillItemBarcode =  new SimpleStringProperty(atData.elementAt(12));

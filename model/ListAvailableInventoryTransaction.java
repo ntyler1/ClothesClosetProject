@@ -53,7 +53,7 @@ public class ListAvailableInventoryTransaction extends Transaction
 	public void processTransaction(Properties props)
 	{
 		myInventoryList = new InventoryCollection();
-		myInventoryList.findAll();
+		myInventoryList.findAvailableInventory();
 		try
 		{	    
 			Scene newScene = createListInventoryAvailableView();	

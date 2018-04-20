@@ -131,10 +131,7 @@ public class Inventory extends EntityBase implements IView
 	//----------------------------------------------------------------
 	public void stateChangeRequest(String key, Object value)
 	{
-		if (persistentState.getProperty(key) != null)
-		{
-			persistentState.setProperty(key, (String)value);
-		}
+		persistentState.setProperty(key, (String)value);
 		myRegistry.updateSubscribers(key, this);
 	}
 

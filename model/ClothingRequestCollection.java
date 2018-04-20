@@ -25,7 +25,6 @@ import userinterface.ViewFactory;
 public class ClothingRequestCollection  extends EntityBase implements IView
 {
 	private static final String myTableName = "ClothingRequest";
-
 	private Vector<ClothingRequest> request;
 	// GUI Components
 
@@ -62,10 +61,17 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 	}
 	
 	//-----------------------------------------------------------
-	public void findAll()
+	public void findAllPending()
 	{
-		String query = "SELECT * FROM " + myTableName + " WHERE Status = 'Pending'";
-		populateCollectionHelper(query);
+		String query = "SELECT ClothingRequest.ID, RequesterNetId, RequesterPhone,  RequesterLastName, RequesterFirstName, "
+                        + "RequestedGender, ArticleType.Description AS RequestedArticleType, Color.Description AS RequestedColor1, "
+                        + "Color2.Description AS RequestedColor2, RequestedSize, RequestedBrand, RequestMadeDate "
+                        + "FROM "+myTableName+" "
+                        + "INNER JOIN ArticleType on RequestedArticleType = ArticleType.BarcodePrefix "
+                        + "INNER JOIN Color on RequestedColor1 = Color.BarcodePrefix "
+                        + "INNER JOIN Color AS Color2 on RequestedColor2 = Color2.BarcodePrefix "
+                        + "WHERE "+myTableName+".Status = 'Pending'";
+                populateCollectionHelper(query);
 	}
 	/**
 	 *
@@ -90,22 +96,22 @@ public class ClothingRequestCollection  extends EntityBase implements IView
 	}
 
 	//----------------------------------------------------------
-//	public Inventory retrieve(String barcode)
-//	{
-//		Inventory retValue = null;
-//		for (int cnt = 0; cnt < inventory.size(); cnt++)
-//		{
-//			Inventory nextAT = inventory.elementAt(cnt);
-//			String nextBarcodePrefix = (String)nextAT.getState("Barcode");
-//			if (nextBarcodePrefix.equals(barcode) == true)
-//			{
-//				retValue = nextAT;
-//				return retValue; // we should say 'break;' here
-//			}
-//		}
-//
-//		return retValue;
-//	}
+	public ClothingRequest retrieve(String id)
+	{
+                ClothingRequest retValue = null;
+		for (int cnt = 0; cnt < request.size(); cnt++)
+		{
+			ClothingRequest nextR = request.elementAt(cnt);
+			String nextid = (String)nextR.getState("ID");
+			if (nextid.equals(id) == true)
+			{
+                                retValue = nextR;
+				return retValue; // we should say 'break;' here
+			}
+		}
+
+		return retValue;
+	}
 
 	/** Called via the IView relationship */
 	//----------------------------------------------------------

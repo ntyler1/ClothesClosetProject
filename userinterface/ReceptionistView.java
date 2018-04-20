@@ -85,6 +85,8 @@ public class ReceptionistView extends View
 		container.getChildren().add(createFormContents());
 
 		container.getChildren().add(createStatusLog("             "));
+               // container.setMinHeight(550);
+                //container.setMinWidth(550);
 
 		getChildren().add(container);
 
@@ -100,22 +102,24 @@ public class ReceptionistView extends View
 		VBox container = new VBox(10);
 
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(350);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(shadow);
+//		/clientText.setWrappingWidth(350);
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(350);
+               // titleText.setEffect(shadow);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
+		//titleText.setWrappingWidth(420);
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
 
 		//bport icon
-		ImageView bportIcon = new ImageView(new Image("/images/bporteagle.png",250,175,false,true));
-		bportIcon.setEffect(new Glow(.5));
+		ImageView bportIcon = new ImageView(new Image("/images/BPT_LOGO_All-In-One_Color.png",225,225 ,true,true));
+		bportIcon.setEffect(new DropShadow());
 		container.getChildren().add(bportIcon);
 
 		container.setAlignment(Pos.CENTER);
@@ -149,13 +153,15 @@ public class ReceptionistView extends View
 			checkoutClothingItemButton.setEffect(null);
 		});
 		checkoutCont.getChildren().add(checkoutClothingItemButton);
+                checkoutCont.setAlignment(Pos.CENTER);
 
 		container.getChildren().add(checkoutCont);
 
 		HBox articleTypeCont = new HBox(10);
-		articleTypeCont.setAlignment(Pos.CENTER_LEFT);
-		Label atLabel = new Label("  Article Types: ");
-		atLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		articleTypeCont.setAlignment(Pos.CENTER);
+		Label atLabel = new Label("Article Types:  ");
+                atLabel.setAlignment(Pos.CENTER_LEFT);
+		atLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 18));
 		atLabel.setTextFill(Color.GOLD);
 		articleTypeCont.getChildren().add(atLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
@@ -207,13 +213,14 @@ public class ReceptionistView extends View
 			removeArticleTypeButton.setEffect(null);
 		});
 		articleTypeCont.getChildren().add(removeArticleTypeButton);
+                articleTypeCont.setAlignment(Pos.CENTER);
 
 		container.getChildren().add(articleTypeCont);
 
 		HBox colorCont = new HBox(10);
 		colorCont.setAlignment(Pos.CENTER_LEFT);
-		Label colorLabel = new Label("            Colors: ");
-		colorLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		Label colorLabel = new Label("          Colors:  ");
+		colorLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 18));
 		colorLabel.setTextFill(Color.GOLD);
 		colorCont.getChildren().add(colorLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
@@ -264,13 +271,14 @@ public class ReceptionistView extends View
 			removeColorButton.setEffect(null);
 		});
 		colorCont.getChildren().add(removeColorButton);
+                colorCont.setAlignment(Pos.CENTER);
 
 		container.getChildren().add(colorCont);
 
 		HBox clothingItemCont = new HBox(10);
 		clothingItemCont.setAlignment(Pos.CENTER_LEFT);
 		Label ciLabel = new Label("Clothing Items:");
-		ciLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		ciLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 17));
 		ciLabel.setTextFill(Color.GOLD);
 		clothingItemCont.getChildren().add(ciLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
@@ -321,13 +329,13 @@ public class ReceptionistView extends View
 			removeClothingItemButton.setEffect(null);
 		});
 		clothingItemCont.getChildren().add(removeClothingItemButton);
-
+                clothingItemCont.setAlignment(Pos.CENTER);
 		container.getChildren().add(clothingItemCont);
 
 		HBox requestCont = new HBox(10);
 		requestCont.setAlignment(Pos.CENTER_LEFT);
-		Label reqLabel = new Label("        Requests: ");
-		reqLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		Label reqLabel = new Label("      Requests: ");
+		reqLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 18));
 		reqLabel.setTextFill(Color.GOLD);
 		requestCont.getChildren().add(reqLabel);
 		icon = new ImageView(new Image("/images/logcolor.png"));
@@ -380,6 +388,7 @@ public class ReceptionistView extends View
 			removeRequestButton.setEffect(null);
 		});
 		requestCont.getChildren().add(removeRequestButton);
+                requestCont.setAlignment(Pos.CENTER);
 
 		container.getChildren().add(requestCont);
 
@@ -401,7 +410,7 @@ public class ReceptionistView extends View
 			listAvailableInventoryButton.setEffect(null);
 		});
 		listAvailCont.getChildren().add(listAvailableInventoryButton);
-
+                listAvailCont.setAlignment(Pos.CENTER);
 		container.getChildren().add(listAvailCont);
 
 		HBox doneCont = new HBox(10);
@@ -422,6 +431,7 @@ public class ReceptionistView extends View
 			cancelButton.setEffect(null);
 		});
 		doneCont.getChildren().add(cancelButton);
+                doneCont.setAlignment(Pos.CENTER);
 
 		container.getChildren().add(doneCont);
 

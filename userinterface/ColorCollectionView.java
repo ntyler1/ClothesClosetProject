@@ -49,8 +49,6 @@ public class ColorCollectionView extends View
 	protected Button cancelButton;
 	protected Button submitButton;
 	protected Text actionText; 
-	protected int entryCnt = 0;
-
 
 	protected MessageView statusLog;
 
@@ -102,7 +100,6 @@ public class ColorCollectionView extends View
 
 				while (entries.hasMoreElements() == true)
 				{
-					entryCnt++;
 					ColorX nextColor = (ColorX)entries.nextElement();
 					Vector<String> view = nextColor.getEntryListView();
 					//ERROR: cannot find symbol nextColor
@@ -113,9 +110,9 @@ public class ColorCollectionView extends View
 
 				}
 				if(entryList.size() == 1)
-					actionText.setText(entryCnt+" Color Found!");
+					actionText.setText(entryList.size()+" Color Found!");
 				else 
-					actionText.setText(entryCnt+" Colors Found!");
+					actionText.setText(entryList.size()+" Colors Found!");
 
 				actionText.setFill(Color.LIGHTGREEN);
 			}

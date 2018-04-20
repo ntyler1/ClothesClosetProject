@@ -102,9 +102,10 @@ public class ClothingRequest extends EntityBase implements IView
 		{
 			String nextKey = (String)allKeys.nextElement();
 			String nextValue = props.getProperty(nextKey);
+                        
 			if (nextValue != "")
 			{
-				persistentState.setProperty(nextKey, nextValue);
+                            persistentState.setProperty(nextKey, nextValue);
 			}
 		}
                 
@@ -130,10 +131,7 @@ public class ClothingRequest extends EntityBase implements IView
 	//----------------------------------------------------------------
 	public void stateChangeRequest(String key, Object value)
 	{
-		if (persistentState.getProperty(key) != null)
-		{
-			persistentState.setProperty(key, (String)value);
-		}
+		persistentState.setProperty(key, (String)value);
 		myRegistry.updateSubscribers(key, this);
 	}
 
@@ -216,9 +214,8 @@ public class ClothingRequest extends EntityBase implements IView
 	public Vector<String> getEntryListView()
 	{
 		Vector<String> v = new Vector<String>();
-
 		v.addElement(persistentState.getProperty("ID"));
-		v.addElement(persistentState.getProperty("RequesterNetid"));
+		v.addElement(persistentState.getProperty("RequesterNetId"));
 		v.addElement(persistentState.getProperty("RequesterPhone"));
 		v.addElement(persistentState.getProperty("RequesterLastName"));
                 v.addElement(persistentState.getProperty("RequesterFirstName"));

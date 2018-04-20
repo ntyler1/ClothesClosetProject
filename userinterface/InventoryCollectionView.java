@@ -48,9 +48,7 @@ public class InventoryCollectionView extends View
 	protected TableView<InventoryTableModel> tableOfClothes;
 	protected Button cancelButton;
 	protected Button submitButton;
-	protected Text actionText; 
-	protected int entryCnt = 0;
-
+	protected Text actionText;
 
 	protected MessageView statusLog;
 
@@ -102,7 +100,6 @@ public class InventoryCollectionView extends View
 
 				while (entries.hasMoreElements() == true)
 				{
-					entryCnt++;
 					Inventory nextItem = (Inventory)entries.nextElement();
 					Vector<String> view = nextItem.getEntryListView();
 
@@ -112,9 +109,9 @@ public class InventoryCollectionView extends View
 
 				}
 				if(entryList.size() == 1)
-					actionText.setText(entryCnt+" Inventory Found!");
+					actionText.setText(entryList.size()+" Inventory Found!");
 				else 
-					actionText.setText(entryCnt+" Inventory Found!");
+					actionText.setText(entryList.size()+" Inventory Found!");
 
 				actionText.setFill(Color.LIGHTGREEN);
 			}

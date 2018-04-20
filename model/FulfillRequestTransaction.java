@@ -11,6 +11,8 @@ import java.util.Vector;
 import event.Event;
 import exception.InvalidPrimaryKeyException;
 import exception.MultiplePrimaryKeysException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import userinterface.View;
 import userinterface.ViewFactory;
@@ -20,7 +22,9 @@ import userinterface.ViewFactory;
 public class FulfillRequestTransaction extends Transaction
 {
         private ClothingRequestCollection requestList;
-        private ClothingRequest request;
+        private InventoryCollection matchingInventory;
+        private ClothingRequest mySelectedRequest;
+        private Inventory mySelectedInventory;
 	// GUI Components
 
 	private String transactionErrorMessage = "";
@@ -41,7 +45,7 @@ public class FulfillRequestTransaction extends Transaction
 	{
 		dependencies = new Properties();
 		dependencies.setProperty("CancelFulfillRequest", "CancelTransaction");
-		dependencies.setProperty("FulfillRequestData", "TransactionError");
+                dependencies.setProperty("InventorySelected", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
 	}
@@ -59,12 +63,16 @@ public class FulfillRequestTransaction extends Transaction
 	{
 		if (key.equals("TransactionError") == true)
 		{
-			return transactionErrorMessage;
+                    System.out.println(transactionErrorMessage);
+                    return transactionErrorMessage;
 		}
+                else if(key.equals("InventoryList")){
+                    return matchingInventory;
+                }
                 else if (key.equals("PendingRequests") == true)
 		{
                         requestList = new ClothingRequestCollection();
-                        requestList.findAll();
+                        requestList.findAllPending();
 			return requestList;
 		}
 		
@@ -79,32 +87,76 @@ public class FulfillRequestTransaction extends Transaction
 		{
 			doYourJob();
 		}
-//		else
-//		if (key.equals("ArticleTypeSelected") == true)
-//		{
-//			mySelectedArticleType = myArticleTypeList.retrieve((String)value);
-//			try
-//			{
-//				
-//				Scene newScene = createModifyArticleTypeView();
+		else
+		if (key.equals("ClothingRequestSelected") == true)
+		{
+			findMatchingInventory((String) value);
+			try
+			{
+				
+				Scene newScene = createMatchingInventoryView();
+			
+				swapToView(newScene);
+
+			}
+			catch (Exception ex)
+			{
+				new Event(Event.getLeafLevelClassName(this), "processTransaction",
+					"Error in creating ModifyArticleTypeView", Event.ERROR);
+			}
+		}
+		else
+		if (key.equals("InventorySelected") == true)
+		{
+                    try{
+                        fulfillRequest((String)value);
+                        transactionErrorMessage = "Request Has Been Successfully Fulfilled!";
+//                        
+//                        Scene newScene = createFulfilledRequestView();
 //			
-//				swapToView(newScene);
-//
-//			}
-//			catch (Exception ex)
-//			{
-//				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-//					"Error in creating ModifyArticleTypeView", Event.ERROR);
-//			}
-//		}
-//		else
-//		if (key.equals("ArticleTypeData") == true)
-//		{
-//			processArticleTypeModification((Properties)value);
-//		}
+//			swapToView(newScene);
+                    }
+                    catch(Exception e){
+                        transactionErrorMessage = "Request Has Been Successfully Fulfilled!";
+                    }
+		}
 
 		myRegistry.updateSubscribers(key, this);
 	}
+        
+        protected void findMatchingInventory(String value){
+            mySelectedRequest = requestList.retrieve((String)value);
+            String gender = (String)mySelectedRequest.getState("RequestedGender");
+            String size = (String)mySelectedRequest.getState("RequestedSize");
+            String articleType = (String)mySelectedRequest.getState("RequestedArticleType");
+            matchingInventory = new InventoryCollection();
+            matchingInventory.findMatchingInventory(gender, articleType, size);
+        }
+        
+        protected void fulfillRequest(String value) throws Exception{
+            mySelectedInventory = matchingInventory.retrieve((String)value);
+            mySelectedRequest.stateChangeRequest("FulfilItemBarcode", value);
+            mySelectedRequest.stateChangeRequest("Status", "Fulfilled");
+            mySelectedRequest.stateChangeRequest("RequestFulfilledDate", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+            String netId = (String)mySelectedRequest.getState("RequesterNetId");
+            String firstName = (String)mySelectedRequest.getState("RequesterFirstName");
+            String lastName = (String)mySelectedRequest.getState("RequesterLastName");
+            mySelectedInventory.stateChangeRequest("ReceiverNetid", netId);
+            mySelectedInventory.stateChangeRequest("Status", "Received");
+            mySelectedInventory.stateChangeRequest("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+            mySelectedInventory.stateChangeRequest("ReceiverFirstName", firstName);
+            mySelectedInventory.stateChangeRequest("ReceiverLastName", lastName);
+            ClothingRequest tempRequest = new ClothingRequest((String)mySelectedRequest.getState("ID"));
+            Inventory tempInventory = new Inventory((String)mySelectedInventory.getState("Barcode"));
+            mySelectedRequest.stateChangeRequest("RequestedArticleType", (String)tempRequest.getState("RequestedArticleType"));
+            mySelectedRequest.stateChangeRequest("RequestedColor1", (String)tempRequest.getState("RequestedColor1"));
+            mySelectedRequest.stateChangeRequest("RequestedColor2", (String)tempRequest.getState("RequestedColor2"));
+            mySelectedInventory.stateChangeRequest("ArticleType", (String)tempInventory.getState("ArticleType"));
+            mySelectedInventory.stateChangeRequest("Color1", (String)tempInventory.getState("Color1"));
+            mySelectedInventory.stateChangeRequest("Color2", (String)tempInventory.getState("Color2"));
+            mySelectedRequest.update();
+            mySelectedInventory.update(null);
+       }
 
 	/**
 	 * Create the view of this class. And then the super-class calls
@@ -113,13 +165,13 @@ public class FulfillRequestTransaction extends Transaction
 	//------------------------------------------------------
 	protected Scene createView()
 	{
-            Scene currentScene = myViews.get("ClothingRequestCollectionView");
+            Scene currentScene = myViews.get("ClothingRequestPendingCollectionView");
 		if (currentScene == null)
 		{
 			// create our initial view
-			View newView = ViewFactory.createView("ClothingRequestCollectionView", this);
+			View newView = ViewFactory.createView("ClothingRequestPendingCollectionView", this);
 			currentScene = new Scene(newView);
-			myViews.put("ClothingRequestCollectionView", currentScene);
+			myViews.put("ClothingRequestPendingCollectionView", currentScene);
 
 			return currentScene;
 		}
@@ -127,6 +179,24 @@ public class FulfillRequestTransaction extends Transaction
 		{
 			return currentScene;
 		}
+	}
+        
+	protected Scene createMatchingInventoryView()
+	{
+		View newView = ViewFactory.createView("MatchingInventoryView", this);
+		Scene currentScene = new Scene(newView);
+
+		return currentScene;
+
+	}
+        
+        protected Scene createFulfilledRequestView()
+	{
+		View newView = ViewFactory.createView("FulfilledRequestView", this);
+		Scene currentScene = new Scene(newView);
+
+		return currentScene;
+
 	}
 }
 

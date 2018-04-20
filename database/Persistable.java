@@ -523,7 +523,7 @@ abstract public class Persistable
 			namesRSColumns = new Vector();
 			for (int cnt = 1; cnt <= numRSColumns; cnt++)
 			{
-				String thisColumnName = rsMetaData.getColumnName(cnt);
+				String thisColumnName = rsMetaData.getColumnLabel(cnt);
 				namesRSColumns.addElement(thisColumnName);
 			}
 
@@ -609,7 +609,6 @@ abstract public class Persistable
 
 			// Stop Runaway Queries
 			theStatement.setMaxRows(20000);
-
 
 			// The method executeUpdate executes a query on the database. The
 			// return result is of type integer which indicates the number of rows updated

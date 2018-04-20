@@ -82,6 +82,29 @@ public class InventoryCollection  extends EntityBase implements IView
 		String query = "SELECT * FROM " + myTableName + " WHERE Status = 'Donated'";
 		populateCollectionHelper(query);
 	}
+        
+        public void findMatchingInventory(String gender, String articleType, String size){
+            String query = "SELECT Barcode, Gender, Size, ArticleType.Description AS ArticleType, Color.Description AS Color1,"
+                    + " Color2.Description AS Color2, Brand, Notes, Inventory.Status , DonorLastName, DonorFirstName, "
+                    + "DonorPhone, DonorEmail, DateDonated FROM Inventory "
+                    + "INNER JOIN ArticleType ON ArticleType.BarcodePrefix = ArticleType "
+                    + "INNER JOIN Color ON Color.BarcodePrefix = Color1 "
+                    + "INNER JOIN Color AS Color2 ON Color2.BarcodePrefix = Color2 "
+                    + "WHERE Inventory.Status = 'Donated' AND Gender = '"+gender+"'"
+                    + "AND Size = '"+size+"' AND ArticleType.Description = '"+articleType+"'";
+		populateCollectionHelper(query);
+        }
+        
+        public void findAvailableInventory(){
+            String query = "SELECT Barcode, Gender, Size, ArticleType.Description AS ArticleType, Color.Description AS Color1, Color2.Description AS Color2, Brand, Notes, \n" +
+                        ""+myTableName+".Status , DonorLastName, DonorFirstName, DonorPhone, DonorEmail, DateDonated\n" +
+                        "FROM "+myTableName+"\n" +
+                        "INNER JOIN ArticleType ON ArticleType.BarcodePrefix = ArticleType\n" +
+                        "INNER JOIN Color ON Color.BarcodePrefix = Color1\n" +
+                        "INNER JOIN Color AS Color2 ON Color2.BarcodePrefix = Color2\n" +
+                        "WHERE "+myTableName+".Status = 'Donated'";
+		populateCollectionHelper(query);
+        }
 	/**
 	 *
 	 */

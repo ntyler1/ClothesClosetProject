@@ -651,3 +651,45 @@
 [3/27/18 2:42 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
 [3/29/18 6:11 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
 [4/10/18 2:47 PM]|AddClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/10/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:09 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/10/18 6:10 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/11/18 10:01 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'ClothingRequest.FulfillItemBarcode' in 'field list'>
+[4/11/18 10:12 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.RequestedColor1, Color2.Description AS ClothingRequest.RequestedColor2, Clothin' at line 1>
+[4/11/18 10:14 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '.RequestedColor1, Color2.Description AS ClothingRequest.RequestedColor2, Clothin' at line 1>
+[4/11/18 10:40 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'Pending'' at line 1>
+[4/11/18 10:40 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '= 'Pending'' at line 1>
+[4/17/18 3:30 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/17/18 11:32 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1052: Column 'ID' in field list is ambiguous>
+[4/17/18 11:33 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1052: Column 'ID' in field list is ambiguous>
+[4/17/18 11:33 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1052: Column 'ID' in field list is ambiguous>
+[4/18/18 11:23 PM]|InventoryCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Pant Suit' at line 7>
+[4/19/18 6:20 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , FulfilItemBarcode = '10611001' , RequesterLastName = 'Tyler' , RequestFul' at line 1>
+[4/19/18 6:20 PM]|Inventory|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Color , ReceiverFirstName = 'Noah' , DateDonated = '22-03-2018' , Color1 = Black' at line 1>
+[4/19/18 6:24 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , FulfilItemBarcode = '10611001' , RequesterLastName = 'Tyler' , RequestFul' at line 1>
+[4/19/18 6:24 PM]|Inventory|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Color , ReceiverFirstName = 'Noah' , DateDonated = '22-03-2018' , Color1 = Black' at line 1>
+[4/19/18 6:28 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , FulfilItemBarcode = '10611001' , RequesterLastName = 'Tyler' , RequestFul' at line 1>
+[4/19/18 6:28 PM]|Inventory|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Color , ReceiverFirstName = 'Noah' , DateDonated = '22-03-2018' , Color1 = Black' at line 1>
+[4/19/18 6:51 PM]|Inventory|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Color , ReceiverFirstName = 'Noah' , DateDonated = '22-03-2018' , Color1 = Black' at line 1>
+[4/19/18 6:51 PM]|Inventory|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Color , ReceiverFirstName = 'Noah' , DateDonated = '22-03-2018' , Color1 = Black' at line 1>

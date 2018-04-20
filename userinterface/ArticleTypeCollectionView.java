@@ -50,12 +50,9 @@ public class ArticleTypeCollectionView extends View
 	protected TableView<ArticleTypeTableModel> tableOfArticleTypes;
 	protected Button cancelButton;
 	protected Button submitButton;
-	protected int entryCnt = 0;
 	protected MessageView statusLog;
 	protected Text actionText; 
-
-
-
+        
 	//--------------------------------------------------------------------------
 	public ArticleTypeCollectionView(IModel matt)
 	{
@@ -102,7 +99,6 @@ public class ArticleTypeCollectionView extends View
 
 				while (entries.hasMoreElements() == true)
 				{
-					entryCnt++;
 					ArticleType nextAT = (ArticleType)entries.nextElement();
 					Vector<String> view = nextAT.getEntryListView();
 
@@ -112,9 +108,9 @@ public class ArticleTypeCollectionView extends View
 
 				}
 				if(entryList.size() == 1)
-					actionText.setText(entryCnt+" Article Type Found!");
+					actionText.setText(entryList.size()+" Article Type Found!");
 				else 
-					actionText.setText(entryCnt+" Article Types Found!");
+					actionText.setText(entryList.size()+" Article Types Found!");
 
 				actionText.setFill(Color.LIGHTGREEN);
 			}

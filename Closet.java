@@ -56,7 +56,7 @@ public class Closet extends Application
            // Create the top-level container (main frame) and add contents to it.
 	   MainStageContainer.setStage(primaryStage, "Clothes Closet Version 1.00");
 	   mainStage = MainStageContainer.getInstance();
-           mainStage.getIcons().add(new Image("/images/shieldtrans.png")); // set small icon in top left to bport icon
+           mainStage.getIcons().add(new Image("/images/BPT_LOGO_All-In-One_Color.png")); // set small icon in top left to bport icon
 	   // Finish setting up the stage (ENABLE THE GUI TO BE CLOSED USING THE TOP RIGHT
 	   // 'X' IN THE WINDOW), and show it.
         mainStage.setOnCloseRequest(new EventHandler <javafx.stage.WindowEvent>() {
