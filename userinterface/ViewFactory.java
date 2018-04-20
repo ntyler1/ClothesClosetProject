@@ -75,7 +75,7 @@ public class ViewFactory {
 		{
 			return new AvailableInventoryView(model);
 		}
-                else if(viewName.equals("ClothingRequestPendingCollectionView") == true)
+                else if(viewName.equals("ClothingRequestCollectionView") == true)
 		{
 			return new ClothingRequestPendingCollectionView(model);
 		}
@@ -83,6 +83,14 @@ public class ViewFactory {
 		{
 			return new MatchingInventoryView(model);
 		}
+		else if(viewName.equals("CheckOutItemView") == true)
+                {
+                    return new CheckOutItemView(model);
+                }
+				else if(viewName.equals("EnterRecepientInfoView") == true)
+                {
+                    return new EnterRecepientInfoView(model);
+                }
 		else
 			return null;
 	}

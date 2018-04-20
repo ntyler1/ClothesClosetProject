@@ -134,6 +134,12 @@ public class Inventory extends EntityBase implements IView
 		persistentState.setProperty(key, (String)value);
 		myRegistry.updateSubscribers(key, this);
 	}
+        
+	public void setProperty(String key, String value){
+		
+		persistentState.setProperty(key, value);
+		
+	}
 
 	/** Called via the IView relationship */
 	//----------------------------------------------------------

@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.Properties;
 import java.util.Vector;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 // project imports
 import event.Event;
@@ -88,17 +90,17 @@ public class CheckoutClothingItemTransaction extends Transaction
     {
         String netId = props.getProperty("RecieverNetId");
         if (netId != null) {
-            myInventory.stateChangeRequest("ReceiverNetid", netId);
+            myInventory.setProperty("ReceiverNetid", netId);
         }
         String lastName = props.getProperty("ReceiverLastName");
         if (lastName != null) {
-            myInventory.stateChangeRequest("ReceiverLastName", lastName);
+            myInventory.setProperty("ReceiverLastName", lastName);
         }
 		String firstName = props.getProperty("ReceiverFirstName");
 		if (firstName != null) {
-            myInventory.stateChangeRequest("ReceiverFirstName", lastName);
+            myInventory.setProperty("ReceiverFirstName", lastName);
         }
-        myInventory.stateChangeRequest("DateDonated", props.getProperty("DateDonated"));
+        myInventory.setProperty("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 		myInventory.stateChangeRequest("Status", "Received");
 		myInventory.update(null);
         transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
