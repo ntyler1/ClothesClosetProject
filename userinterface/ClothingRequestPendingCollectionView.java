@@ -39,7 +39,8 @@ import java.util.Enumeration;
 // project imports
 import impresario.IModel;
 import javafx.scene.effect.DropShadow;
-import model.*;
+import model.ClothingRequest;
+import model.ClothingRequestCollection;
 
 //==============================================================================
 public class ClothingRequestPendingCollectionView extends View
@@ -47,6 +48,7 @@ public class ClothingRequestPendingCollectionView extends View
 	protected TableView<ClothingRequestTableModel> tableOfRequests;
 	protected Button cancelButton;
 	protected Button submitButton;
+        protected Text actionText;
         protected Text foundText; 
 
 	protected MessageView statusLog;
@@ -153,7 +155,7 @@ public class ClothingRequestPendingCollectionView extends View
 		blankText.setFill(Color.WHITE);
 		container.getChildren().add(blankText);
                 
-                Text actionText = new Text("     " + getActionText() + "       ");
+                actionText = new Text("     " + getActionText() + "       ");
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);

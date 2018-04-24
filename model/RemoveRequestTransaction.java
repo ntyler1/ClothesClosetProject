@@ -2,8 +2,6 @@
 package model;
 
 // system imports.
-
-
 import event.Event;
 import javafx.scene.Scene;
 import userinterface.View;
@@ -34,7 +32,7 @@ public class RemoveRequestTransaction extends Transaction
     {
         // super.dependencies = new Properties();
         dependencies = new Properties();
-
+        dependencies.setProperty("CancelFulfillRequest", "CancelTransaction");
         myRegistry.setDependencies(dependencies);
 
     }
@@ -80,22 +78,20 @@ public class RemoveRequestTransaction extends Transaction
     //----------------------------------------------------------
     protected Scene createView()
     {
+        Scene currentScene = myViews.get("RemoveRequestCollectionView");
+            if (currentScene == null)
+            {
+                    // create our initial view
+                    View newView = ViewFactory.createView("RemoveRequestCollectionView", this);
+                    currentScene = new Scene(newView);
+                    myViews.put("RemoveRequestCollectionView", currentScene);
 
-        Scene currentScene = myViews.get("SearchClothingRequestView");
-
-        if (currentScene == null)
-        {
-            // create our initial view
-            View newView = ViewFactory.createView("SearchClothingRequestView", this);
-            currentScene = new Scene(newView);
-            myViews.put("SearchClothingRequestView", currentScene);
-
-            return currentScene;
-        }
-        else
-        {
-            return currentScene;
-        }
+                    return currentScene;
+            }
+            else
+            {
+                    return currentScene;
+            }
     }
 
     @Override
@@ -110,6 +106,12 @@ public class RemoveRequestTransaction extends Transaction
             else
                 return "";
         }
+        else if (key.equals("PendingRequests") == true)
+            {
+                requestList = new ClothingRequestCollection();
+                requestList.findAllPending();
+                return requestList;
+            }
 
         return null;
     }
@@ -118,7 +120,7 @@ public class RemoveRequestTransaction extends Transaction
     //----------------------------------------------------------
     public void stateChangeRequest(String key, Object value)
     {
-        if ((key.equals("DoYourJob") == true) || (key.equals("CancelClothingRequestList") == true))
+        if (key.equals("DoYourJob") == true)
         {
             doYourJob();
         }

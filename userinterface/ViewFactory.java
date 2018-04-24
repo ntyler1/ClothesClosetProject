@@ -83,11 +83,15 @@ public class ViewFactory {
 		{
 			return new MatchingInventoryView(model);
 		}
+                else if(viewName.equals("RemoveRequestCollectionView") == true)
+                {
+                    return new RemoveRequestCollectionView(model);
+                }
 		else if(viewName.equals("CheckOutItemView") == true)
                 {
                     return new CheckOutItemView(model);
                 }
-				else if(viewName.equals("EnterRecepientInfoView") == true)
+                else if(viewName.equals("EnterRecepientInfoView") == true)
                 {
                     return new EnterRecepientInfoView(model);
                 }

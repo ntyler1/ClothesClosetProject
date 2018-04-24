@@ -712,3 +712,17 @@
 [4/19/18 11:14 PM]|FulfillRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
 [4/19/18 11:14 PM]|FulfillRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
 [4/19/18 11:17 PM]|FulfillRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 4:15 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 4:15 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 4:15 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 4:19 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/23/18 10:17 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 01 already exists!>
+[4/23/18 10:17 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 11 already exists!>

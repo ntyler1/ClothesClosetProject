@@ -75,8 +75,8 @@ public class ReceptionistView extends View
 
 		// create a container for showing the contents
 		VBox container = new VBox(10);
-		container.setStyle("-fx-background-color: slategrey");
 		container.setPadding(new Insets(15, 5, 5, 5));
+                container.setStyle("-fx-background-color: slategrey");
 
 		// Add a title for this panel
 		container.getChildren().add(createTitle());
@@ -107,15 +107,12 @@ public class ReceptionistView extends View
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
 		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
                 clientText.setEffect(shadow);
-//		/clientText.setWrappingWidth(350);
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.WHITE);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-               // titleText.setEffect(shadow);
 		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
-		//titleText.setWrappingWidth(420);
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -144,16 +141,17 @@ public class ReceptionistView extends View
 		icon.setFitHeight(20);
 		icon.setFitWidth(20);
 		checkoutClothingItemButton = new Button("Checkout Clothing Item", icon);
-		checkoutClothingItemButton.setStyle("-fx-background-color: gold; ");
 		checkoutClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		checkoutClothingItemButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("CheckoutClothingItem", null);
 		});
 		checkoutClothingItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			checkoutClothingItemButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Checkout a Clothing Item to a Student");
 		});
 		checkoutClothingItemButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			checkoutClothingItemButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		checkoutCont.getChildren().add(checkoutClothingItemButton);
                 checkoutCont.setAlignment(Pos.CENTER);
@@ -162,25 +160,33 @@ public class ReceptionistView extends View
 
 		HBox articleTypeCont = new HBox(10);
 		articleTypeCont.setAlignment(Pos.CENTER);
-		Label atLabel = new Label("Article Types:  ");
+		Label atLabel = new Label("ARTICLE TYPES    :");
+                articleTypeCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    articleTypeCont.setStyle("-fx-background-color: GOLD");
+		});
+                articleTypeCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    articleTypeCont.setStyle("-fx-background-color: SLATEGREY");
+		});
                 atLabel.setAlignment(Pos.CENTER_LEFT);
-		atLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 18));
-		atLabel.setTextFill(Color.GOLD);
+		atLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
+		atLabel.setTextFill(Color.GREEN);
 		articleTypeCont.getChildren().add(atLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		addArticleTypeButton = new Button("Add",icon);
-		addArticleTypeButton.setStyle("-fx-background-color: lightgreen; ");
 		addArticleTypeButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		addArticleTypeButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("AddArticleType", null);
 		});
 		addArticleTypeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			addArticleTypeButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Add new Article Types to the records");
+                        
 		});
 		addArticleTypeButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			addArticleTypeButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		articleTypeCont.getChildren().add(addArticleTypeButton);
 
@@ -188,32 +194,34 @@ public class ReceptionistView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		updateArticleTypeButton = new Button("Update", icon);
-		updateArticleTypeButton.setStyle("-fx-background-color: lightblue; ");
 		updateArticleTypeButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		updateArticleTypeButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("UpdateArticleType", null);
 		});
 		updateArticleTypeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			updateArticleTypeButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Update Article Types in the records");
 		});
 		updateArticleTypeButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			updateArticleTypeButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		articleTypeCont.getChildren().add(updateArticleTypeButton);
 		icon = new ImageView(new Image("/images/trashcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		removeArticleTypeButton = new Button("Remove", icon);
-		removeArticleTypeButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		removeArticleTypeButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		removeArticleTypeButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("RemoveArticleType", null);
 		});
 		removeArticleTypeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			removeArticleTypeButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Remove Article Types from the records");
 		});
 		removeArticleTypeButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			removeArticleTypeButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		articleTypeCont.getChildren().add(removeArticleTypeButton);
                 articleTypeCont.setAlignment(Pos.CENTER);
@@ -222,56 +230,65 @@ public class ReceptionistView extends View
 
 		HBox colorCont = new HBox(10);
 		colorCont.setAlignment(Pos.CENTER_LEFT);
-		Label colorLabel = new Label("          Colors:  ");
-		colorLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 18));
-		colorLabel.setTextFill(Color.GOLD);
+		Label colorLabel = new Label("COLORS              : ");
+                colorCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    colorCont.setStyle("-fx-background-color: GOLD");
+		});
+                colorCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    colorCont.setStyle("-fx-background-color: SLATEGREY");
+		});
+		colorLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
+                colorLabel.setTextFill(Color.GREEN);
 		colorCont.getChildren().add(colorLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		addColorButton = new Button("Add", icon);
-		addColorButton.setStyle("-fx-background-color: lightgreen; ");
 		addColorButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		addColorButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("AddColor", null);
 		});
 		addColorButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			addColorButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Add new Colors to the records");
 		});
 		addColorButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			addColorButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		colorCont.getChildren().add(addColorButton);
 		icon = new ImageView(new Image("/images/editcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		updateColorButton = new Button("Update", icon);
-		updateColorButton.setStyle("-fx-background-color: lightblue; ");
 		updateColorButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		updateColorButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("UpdateColor", null);
 		});
 		updateColorButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			updateColorButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Update Colors in the records");
 		});
 		updateColorButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			updateColorButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		colorCont.getChildren().add(updateColorButton);
 		icon = new ImageView(new Image("/images/trashcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		removeColorButton = new Button("Remove",icon);
-		removeColorButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		removeColorButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		removeColorButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("RemoveColor", null);
 		});
 		removeColorButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			removeColorButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Remove Colors from the records");
 		});
 		removeColorButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			removeColorButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		colorCont.getChildren().add(removeColorButton);
                 colorCont.setAlignment(Pos.CENTER);
@@ -280,40 +297,48 @@ public class ReceptionistView extends View
 
 		HBox clothingItemCont = new HBox(10);
 		clothingItemCont.setAlignment(Pos.CENTER_LEFT);
-		Label ciLabel = new Label("Clothing Items:");
-		ciLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 17));
-		ciLabel.setTextFill(Color.GOLD);
+		Label ciLabel = new Label("CLOTHING ITEMS:");
+                clothingItemCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    clothingItemCont.setStyle("-fx-background-color: GOLD");
+		});
+                clothingItemCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    clothingItemCont.setStyle("-fx-background-color: SLATEGREY");
+		});
+		ciLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
+                ciLabel.setTextFill(Color.GREEN);
 		clothingItemCont.getChildren().add(ciLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		addClothingItemButton = new Button("Add", icon);
-		addClothingItemButton.setStyle("-fx-background-color: lightgreen; ");
 		addClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		addClothingItemButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("AddClothingItem", null);
 		});
 		addClothingItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			addClothingItemButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Add new Clothing Items to the records");
 		});
 		addClothingItemButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			addClothingItemButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		clothingItemCont.getChildren().add(addClothingItemButton);
 		icon = new ImageView(new Image("/images/editcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		updateClothingItemButton = new Button("Update",icon);
-		updateClothingItemButton.setStyle("-fx-background-color: lightblue; ");
 		updateClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		updateClothingItemButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("UpdateClothingItem", null);
 		});
 		updateClothingItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			updateClothingItemButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Update Clothing Items in the records");
 		});
 		updateClothingItemButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			updateClothingItemButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		clothingItemCont.getChildren().add(updateClothingItemButton);
 		icon = new ImageView(new Image("/images/trashcolor.png"));
@@ -321,15 +346,16 @@ public class ReceptionistView extends View
 		icon.setFitWidth(15);
 		removeClothingItemButton = new Button("Remove", icon);
 		removeClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		removeClothingItemButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		removeClothingItemButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("RemoveClothingItem", null);
 		});
 		removeClothingItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			removeClothingItemButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Remove Clothing Items from the records");
 		});
 		removeClothingItemButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			removeClothingItemButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		clothingItemCont.getChildren().add(removeClothingItemButton);
                 clothingItemCont.setAlignment(Pos.CENTER);
@@ -337,15 +363,20 @@ public class ReceptionistView extends View
 
 		HBox requestCont = new HBox(10);
 		requestCont.setAlignment(Pos.CENTER_LEFT);
-		Label reqLabel = new Label("      Requests: ");
-		reqLabel.setFont(Font.font("Comic Sans", FontWeight.THIN, 18));
-		reqLabel.setTextFill(Color.GOLD);
+		Label reqLabel = new Label(" REQUESTS           : ");
+                requestCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    requestCont.setStyle("-fx-background-color: GOLD");
+		});
+                requestCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    requestCont.setStyle("-fx-background-color: SLATEGREY");
+		});
+		reqLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
+                reqLabel.setTextFill(Color.GREEN);
 		requestCont.getChildren().add(reqLabel);
 		icon = new ImageView(new Image("/images/logcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		logRequestButton = new Button("Log", icon);
-		logRequestButton.setStyle("-fx-background-color: lightgreen; ");
 		logRequestButton.setMinWidth(65);
 		logRequestButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		logRequestButton.setOnAction((ActionEvent e) -> {
@@ -353,16 +384,17 @@ public class ReceptionistView extends View
 		});
 		logRequestButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			logRequestButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Log new Requests to the records");
 		});
 		logRequestButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			logRequestButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		requestCont.getChildren().add(logRequestButton);
 		icon = new ImageView(new Image("/images/entercolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		fulfillRequestButton = new Button(" Fulfill ", icon);
-		fulfillRequestButton.setStyle("-fx-background-color: lightblue; ");
 		fulfillRequestButton.setMinWidth(85);
 		fulfillRequestButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		fulfillRequestButton.setOnAction((ActionEvent e) -> {
@@ -370,25 +402,28 @@ public class ReceptionistView extends View
 		});
 		fulfillRequestButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			fulfillRequestButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Fulfill Requests in the records");
 		});
 		fulfillRequestButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			fulfillRequestButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		requestCont.getChildren().add(fulfillRequestButton);
 		icon = new ImageView(new Image("/images/trashcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		removeRequestButton = new Button("Remove",icon);
-		removeRequestButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		removeRequestButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		removeRequestButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("RemoveRequest", null);
 		});
 		removeRequestButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			removeRequestButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Remove Requests from the records");
 		});
 		removeRequestButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			removeRequestButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		requestCont.getChildren().add(removeRequestButton);
                 requestCont.setAlignment(Pos.CENTER);
@@ -401,16 +436,17 @@ public class ReceptionistView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		listAvailableInventoryButton = new Button("List Available Inventory",icon);
-		listAvailableInventoryButton.setStyle("-fx-background-color: thistle; ");
 		listAvailableInventoryButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		listAvailableInventoryButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("ListAvailableInventory", null);
 		});
 		listAvailableInventoryButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			listAvailableInventoryButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Displays list of all Available Inventory");
 		});
 		listAvailableInventoryButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			listAvailableInventoryButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		listAvailCont.getChildren().add(listAvailableInventoryButton);
                 listAvailCont.setAlignment(Pos.CENTER);
@@ -422,16 +458,17 @@ public class ReceptionistView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Exit System",icon);
-		cancelButton.setStyle("-fx-background-color: lightgrey; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("ExitSystem", null);
 		});
 		cancelButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			cancelButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Close Application");
 		});
 		cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			cancelButton.setEffect(null);
+                        clearErrorMessage();
 		});
 		doneCont.getChildren().add(cancelButton);
                 doneCont.setAlignment(Pos.CENTER);

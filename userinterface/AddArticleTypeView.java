@@ -23,6 +23,7 @@ import java.util.Properties;
 
 // project imports
 import impresario.IModel;
+import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 
@@ -87,16 +88,15 @@ public class AddArticleTypeView extends View
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
-		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(350);
+                Text clientText = new Text("OFFICE OF CAREER SERVICES");
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
-		
+
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(350);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -112,8 +112,9 @@ public class AddArticleTypeView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.LIGHTGREEN);
+		actionText.setFill(Color.GREEN);
 		container.getChildren().add(actionText);
+                container.setAlignment(Pos.CENTER);
 	
 		return container;
 	}
@@ -137,6 +138,7 @@ public class AddArticleTypeView extends View
                 prompt.setFill(Color.BLACK);
 		prompt.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
 		vbox.getChildren().add(prompt);
+                vbox.setAlignment(Pos.CENTER);
 		
 
 		GridPane grid = new GridPane();
@@ -146,9 +148,9 @@ public class AddArticleTypeView extends View
                 grid.setPadding(new Insets(0, 25, 10, 0));
 
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
-		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
+		Font myFont = Font.font("copperplate", FontWeight.THIN, 18);
                 
-        barcodePrefixLabel.setFill(Color.GOLD);
+                barcodePrefixLabel.setFill(Color.GOLD);
 		barcodePrefixLabel.setFont(myFont);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -159,14 +161,14 @@ public class AddArticleTypeView extends View
 
 		Text descripLabel = new Text(" Description : ");
                 
-        descripLabel.setFill(Color.GOLD);
+                descripLabel.setFill(Color.GOLD);
 		descripLabel.setFont(myFont);
 		descripLabel.setWrappingWidth(150);
 		descripLabel.setTextAlignment(TextAlignment.RIGHT);
 		grid.add(descripLabel, 0, 2);
 
 		description = new TextField();
-        grid.add(description, 1, 2);
+                grid.add(description, 1, 2);
 
 		Text alphaCodeLabel = new Text(" Alpha Code : ");
         alphaCodeLabel.setFill(Color.GOLD);
@@ -176,31 +178,36 @@ public class AddArticleTypeView extends View
 		grid.add(alphaCodeLabel, 0, 3);
 
 		alphaCode = new TextField();
-        grid.add(alphaCode, 1, 3);
+                grid.add(alphaCode, 1, 3);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
+                doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: GOLD");
+		});
+                doneCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: SLATEGREY");
+		});
                 ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
-        submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
                     clearOutlines();
                     Properties props = new Properties();
                     String bcPrfx = barcodePrefix.getText();
-                    if (bcPrfx.length() > GlobalVariables.BCPRFX_MIN_LENGTH)
+                    if (bcPrfx.length() > GlobalVariables.BCPRFX_MIN_LENGTH && bcPrfx.matches("[0-9]+"))
                     {
                         props.setProperty("BarcodePrefix", bcPrfx);
                         String descrip = description.getText();
-                        if (descrip.length() > GlobalVariables.DESC_MIN_LENGTH)
+                        if (descrip.length() > GlobalVariables.DESC_MIN_LENGTH && descrip.matches("[a-zA-Z0-9- ]+"))
                         {
 							
                             props.setProperty("Description", descrip);
                             String alfaC = alphaCode.getText();
-                            if (alfaC.length() > GlobalVariables.ALPHAC_MIN_LENGTH)
+                            if (alfaC.length() > GlobalVariables.ALPHAC_MIN_LENGTH && alfaC.matches("[a-zA-Z0-9- ]+"))
                             {
                                 props.setProperty("AlphaCode", alfaC);
                                 myModel.stateChangeRequest("ArticleTypeData", props);
@@ -221,7 +228,7 @@ public class AddArticleTypeView extends View
                     else
                     {
                         barcodePrefix.setStyle("-fx-border-color: firebrick;");
-                        displayErrorMessage("ERROR: Please enter a barcode prefix!");
+                        displayErrorMessage("ERROR: Please enter a valid barcode prefix!");
                     }
                 });
                 submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -235,7 +242,6 @@ public class AddArticleTypeView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-                cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -251,12 +257,6 @@ public class AddArticleTypeView extends View
 	
 		vbox.getChildren().add(grid);
         
-		Text blankText2 = new Text("  ");
-		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		blankText2.setWrappingWidth(350);
-		blankText2.setTextAlignment(TextAlignment.CENTER);
-		blankText2.setFill(Color.WHITE);
-        vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
                 clearOutlines();
 				

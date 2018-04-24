@@ -58,7 +58,13 @@ public class MessageView extends Text
 		setFill(Color.LIGHTGREEN);
 		setText(message);
 	}
-
+        
+        public void displayInfoMessage(String message)
+	{
+		// display the passed text in red
+		setFill(Color.GOLD);
+		setText(message);
+	}
 	/**
 	 * Display error message
 	 */

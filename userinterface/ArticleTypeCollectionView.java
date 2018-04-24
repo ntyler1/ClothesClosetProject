@@ -112,7 +112,7 @@ public class ArticleTypeCollectionView extends View
 				else 
 					actionText.setText(entryList.size()+" Article Types Found!");
 
-				actionText.setFill(Color.LIGHTGREEN);
+				actionText.setFill(Color.GREEN);
 			}
 			else
 			{
@@ -136,15 +136,14 @@ public class ArticleTypeCollectionView extends View
 		container.setPadding(new Insets(1, 1, 1, 30));
 
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(350);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(350);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -161,6 +160,7 @@ public class ArticleTypeCollectionView extends View
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		container.getChildren().add(actionText);
+                container.setAlignment(Pos.CENTER);
 
 		return container;
 	}
@@ -178,7 +178,7 @@ public class ArticleTypeCollectionView extends View
 
 		tableOfArticleTypes = new TableView<ArticleTypeTableModel>();
 		tableOfArticleTypes.setEffect(new DropShadow());
-		tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
+		tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: lightgreen;");
 		tableOfArticleTypes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;
@@ -196,13 +196,8 @@ public class ArticleTypeCollectionView extends View
 		alphaCodeColumn.setCellValueFactory(
 				new PropertyValueFactory<ArticleTypeTableModel, String>("alphaCode"));
 
-		TableColumn statusColumn = new TableColumn("Status") ;
-		statusColumn.setMinWidth(50);
-		statusColumn.setCellValueFactory(
-				new PropertyValueFactory<ArticleTypeTableModel, String>("status"));
-
 		tableOfArticleTypes.getColumns().addAll(descriptionColumn, 
-				barcodePrefixColumn, alphaCodeColumn, statusColumn);
+				barcodePrefixColumn, alphaCodeColumn);
 
 		tableOfArticleTypes.setOnMousePressed((MouseEvent event) -> {
 			if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
@@ -215,7 +210,6 @@ public class ArticleTypeCollectionView extends View
 		submitButton = new Button("Select",icon);
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.requestFocus();
-		submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
 			// do the inquiry
@@ -231,7 +225,6 @@ public class ArticleTypeCollectionView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setGraphic(icon);
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
@@ -246,14 +239,22 @@ public class ArticleTypeCollectionView extends View
 		});
 		HBox btnContainer = new HBox(10);
 		btnContainer.setAlignment(Pos.CENTER);
+                btnContainer.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    btnContainer.setStyle("-fx-background-color: GOLD");
+		});
+                btnContainer.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    btnContainer.setStyle("-fx-background-color: SLATEGREY");
+		});
 		btnContainer.getChildren().add(submitButton);
 		btnContainer.getChildren().add(cancelButton);
 
 		vbox.getChildren().add(grid);
-		tableOfArticleTypes.setPrefHeight(250);
+		tableOfArticleTypes.setPrefHeight(275);
+                tableOfArticleTypes.setMaxWidth(345);
 		vbox.getChildren().add(tableOfArticleTypes);
 		vbox.getChildren().add(btnContainer);
 		vbox.setPadding(new Insets(10,10,10,10));
+                vbox.setAlignment(Pos.CENTER);
 
 		return vbox;
 	}
