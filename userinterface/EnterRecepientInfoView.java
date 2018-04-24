@@ -232,13 +232,13 @@ public class EnterRecepientInfoView extends View {
 							
 							if (result.get() == ButtonType.OK)
 							{
-								//do nothing, cause it'll work after exiting this if else
+								myModel.stateChangeRequest("RecepientData", props);
 							}
 							else
 								myModel.stateChangeRequest("CancelCheckOutCI", null);
 						}
-						
-						myModel.stateChangeRequest("RecepientData", props);
+						else
+							myModel.stateChangeRequest("RecepientData", props);
 					}
 					else {
 						lastName.setStyle("-fx-border-color: firebrick;");
