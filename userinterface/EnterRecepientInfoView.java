@@ -221,23 +221,28 @@ public class EnterRecepientInfoView extends View {
 						props.setProperty("ReceiverFirstName", recepientFirstName);
 						props.setProperty("ReceiverLastName", recepientLastName);
 						
-						//Need Code here to check If the Date is within 6 months of last checkout
-						
-						Alert alert = new Alert(AlertType.CONFIRMATION);
-						alert.setTitle("Confirmation Dialog");
-						alert.setHeaderText("Too Many Checkouts!");
-						alert.setContentText("This person has checked out an item within the past 6 months. Are you sure you would like to continue?");
-						Optional<ButtonType> result = alert.showAndWait();
-						
-						if (result.get() == ButtonType.OK)
+						//Code here to check If the Date is within 6 months of last checkout
+						Properties NetIdCheck = new Properties();
+						NetIdCheck.setProperty("NetIdCheck", recepientNetID);
+						myModel.stateChangeRequest("NetIdCheck", NetIdCheck);
+						int netIdCount = (Integer)myModel.getState("NetIdCheck");
+						if(netIdCount >= 1)
 						{
+							Alert alert = new Alert(AlertType.CONFIRMATION);
+							alert.setTitle("Confirmation Dialog");
+							alert.setHeaderText("Too Many Checkouts!");
+							alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
+							Optional<ButtonType> result = alert.showAndWait();
 							
+							if (result.get() == ButtonType.OK)
+							{
+								myModel.stateChangeRequest("RecepientData", props);
+							}
+							else
+								myModel.stateChangeRequest("CancelCheckOutCI", null);
 						}
 						else
-							myModel.stateChangeRequest("CancelCheckOutCI", null);
-						
-						
-						myModel.stateChangeRequest("RecepientData", props);
+							myModel.stateChangeRequest("RecepientData", props);
 					}
 					else {
 						lastName.setStyle("-fx-border-color: firebrick;");
