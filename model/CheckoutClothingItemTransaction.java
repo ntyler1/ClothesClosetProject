@@ -100,7 +100,7 @@ public class CheckoutClothingItemTransaction extends Transaction
         }
 		String firstName = props.getProperty("ReceiverFirstName");
 		if (firstName != null) {
-            myInventory.setProperty("ReceiverFirstName", lastName);
+            myInventory.setProperty("ReceiverFirstName", firstName);
         }
         myInventory.setProperty("DateTaken", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
 		myInventory.stateChangeRequest("Status", "Received");
