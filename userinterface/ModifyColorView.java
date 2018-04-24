@@ -49,7 +49,6 @@ public class ModifyColorView extends AddColorView
 		{
 			alphaCode.setText(alfaC);
 		}
-		actionText.setFill(Color.LIGHTBLUE);
 		submitButton.setText("Update");  //fix submitbutton
 		ImageView icon = new ImageView(new Image("/images/savecolor.png"));
 		icon.setFitHeight(15);

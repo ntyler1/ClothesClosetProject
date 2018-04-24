@@ -91,15 +91,14 @@ public class SearchColorView extends View
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(350);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
-		
+
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(350);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -115,7 +114,7 @@ public class SearchColorView extends View
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.CORAL);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
                 
                 Text blankText2 = new Text("  ");
@@ -124,6 +123,7 @@ public class SearchColorView extends View
 		blankText2.setTextAlignment(TextAlignment.CENTER);
 		blankText2.setFill(Color.WHITE);
 		container.getChildren().add(blankText2);
+                container.setAlignment(Pos.CENTER);
 	
 		return container;
 	}
@@ -149,7 +149,7 @@ public class SearchColorView extends View
 		
 		Text barcodePrefixLabel = new Text(" Barcode Prefix : ");
                 barcodePrefixLabel.setFill(Color.GOLD);
-		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 14);
+		Font myFont = Font.font("copperplate", FontWeight.THIN, 16);
 		barcodePrefixLabel.setFont(myFont);
 		barcodePrefixLabel.setWrappingWidth(150);
 		barcodePrefixLabel.setTextAlignment(TextAlignment.RIGHT);
@@ -218,11 +218,16 @@ public class SearchColorView extends View
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
+                 doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: GOLD");
+		});
+                doneCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: SLATEGREY");
+		});
                 ImageView icon = new ImageView(new Image("/images/searchcolor.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Search",icon);
-                submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -253,7 +258,6 @@ public class SearchColorView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-                cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -268,13 +272,9 @@ public class SearchColorView extends View
 		doneCont.getChildren().add(cancelButton);
 	
 		vbox.getChildren().add(grid);
-                Text blankText2 = new Text("  ");
-		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		blankText2.setWrappingWidth(350);
-		blankText2.setTextAlignment(TextAlignment.CENTER);
-		blankText2.setFill(Color.WHITE);
-                vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
+                
+                vbox.setAlignment(Pos.CENTER);
 
 		return vbox;
 	}
@@ -292,8 +292,16 @@ public class SearchColorView extends View
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
-		
+		clearErrorMessage();
+                clearValues();
 	}
+        
+        public void clearValues()
+        {
+            barcodePrefix.clear();
+            description.clear();
+            alphaCode.clear();
+        }
 
 	/**
 	 * Update method

@@ -23,8 +23,6 @@ public class CheckoutClothingItemTransaction extends Transaction
 {
 
     private Inventory myInventory;
-	private InventoryCollection myInventoryList;
-	private int inventoryCount = 0;
    
 
 
@@ -48,7 +46,7 @@ public class CheckoutClothingItemTransaction extends Transaction
         dependencies = new Properties();
         dependencies.setProperty("CancelSearchInventory", "CancelTransaction");
         dependencies.setProperty("CancelCheckOutCI", "CancelTransaction");
-        dependencies.setProperty("RecepientData", "TransactionError");
+        dependencies.setProperty("ClothingItemData", "TransactionError");
 
         myRegistry.setDependencies(dependencies);
     }
@@ -100,23 +98,13 @@ public class CheckoutClothingItemTransaction extends Transaction
         }
 		String firstName = props.getProperty("ReceiverFirstName");
 		if (firstName != null) {
-            myInventory.setProperty("ReceiverFirstName", firstName);
+            myInventory.setProperty("ReceiverFirstName", lastName);
         }
-        myInventory.setProperty("DateTaken", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+        myInventory.setProperty("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 		myInventory.stateChangeRequest("Status", "Received");
 		myInventory.update(null);
         transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
     }
-	
-	private void processNetId(Properties props)
-	{
-		if(props.getProperty("NetIdCheck") != null){
-			String netId = props.getProperty("NetIdCheck");
-			myInventoryList = new InventoryCollection();
-			myInventoryList.findByDateAndNetId(netId);
-			inventoryCount = myInventoryList.retrieveCount();
-		}
-	}
 
     //-----------------------------------------------------------
     public Object getState(String key)
@@ -124,10 +112,6 @@ public class CheckoutClothingItemTransaction extends Transaction
         if (key.equals("TransactionError") == true)
 		{
 			return transactionErrorMessage;
-		}
-		else if (key.equals("NetIdCheck") == true)
-		{
-			return (Integer)inventoryCount;
 		}
         return null;
     }
@@ -150,11 +134,6 @@ public class CheckoutClothingItemTransaction extends Transaction
         if (key.equals("RecepientData") == true)
         {
             processInventoryCheckout((Properties)value);
-        }
-		else
-        if (key.equals("NetIdCheck") == true)
-        {
-            processNetId((Properties)value);
         }
 
         myRegistry.updateSubscribers(key, this);

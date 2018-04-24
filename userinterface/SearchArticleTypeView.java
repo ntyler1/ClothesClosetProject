@@ -289,8 +289,16 @@ public class SearchArticleTypeView extends View
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
-
+            clearValues();
+            clearErrorMessage();
 	}
+        
+        public void clearValues()
+        {
+            barcodePrefix.clear();
+            description.clear();
+            alphaCode.clear();
+        }
 
 	/**
 	 * Update method
@@ -298,21 +306,7 @@ public class SearchArticleTypeView extends View
 	//---------------------------------------------------------
 	public void updateState(String key, Object value)
 	{
-		clearErrorMessage();
-
-		if (key.equals("TransactionError") == true)
-		{
-			String val = (String)value;
-			if (val.startsWith("ERR") == true)
-			{
-				displayErrorMessage(val);
-			}
-			else
-			{
-				displayMessage(val);
-			}
-
-		}
+                clearValues();
 	}
 
 	/**

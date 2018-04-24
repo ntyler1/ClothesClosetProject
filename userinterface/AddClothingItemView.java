@@ -109,17 +109,16 @@ public class AddClothingItemView extends View
 	{
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
-
-		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 30));
-		clientText.setWrappingWidth(425);
+		
+                Text clientText = new Text("OFFICE OF CAREER SERVICES");
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 30));
-		titleText.setWrappingWidth(380);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -135,7 +134,7 @@ public class AddClothingItemView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(450);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.LIGHTGREEN);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
 
@@ -170,7 +169,7 @@ public class AddClothingItemView extends View
 		grid.setPadding(new Insets(0, 25, 10, 0));
 
 		Text barcodeLabel = new Text(" Barcode : ");
-		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
+		Font myFont = Font.font("Copperplate", FontWeight.THIN, 16);
 
 		barcodeLabel.setFill(Color.GOLD);
 		barcodeLabel.setFont(myFont);
@@ -460,11 +459,16 @@ public class AddClothingItemView extends View
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
+                doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: GOLD");
+		});
+                doneCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: SLATEGREY");
+		});
 		ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
-		submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearOutlines();
@@ -476,17 +480,17 @@ public class AddClothingItemView extends View
 					if(articleType.getSelectionModel().getSelectedItem() != null){
 						if(color1.getSelectionModel().getSelectedItem() != null){
 							String sizeStr = size.getText();
-							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH){
+							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH && sizeStr.matches("[a-zA-Z0-9- ]+")){
 								String brandStr = brand.getText();
-								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH){ 
+								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ]+")){ 
 									String notesStr = notes.getText();
-									if(notesStr.length() > GlobalVariables.MIN_NOTES_LENGTH){
+									if(notesStr.length() > GlobalVariables.MIN_NOTES_LENGTH && notesStr.matches("[a-zA-Z0-9- ]+")){
 										String donorFNameStr = donorFName.getText();
-										if(donorFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH){
+										if(donorFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH && donorFNameStr.matches("[a-zA-Z- /.]+")){
 											String donorLNameStr = donorLName.getText();
-											if(donorLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH){
+											if(donorLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH && donorLNameStr.matches("[a-zA-Z- /.]+")){
 												String donorPhoneStr = donorPhone.getText();
-												if(donorPhoneStr.length() > GlobalVariables.MIN_PHONENUM_LENGTH){
+												if(donorPhoneStr.length() > GlobalVariables.MIN_PHONENUM_LENGTH && donorPhoneStr.matches("[0-9-]+")){
 													String donorEmailStr = donorEmail.getText();
 													if(donorEmailStr.length() > GlobalVariables.MIN_EMAIL_LENGTH){
 														props.setProperty("Barcode", bc);
@@ -572,7 +576,6 @@ public class AddClothingItemView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
@@ -587,13 +590,8 @@ public class AddClothingItemView extends View
 		doneCont.getChildren().add(cancelButton);
 
 		vbox.getChildren().add(grid);
-		Text blankText2 = new Text("  ");
-		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		blankText2.setWrappingWidth(350);
-		blankText2.setTextAlignment(TextAlignment.CENTER);
-		blankText2.setFill(Color.WHITE);
-		vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
+                vbox.setAlignment(Pos.CENTER);
 		clearOutlines();
 		return vbox;
 	}
@@ -658,21 +656,21 @@ public class AddClothingItemView extends View
 	}
 	
 	private String fillBarcode(String bar){
-			Properties props = new Properties();
-			props.setProperty("Barcode", bar);
+            Properties props = new Properties();
+            props.setProperty("Barcode", bar);
             myModel.stateChangeRequest("fillBarcode", props);
-			int barcode = (Integer)myModel.getState("BarcodeFill");
-			barcode ++;
-			StringBuilder returnString = new StringBuilder();
-			String s = new String(Integer.toString(barcode));
-			int x = s.length();
-			while(x < GlobalVariables.MAX_BARCODE_EXTENSION_LENGTH){
-				returnString.append(0);
-				x++;
-			}
-			returnString.append(s);
-			return returnString.toString();
-			}
+            int barcode = (Integer)myModel.getState("BarcodeFill");
+            barcode ++;
+            StringBuilder returnString = new StringBuilder();
+            String s = new String(Integer.toString(barcode));
+            int x = s.length();
+            while(x < GlobalVariables.MAX_BARCODE_EXTENSION_LENGTH){
+                    returnString.append(0);
+                    x++;
+            }
+            returnString.append(s);
+            return returnString.toString();
+        }
 
 	public void clearValues(){
 		barcode.clear();

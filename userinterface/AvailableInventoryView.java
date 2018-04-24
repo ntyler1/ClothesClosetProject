@@ -148,15 +148,14 @@ public class AvailableInventoryView extends View
 		container.setPadding(new Insets(1, 1, 1, 30));
 
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 32));
-		clientText.setWrappingWidth(500);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 32));
-		titleText.setWrappingWidth(450);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -172,7 +171,7 @@ public class AvailableInventoryView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.THISTLE);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
 
@@ -289,7 +288,6 @@ public class AvailableInventoryView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setGraphic(icon);
                 cancelButton.setPadding(new Insets(10,10,10,10));
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
@@ -309,6 +307,12 @@ public class AvailableInventoryView extends View
 		});
 
                 btnContainer = new HBox(10);
+                btnContainer.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    btnContainer.setStyle("-fx-background-color: GOLD");
+		});
+                btnContainer.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    btnContainer.setStyle("-fx-background-color: SLATEGREY");
+		});
 		btnContainer.setAlignment(Pos.CENTER);
 		btnContainer.getChildren().add(cancelButton);
 

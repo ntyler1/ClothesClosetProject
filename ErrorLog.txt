@@ -726,3 +726,7 @@
 [4/23/18 5:06 PM]|RemoveRequestTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
 [4/23/18 10:17 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 01 already exists!>
 [4/23/18 10:17 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 11 already exists!>
+[4/24/18 2:07 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 90 already exists!>
+[4/24/18 4:30 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[4/24/18 4:31 PM]|UpdateClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/24/18 4:31 PM]|UpdateClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>

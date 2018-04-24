@@ -22,6 +22,8 @@ public class RemoveColorTransaction extends Transaction
 
 	private ColorCollection myColorList;
 	private ColorX mySelectedColor;
+        private Properties searchCritera;
+        private boolean alert = true;
 
 
 	// GUI Components
@@ -44,7 +46,7 @@ public class RemoveColorTransaction extends Transaction
 		dependencies = new Properties();
 		dependencies.setProperty("CancelSearchColor", "CancelTransaction");
 		dependencies.setProperty("CancelAddC", "CancelTransaction");
-		dependencies.setProperty("ColorData", "TransactionError");
+		dependencies.setProperty("ColorSelected", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
 	}
@@ -56,6 +58,8 @@ public class RemoveColorTransaction extends Transaction
 	public void processTransaction(Properties props)
 	{
 		myColorList = new ColorCollection();
+                if(searchCritera == null)
+                    searchCritera = props;
 		if (props.getProperty("BarcodePrefix") != null)
 		{
 			String barcodePrefix = props.getProperty("BarcodePrefix");
@@ -80,14 +84,29 @@ public class RemoveColorTransaction extends Transaction
 	}
 
 	//----------------------------------------------------------
-	private void processColorRemoval(Properties props)
+	private void processColorRemoval()
 	{
 
 		mySelectedColor.stateChangeRequest("Status", "Inactive");
 		mySelectedColor.remove();
+                refreshTable();
 		transactionErrorMessage = (String)mySelectedColor.getState("UpdateStatusMessage");	
 
 	}
+        
+        public void refreshTable(){
+                if (searchCritera.getProperty("BarcodePrefix") != null)
+		{
+			String barcodePrefix = searchCritera.getProperty("BarcodePrefix");
+			myColorList.findByBarcodePrefix(barcodePrefix);
+		}
+		else
+		{
+			String desc = searchCritera.getProperty("Description");
+			String alfaC = searchCritera.getProperty("AlphaCode");
+			myColorList.findByCriteria(desc, alfaC);
+		}
+        }
 
 	//-----------------------------------------------------------
 	public Object getState(String key)
@@ -97,34 +116,15 @@ public class RemoveColorTransaction extends Transaction
 			return myColorList;
 		}
 		else
-			if (key.equals("BarcodePrefix") == true)
-			{
-				if (mySelectedColor != null)
-					return mySelectedColor.getState("BarcodePrefix");
-				else
-					return "";
-			}
-			else
-				if (key.equals("Description") == true)
-				{
-					if (mySelectedColor != null)
-						return mySelectedColor.getState("Description");
-					else
-						return "";
-				}
-				else
-					if (key.equals("AlphaCode") == true)
-					{
-						if (mySelectedColor != null)
-							return mySelectedColor.getState("AlphaCode");
-						else
-							return "";
-					}
-					else
-						if (key.equals("TransactionError") == true)
-						{
-							return transactionErrorMessage;
-						}
+                if (key.equals("TransactionError") == true)
+                {
+                        return transactionErrorMessage;
+                }
+                else
+                if (key.equals("Alert") == true)
+                {
+                        return alert;
+                }
 
 		return null;
 	}
@@ -147,25 +147,8 @@ public class RemoveColorTransaction extends Transaction
 				if (key.equals("ColorSelected") == true)
 				{
 					mySelectedColor = myColorList.retrieve((String)value);
-					try
-					{
-
-						Scene newScene = createRemoveColorView();
-
-						swapToView(newScene);
-
-					}
-					catch (Exception ex)
-					{
-						new Event(Event.getLeafLevelClassName(this), "processTransaction",
-								"Error in creating RemoveColorView", Event.ERROR);
-					}
+                                        processColorRemoval();
 				}
-				else
-					if (key.equals("ColorData") == true)
-					{
-						processColorRemoval((Properties)value);
-					}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -206,19 +189,5 @@ public class RemoveColorTransaction extends Transaction
 		return currentScene;
 
 	}
-
-	/**
-	 * Create the view using which data about selected color can be removed
-	 */
-	//------------------------------------------------------
-	protected Scene createRemoveColorView()
-	{
-		View newView = ViewFactory.createView("RemoveColorView", this);
-		Scene currentScene = new Scene(newView);
-
-		return currentScene;
-
-	}
-
 }
 

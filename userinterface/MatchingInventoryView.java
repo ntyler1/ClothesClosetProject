@@ -55,7 +55,6 @@ public class MatchingInventoryView extends AvailableInventoryView
                 icon.setFitWidth(15);
 		submitButton = new Button("Select",icon);
                 submitButton.setPadding(new Insets(10,10,10,10));
-                submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
  		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();

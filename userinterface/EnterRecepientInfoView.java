@@ -83,7 +83,7 @@ public class EnterRecepientInfoView extends View {
 	}
 
 	protected String getActionText() {
-		return "** ENTER RECEPIENT INFORMATION **";
+		return "** CHECKOUT CLOTHING ITEM **";
 	}
 
 	// -------------------------------------------------------------
@@ -98,15 +98,14 @@ public class EnterRecepientInfoView extends View {
 		container.setPadding(new Insets(1, 1, 1, 30));
 
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 30));
-		clientText.setWrappingWidth(425);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 30));
-		titleText.setWrappingWidth(380);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -120,7 +119,7 @@ public class EnterRecepientInfoView extends View {
 
 		actionText = new Text("     " + getActionText() + "       ");
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
-		actionText.setWrappingWidth(500);
+		actionText.setWrappingWidth(450);
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		actionText.setFill(Color.LIGHTGREEN);
 		container.getChildren().add(actionText);
@@ -157,7 +156,7 @@ public class EnterRecepientInfoView extends View {
 		grid.setPadding(new Insets(0, 25, 10, 0));
 
 		Text netIdLabel = new Text(" Net ID : ");
-		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 16);
+		Font myFont = Font.font("Copperplate", FontWeight.THIN, 16);
 
 		netIdLabel.setFill(Color.GOLD);
 		netIdLabel.setFont(myFont);
@@ -193,11 +192,16 @@ public class EnterRecepientInfoView extends View {
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
+                doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: GOLD");
+		});
+                doneCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: SLATEGREY");
+		});
 		ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
-		submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearOutlines();
@@ -217,28 +221,23 @@ public class EnterRecepientInfoView extends View {
 						props.setProperty("ReceiverFirstName", recepientFirstName);
 						props.setProperty("ReceiverLastName", recepientLastName);
 						
-						//Code here to check If the Date is within 6 months of last checkout
-						Properties NetIdCheck = new Properties();
-						NetIdCheck.setProperty("NetIdCheck", recepientNetID);
-						myModel.stateChangeRequest("NetIdCheck", NetIdCheck);
-						int netIdCount = (Integer)myModel.getState("NetIdCheck");
-						if(netIdCount >= 1)
+						//Need Code here to check If the Date is within 6 months of last checkout
+						
+						Alert alert = new Alert(AlertType.CONFIRMATION);
+						alert.setTitle("Confirmation Dialog");
+						alert.setHeaderText("Too Many Checkouts!");
+						alert.setContentText("This person has checked out an item within the past 6 months. Are you sure you would like to continue?");
+						Optional<ButtonType> result = alert.showAndWait();
+						
+						if (result.get() == ButtonType.OK)
 						{
-							Alert alert = new Alert(AlertType.CONFIRMATION);
-							alert.setTitle("Confirmation Dialog");
-							alert.setHeaderText("Too Many Checkouts!");
-							alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
-							Optional<ButtonType> result = alert.showAndWait();
 							
-							if (result.get() == ButtonType.OK)
-							{
-								myModel.stateChangeRequest("RecepientData", props);
-							}
-							else
-								myModel.stateChangeRequest("CancelCheckOutCI", null);
 						}
 						else
-							myModel.stateChangeRequest("RecepientData", props);
+							myModel.stateChangeRequest("CancelCheckOutCI", null);
+						
+						
+						myModel.stateChangeRequest("RecepientData", props);
 					}
 					else {
 						lastName.setStyle("-fx-border-color: firebrick;");
@@ -267,7 +266,6 @@ public class EnterRecepientInfoView extends View {
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();

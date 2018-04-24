@@ -38,6 +38,9 @@ import java.util.Enumeration;
 
 // project imports
 import impresario.IModel;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.effect.DropShadow;
 import model.*;
 import model.ColorCollection;
@@ -136,15 +139,14 @@ public class ColorCollectionView extends View
 		container.setPadding(new Insets(1, 1, 1, 30));
 
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(350);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(350);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -162,6 +164,7 @@ public class ColorCollectionView extends View
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		actionText.setFill(Color.BLACK);
 		container.getChildren().add(actionText);
+                container.setAlignment(Pos.CENTER);
 
 		return container;
 	}
@@ -179,7 +182,7 @@ public class ColorCollectionView extends View
 
 		tableOfColors = new TableView<ColorTableModel>();
 		tableOfColors.setEffect(new DropShadow());
-		tableOfColors.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
+		tableOfColors.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: green;");
 		tableOfColors.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;
@@ -197,29 +200,30 @@ public class ColorCollectionView extends View
 		alphaCodeColumn.setCellValueFactory(
 				new PropertyValueFactory<ColorTableModel, String>("alphaCode"));
 
-		TableColumn statusColumn = new TableColumn("Status") ;
-		statusColumn.setMinWidth(50);
-		statusColumn.setCellValueFactory(
-				new PropertyValueFactory<ColorTableModel, String>("status"));
-
 		tableOfColors.getColumns().addAll(descriptionColumn, 
-				barcodePrefixColumn, alphaCodeColumn, statusColumn);
+				barcodePrefixColumn, alphaCodeColumn);
 
 		tableOfColors.setOnMousePressed((MouseEvent event) -> {
 			if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
-				processColorSelected();
+				
+                            if((boolean)myModel.getState("Alert"))
+                                   displayErrorAlert();
+                                else
+                                    processColorSelected();
 			}
 		});
 		ImageView icon = new ImageView(new Image("/images/check.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		submitButton = new Button("Select",icon);
-		submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
 			// do the inquiry
-			processColorSelected();
+                        if((boolean)myModel.getState("Alert"))
+                            displayErrorAlert();
+                         else
+                             processColorSelected();
 		});
 		submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			submitButton.setEffect(new DropShadow());
@@ -231,7 +235,6 @@ public class ColorCollectionView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
@@ -248,12 +251,20 @@ public class ColorCollectionView extends View
 		btnContainer.setAlignment(Pos.CENTER);
 		btnContainer.getChildren().add(submitButton);
 		btnContainer.getChildren().add(cancelButton);
+                btnContainer.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    btnContainer.setStyle("-fx-background-color: GOLD");
+		});
+                btnContainer.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    btnContainer.setStyle("-fx-background-color: SLATEGREY");
+		});
 
 		vbox.getChildren().add(grid);
 		tableOfColors.setPrefHeight(250);
+                tableOfColors.setMaxWidth(325);
 		vbox.getChildren().add(tableOfColors);
 		vbox.getChildren().add(btnContainer);
 		vbox.setPadding(new Insets(10,10,10,10));
+                vbox.setAlignment(Pos.CENTER);
 
 		return vbox;
 	}
@@ -262,6 +273,31 @@ public class ColorCollectionView extends View
 	public void updateState(String key, Object value)
 	{
 	}
+        
+        private void displayErrorAlert(){
+            clearErrorMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Barcode Prefix: "+tableOfColors.getSelectionModel().getSelectedItem().getBarcodePrefix()
+                    +"\nDescription: "+tableOfColors.getSelectionModel().getSelectedItem().getDescription(), ButtonType.YES, ButtonType.NO);
+            alert.setHeaderText(null);
+            alert.setTitle("Remove Color");
+            alert.setHeaderText("Are you sure want to remove this Color?");
+            ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                processColorSelected();
+                String val = (String)myModel.getState("TransactionError");
+                if (val.startsWith("ERR") == true)
+                {
+                        statusLog.displayErrorMessage(val);
+                }
+                else
+                {
+                    displayMessage(val);
+                    getEntryTableModelValues();
+                }		
+            }
+        }
 
 	//--------------------------------------------------------------------------
 	protected void processColorSelected()
@@ -283,8 +319,7 @@ public class ColorCollectionView extends View
 
 		return statusLog;
 	}
-
-
+        
 	/**
 	 * Display info message
 	 */

@@ -53,7 +53,6 @@ public class RemoveColorView extends AddColorView
 		barcodePrefix.setDisable(true);
 		alphaCode.setDisable(true);
 		description.setDisable(true);
-		actionText.setFill(Color.PALEVIOLETRED);
 		prompt.setText("Selected Color Information:");
 		submitButton.setText("Remove"); //fix submitbutton
 		ImageView icon = new ImageView(new Image("/images/trashcolor.png"));

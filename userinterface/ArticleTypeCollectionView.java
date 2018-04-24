@@ -39,6 +39,8 @@ import java.util.Enumeration;
 // project imports
 import impresario.IModel;
 import javafx.application.Platform;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.InnerShadow;
 import model.ArticleType;
@@ -112,7 +114,7 @@ public class ArticleTypeCollectionView extends View
 				else 
 					actionText.setText(entryList.size()+" Article Types Found!");
 
-				actionText.setFill(Color.GREEN);
+				actionText.setFill(Color.LIGHTGREEN);
 			}
 			else
 			{
@@ -178,7 +180,7 @@ public class ArticleTypeCollectionView extends View
 
 		tableOfArticleTypes = new TableView<ArticleTypeTableModel>();
 		tableOfArticleTypes.setEffect(new DropShadow());
-		tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: lightgreen;");
+		tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: Green;");
 		tableOfArticleTypes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;
@@ -201,7 +203,10 @@ public class ArticleTypeCollectionView extends View
 
 		tableOfArticleTypes.setOnMousePressed((MouseEvent event) -> {
 			if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
-				processArticleTypeSelected();
+				if((boolean)myModel.getState("Alert"))
+                                   displayErrorAlert();
+                                else
+                                    processArticleTypeSelected();
 			}
 		});
 		ImageView icon = new ImageView(new Image("/images/check.png"));
@@ -213,7 +218,10 @@ public class ArticleTypeCollectionView extends View
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
 			// do the inquiry
-			processArticleTypeSelected();
+			if((boolean)myModel.getState("Alert"))
+                            displayErrorAlert();
+                         else
+                             processArticleTypeSelected();
 		});
 		submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			submitButton.setEffect(new DropShadow());
@@ -260,11 +268,6 @@ public class ArticleTypeCollectionView extends View
 	}
 
 	//--------------------------------------------------------------------------
-	public void updateState(String key, Object value)
-	{
-	}
-
-	//--------------------------------------------------------------------------
 	protected void processArticleTypeSelected()
 	{
 		ArticleTypeTableModel selectedItem = tableOfArticleTypes.getSelectionModel().getSelectedItem();
@@ -276,7 +279,36 @@ public class ArticleTypeCollectionView extends View
 			myModel.stateChangeRequest("ArticleTypeSelected", selectedBarcodePrefix);
 		}
 	}
+        
+        private void displayErrorAlert(){
+            clearErrorMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Barcode Prefix: "+tableOfArticleTypes.getSelectionModel().getSelectedItem().getBarcodePrefix()
+                    +"\nDescription: "+tableOfArticleTypes.getSelectionModel().getSelectedItem().getDescription(), ButtonType.YES, ButtonType.NO);
+            alert.setHeaderText(null);
+            alert.setTitle("Remove Article Type");
+            alert.setHeaderText("Are you sure want to remove this Article Type?");
+            ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+            alert.showAndWait();
 
+            if (alert.getResult() == ButtonType.YES) {
+                processArticleTypeSelected();
+                String val = (String)myModel.getState("TransactionError");
+                if (val.startsWith("ERR") == true)
+                {
+                        statusLog.displayErrorMessage(val);
+                }
+                else
+                {
+                    displayMessage(val);
+                    getEntryTableModelValues();
+                }		
+            }
+        }
+        
+        public void updateState(String key, Object value)
+	{
+                
+	}
 	//--------------------------------------------------------------------------
 	protected MessageView createStatusLog(String initialMessage)
 	{

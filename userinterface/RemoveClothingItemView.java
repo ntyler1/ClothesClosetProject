@@ -133,7 +133,6 @@ public class RemoveClothingItemView extends AddClothingItemView {
 		donorLName.setDisable(true);
 		donorPhone.setDisable(true);
 		donorEmail.setDisable(true);
-		actionText.setFill(Color.PALEVIOLETRED);
 
 		prompt.setText("Clothing Item Information:");
 		submitButton.setText("Remove"); //fix submitbutton

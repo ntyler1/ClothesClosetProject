@@ -22,6 +22,8 @@ public class RemoveArticleTypeTransaction extends Transaction
 
 	private ArticleTypeCollection myArticleTypeList;
 	private ArticleType mySelectedArticleType;
+        private Properties searchCritera;
+        private boolean alert = true;
 
 
 	// GUI Components
@@ -44,7 +46,7 @@ public class RemoveArticleTypeTransaction extends Transaction
 		dependencies = new Properties();
 		dependencies.setProperty("CancelSearchArticleType", "CancelTransaction");
 		dependencies.setProperty("CancelAddAT", "CancelTransaction");
-		dependencies.setProperty("ArticleTypeData", "TransactionError");
+		dependencies.setProperty("ArticleTypeSelected", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
 	}
@@ -56,6 +58,8 @@ public class RemoveArticleTypeTransaction extends Transaction
 	public void processTransaction(Properties props)
 	{
 		myArticleTypeList = new ArticleTypeCollection();
+                if(searchCritera == null)
+                    searchCritera = props;
 		if (props.getProperty("BarcodePrefix") != null)
 		{
 			String barcodePrefix = props.getProperty("BarcodePrefix");
@@ -78,15 +82,30 @@ public class RemoveArticleTypeTransaction extends Transaction
 					"Error in creating ArticleTypeCollectionView", Event.ERROR);
 		}
 	}
+        
+        public void refreshTable(){
+                if (searchCritera.getProperty("BarcodePrefix") != null)
+		{
+			String barcodePrefix = searchCritera.getProperty("BarcodePrefix");
+			myArticleTypeList.findByBarcodePrefix(barcodePrefix);
+		}
+		else
+		{
+			String desc = searchCritera.getProperty("Description");
+			String alfaC = searchCritera.getProperty("AlphaCode");
+			myArticleTypeList.findByCriteria(desc, alfaC);
+		}
+        }
 
 	/**
 	 * This method encapsulates all the logic of removing the article type,
 	 */
 	//----------------------------------------------------------
-	private void processArticleTypeRemoval(Properties props)
+	private void processArticleTypeRemoval()
 	{
 		mySelectedArticleType.stateChangeRequest("Status", "Inactive");
 		mySelectedArticleType.remove();
+                refreshTable(); 
 		transactionErrorMessage = (String)mySelectedArticleType.getState("UpdateStatusMessage");
 	}
 
@@ -97,35 +116,13 @@ public class RemoveArticleTypeTransaction extends Transaction
 		{
 			return myArticleTypeList;
 		}
-		else
-			if (key.equals("BarcodePrefix") == true)
-			{
-				if (mySelectedArticleType != null)
-					return mySelectedArticleType.getState("BarcodePrefix");
-				else
-					return "";
-			}
-			else
-				if (key.equals("Description") == true)
-				{
-					if (mySelectedArticleType != null)
-						return mySelectedArticleType.getState("Description");
-					else
-						return "";
-				}
-				else
-					if (key.equals("AlphaCode") == true)
-					{
-						if (mySelectedArticleType != null)
-							return mySelectedArticleType.getState("AlphaCode");
-						else
-							return "";
-					}
-					else
-						if (key.equals("TransactionError") == true)
-						{
-							return transactionErrorMessage;
-						}
+                else if (key.equals("TransactionError") == true)
+                {
+                        return transactionErrorMessage;
+                }else if (key.equals("Alert") == true)
+                {
+                        return alert;
+                }
 
 		return null;
 	}
@@ -145,28 +142,11 @@ public class RemoveArticleTypeTransaction extends Transaction
 				processTransaction((Properties)value);
 			}
 			else
-				if (key.equals("ArticleTypeSelected") == true)
+			if (key.equals("ArticleTypeSelected") == true)
 				{
 					mySelectedArticleType = myArticleTypeList.retrieve((String)value);
-					try
-					{
-
-						Scene newScene = createRemoveArticleTypeView();
-
-						swapToView(newScene);
-
-					}
-					catch (Exception ex)
-					{
-						new Event(Event.getLeafLevelClassName(this), "processTransaction",
-								"Error in creating ModifyArticleTypeView", Event.ERROR);
-					}
+                                        processArticleTypeRemoval();
 				}
-				else
-					if (key.equals("ArticleTypeData") == true)
-					{
-						processArticleTypeRemoval((Properties)value);
-					}
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -202,19 +182,6 @@ public class RemoveArticleTypeTransaction extends Transaction
 	protected Scene createArticleTypeCollectionView()
 	{
 		View newView = ViewFactory.createView("ArticleTypeCollectionView", this);
-		Scene currentScene = new Scene(newView);
-
-		return currentScene;
-
-	}
-
-	/**
-	 * Create the view using which data about selected article type can be modified
-	 */
-	//------------------------------------------------------
-	protected Scene createRemoveArticleTypeView()
-	{
-		View newView = ViewFactory.createView("RemoveArticleTypeView", this);
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;

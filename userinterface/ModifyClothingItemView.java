@@ -123,8 +123,6 @@ public class ModifyClothingItemView extends AddClothingItemView
 		{
 			donorEmail.setText(donorEmailStr);
 		}
-
-		actionText.setFill(Color.LIGHTBLUE);
 		submitButton.setText("Update"); //fix submitbutton
 		ImageView icon = new ImageView(new Image("/images/savecolor.png"));
 		icon.setFitHeight(15);

@@ -48,7 +48,7 @@ public class CheckOutItemView extends SearchInventoryView
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** ENTER CLOTHING ITEM BARCODE **";
+		return "** CHECKOUT CLOTHING ITEM **";
 	}
 
 	// Create the title container

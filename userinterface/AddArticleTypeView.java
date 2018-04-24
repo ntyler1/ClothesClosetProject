@@ -281,15 +281,16 @@ public class AddArticleTypeView extends View
 	//-------------------------------------------------------------
 	public void populateFields()
 	{
-		
+		clearValues();
+                clearErrorMessage();
 	}
 
-    public void clearValues()
-	{
-        barcodePrefix.clear();
-        description.clear();
-        alphaCode.clear();
-    }
+        public void clearValues()
+        {
+            barcodePrefix.clear();
+            description.clear();
+            alphaCode.clear();
+        }
 	/**
 	 * Update method
 	 */

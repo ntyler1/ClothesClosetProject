@@ -85,32 +85,32 @@ public class SearchInventoryView extends View
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(400);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
-		
+
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(400);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
 		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		blankText.setWrappingWidth(400);
+		blankText.setWrappingWidth(350);
 		blankText.setTextAlignment(TextAlignment.CENTER);
 		blankText.setFill(Color.WHITE);
 		container.getChildren().add(blankText);
 
 		Text actionText = new Text("   " + getActionText() + "     ");
-		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-		actionText.setWrappingWidth(400);
+		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.CORAL);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
+                container.setAlignment(Pos.CENTER);
 	
 		return container;
 	}
@@ -132,7 +132,7 @@ public class SearchInventoryView extends View
                 prompt1.setWrappingWidth(400);
                 prompt1.setTextAlignment(TextAlignment.CENTER);
                 prompt1.setFill(Color.BLACK);
-		prompt1.setFont(Font.font("Copperplate", FontWeight.SEMI_BOLD, 18));
+		prompt1.setFont(Font.font("Copperplate", FontWeight.SEMI_BOLD, 20));
 		vbox.getChildren().add(prompt1);
 		
 		GridPane grid = new GridPane();
@@ -141,8 +141,8 @@ public class SearchInventoryView extends View
                 grid.setVgap(10);
                 grid.setPadding(new Insets(0, 25, 10, 0));
 		
-		Text barcodeLabel = new Text(" Clothing Barcode : ");
-		Font myFont = Font.font("Comic Sans", FontWeight.THIN, 14);
+		Text barcodeLabel = new Text(" Barcode : ");
+		Font myFont = Font.font("Copperplate", FontWeight.THIN, 18);
 		barcodeLabel.setFont(myFont);
                 barcodeLabel.setFill(Color.GOLD);
 		barcodeLabel.setWrappingWidth(150);
@@ -161,7 +161,6 @@ public class SearchInventoryView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Search",icon);
-                submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -187,7 +186,6 @@ public class SearchInventoryView extends View
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		cancelButton = new Button("Return",icon);
-                cancelButton.setStyle("-fx-background-color: PALEVIOLETRED; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
@@ -200,6 +198,12 @@ public class SearchInventoryView extends View
                     cancelButton.setEffect(null);
                 });
 		doneCont.getChildren().add(cancelButton);
+                doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: GOLD");
+		});
+                doneCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: SLATEGREY");
+		});
                 blankText = new Text("  ");
 		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		blankText.setWrappingWidth(350);
@@ -207,6 +211,7 @@ public class SearchInventoryView extends View
 		blankText.setFill(Color.WHITE);
 		vbox.getChildren().add(blankText);
 		vbox.getChildren().add(doneCont);
+                vbox.setAlignment(Pos.CENTER);
 		return vbox;
 	}
 

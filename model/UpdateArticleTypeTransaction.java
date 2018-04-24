@@ -22,8 +22,8 @@ public class UpdateArticleTypeTransaction extends Transaction
 {
 
 	private ArticleTypeCollection myArticleTypeList;
-	private ColorCollection myColorList;
 	private ArticleType mySelectedArticleType;
+        private boolean alert = false;
 
 
 	// GUI Components
@@ -209,6 +209,11 @@ public class UpdateArticleTypeTransaction extends Transaction
 						if (key.equals("TransactionError") == true)
 						{
 							return transactionErrorMessage;
+						}
+                                            else
+						if (key.equals("Alert") == true)
+						{
+							return alert;
 						}
 
 		return null;
