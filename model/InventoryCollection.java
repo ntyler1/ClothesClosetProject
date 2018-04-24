@@ -75,6 +75,12 @@ public class InventoryCollection  extends EntityBase implements IView
 				"')";
 		populateCollectionHelper(query);
 	}
+	
+	public void findByDateAndNetId(String netId)
+	{
+		String query = "SELECT * FROM " + myTableName + " WHERE (DateTaken > DATE_SUB(CURDATE(), INTERVAL 6 MONTH) AND ReceiverNetId = '" + netId + "')";
+		populateCollectionHelper(query);
+	}
 
 	//-----------------------------------------------------------
 	public void findAll()
