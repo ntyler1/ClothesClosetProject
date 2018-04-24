@@ -86,28 +86,28 @@ public class SearchInventoryView extends View
 		
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
 		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 25));
-		clientText.setWrappingWidth(350);
+		clientText.setWrappingWidth(400);
 		clientText.setTextAlignment(TextAlignment.CENTER);
 		clientText.setFill(Color.DARKGREEN);
 		container.getChildren().add(clientText);
 		
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
 		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 25));
-		titleText.setWrappingWidth(350);
+		titleText.setWrappingWidth(400);
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
 
 		Text blankText = new Text("  ");
 		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		blankText.setWrappingWidth(350);
+		blankText.setWrappingWidth(400);
 		blankText.setTextAlignment(TextAlignment.CENTER);
 		blankText.setFill(Color.WHITE);
 		container.getChildren().add(blankText);
 
 		Text actionText = new Text("   " + getActionText() + "     ");
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
-		actionText.setWrappingWidth(350);
+		actionText.setWrappingWidth(400);
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		actionText.setFill(Color.CORAL);
 		container.getChildren().add(actionText);
