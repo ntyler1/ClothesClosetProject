@@ -217,7 +217,7 @@ public class EnterRecepientInfoView extends View {
 					String recepientLastName = lastName.getText();
 					if (recepientLastName.length() > 0)
 					{
-						props.setProperty("RecieverNetid", recepientNetID);
+						props.setProperty("ReceiverNetid", recepientNetID);
 						props.setProperty("ReceiverFirstName", recepientFirstName);
 						props.setProperty("ReceiverLastName", recepientLastName);
 						
