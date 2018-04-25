@@ -44,23 +44,37 @@ public class RemoveRequestCollectionView extends ClothingRequestPendingCollectio
 	public void populateFields()
 	{
             getEntryTableModelValues();
-            actionText.setFill(Color.PALEVIOLETRED);
             submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
                     // do the inquiry
 //                    processClothingItemSelected();
-                    Alert alert = new Alert(AlertType.ERROR,"Request From Requester With Net ID: "+tableOfRequests.getSelectionModel().getSelectedItem().getRequesterNetId(), ButtonType.YES, ButtonType.NO);
-                    alert.setHeaderText(null);
-                    alert.setTitle("Remove Clothing Request");
-                    alert.setHeaderText("Are you sure want to remove this clothing request?");
-                    ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
-                    alert.showAndWait();
-
-                    if (alert.getResult() == ButtonType.YES) {
-                        //do stuff
-                    }
+                    displayErrorAlert();
             });
 	}
+        
+        private void displayErrorAlert(){
+            clearErrorMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Requester Net ID: "+tableOfRequests.getSelectionModel().getSelectedItem().getRequesterNetId(), ButtonType.YES, ButtonType.NO);
+            alert.setHeaderText(null);
+            alert.setTitle("Remove Clothing Request");
+            alert.setHeaderText("Are you sure want to remove this Clothing Request?");
+            ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+                processClothingItemSelected();
+                String val = (String)myModel.getState("TransactionError");
+                if (val.startsWith("ERR") == true)
+                {
+                        statusLog.displayErrorMessage(val);
+                }
+                else
+                {
+                    displayMessage(val);
+                    getEntryTableModelValues();
+                }		
+            }
+        }
 
         protected void getEntryTableModelValues()
 	{

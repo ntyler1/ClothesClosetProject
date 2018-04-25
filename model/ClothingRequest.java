@@ -160,7 +160,7 @@ public class ClothingRequest extends EntityBase implements IView
         private void insertStateInDatabase(){
             try{
                 Integer iID =insertPersistentState(mySchema, persistentState);
-                updateStatusMessage = "Clothing Request Record with ID : " +  persistentState.getProperty("ID")
+                updateStatusMessage = "Clothing Request Record with Requester Net ID : " +  persistentState.getProperty("RequesterNetId")
                                             + " installed successfully!";
             }
             catch (SQLException ex)
@@ -178,7 +178,7 @@ public class ClothingRequest extends EntityBase implements IView
                                 Properties whereClause = new Properties();
 				whereClause.setProperty("ID", persistentState.getProperty("ID"));
 				updatePersistentState(mySchema, persistentState, whereClause);
-				updateStatusMessage = "Clothing Request Record with id : " + persistentState.getProperty("ID") + " updated successfully!";
+				updateStatusMessage = "Clothing Request Record with Requester Net ID : " + persistentState.getProperty("RequesterNetId") + " updated successfully!";
                         }
 		}
 		catch (SQLException ex)
@@ -195,10 +195,10 @@ public class ClothingRequest extends EntityBase implements IView
 				Properties whereClause = new Properties();
 				whereClause.setProperty("ID", persistentState.getProperty("ID"));
 				updatePersistentState(mySchema, persistentState, whereClause);
-				updateStatusMessage = "Clothing Request Record with barcode : " + persistentState.getProperty("ID") + " removed successfully!";
+				updateStatusMessage = "Clothing Request Record with Requester Net ID: " + persistentState.getProperty("RequesterNetId") + " removed successfully!";
 			} else {
 				Integer Id = insertPersistentState(mySchema, persistentState);
-				updateStatusMessage = "Clothing Request Record with barcode : " + persistentState.getProperty("ID") + " installed successfully";
+				updateStatusMessage = "Clothing Request Record with Requester Net ID: " + persistentState.getProperty("RequesterNetId") + " installed successfully";
 			}
 		} catch (SQLException ex) {
 			updateStatusMessage = "Error in removing clothing item data in database!";

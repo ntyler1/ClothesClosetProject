@@ -224,13 +224,13 @@ public class AddClothingItemView extends View
 				catch(Exception e){
 					switch (cnt) {
 					case 0:
-						gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+						gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:green;");
 						break;
 					case 1:
-						articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+						articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:green;");
 						break;
 					default:
-						color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+						color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:green;");
 						break;
 					}
 					displayErrorMessage("ERROR: Entered Barcode Does Not Match Data Found In Database!");
@@ -248,7 +248,7 @@ public class AddClothingItemView extends View
 
 		gender = new ComboBox<Gender>();
 		gender.setItems(FXCollections.observableArrayList(
-				new Gender("Male"), new Gender("Female")));
+				new Gender("Male"), new Gender("Female"), new Gender("Unisex")));
 		gender.setPromptText("Please Select Gender");
 		gender.setConverter(new StringConverter<Gender>() {
 			@Override
@@ -480,9 +480,9 @@ public class AddClothingItemView extends View
 					if(articleType.getSelectionModel().getSelectedItem() != null){
 						if(color1.getSelectionModel().getSelectedItem() != null){
 							String sizeStr = size.getText();
-							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH && sizeStr.matches("[a-zA-Z0-9- ]+")){
+							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH && sizeStr.matches("[a-zA-Z0-9- ()]+")){
 								String brandStr = brand.getText();
-								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ]+")){ 
+								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ()]+")){ 
 									String notesStr = notes.getText();
 									if(notesStr.length() > GlobalVariables.MIN_NOTES_LENGTH && notesStr.matches("[a-zA-Z0-9- ]+")){
 										String donorFNameStr = donorFName.getText();
@@ -490,9 +490,9 @@ public class AddClothingItemView extends View
 											String donorLNameStr = donorLName.getText();
 											if(donorLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH && donorLNameStr.matches("[a-zA-Z- /.]+")){
 												String donorPhoneStr = donorPhone.getText();
-												if(donorPhoneStr.length() > GlobalVariables.MIN_PHONENUM_LENGTH && donorPhoneStr.matches("[0-9-]+")){
+												if(donorPhoneStr.length() >= GlobalVariables.MIN_PHONENUM_LENGTH && donorPhoneStr.matches("[0-9-]+")){
 													String donorEmailStr = donorEmail.getText();
-													if(donorEmailStr.length() > GlobalVariables.MIN_EMAIL_LENGTH){
+													if(donorEmailStr.length() > GlobalVariables.MIN_EMAIL_LENGTH && donorEmailStr.matches("[a-zA-Z0-9-@/.]+") && donorEmailStr.contains("@")){
 														props.setProperty("Barcode", bc);
 														props.setProperty("Gender", gender.getSelectionModel().getSelectedItem().getName());
 														props.setProperty("Size", sizeStr);
@@ -511,51 +511,51 @@ public class AddClothingItemView extends View
 													}
 													else{
 														donorEmail.setStyle("-fx-border-color: firebrick;");
-														displayErrorMessage("ERROR: Please Enter a Donor Email!");
+														displayErrorMessage("ERROR: Please Enter a valid Donor Email!");
 													}
 												}
 												else{
 													donorPhone.setStyle("-fx-border-color: firebrick;");
-													displayErrorMessage("ERROR: Please Enter a Donor Phone Number!");
+													displayErrorMessage("ERROR: Please Enter a valid Donor Phone Number!");
 												}
 											}
 											else{
 												donorLName.setStyle("-fx-border-color: firebrick;");
-												displayErrorMessage("ERROR: Please Enter a Donor Last Name!");
+												displayErrorMessage("ERROR: Please enter a valid Donor Last Name!");
 											}
 										}
 										else{
 											donorFName.setStyle("-fx-border-color: firebrick;");
-											displayErrorMessage("ERROR: Please Enter a Donor First Name!");
+											displayErrorMessage("ERROR: Please enter a valid Donor First Name!");
 										}
 									}
 									else{
 										notes.setStyle("-fx-border-color: firebrick;");
-										displayErrorMessage("ERROR: Please Enter Notes!");
+										displayErrorMessage("ERROR: Please enter valid Notes!");
 									}
 								}
 								else{
 									brand.setStyle("-fx-border-color: firebrick;");
-									displayErrorMessage("ERROR: Please Enter a Brand!");
+									displayErrorMessage("ERROR: Please enter a valid Brand!");
 								}
 							}
 							else{
-								size.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
-								displayErrorMessage("ERROR: Please Select a Size!");
+								size.setStyle("-fx-border-color: firebrick;");
+								displayErrorMessage("ERROR: Please enter a valid Size!");
 							}
 						}
 						else{
-							color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+							color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:green;");
 							displayErrorMessage("ERROR: Please Select a Color 1!");
 						}
 					}
 					else{
-						articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+						articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:green;");
 						displayErrorMessage("ERROR: Please Select a Article Type!");
 					}
 				}
 				else{
-					gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+					gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:green;");
 					displayErrorMessage("ERROR: Please Select a Gender!");
 				}
 			}
@@ -688,12 +688,12 @@ public class AddClothingItemView extends View
 	}
 
 	private void clearOutlines(){
-		barcode.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
-		gender.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		articleType.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		color1.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		color2.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		size.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+		barcode.setStyle("-fx-border-color: transparent; -fx-focus-color: green;");
+		gender.setStyle("-fx-background-color: white; -fx-selection-bar:green;");
+		articleType.setStyle("-fx-background-color: white; -fx-selection-bar:green;");
+		color1.setStyle("-fx-background-color: white; -fx-selection-bar:green;");
+		color2.setStyle("-fx-background-color: white; -fx-selection-bar:green;");
+		size.setStyle("-fx-border-color: transparent;  -fx-focus-color: darkgreen;");
 		brand.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
 		notes.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
 		donorFName.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");

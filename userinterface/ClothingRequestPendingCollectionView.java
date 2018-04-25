@@ -74,6 +74,7 @@ public class ClothingRequestPendingCollectionView extends View
 		getChildren().add(container);
 		
 		populateFields();
+                tableOfRequests.getSelectionModel().select(0);
         }
 
 	//--------------------------------------------------------------------------
@@ -130,7 +131,16 @@ public class ClothingRequestPendingCollectionView extends View
 	// Create the title container
 	//-------------------------------------------------------------
 	private Node createTitle()
-	{
+        {
+                HBox wrapper = new HBox(10);
+                VBox imageWrapper = new VBox(10);
+                ImageView bportIcon = new ImageView(new Image("/images/BPT_LOGO_All-In-One_Color.png",135,135,true,true));
+                bportIcon.setEffect(new DropShadow());
+		imageWrapper.getChildren().add(bportIcon);
+                imageWrapper.setPadding(new Insets(10,10,10,50));
+                imageWrapper.setAlignment(Pos.CENTER);
+                wrapper.getChildren().add(imageWrapper);
+                
 		VBox container = new VBox(10);
 		container.setPadding(new Insets(1, 1, 1, 30));
 		
@@ -176,7 +186,17 @@ public class ClothingRequestPendingCollectionView extends View
 		foundText.setFill(Color.BLACK);
 		container.getChildren().add(foundText);
                 container.setAlignment(Pos.CENTER);
-		return container;
+                wrapper.getChildren().add(container);
+                
+                VBox imageWrapper2 = new VBox(10);
+                ImageView bportIcon2 = new ImageView(new Image("/images/BPT_LOGO_All-In-One_Color.png",135,135,true,true));
+                bportIcon2.setEffect(new DropShadow());
+		imageWrapper2.getChildren().add(bportIcon2);
+                imageWrapper2.setPadding(new Insets(10,10,10,30));
+                imageWrapper2.setAlignment(Pos.CENTER);
+                wrapper.getChildren().add(imageWrapper2);
+                
+		return wrapper;
 	}
         
         protected String getActionText()
@@ -201,17 +221,17 @@ public class ClothingRequestPendingCollectionView extends View
 		tableOfRequests.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
                 
                 TableColumn netIdColumn = new TableColumn("Net ID") ;
-		netIdColumn.setMinWidth(30);
+		netIdColumn.setMinWidth(40);
 		netIdColumn.setCellValueFactory(
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requesterNetId"));
 		  
 		TableColumn fnColumn = new TableColumn("First Name") ;
-		fnColumn.setMinWidth(100);
+		fnColumn.setMinWidth(160);
 		fnColumn.setCellValueFactory(
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requesterFN"));
 		
 		TableColumn lnColumn = new TableColumn("Last Name") ;
-		lnColumn.setMinWidth(100);
+		lnColumn.setMinWidth(160);
 		lnColumn.setCellValueFactory(
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requesterLN"));
                 
@@ -226,7 +246,7 @@ public class ClothingRequestPendingCollectionView extends View
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requestedGender"));
 		  
 		TableColumn atColumn = new TableColumn("Article Type") ;
-		atColumn.setMinWidth(60);
+		atColumn.setMinWidth(85);
 		atColumn.setCellValueFactory(
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requestedAT"));
 		
@@ -246,7 +266,7 @@ public class ClothingRequestPendingCollectionView extends View
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requestedSize"));
 		
 		TableColumn brandColumn = new TableColumn("Brand") ;
-		brandColumn.setMinWidth(100);
+		brandColumn.setMinWidth(150);
 		brandColumn.setCellValueFactory(
 	                new PropertyValueFactory<ClothingRequestTableModel, String>("requestedBrand"));
                 
@@ -308,10 +328,11 @@ public class ClothingRequestPendingCollectionView extends View
 		
 		vbox.getChildren().add(grid);
                 tableOfRequests.setPrefHeight(250);
-                tableOfRequests.setPrefWidth(870);
+                tableOfRequests.setPrefWidth(865);
 		vbox.getChildren().add(tableOfRequests);
 		vbox.getChildren().add(btnContainer);
                 vbox.setPadding(new Insets(10,10,10,10));
+                vbox.setAlignment(Pos.CENTER);
                 
 		return vbox;
 	}

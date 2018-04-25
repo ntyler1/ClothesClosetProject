@@ -14,7 +14,7 @@ public class GlobalVariables
 	public static final int MIN_NOTES_LENGTH = 0;
 	public static final int MIN_FNAME_LENGTH = 0;
 	public static final int MIN_LNAME_LENGTH = 0;
-	public static final int MIN_PHONENUM_LENGTH = 0;
+	public static final int MIN_PHONENUM_LENGTH = 10;
 	public static final int MIN_EMAIL_LENGTH = 0;
 	public static final int MAX_BARCODE_EXTENSION_LENGTH = 3;
 	

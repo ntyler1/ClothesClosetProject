@@ -43,8 +43,7 @@ public class MatchingInventoryView extends AvailableInventoryView
 
 	//-------------------------------------------------------------
 	protected void populateFields()
-	{
-		actionText.setFill(Color.LIGHTBLUE);
+        {
                 tableOfInventory.setOnMousePressed((MouseEvent event) -> {
                     if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
                         processClothingItemSelected();

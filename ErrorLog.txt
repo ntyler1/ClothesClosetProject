@@ -730,3 +730,129 @@
 [4/24/18 4:30 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
 [4/24/18 4:31 PM]|UpdateClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
 [4/24/18 4:31 PM]|UpdateClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[4/24/18 5:55 PM]|AddArticleTypeTransaction|processTransaction|Error|NOTAG|null<Article type with barcode prefix : 67 already exists!>
+[4/24/18 6:09 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , RequesterLastName = 'Tyler' , RequestedGender = 'Male' , Status = 'Remove' at line 1>
+[4/24/18 6:19 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , RequesterLastName = 'Tyler' , RequestedGender = 'Male' , Status = 'Remove' at line 1>
+[4/24/18 6:21 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , RequesterLastName = 'Tyler' , RequestedGender = 'Male' , Status = 'Remove' at line 1>
+[4/24/18 6:23 PM]|ClothingRequest|updatePersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Suit , RequesterLastName = 'Tyler' , RequestedGender = 'Male' , Status = 'Remove' at line 1>
+[4/24/18 7:17 PM]|ClothingRequestCollection|getSchemaInfo|Error|NOTAG|null<SQL Exception: 0: Communications link failure
+
+Last packet sent to the server was 2945580 ms ago.>
+[4/24/18 7:17 PM]|ClothingRequestCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 0: No operations allowed after connection closed.Connection was implicitly closed due to underlying exception/error:
+
+
+** BEGIN NESTED EXCEPTION ** 
+
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException
+MESSAGE: Communications link failure
+
+Last packet sent to the server was 2945580 ms ago.
+
+STACKTRACE:
+
+com.mysql.jdbc.exceptions.jdbc4.CommunicationsException: Communications link failure
+
+Last packet sent to the server was 2945580 ms ago.
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:406)
+	at com.mysql.jdbc.SQLError.createCommunicationsException(SQLError.java:1074)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3270)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:1932)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2101)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2548)
+	at com.mysql.jdbc.ConnectionImpl.unsetMaxRows(ConnectionImpl.java:5391)
+	at com.mysql.jdbc.StatementImpl.realClose(StatementImpl.java:2304)
+	at com.mysql.jdbc.ConnectionImpl.closeAllOpenStatements(ConnectionImpl.java:1489)
+	at com.mysql.jdbc.ConnectionImpl.realClose(ConnectionImpl.java:4289)
+	at com.mysql.jdbc.ConnectionImpl.cleanup(ConnectionImpl.java:1265)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2581)
+	at com.mysql.jdbc.StatementImpl.executeSimpleNonQuery(StatementImpl.java:1502)
+	at com.mysql.jdbc.StatementImpl.executeQuery(StatementImpl.java:1404)
+	at com.mysql.jdbc.DatabaseMetaData$9.forEach(DatabaseMetaData.java:4844)
+	at com.mysql.jdbc.IterateBlock.doForAll(IterateBlock.java:50)
+	at com.mysql.jdbc.DatabaseMetaData.getTables(DatabaseMetaData.java:4822)
+	at com.mysql.jdbc.DatabaseMetaData$2.forEach(DatabaseMetaData.java:2395)
+	at com.mysql.jdbc.IterateBlock.doForAll(IterateBlock.java:50)
+	at com.mysql.jdbc.DatabaseMetaData.getColumns(DatabaseMetaData.java:2361)
+	at database.Persistable.getSchemaInfo(Persistable.java:104)
+	at model.ClothingRequestCollection.initializeSchema(ClothingRequestCollection.java:157)
+	at model.EntityBase.<init>(EntityBase.java:71)
+	at model.ClothingRequestCollection.<init>(ClothingRequestCollection.java:35)
+	at model.Receptionist.findMatching(Receptionist.java:142)
+	at model.Receptionist.getState(Receptionist.java:89)
+	at userinterface.ReceptionistView.populateFields(ReceptionistView.java:496)
+	at userinterface.ReceptionistView.<init>(ReceptionistView.java:96)
+	at userinterface.ViewFactory.createView(ViewFactory.java:12)
+	at model.Receptionist.createAndShowReceptionistView(Receptionist.java:175)
+	at model.Receptionist.stateChangeRequest(Receptionist.java:105)
+	at model.Receptionist.updateState(Receptionist.java:138)
+	at impresario.ModelRegistry.updateSubscribers(ModelRegistry.java:162)
+	at model.RemoveRequestTransaction.stateChangeRequest(RemoveRequestTransaction.java:107)
+	at userinterface.ClothingRequestPendingCollectionView.lambda$createFormContent$4(ClothingRequestPendingCollectionView.java:309)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:394)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:432)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:431)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Unknown Source)
+Caused by: java.net.SocketException: Connection reset by peer: socket write error
+	at java.net.SocketOutputStream.socketWrite0(Native Method)
+	at java.net.SocketOutputStream.socketWrite(Unknown Source)
+	at java.net.SocketOutputStream.write(Unknown Source)
+	at java.io.BufferedOutputStream.flushBuffer(Unknown Source)
+	at java.io.BufferedOutputStream.flush(Unknown Source)
+	at com.mysql.jdbc.MysqlIO.send(MysqlIO.java:3251)
+	... 83 more
+
+
+** END NESTED EXCEPTION **
+
+>

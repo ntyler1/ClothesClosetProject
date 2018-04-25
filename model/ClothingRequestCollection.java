@@ -81,7 +81,7 @@ public class ClothingRequestCollection  extends EntityBase implements IView
         
         public void findMatchingIds(){
             String query = "Select ID FROM "+myTableName+" INNER JOIN Inventory ON RequestedArticleType = ArticleType "
-                        +"AND RequestedGender = Gender AND RequestedSize = Size WHERE "+myTableName+".Status = 'Pending'";
+                        +"AND RequestedGender = Gender AND RequestedSize = Size WHERE "+myTableName+".Status = 'Pending' AND Inventory.Status = 'Donated'";
             populateCollectionHelper(query);
         }
 

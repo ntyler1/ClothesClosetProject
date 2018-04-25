@@ -11,8 +11,6 @@ import java.util.Properties;
 
 public class RemoveRequestTransaction extends Transaction
 {
-
-
     private ClothingRequestCollection requestList;
     private ClothingRequest mySelectedRequest;
 
@@ -36,43 +34,22 @@ public class RemoveRequestTransaction extends Transaction
         myRegistry.setDependencies(dependencies);
 
     }
-
-    /**
-     * This method encapsulates all the logic of creating the request collection and showing the view
-     */
     //----------------------------------------------------------
-    public void processTransaction(Properties props)
+    private void processClothingRequestRemoval()
     {
-        requestList = new ClothingRequestCollection();
-        if (props.getProperty("Status") != null)
-        {
-            //String status = props.getProperty("Status");
-            requestList.findAll();
-        }
-        try
-        {
-            Scene newScene = createClothingRequestCollectionView();
-            swapToView(newScene);
-        }
-        catch (Exception ex)
-        {
-            new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                    "Error in creating ClothingRequestCollectionView", Event.ERROR);
-        }
-    }
-
-    //----------------------------------------------------------
-    private void processClothingRequestRemoval(Properties props)
-    {
-
         mySelectedRequest.stateChangeRequest("Status", "Removed");
+        try{
+            ClothingRequest tempRequest = new ClothingRequest((String)mySelectedRequest.getState("ID"));
+            mySelectedRequest.stateChangeRequest("RequestedArticleType", (String)tempRequest.getState("RequestedArticleType"));
+            mySelectedRequest.stateChangeRequest("RequestedColor1", (String)tempRequest.getState("RequestedColor1"));
+            mySelectedRequest.stateChangeRequest("RequestedColor2", (String)tempRequest.getState("RequestedColor2"));
+        }
+        catch(Exception e){
+            
+        }
         mySelectedRequest.remove();
         transactionErrorMessage = (String)mySelectedRequest.getState("UpdateStatusMessage");
-
     }
-
-
-
 
     @Override
     //----------------------------------------------------------
@@ -98,19 +75,16 @@ public class RemoveRequestTransaction extends Transaction
     //----------------------------------------------------------
     public Object getState(String key)
     {
-
-        if (key.equals("Status") == true)
-        {
-            if (mySelectedRequest != null)
-                return mySelectedRequest.getState("Status");
-            else
-                return "";
-        }
-        else if (key.equals("PendingRequests") == true)
+        if (key.equals("PendingRequests") == true)
             {
                 requestList = new ClothingRequestCollection();
                 requestList.findAllPending();
                 return requestList;
+            }
+        else
+            if (key.equals("TransactionError") == true)
+            {
+                    return transactionErrorMessage;
             }
 
         return null;
@@ -124,60 +98,12 @@ public class RemoveRequestTransaction extends Transaction
         {
             doYourJob();
         }
-        else
-        if (key.equals("SearchClothingRequest") == true)
-        {
-            processTransaction((Properties)value);
-        }
-        else
-        if (key.equals("RequestSelected") == true)
+        if (key.equals("ClothingRequestSelected") == true)
         {
             mySelectedRequest = requestList.retrieve((String)value);
-            try
-            {
-
-                Scene newScene = createRemoveClothingRequestView();
-
-                swapToView(newScene);
-
-            }
-            catch (Exception ex)
-            {
-                new Event(Event.getLeafLevelClassName(this), "processTransaction",
-                        "Error in creating RemoveClothingRequestView", Event.ERROR);
-            }
-        }
-        else
-        if (key.equals("ClothingRequestData") == true)
-        {
-            processClothingRequestRemoval((Properties)value);
+            processClothingRequestRemoval();
         }
 
         myRegistry.updateSubscribers(key, this);
-    }
-
-    /**
-     * Create the view containing the table of all matching request on the search criteria sent
-     */
-    //------------------------------------------------------
-    protected Scene createClothingRequestCollectionView()
-    {
-        View newView = ViewFactory.createView("ClothingRequestCollectionView", this);
-        Scene currentScene = new Scene(newView);
-
-        return currentScene;
-
-    }
-    /**
-     * Create the view using which data about selected request can be removed
-     */
-    //------------------------------------------------------
-    protected Scene createRemoveClothingRequestView()
-    {
-        View newView = ViewFactory.createView("RemoveClothingRequestView", this);
-        Scene currentScene = new Scene(newView);
-
-        return currentScene;
-
     }
 }
