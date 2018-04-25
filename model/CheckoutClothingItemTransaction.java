@@ -91,6 +91,7 @@ public class CheckoutClothingItemTransaction extends Transaction
     private void processInventoryCheckout(Properties props)
     {
         String netId = props.getProperty("ReceiverNetid");
+		System.out.println(netId);
         if (netId != null) {
             myInventory.setProperty("ReceiverNetid", netId);
         }
