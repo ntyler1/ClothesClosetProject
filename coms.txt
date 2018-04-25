@@ -1,2 +1,2 @@
-javac –d classes –classpath classes;. model\*.java userinterface\*.java
+javac –d classes –classpath classes;. model\*.java userinterface\*.java utilities\*.java
 javac  –classpath classes;. Closet.java

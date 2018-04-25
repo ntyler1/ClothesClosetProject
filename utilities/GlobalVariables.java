@@ -25,4 +25,14 @@ public class GlobalVariables
 	public static final int DESC_MAX_LENGTH = 30;
 	public static final int ALPHAC_MAX_LENGTH = 5;
 	
+	//Used in adding requests
+	public static final int NETID_MAX_LENGTH = 10;
+	public static final int PHONENUM_MAX_LENGTH = 14;
+	public static final int LASTNAME_MAX_LENGTH = 15;
+	public static final int FIRSTNAME_MAX_LENGTH = 15;
+	public static final int	AT_MAX_LENGTH = 10;
+	public static final int COLOR_MAX_LENGTH = 10;
+	public static final int SIZE_MAX_LENGTH = 10;
+	public static final int BRAND_MAX_LENGTH = 10;
+	public static final int MIN_NETID_LENGTH = 0;
 }

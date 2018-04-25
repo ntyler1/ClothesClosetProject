@@ -129,13 +129,6 @@ public class CheckoutClothingItemTransaction extends Transaction
 		{
 			return (Integer)inventoryCount;
 		}
-		else if (key.equals("BarcodeCheck") == true)
-		{
-			if (myInventory != null)
-				return myInventory.getState("Barcode");
-			else
-				return "";
-		}
         return null;
     }
 
@@ -199,6 +192,7 @@ public class CheckoutClothingItemTransaction extends Transaction
     {
         View newView = ViewFactory.createView("EnterRecepientInfoView", this);
         Scene currentScene = new Scene(newView);
+
         return currentScene;
 
     }
