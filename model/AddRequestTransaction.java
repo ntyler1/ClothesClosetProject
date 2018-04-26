@@ -63,7 +63,7 @@ public class AddRequestTransaction extends Transaction
 	//----------------------------------------------------------
 	public void processTransaction(Properties props)
 	{
-		if (props.getProperty("RequesterNetid") != null)
+		if (props.getProperty("RequesterNetId") != null)
 		{
 			String requestId = props.getProperty("ID");
 			try
@@ -81,7 +81,7 @@ public class AddRequestTransaction extends Transaction
 				//newRequest.insert();
 				//transactionErrorMessage = (String)newRequest.getState("UpdateStatusMessage");
 				
-					String requesterNetID = props.getProperty("RequesterNetID");
+					String requesterNetID = props.getProperty("RequesterNetId");
 					if (requesterNetID.length() > GlobalVariables.NETID_MAX_LENGTH)
 					{
 						transactionErrorMessage = "ERROR: NetID too long! ";
@@ -112,7 +112,7 @@ public class AddRequestTransaction extends Transaction
 								}
 								else
 								{
-									String requestedGender = props.getProperty("RequesterGender");
+									String requestedGender = props.getProperty("RequestedGender");
 									String requestedArticleType = props.getProperty("RequestedArticleType");
 									if (requestedArticleType.length() > GlobalVariables.AT_MAX_LENGTH)
 									{
@@ -129,7 +129,7 @@ public class AddRequestTransaction extends Transaction
 										}
 										else
 										{
-											String requestedColor2 = props.getProperty("RequestedColor1");
+											String requestedColor2 = props.getProperty("RequestedColor2");
 											if (requestedColor2.length() > GlobalVariables.COLOR_MAX_LENGTH)
 											{
 												transactionErrorMessage = "ERROR: Color 2 too long (max length = " 
