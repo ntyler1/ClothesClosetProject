@@ -106,7 +106,7 @@ public class SearchInventoryView extends View
 
 		Text actionText = new Text("   " + getActionText() + "     ");
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		actionText.setWrappingWidth(350);
+		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
