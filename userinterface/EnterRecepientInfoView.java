@@ -223,32 +223,56 @@ public class EnterRecepientInfoView extends View {
 					String recepientLastName = lastName.getText();
 					if (recepientLastName.length() > 0)
 					{
-						props.setProperty("ReceiverNetid", recepientNetID);
-						props.setProperty("ReceiverFirstName", recepientFirstName);
-						props.setProperty("ReceiverLastName", recepientLastName);
-						
-						//Code here to check If the Date is within 6 months of last checkout
-						Properties NetIdCheck = new Properties();
-						NetIdCheck.setProperty("NetIdCheck", recepientNetID);
-						myModel.stateChangeRequest("NetIdCheck", NetIdCheck);
-						int netIdCount = (Integer)myModel.getState("NetIdCheck");
-						if(netIdCount >= 1)
+						boolean check = true;
+						String receiverNetid = (String)myModel.getState("ReceiverNetid");
+						String dateTaken = (String)myModel.getState("DateTaken");
+						if(receiverNetid != null && !receiverNetid.equals(""))
 						{
 							Alert alert = new Alert(AlertType.CONFIRMATION);
 							alert.setTitle("Confirmation Dialog");
-							alert.setHeaderText("Too Many Checkouts!");
-							alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
+							alert.setHeaderText("Item has already been checked out!");
+							alert.setContentText("This item has been checkout in the past by: " + receiverNetid + " on this date: " + dateTaken +  " (yyyy,MM,dd). Are you sure you would like to continue?");
 							Optional<ButtonType> result = alert.showAndWait();
-							
+			
 							if (result.get() == ButtonType.OK)
 							{
-								myModel.stateChangeRequest("RecepientData", props);
+								check = true;
 							}
 							else
+							{
 								myModel.stateChangeRequest("CancelCheckOutCI", null);
+								check = false;
+							}
 						}
-						else
-							myModel.stateChangeRequest("RecepientData", props);
+						if(check == true)
+						{
+							props.setProperty("ReceiverNetid", recepientNetID);
+							props.setProperty("ReceiverFirstName", recepientFirstName);
+							props.setProperty("ReceiverLastName", recepientLastName);
+						
+							//Code here to check If the Date is within 6 months of last checkout
+							Properties NetIdCheck = new Properties();
+							NetIdCheck.setProperty("NetIdCheck", recepientNetID);
+							myModel.stateChangeRequest("NetIdCheck", NetIdCheck);
+							int netIdCount = (Integer)myModel.getState("NetIdCheck");
+							if(netIdCount >= 1)
+							{
+								Alert alert = new Alert(AlertType.CONFIRMATION);
+								alert.setTitle("Confirmation Dialog");
+								alert.setHeaderText("Too Many Checkouts!");
+								alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
+								Optional<ButtonType> result = alert.showAndWait();
+							
+								if (result.get() == ButtonType.OK)
+								{
+									myModel.stateChangeRequest("RecepientData", props);
+								}
+								else
+									myModel.stateChangeRequest("CancelCheckOutCI", null);
+							}
+							else
+								myModel.stateChangeRequest("RecepientData", props);
+						}
 					}
 					else {
 						lastName.setStyle("-fx-border-color: firebrick;");
