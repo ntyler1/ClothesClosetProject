@@ -73,8 +73,8 @@ public class RemoveClothingItemTransaction extends Transaction
 		}
 		catch (Exception ex)
 		{
-			new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Error in creating ColorCollectionView", Event.ERROR);
+//			new Event(Event.getLeafLevelClassName(this), "processTransaction",
+//					"Error in creating ColorCollectionView", Event.ERROR);
 		}
 	}
 

@@ -2,3 +2,6 @@
 [4/26/18 12:39 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'FulfilItemBarcode' doesn't have a default value>
 [4/26/18 12:44 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1364: Field 'RequestFulfilledDate' doesn't have a default value>
 [4/26/18 12:46 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1265: Data truncated for column 'Status' at row 1>
+[4/26/18 1:08 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[4/26/18 1:08 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[4/26/18 1:09 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
