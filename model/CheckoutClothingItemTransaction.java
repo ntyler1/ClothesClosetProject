@@ -136,6 +136,20 @@ public class CheckoutClothingItemTransaction extends Transaction
 			else
 				return "";
 		}
+		if (key.equals("ReceiverNetid") == true)
+		{
+			if (myInventory != null)
+				return myInventory.getState("ReceiverNetid");
+			else
+				return "";
+		}
+		if (key.equals("DateTaken") == true)
+		{
+			if (myInventory != null)
+				return myInventory.getState("DateTaken");
+			else
+				return "";
+		}
         return null;
     }
 
