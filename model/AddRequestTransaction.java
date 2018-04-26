@@ -15,21 +15,17 @@ import exception.MultiplePrimaryKeysException;
 import userinterface.View;
 import userinterface.ViewFactory;
 
-import utilities.*;
+import utilities.GlobalVariables;
 
-/** The class containing the AddRequestTransaction for the Professional Clothes Closet application */
+/** The class containing the LogRequestTransaction for the Professional Clothes Closet application */
 //==============================================================
 public class AddRequestTransaction extends Transaction
 {
-	private ClothingRequestCollection requestList;
-    private InventoryCollection matchingInventory;
-    private ClothingRequest myClothingRequest;
-    private Inventory mySelectedInventory;
-	
-	private ArticleTypeCollection myArticleTypeList;
-	private ColorCollection myColorList;
-	private ArticleType at;
+        private ClothingRequest myClothingRequest;
+        private ArticleType at;
 	private ColorX color;
+        private ArticleTypeCollection myArticleTypeList;
+	private ColorCollection myColorList;
 
 	// GUI Components
 
@@ -50,8 +46,7 @@ public class AddRequestTransaction extends Transaction
 	{
 		dependencies = new Properties();
 		dependencies.setProperty("CancelAddRequest", "CancelTransaction");
-		dependencies.setProperty("OK", "CancelTransaction");
-		dependencies.setProperty("ClothingItemData", "TransactionError");
+		dependencies.setProperty("ClothingRequestData", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
 	}
@@ -65,136 +60,96 @@ public class AddRequestTransaction extends Transaction
 	{
 		if (props.getProperty("RequesterNetId") != null)
 		{
-			String requestId = props.getProperty("ID");
-			try
-			{
-				ClothingRequest oldRequest = new ClothingRequest(requestId);
-				transactionErrorMessage = "ERROR: ID " + requestId + " already exists!";
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-						"Request with ID: " + requestId + " already exists!",
-						Event.ERROR);
-			}
-			catch (InvalidPrimaryKeyException ex)
-			{
-				// ID does not exist
-				//ClothingRequest newRequest = new ClothingRequest(props);
-				//newRequest.insert();
-				//transactionErrorMessage = (String)newRequest.getState("UpdateStatusMessage");
-				
-					String requesterNetID = props.getProperty("RequesterNetId");
-					if (requesterNetID.length() > GlobalVariables.NETID_MAX_LENGTH)
-					{
-						transactionErrorMessage = "ERROR: NetID too long! ";
-					}
-					else
-					{
-						String requesterPhone = props.getProperty("RequesterPhone");
-						if (requesterPhone.length() > GlobalVariables.PHONENUM_MAX_LENGTH)
-						{
-							transactionErrorMessage = "ERROR: Phone number too long (max length = " 
-									+ GlobalVariables.PHONENUM_MAX_LENGTH + ")! ";
+                            String requesterNetID = props.getProperty("RequesterNetId");
+                            if (requesterNetID.length() > GlobalVariables.NETID_MAX_LENGTH)
+                            {
+                                    transactionErrorMessage = "ERROR: NetID too long! ";
+                            }
+                            else
+                            {
+                                    String requesterPhone = props.getProperty("RequesterPhone");
+                                    if (requesterPhone.length() > GlobalVariables.PHONENUM_MAX_LENGTH)
+                                    {
+                                            transactionErrorMessage = "ERROR: Phone number too long (max length = " 
+                                                            + GlobalVariables.PHONENUM_MAX_LENGTH + ")! ";
+                                    }
+                                    else
+                                    {
+                                            String requesterLastName = props.getProperty("RequesterLastName");
+                                            if (requesterLastName.length() > GlobalVariables.LASTNAME_MAX_LENGTH)
+                                            {
+                                                    transactionErrorMessage = "ERROR: Last name too long (max length = " 
+                                                            + GlobalVariables.LASTNAME_MAX_LENGTH + ")! ";
+                                            }
+                                            else
+                                            {
+                                                    String requesterFirstName = props.getProperty("RequesterFirstName");
+                                                    if (requesterFirstName.length() > GlobalVariables.FIRSTNAME_MAX_LENGTH)
+                                                    {
+                                                            transactionErrorMessage = "ERROR: First name too long (max length = " 
+                                                                    + GlobalVariables.FIRSTNAME_MAX_LENGTH + ")! ";
+                                                    }
+                                                    else
+                                                    {
+                                                            String requestedArticleType = props.getProperty("RequestedArticleType");
+                                                            if (requestedArticleType.length() > GlobalVariables.AT_MAX_LENGTH)
+                                                            {
+                                                                    transactionErrorMessage = "ERROR: Article type too long (max length = " 
+                                                                            + GlobalVariables.AT_MAX_LENGTH + ")! ";
+                                                            }
+                                                            else
+                                                            {
+                                                                    String requestedColor1 = props.getProperty("RequestedColor1");
+                                                                    if (requestedColor1.length() > GlobalVariables.COLOR_MAX_LENGTH)
+                                                                    {
+                                                                            transactionErrorMessage = "ERROR: Color 1 too long (max length = " 
+                                                                                    + GlobalVariables.COLOR_MAX_LENGTH + ")! ";
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                            String requestedColor2 = props.getProperty("RequestedColor1");
+                                                                            if (requestedColor2.length() > GlobalVariables.COLOR_MAX_LENGTH)
+                                                                            {
+                                                                                    transactionErrorMessage = "ERROR: Color 2 too long (max length = " 
+                                                                                            + GlobalVariables.COLOR_MAX_LENGTH + ")! ";
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                    String requestedSize = props.getProperty("RequestedSize");
+                                                                                    if (requestedColor2.length() > GlobalVariables.SIZE_MAX_LENGTH)
+                                                                                    {
+                                                                                            transactionErrorMessage = "ERROR: Size too long (max length = " 
+                                                                                                    + GlobalVariables.SIZE_MAX_LENGTH + ")! ";
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                            String requestedBrand = props.getProperty("RequestedBrand");
+                                                                                            if (requestedBrand.length() > GlobalVariables.BRAND_MAX_LENGTH)
+                                                                                            {
+                                                                                                    transactionErrorMessage = "ERROR: Brand too long (max length = " 
+                                                                                                            + GlobalVariables.BRAND_MAX_LENGTH + ")! ";
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                    String status = props.getProperty("RequestedSize");
+                                                                                                    String itemBarcode = props.getProperty("FulfillItemBarcode");
+                                                                                                    String requestMadeDate = props.getProperty("RequestMadeDate");
+                                                                                                    String requestFulfilledDate = props.getProperty("RequestFulfilledDate");
+                                                                                                    props.setProperty("Status", "Pending");
+                                                                                                    myClothingRequest = new ClothingRequest(props);
+                                                                                                    myClothingRequest.insert();
+                                                                                                    transactionErrorMessage = (String)myClothingRequest.getState("UpdateStatusMessage");
+                                                                                            }
+											}
+                                                                                    }
+                                                                            }
+                                                                	}
+								}
+							}
 						}
-						else
-						{
-							String requesterLastName = props.getProperty("RequesterLastName");
-							if (requesterLastName.length() > GlobalVariables.LASTNAME_MAX_LENGTH)
-							{
-								transactionErrorMessage = "ERROR: Last name too long (max length = " 
-									+ GlobalVariables.LASTNAME_MAX_LENGTH + ")! ";
-							}
-							else
-							{
-								String requesterFirstName = props.getProperty("RequesterFirstName");
-								if (requesterFirstName.length() > GlobalVariables.FIRSTNAME_MAX_LENGTH)
-								{
-									transactionErrorMessage = "ERROR: First name too long (max length = " 
-										+ GlobalVariables.FIRSTNAME_MAX_LENGTH + ")! ";
-								}
-								else
-								{
-									String requestedGender = props.getProperty("RequestedGender");
-									String requestedArticleType = props.getProperty("RequestedArticleType");
-									if (requestedArticleType.length() > GlobalVariables.AT_MAX_LENGTH)
-									{
-										transactionErrorMessage = "ERROR: Article type too long (max length = " 
-											+ GlobalVariables.AT_MAX_LENGTH + ")! ";
-									}
-									else
-									{
-										String requestedColor1 = props.getProperty("RequestedColor1");
-										if (requestedColor1.length() > GlobalVariables.COLOR_MAX_LENGTH)
-										{
-											transactionErrorMessage = "ERROR: Color 1 too long (max length = " 
-												+ GlobalVariables.COLOR_MAX_LENGTH + ")! ";
-										}
-										else
-										{
-											String requestedColor2 = props.getProperty("RequestedColor2");
-											if (requestedColor2.length() > GlobalVariables.COLOR_MAX_LENGTH)
-											{
-												transactionErrorMessage = "ERROR: Color 2 too long (max length = " 
-													+ GlobalVariables.COLOR_MAX_LENGTH + ")! ";
-											}
-											else
-											{
-												String requestedSize = props.getProperty("RequestedSize");
-												if (requestedColor2.length() > GlobalVariables.SIZE_MAX_LENGTH)
-												{
-													transactionErrorMessage = "ERROR: Size too long (max length = " 
-														+ GlobalVariables.SIZE_MAX_LENGTH + ")! ";
-												}
-												else
-												{
-													String requestedBrand = props.getProperty("RequestedBrand");
-													if (requestedBrand.length() > GlobalVariables.BRAND_MAX_LENGTH)
-													{
-														transactionErrorMessage = "ERROR: Brand too long (max length = " 
-															+ GlobalVariables.BRAND_MAX_LENGTH + ")! ";
-													}
-													else
-													{
-														String status = props.getProperty("RequestedSize");
-														String itemBarcode = props.getProperty("FulfillItemBarcode");
-														String requestMadeDate = props.getProperty("RequestMadeDate");
-														String requestFulfilledDate = props.getProperty("RequestFulfilledDate");
-														props.setProperty("Status", "Active");
-														myClothingRequest = new ClothingRequest(props);
-														myClothingRequest.update();
-														transactionErrorMessage = (String)myClothingRequest.getState("UpdateStatusMessage");
-													}
-												}
-											}
-										}
-									}
-								}
-							}
-						
 					}
 				}
-				
 			}
-			
-			catch (MultiplePrimaryKeysException ex2)
-			{
-				transactionErrorMessage = "ERROR: Multiple requests with ID!";
-				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Found multiple requests with ID : " + requestId + ". Reason: " + ex2.toString(),
-					Event.ERROR);
-			}		
-		}
-	}
-	
-//	public void processBarcode(Properties props)
-//	{
-//		if(props.getProperty("ID") != null){
-//			String requestId = props.getProperty("ID");
-//			myRequestList = new ClothingRequestCollection();
-//			/** No such method inside of request list yet
-//			myRequestList.findByLikeId(barcode);
-//			barcodeFill = myInventoryList.retrieveCount();
-//			*/
-//		}
-//	}
 
 	//-----------------------------------------------------------
 	public Object getState(String key)
@@ -262,7 +217,7 @@ public class AddRequestTransaction extends Transaction
 				color = null;
 			}
 		}
-		else if (key.equals("ClothingItemData") == true)
+		else if (key.equals("ClothingRequestData") == true)
 		{
 			processTransaction((Properties)value);
 		}

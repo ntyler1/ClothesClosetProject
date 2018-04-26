@@ -363,7 +363,7 @@ public class ReceptionistView extends View
 
 		HBox requestCont = new HBox(10);
 		requestCont.setAlignment(Pos.CENTER_LEFT);
-		Label reqLabel = new Label(" REQUESTS           : ");
+		Label reqLabel = new Label(" REQUESTS          : ");
                 requestCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     requestCont.setStyle("-fx-background-color: GOLD");
 		});

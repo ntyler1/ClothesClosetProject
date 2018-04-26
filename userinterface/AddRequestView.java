@@ -111,15 +111,14 @@ public class AddRequestView extends View
 		container.setPadding(new Insets(1, 1, 1, 30));
 
 		Text clientText = new Text("OFFICE OF CAREER SERVICES");
-		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 30));
-		clientText.setWrappingWidth(425);
+		clientText.setFont(Font.font("Copperplate", FontWeight.EXTRA_BOLD, 36));
+                clientText.setEffect(new DropShadow());
 		clientText.setTextAlignment(TextAlignment.CENTER);
-		clientText.setFill(Color.DARKGREEN);
+		clientText.setFill(Color.WHITESMOKE);
 		container.getChildren().add(clientText);
 
 		Text titleText = new Text(" Professional Clothes Closet Management System ");
-		titleText.setFont(Font.font("Comic Sans", FontWeight.THIN, 30));
-		titleText.setWrappingWidth(380);
+		titleText.setFont(Font.font("Copperplate", FontWeight.THIN, 28));
 		titleText.setTextAlignment(TextAlignment.CENTER);
 		titleText.setFill(Color.GOLD);
 		container.getChildren().add(titleText);
@@ -135,7 +134,7 @@ public class AddRequestView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(450);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.LIGHTGREEN);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
 
@@ -176,7 +175,7 @@ public class AddRequestView extends View
 		genderLabel.setFont(myFont);
 		genderLabel.setWrappingWidth(145);
 		genderLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(genderLabel, 0, 2);
+		grid.add(genderLabel, 0, 1);
 
 		gender = new ComboBox<Gender>();
 		gender.setItems(FXCollections.observableArrayList(
@@ -198,7 +197,7 @@ public class AddRequestView extends View
 		});
 
 		gender.setMaxWidth(180);
-		grid.add(gender, 1, 2);
+		grid.add(gender, 1, 1);
 
 		Text atLabel = new Text(" Article Type : ");
 
@@ -206,7 +205,7 @@ public class AddRequestView extends View
 		atLabel.setFont(myFont);
 		atLabel.setWrappingWidth(145);
 		atLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(atLabel, 0, 3);
+		grid.add(atLabel, 0, 2);
 
 		articleType = new ComboBox<ArticleType>();
 		fillArticleTypeComboBox();
@@ -229,7 +228,7 @@ public class AddRequestView extends View
 		});
 		articleType.setPromptText("Please Select Article Type");
 		articleType.setMaxWidth(180);
-		grid.add(articleType, 1, 3);
+		grid.add(articleType, 1, 2);
 
 		Text c1Label = new Text(" Color 1 : ");
 
@@ -237,7 +236,7 @@ public class AddRequestView extends View
 		c1Label.setFont(myFont);
 		c1Label.setWrappingWidth(145);
 		c1Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(c1Label, 0, 4);
+		grid.add(c1Label, 0, 3);
 
 		color1 = new ComboBox<ColorX>();
 		color1.setConverter(new StringConverter<ColorX>() {
@@ -259,7 +258,7 @@ public class AddRequestView extends View
 		});
 		color1.setPromptText("Please Select Color 1");
 		color1.setMaxWidth(185);
-		grid.add(color1, 1, 4);
+		grid.add(color1, 1, 3);
 
 		Text c2Label = new Text(" Color 2 : ");
 
@@ -267,7 +266,7 @@ public class AddRequestView extends View
 		c2Label.setFont(myFont);
 		c2Label.setWrappingWidth(145);
 		c2Label.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(c2Label, 0, 5);
+		grid.add(c2Label, 0, 4);
 
 		color2 = new ComboBox<ColorX>();
 		color2.setConverter(new StringConverter<ColorX>() {
@@ -282,7 +281,7 @@ public class AddRequestView extends View
 		});
 		color2.setPromptText("Please Select Color 2");
 		color2.setMaxWidth(185);
-		grid.add(color2, 1, 5);
+		grid.add(color2, 1, 4);
 
 		fillColorComboBox();
 
@@ -292,23 +291,23 @@ public class AddRequestView extends View
 		sizeLabel.setFont(myFont);
 		sizeLabel.setWrappingWidth(145);
 		sizeLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(sizeLabel, 0, 6);
+		grid.add(sizeLabel, 0, 5);
 
 		size = new TextField();
 		size.setMinWidth(180);
-		grid.add(size, 1, 6);
+		grid.add(size, 1, 5);
 
 		Text brandLabel = new Text(" Brand : ");
 
 		brandLabel.setFill(Color.GOLD);
 		brandLabel.setFont(myFont);
-		brandLabel.setWrappingWidth(145);
+                brandLabel.setWrappingWidth(165);
 		brandLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(brandLabel, 2, 2);
+		grid.add(brandLabel, 2, 1);
 
 		brand = new TextField();
 		brand.setMinWidth(180);
-		grid.add(brand, 3, 2);
+		grid.add(brand, 3, 1);
 
 		
 
@@ -316,56 +315,62 @@ public class AddRequestView extends View
 
 		recipientFNameLabel.setFill(Color.GOLD);
 		recipientFNameLabel.setFont(myFont);
-		recipientFNameLabel.setWrappingWidth(145);
+		recipientFNameLabel.setWrappingWidth(165);
 		recipientFNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(recipientFNameLabel, 2, 3);
+		grid.add(recipientFNameLabel, 2, 2);
 
 		recipientFName = new TextField();
 		recipientFName.setMinWidth(180);
-		grid.add(recipientFName, 3, 3);
+		grid.add(recipientFName, 3, 2);
 
 		Text recipientLNameLabel = new Text(" Recipient Last Name : ");
 
 		recipientLNameLabel.setFill(Color.GOLD);
 		recipientLNameLabel.setFont(myFont);
-		recipientLNameLabel.setWrappingWidth(145);
+		recipientLNameLabel.setWrappingWidth(165);
 		recipientLNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(recipientLNameLabel, 2, 4);
+		grid.add(recipientLNameLabel, 2, 3);
 
 		recipientLName = new TextField();
 		recipientLName.setMinWidth(180);
-		grid.add(recipientLName, 3, 4);
+		grid.add(recipientLName, 3, 3);
 
 		Text recipientPhoneLabel = new Text(" Recipient Phone # : ");
 
 		recipientPhoneLabel.setFill(Color.GOLD);
 		recipientPhoneLabel.setFont(myFont);
-		recipientPhoneLabel.setWrappingWidth(145);
+                recipientPhoneLabel.setWrappingWidth(165);
 		recipientPhoneLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(recipientPhoneLabel, 2, 5);
+		grid.add(recipientPhoneLabel, 2, 4);
 
 		recipientPhone = new TextField();
 		recipientPhone.setMinWidth(180);
-		grid.add(recipientPhone, 3, 5);
+		grid.add(recipientPhone, 3, 4);
 
-		Text recipientNetLabel = new Text(" Recipient NetID : ");
+		Text recipientNetLabel = new Text(" Recipient Net ID : ");
 
 		recipientNetLabel.setFill(Color.GOLD);
 		recipientNetLabel.setFont(myFont);
-		recipientNetLabel.setWrappingWidth(145);
+                recipientNetLabel.setWrappingWidth(165);
 		recipientNetLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(recipientNetLabel, 2, 6);
+		grid.add(recipientNetLabel, 2, 5);
 
 		recipientNet = new TextField();
 		recipientNet.setMinWidth(180);
-		grid.add(recipientNet, 3, 6);
+		grid.add(recipientNet, 3, 5);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
-		ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
+                doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: GOLD");
+		});
+                doneCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+                    doneCont.setStyle("-fx-background-color: SLATEGREY");
+		});
+		ImageView icon = new ImageView(new Image("/images/logcolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
-		submitButton = new Button("Add", icon);
+		submitButton = new Button("Log", icon);
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearOutlines();
@@ -375,60 +380,60 @@ public class AddRequestView extends View
 					if(articleType.getSelectionModel().getSelectedItem() != null){
 						if(color1.getSelectionModel().getSelectedItem() != null){
 							String sizeStr = size.getText();
-							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH){
+							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH && sizeStr.matches("[a-zA-Z0-9- ()]+")){
 								String brandStr = brand.getText();
-								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH){ 
+								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ()]+")){ 
 										String recipientFNameStr = recipientFName.getText();
-										if(recipientFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH){
+										if(recipientFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH && recipientFNameStr.matches("[a-zA-Z- /.]+")){
 											String recipientLNameStr = recipientLName.getText();
-											if(recipientLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH){
+											if(recipientLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH && recipientLNameStr.matches("[a-zA-Z- /.]+")){
 												String recipientPhoneStr = recipientPhone.getText();
 												if(recipientPhoneStr.length() >= GlobalVariables.MIN_PHONENUM_LENGTH && recipientPhoneStr.matches("[0-9-]+")){
 													String recipientNetStr = recipientNet.getText();
-													if(recipientNetStr.length() > GlobalVariables.MIN_NETID_LENGTH) {
+													if(recipientNetStr.length() > GlobalVariables.MIN_NETID_LENGTH && recipientNetStr.matches("[a-zA-Z0-9-]+")) {
 														props.setProperty("RequestedGender", gender.getSelectionModel().getSelectedItem().getName());
 														props.setProperty("RequestedSize", sizeStr);
 														props.setProperty("RequestedArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														props.setProperty("RequestedColor1", color1.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														if(color2.getSelectionModel().getSelectedItem() != null)
-														props.setProperty("RequestedColor2", color2.getSelectionModel().getSelectedItem().getBarcodePrefix());
+                                                                                                                    props.setProperty("RequestedColor2", color2.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														props.setProperty("RequestedBrand", brandStr);
 														props.setProperty("RequesterFirstName", recipientFNameStr);
 														props.setProperty("RequesterLastName", recipientLNameStr);
 														props.setProperty("RequesterPhone", recipientPhoneStr);
 														props.setProperty("RequesterNetId", recipientNetStr);
-														props.setProperty("DateDonated", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+														props.setProperty("RequestMadeDate", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 														myModel.stateChangeRequest("ClothingRequestData", props);
 													}
 													else{
 														recipientNet.setStyle("-fx-border-color: firebrick;");
-														displayErrorMessage("ERROR: Please Enter a Recipient NetID!");
+														displayErrorMessage("ERROR: Please Enter a valid Recipient Net ID!");
 													}
 												}
 												else{
 													recipientPhone.setStyle("-fx-border-color: firebrick;");
-													displayErrorMessage("ERROR: Please Enter a Recipient Phone Number!");
+													displayErrorMessage("ERROR: Please Enter a valid Recipient Phone Number!");
 												}
 											}
 											else{
 												recipientLName.setStyle("-fx-border-color: firebrick;");
-												displayErrorMessage("ERROR: Please Enter a Recipient Last Name!");
+												displayErrorMessage("ERROR: Please Enter a valid Recipient Last Name!");
 											}
 										}
 										else{
 											recipientFName.setStyle("-fx-border-color: firebrick;");
-											displayErrorMessage("ERROR: Please Enter a Recipient First Name!");
+											displayErrorMessage("ERROR: Please Enter a valid Recipient First Name!");
 										}
 									}
 									
 								else{
 									brand.setStyle("-fx-border-color: firebrick;");
-									displayErrorMessage("ERROR: Please Enter a Brand!");
+									displayErrorMessage("ERROR: Please enter a valid Brand!");
 								}
 							}
 							else{
 								size.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
-								displayErrorMessage("ERROR: Please Select a Size!");
+								displayErrorMessage("ERROR: Please enter a valid Size!");
 							}
 						}
 						else{
@@ -472,12 +477,6 @@ public class AddRequestView extends View
 		doneCont.getChildren().add(cancelButton);
 
 		vbox.getChildren().add(grid);
-		Text blankText2 = new Text("  ");
-		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 24));
-		blankText2.setWrappingWidth(350);
-		blankText2.setTextAlignment(TextAlignment.CENTER);
-		blankText2.setFill(Color.WHITE);
-		vbox.getChildren().add(blankText2);
 		vbox.getChildren().add(doneCont);
 		clearOutlines();
 		return vbox;

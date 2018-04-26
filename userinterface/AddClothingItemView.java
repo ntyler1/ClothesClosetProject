@@ -484,7 +484,7 @@ public class AddClothingItemView extends View
 								String brandStr = brand.getText();
 								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ()]+")){ 
 									String notesStr = notes.getText();
-									if(notesStr.length() > GlobalVariables.MIN_NOTES_LENGTH && notesStr.matches("[a-zA-Z0-9- ]+")){
+									if(notesStr.length() > GlobalVariables.MIN_NOTES_LENGTH && notesStr.matches("[a-zA-Z0-9- ()/.]+")){
 										String donorFNameStr = donorFName.getText();
 										if(donorFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH && donorFNameStr.matches("[a-zA-Z- /.]+")){
 											String donorLNameStr = donorLName.getText();
