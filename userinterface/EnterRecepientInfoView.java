@@ -203,13 +203,6 @@ public class EnterRecepientInfoView extends View {
 		icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		//checks to make sure we actually have an inventory item
-		String barcode = (String)myModel.getState("BarcodeCheck");
-		if (barcode != null)
-		{
-			Integer.parseInt(barcode);
-		}
-		
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearOutlines();
 			clearErrorMessage();

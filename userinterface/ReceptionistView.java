@@ -380,7 +380,7 @@ public class ReceptionistView extends View
 		logRequestButton.setMinWidth(65);
 		logRequestButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		logRequestButton.setOnAction((ActionEvent e) -> {
-			myModel.stateChangeRequest("LogRequest", null);
+			myModel.stateChangeRequest("AddRequest", null);
 		});
 		logRequestButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			logRequestButton.setEffect(shadow);

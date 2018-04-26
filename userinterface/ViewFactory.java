@@ -95,6 +95,10 @@ public class ViewFactory {
                 {
                     return new EnterRecepientInfoView(model);
                 }
+				else if(viewName.equals("AddRequestView") == true)
+                {
+                    return new AddRequestView(model);
+                }
 		else
 			return null;
 	}
