@@ -380,17 +380,21 @@ public class AddRequestView extends View
 					if(articleType.getSelectionModel().getSelectedItem() != null){
 						if(color1.getSelectionModel().getSelectedItem() != null){
 							String sizeStr = size.getText();
-							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH && sizeStr.matches("[a-zA-Z0-9- ()]+")){
+							if(sizeStr.matches("[a-zA-Z0-9- ()]*")){
 								String brandStr = brand.getText();
-								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ()]+")){ 
+								if(brandStr.matches("[a-zA-Z0-9- ()]*")){ 
 										String recipientFNameStr = recipientFName.getText();
-										if(recipientFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH && recipientFNameStr.matches("[a-zA-Z- /.]+")){
+										if(recipientFNameStr.matches("[a-zA-Z- /.]+")){
 											String recipientLNameStr = recipientLName.getText();
-											if(recipientLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH && recipientLNameStr.matches("[a-zA-Z- /.]+")){
+											if(recipientLNameStr.matches("[a-zA-Z- /.]+")){
 												String recipientPhoneStr = recipientPhone.getText();
-												if(recipientPhoneStr.length() >= GlobalVariables.MIN_PHONENUM_LENGTH && recipientPhoneStr.matches("[0-9-]+")){
+												if(recipientPhoneStr.matches("[0-9-]*")){
+                                                                                                    if(!recipientPhoneStr.equals("")){
+                                                                                                        recipientPhoneStr = recipientPhoneStr.replaceAll("\\D+","");
+                                                                                                        recipientPhoneStr = recipientPhoneStr.substring(0, 3) + "-" + recipientPhoneStr.substring(3, 6) + "-" + recipientPhoneStr.substring(6);
+                                                                                                    }
 													String recipientNetStr = recipientNet.getText();
-													if(recipientNetStr.length() > GlobalVariables.MIN_NETID_LENGTH && recipientNetStr.matches("[a-zA-Z0-9-]+")) {
+													if(recipientNetStr.matches("[a-zA-Z0-9-]+")) {
 														props.setProperty("RequestedGender", gender.getSelectionModel().getSelectedItem().getName());
 														props.setProperty("RequestedSize", sizeStr);
 														props.setProperty("RequestedArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());

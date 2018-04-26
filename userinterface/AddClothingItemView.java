@@ -475,24 +475,28 @@ public class AddClothingItemView extends View
 			clearErrorMessage();
 			Properties props = new Properties();
 			String bc = barcode.getText();
-			if (bc.length() == GlobalVariables.BARCODE_LENGTH){
+			if (bc.length() == GlobalVariables.BARCODE_LENGTH && bc.matches("[0-9]+")){
 				if(gender.getSelectionModel().getSelectedItem() != null){
 					if(articleType.getSelectionModel().getSelectedItem() != null){
 						if(color1.getSelectionModel().getSelectedItem() != null){
 							String sizeStr = size.getText();
-							if(sizeStr.length() > GlobalVariables.MIN_SIZE_LENGTH && sizeStr.matches("[a-zA-Z0-9- ()]+")){
+							if(sizeStr.matches("[a-zA-Z0-9- ()]*") && sizeStr.length() <= GlobalVariables.SIZE_MAX_LENGTH){
 								String brandStr = brand.getText();
-								if(brandStr.length() > GlobalVariables.MIN_BRAND_LENGTH && brandStr.matches("[a-zA-Z0-9- ()]+")){ 
+								if(brandStr.matches("[a-zA-Z0-9- ()]*")){ 
 									String notesStr = notes.getText();
-									if(notesStr.length() > GlobalVariables.MIN_NOTES_LENGTH && notesStr.matches("[a-zA-Z0-9- ()/.]+")){
+									if(notesStr.matches("[a-zA-Z0-9- ()/.]*")){
 										String donorFNameStr = donorFName.getText();
-										if(donorFNameStr.length() > GlobalVariables.MIN_FNAME_LENGTH && donorFNameStr.matches("[a-zA-Z- /.]+")){
+										if(donorFNameStr.matches("[a-zA-Z- /.]*")){
 											String donorLNameStr = donorLName.getText();
-											if(donorLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH && donorLNameStr.matches("[a-zA-Z- /.]+")){
+											if(donorLNameStr.matches("[a-zA-Z- /.]*")){
 												String donorPhoneStr = donorPhone.getText();
-												if(donorPhoneStr.length() >= GlobalVariables.MIN_PHONENUM_LENGTH && donorPhoneStr.matches("[0-9-]+")){
-													String donorEmailStr = donorEmail.getText();
-													if(donorEmailStr.length() > GlobalVariables.MIN_EMAIL_LENGTH && donorEmailStr.matches("[a-zA-Z0-9-@/.]+") && donorEmailStr.contains("@")){
+												if(donorPhoneStr.matches("[0-9-]*")){
+                                                                                                    if(!donorPhoneStr.equals("")){
+                                                                                                        donorPhoneStr = donorPhoneStr.replaceAll("\\D+","");
+                                                                                                        donorPhoneStr = donorPhoneStr.substring(0, 3) + "-" + donorPhoneStr.substring(3, 6) + "-" + donorPhoneStr.substring(6);
+                                                                                                    }	
+                                                                                                        String donorEmailStr = donorEmail.getText();
+													if((donorEmailStr.matches("[a-zA-Z0-9-@/.]*") && donorEmailStr.contains("@")) || donorEmailStr.equals("")){
 														props.setProperty("Barcode", bc);
 														props.setProperty("Gender", gender.getSelectionModel().getSelectedItem().getName());
 														props.setProperty("Size", sizeStr);
