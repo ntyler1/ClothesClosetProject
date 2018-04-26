@@ -189,6 +189,12 @@ public class EnterRecepientInfoView extends View {
 		lastName = new TextField();
 		lastName.setMinWidth(180);
 		grid.add(lastName, 1, 3);
+		
+		//this is here to fail if the inventory item isn't real. 
+		String barcode = (String)myModel.getState("Barcode");
+		if(barcode != null)
+			Integer.parseInt(barcode);
+		
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
