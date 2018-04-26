@@ -383,7 +383,7 @@ public class AddRequestView extends View
 											String recipientLNameStr = recipientLName.getText();
 											if(recipientLNameStr.length() > GlobalVariables.MIN_LNAME_LENGTH){
 												String recipientPhoneStr = recipientPhone.getText();
-												if(recipientPhoneStr.length() > GlobalVariables.MIN_PHONENUM_LENGTH){
+												if(recipientPhoneStr.length() >= GlobalVariables.MIN_PHONENUM_LENGTH && recipientPhoneStr.matches("[0-9-]+")){
 													String recipientNetStr = recipientNet.getText();
 													if(recipientNetStr.length() > GlobalVariables.MIN_NETID_LENGTH) {
 														props.setProperty("RequestedGender", gender.getSelectionModel().getSelectedItem().getName());
