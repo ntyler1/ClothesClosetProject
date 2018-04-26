@@ -180,7 +180,7 @@ public class AddRequestView extends View
 
 		gender = new ComboBox<Gender>();
 		gender.setItems(FXCollections.observableArrayList(
-				new Gender("Male"), new Gender("Female")));
+				new Gender("Male"), new Gender("Female"), new Gender("Unisex")));
 		gender.setPromptText("Please Select Gender");
 		gender.setConverter(new StringConverter<Gender>() {
 			@Override
@@ -366,7 +366,6 @@ public class AddRequestView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		submitButton = new Button("Add", icon);
-		submitButton.setStyle("-fx-background-color: lightgreen; ");
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearOutlines();
@@ -459,7 +458,6 @@ public class AddRequestView extends View
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
-		cancelButton.setStyle("-fx-background-color: palevioletred; ");
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
