@@ -129,6 +129,13 @@ public class CheckoutClothingItemTransaction extends Transaction
 		{
 			return (Integer)inventoryCount;
 		}
+		if (key.equals("Barcode") == true)
+		{
+			if (myInventory != null)
+				return myInventory.getState("Barcode");
+			else
+				return "";
+		}
         return null;
     }
 
