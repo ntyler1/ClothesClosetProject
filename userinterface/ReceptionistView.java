@@ -162,14 +162,14 @@ public class ReceptionistView extends View
 		articleTypeCont.setAlignment(Pos.CENTER);
 		Label atLabel = new Label("ARTICLE TYPES    :");
                 articleTypeCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    articleTypeCont.setStyle("-fx-background-color: GOLD");
+                    articleTypeCont.setStyle("-fx-background-color: GREEN");
 		});
                 articleTypeCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     articleTypeCont.setStyle("-fx-background-color: SLATEGREY");
 		});
                 atLabel.setAlignment(Pos.CENTER_LEFT);
-		atLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
-		atLabel.setTextFill(Color.GREEN);
+		atLabel.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+		atLabel.setTextFill(Color.GOLD);
 		articleTypeCont.getChildren().add(atLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
@@ -232,13 +232,13 @@ public class ReceptionistView extends View
 		colorCont.setAlignment(Pos.CENTER_LEFT);
 		Label colorLabel = new Label("COLORS              : ");
                 colorCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    colorCont.setStyle("-fx-background-color: GOLD");
+                    colorCont.setStyle("-fx-background-color: GREEN");
 		});
                 colorCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     colorCont.setStyle("-fx-background-color: SLATEGREY");
 		});
-		colorLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
-                colorLabel.setTextFill(Color.GREEN);
+		colorLabel.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+                colorLabel.setTextFill(Color.GOLD);
 		colorCont.getChildren().add(colorLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
@@ -299,13 +299,13 @@ public class ReceptionistView extends View
 		clothingItemCont.setAlignment(Pos.CENTER_LEFT);
 		Label ciLabel = new Label("CLOTHING ITEMS:");
                 clothingItemCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    clothingItemCont.setStyle("-fx-background-color: GOLD");
+                    clothingItemCont.setStyle("-fx-background-color: GREEN");
 		});
                 clothingItemCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     clothingItemCont.setStyle("-fx-background-color: SLATEGREY");
 		});
-		ciLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
-                ciLabel.setTextFill(Color.GREEN);
+		ciLabel.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+                ciLabel.setTextFill(Color.GOLD);
 		clothingItemCont.getChildren().add(ciLabel);
 		icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
@@ -365,13 +365,13 @@ public class ReceptionistView extends View
 		requestCont.setAlignment(Pos.CENTER_LEFT);
 		Label reqLabel = new Label(" REQUESTS          : ");
                 requestCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    requestCont.setStyle("-fx-background-color: GOLD");
+                    requestCont.setStyle("-fx-background-color: GREEN");
 		});
                 requestCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     requestCont.setStyle("-fx-background-color: SLATEGREY");
 		});
-		reqLabel.setFont(Font.font("Copperplate", FontWeight.THIN, 18));
-                reqLabel.setTextFill(Color.GREEN);
+		reqLabel.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
+                reqLabel.setTextFill(Color.GOLD);
 		requestCont.getChildren().add(reqLabel);
 		icon = new ImageView(new Image("/images/logcolor.png"));
 		icon.setFitHeight(15);
