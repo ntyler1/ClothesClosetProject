@@ -112,7 +112,7 @@ public class AddArticleTypeView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.GREEN);
+		actionText.setFill(Color.BLACK);
 		container.getChildren().add(actionText);
                 container.setAlignment(Pos.CENTER);
 	
