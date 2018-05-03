@@ -396,15 +396,18 @@ public class AddRequestView extends View
 													String recipientNetStr = recipientNet.getText();
 													if(recipientNetStr.matches("[a-zA-Z0-9-]+")) {
 														props.setProperty("RequestedGender", gender.getSelectionModel().getSelectedItem().getName());
-														props.setProperty("RequestedSize", sizeStr);
+                                                                                                                if(!sizeStr.equals(""))
+														    props.setProperty("RequestedSize", sizeStr);
 														props.setProperty("RequestedArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														props.setProperty("RequestedColor1", color1.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														if(color2.getSelectionModel().getSelectedItem() != null)
                                                                                                                     props.setProperty("RequestedColor2", color2.getSelectionModel().getSelectedItem().getBarcodePrefix());
-														props.setProperty("RequestedBrand", brandStr);
+														if(!brandStr.equals(""))
+                                                                                                                    props.setProperty("RequestedBrand", brandStr);
 														props.setProperty("RequesterFirstName", recipientFNameStr);
 														props.setProperty("RequesterLastName", recipientLNameStr);
-														props.setProperty("RequesterPhone", recipientPhoneStr);
+                                                                                                                if(!recipientPhoneStr.equals(""))
+                                                                                                                    props.setProperty("RequesterPhone", recipientPhoneStr);
 														props.setProperty("RequesterNetId", recipientNetStr);
 														props.setProperty("RequestMadeDate", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 														myModel.stateChangeRequest("ClothingRequestData", props);
@@ -436,22 +439,22 @@ public class AddRequestView extends View
 								}
 							}
 							else{
-								size.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+								size.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:darkgreen;");
 								displayErrorMessage("ERROR: Please enter a valid Size!");
 							}
 						}
 						else{
-							color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+							color1.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:darkgreen;");
 							displayErrorMessage("ERROR: Please Select a Color 1!");
 						}
 					}
 					else{
-						articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+						articleType.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:darkgreen;");
 						displayErrorMessage("ERROR: Please Select a Article Type!");
 					}
 				}
 				else{
-					gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:lightgreen;");
+					gender.setStyle("-fx-border-color: firebrick; -fx-background-color: white; -fx-selection-bar:darkgreen;");
 					displayErrorMessage("ERROR: Please Select a Gender!");
 				}
 			}
@@ -561,10 +564,10 @@ public class AddRequestView extends View
 
 	private void clearOutlines(){
 		
-		gender.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		articleType.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		color1.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
-		color2.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
+		gender.setStyle("-fx-background-color: white; -fx-selection-bar:darkgreen;");
+		articleType.setStyle("-fx-background-color: white; -fx-selection-bar:darkgreen;");
+		color1.setStyle("-fx-background-color: white; -fx-selection-bar:darkgreen;");
+		color2.setStyle("-fx-background-color: white; -fx-selection-bar:darkgreen;");
 		size.setStyle("-fx-background-color: white; -fx-selection-bar:lightgreen;");
 		brand.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
 		

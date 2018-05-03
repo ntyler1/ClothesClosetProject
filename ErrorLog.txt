@@ -5,3 +5,22 @@
 [4/26/18 1:08 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
 [4/26/18 1:08 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
 [4/26/18 1:09 PM]|RemoveClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating ColorCollectionView>
+[5/1/18 6:00 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 'Large' , '' , '01-05-2018' , '' )' at line 1>
+[5/1/18 6:03 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' 'Large' , '315-564-1245' , '01-05-2018' , 'NIke' )' at line 1>
+[5/1/18 6:05 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ' '315-567-5678' , '01-05-2018' , 'Nike' )' at line 1>
+[5/1/18 6:07 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1>
+[5/1/18 6:11 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1>
+[5/1/18 6:13 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1>
+[5/1/18 6:15 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1>
+[5/1/18 6:15 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1>
+[5/1/18 6:17 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1136: Column count doesn't match value count at row 1>
+[5/3/18 4:17 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '  , 03-05-2018 ,  )' at line 1>
+[5/3/18 4:20 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '  , 03-05-2018 ,  )' at line 1>
+[5/3/18 4:24 PM]|Inventory|insertPersistentState|Error|NOTAG|null<SQL Exception: 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '  ,  , '04' ,  , 00402001 , Female , '02' ,  ,  ,  , 03-05-2018 )' at line 1>
+[5/3/18 4:39 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'Pending' in 'field list'>
+[5/3/18 4:41 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'Male' in 'field list'>
+[5/3/18 4:42 PM]|ClothingRequest|insertPersistentState|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'Male' in 'field list'>
+[5/3/18 5:10 PM]|UpdateClothingItemTransaction|processTransaction|Error|NOTAG|null<Error in creating InventoryCollectionView>
+[5/3/18 5:35 PM]|InventoryCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'Color.Description' in 'field list'>
+[5/3/18 5:37 PM]|InventoryCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'Color.Description' in 'field list'>
+[5/3/18 5:48 PM]|InventoryCollection|getSelectQueryResult|Error|NOTAG|null<SQL Exception: 1054: Unknown column 'RequestedColor1' in 'on clause'>

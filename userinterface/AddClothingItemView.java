@@ -263,7 +263,7 @@ public class AddClothingItemView extends View
 		gender.setOnAction((event) -> {
 			if(gender.getSelectionModel().getSelectedItem() == null)
 				return;
-			if(barcode.getText().length() == 0)
+			if(barcode.getText().length() < GlobalVariables.BARCODE_LENGTH)
 				barcode.setText("00000000");
 			barcode.setText(gender.getSelectionModel().getSelectedItem().getValue() + barcode.getText().substring(1));
 			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
@@ -300,7 +300,7 @@ public class AddClothingItemView extends View
 			clearErrorMessage();
 			if(articleType.getSelectionModel().getSelectedItem() == null)
 				return;
-			if(barcode.getText().length() == 0)
+			if(barcode.getText().length() < GlobalVariables.BARCODE_LENGTH)
 				barcode.setText("00000000");
 			barcode.setText(barcode.getText().substring(0,1) + articleType.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(3));
 			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
@@ -336,7 +336,7 @@ public class AddClothingItemView extends View
 			clearErrorMessage();
 			if(color1.getSelectionModel().getSelectedItem() == null)
 				return;
-			if(barcode.getText().length() == 0)
+			if(barcode.getText().length() < GlobalVariables.BARCODE_LENGTH)
 				barcode.setText("00000000");
 			barcode.setText(barcode.getText().substring(0,3) + color1.getSelectionModel().getSelectedItem().getBarcodePrefix() + barcode.getText().substring(5));
 			if(gender.getSelectionModel().getSelectedItem() != null && color1.getSelectionModel().getSelectedItem() != null && articleType.getSelectionModel().getSelectedItem() != null){
@@ -499,17 +499,24 @@ public class AddClothingItemView extends View
 													if((donorEmailStr.matches("[a-zA-Z0-9-@/.]*") && donorEmailStr.contains("@")) || donorEmailStr.equals("")){
 														props.setProperty("Barcode", bc);
 														props.setProperty("Gender", gender.getSelectionModel().getSelectedItem().getName());
-														props.setProperty("Size", sizeStr);
+														if(!sizeStr.equals(""))
+                                                                                                                    props.setProperty("Size", sizeStr);
 														props.setProperty("ArticleType", articleType.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														props.setProperty("Color1", color1.getSelectionModel().getSelectedItem().getBarcodePrefix());
 														if(color2.getSelectionModel().getSelectedItem() != null)
 															props.setProperty("Color2", color2.getSelectionModel().getSelectedItem().getBarcodePrefix());
-														props.setProperty("Brand", brandStr);
-														props.setProperty("Notes", notesStr);
-														props.setProperty("DonorFirstName", donorFNameStr);
-														props.setProperty("DonorLastName", donorLNameStr);
-														props.setProperty("DonorPhone", donorPhoneStr);
-														props.setProperty("DonorEmail", donorEmailStr);
+														if(!brandStr.equals(""))
+                                                                                                                    props.setProperty("Brand", brandStr);
+														if(!notesStr.equals(""))
+                                                                                                                    props.setProperty("Notes", notesStr);
+														if(!donorFNameStr.equals(""))
+                                                                                                                    props.setProperty("DonorFirstName", donorFNameStr);
+														if(!donorLNameStr.equals(""))
+                                                                                                                    props.setProperty("DonorLastName", donorLNameStr);
+														if(!donorPhoneStr.equals(""))
+                                                                                                                    props.setProperty("DonorPhone", donorPhoneStr);
+														if(!donorEmailStr.equals(""))
+                                                                                                                    props.setProperty("DonorEmail", donorEmailStr);
 														props.setProperty("DateDonated", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 														myModel.stateChangeRequest("ClothingItemData", props);
 													}

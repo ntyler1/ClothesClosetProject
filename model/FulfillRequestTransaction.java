@@ -45,7 +45,7 @@ public class FulfillRequestTransaction extends Transaction
 	{
 		dependencies = new Properties();
 		dependencies.setProperty("CancelFulfillRequest", "CancelTransaction");
-                dependencies.setProperty("CancelMatchingInventory", "DoYourJob");
+                dependencies.setProperty("CancelMatchingInventory", "CancelTransaction");
                 dependencies.setProperty("InventorySelected", "TransactionError");
 
 		myRegistry.setDependencies(dependencies);
@@ -127,10 +127,9 @@ public class FulfillRequestTransaction extends Transaction
         protected void findMatchingInventory(String value){
             mySelectedRequest = requestList.retrieve((String)value);
             String gender = (String)mySelectedRequest.getState("RequestedGender");
-            String size = (String)mySelectedRequest.getState("RequestedSize");
             String articleType = (String)mySelectedRequest.getState("RequestedArticleType");
             matchingInventory = new InventoryCollection();
-            matchingInventory.findMatchingInventory(gender, articleType, size);
+            matchingInventory.findMatchingInventory(gender, articleType);
         }
         
         protected void fulfillRequest(String value) throws Exception{
@@ -184,15 +183,6 @@ public class FulfillRequestTransaction extends Transaction
 	protected Scene createMatchingInventoryView()
 	{
 		View newView = ViewFactory.createView("MatchingInventoryView", this);
-		Scene currentScene = new Scene(newView);
-
-		return currentScene;
-
-	}
-        
-        protected Scene createFulfilledRequestView()
-	{
-		View newView = ViewFactory.createView("FulfilledRequestView", this);
 		Scene currentScene = new Scene(newView);
 
 		return currentScene;

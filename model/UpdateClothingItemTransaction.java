@@ -94,9 +94,9 @@ public class UpdateClothingItemTransaction extends Transaction
 		if (gender != null) {
 			myInventory.stateChangeRequest("Gender", gender);
 		}
+                if(props.getProperty("Size") != null){
 		String size = props.getProperty("Size");
-		if (size != null) {
-			myInventory.stateChangeRequest("Size", size);
+                myInventory.stateChangeRequest("Size", size);
 		}
 		String ArticleType = props.getProperty("ArticleType");
 		if (ArticleType != null) {
@@ -110,30 +110,36 @@ public class UpdateClothingItemTransaction extends Transaction
 		if (Color2 != null) {
 			myInventory.stateChangeRequest("Color2", Color2);
 		}
+                if(props.getProperty("Brand") != null){
 		String Brand = props.getProperty("Brand");
 		if (Brand.length() > GlobalVariables.MIN_BRAND_LENGTH) {
 			myInventory.stateChangeRequest("Brand", Brand);
-		}
+		}}
+                if(props.getProperty("Notes") != null){
 		String Notes = props.getProperty("Notes");
 		if (Notes.length() > GlobalVariables.MIN_NOTES_LENGTH) {
 			myInventory.stateChangeRequest("Notes", Notes);
-		}
+		}}
+                if(props.getProperty("DonorLastName") != null){
 		String DonorLastName = props.getProperty("DonorLastName");
 		if (DonorLastName.length() > GlobalVariables.MIN_LNAME_LENGTH) {
 			myInventory.stateChangeRequest("DonorLastName", DonorLastName);
-		}
+		}}
+                if(props.getProperty("DonorFirstName") != null){
 		String DonorFirstName = props.getProperty("DonorFirstName");
 		if (DonorFirstName.length() > GlobalVariables.MIN_FNAME_LENGTH) {
 			myInventory.stateChangeRequest("DonorFirstName", DonorFirstName);
-		}
+		}}
+                if(props.getProperty("DonorPhone") != null){
 		String DonorPhone = props.getProperty("DonorPhone");
 		if (DonorPhone.length() > GlobalVariables.MIN_PHONENUM_LENGTH) {
 			myInventory.stateChangeRequest("DonorPhone", DonorPhone);
-		}
+		}}
+                if(props.getProperty("DonorEmail") != null){
 		String DonorEmail = props.getProperty("DonorEmail");
 		if (DonorEmail.length() > GlobalVariables.MIN_EMAIL_LENGTH) {
 			myInventory.stateChangeRequest("DonorEmail", DonorEmail);
-		}
+		}}
 		myInventory.update(props.getProperty("BarcodeOG"));
 		transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
 	}

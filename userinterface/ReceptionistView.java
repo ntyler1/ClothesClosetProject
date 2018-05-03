@@ -160,7 +160,7 @@ public class ReceptionistView extends View
 
 		HBox articleTypeCont = new HBox(10);
 		articleTypeCont.setAlignment(Pos.CENTER);
-		Label atLabel = new Label("ARTICLE TYPES    :");
+		Label atLabel = new Label("ARTICLE TYPES      : ");
                 articleTypeCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     articleTypeCont.setStyle("-fx-background-color: GREEN");
 		});
@@ -230,7 +230,7 @@ public class ReceptionistView extends View
 
 		HBox colorCont = new HBox(10);
 		colorCont.setAlignment(Pos.CENTER_LEFT);
-		Label colorLabel = new Label("COLORS              : ");
+		Label colorLabel = new Label("COLORS                 : ");
                 colorCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     colorCont.setStyle("-fx-background-color: GREEN");
 		});
@@ -297,7 +297,7 @@ public class ReceptionistView extends View
 
 		HBox clothingItemCont = new HBox(10);
 		clothingItemCont.setAlignment(Pos.CENTER_LEFT);
-		Label ciLabel = new Label("CLOTHING ITEMS:");
+		Label ciLabel = new Label("CLOTHING ITEMS : ");
                 clothingItemCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     clothingItemCont.setStyle("-fx-background-color: GREEN");
 		});
@@ -363,7 +363,7 @@ public class ReceptionistView extends View
 
 		HBox requestCont = new HBox(10);
 		requestCont.setAlignment(Pos.CENTER_LEFT);
-		Label reqLabel = new Label(" REQUESTS          : ");
+		Label reqLabel = new Label("REQUESTS             : ");
                 requestCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     requestCont.setStyle("-fx-background-color: GREEN");
 		});

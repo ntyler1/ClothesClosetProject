@@ -303,6 +303,7 @@ public class AddColorView extends View
 			else
 			{
 				displayMessage(val);
+                                clearValues();
 			}
 
 		}
