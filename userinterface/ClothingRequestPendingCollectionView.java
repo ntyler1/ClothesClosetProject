@@ -168,7 +168,7 @@ public class ClothingRequestPendingCollectionView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.DARKGREEN);
+		actionText.setFill(Color.BLACK);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
                 
