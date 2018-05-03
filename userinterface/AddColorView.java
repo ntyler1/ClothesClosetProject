@@ -110,7 +110,7 @@ public class AddColorView extends View
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.GREEN);
+		actionText.setFill(Color.BLACK);
 		container.getChildren().add(actionText);
                 container.setAlignment(Pos.CENTER);
 
