@@ -28,6 +28,8 @@ import javafx.scene.image.ImageView;
 // project imports
 import impresario.IModel;
 import java.util.Vector;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
@@ -60,7 +62,7 @@ public class ReceptionistView extends View
 	private Button removeRequestButton;
 
 	private Button checkoutClothingItemButton;
-	private Button listAvailableInventoryButton;
+	private MenuButton reportsButton;
 
 	private Button cancelButton;
 
@@ -156,13 +158,39 @@ public class ReceptionistView extends View
 		checkoutCont.getChildren().add(checkoutClothingItemButton);
                 checkoutCont.setAlignment(Pos.CENTER);
 
+                icon = new ImageView(new Image("/images/reportcolor.png"));
+		icon.setFitHeight(20);
+		icon.setFitWidth(20);
+                ImageView list = new ImageView(new Image("/images/listcolor.png"));
+                list.setFitHeight(15);
+                list.setFitWidth(15);
+                MenuItem availInventory = new MenuItem("List Avaliable Inventory", list );
+                MenuItem report2 = new MenuItem("Report 2");
+                MenuItem report3 = new MenuItem("Report 3");
+                MenuItem report4 = new MenuItem("Report 4");
+
+                MenuButton reportsButton = new MenuButton("Generate Reports", icon, availInventory, report2, report3, report4);
+		reportsButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+                reportsButton.setStyle("-fx-menu-color-highlighted: DARKGREEN; -fx-selection-bar:gold");
+		availInventory.setOnAction((ActionEvent e) -> {
+			myModel.stateChangeRequest("ListAvailableInventory", null);
+		});
+		reportsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+			reportsButton.setEffect(shadow);
+                        statusLog.displayInfoMessage("Displays List of Reports");
+		});
+		reportsButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+			reportsButton.setEffect(null);
+                        clearErrorMessage();
+		});
+                checkoutCont.getChildren().add(reportsButton);
 		container.getChildren().add(checkoutCont);
 
 		HBox articleTypeCont = new HBox(10);
 		articleTypeCont.setAlignment(Pos.CENTER);
 		Label atLabel = new Label("ARTICLE TYPES      : ");
                 articleTypeCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    articleTypeCont.setStyle("-fx-background-color: GREEN");
+                    articleTypeCont.setStyle("-fx-background-color: DARKGREEN");
 		});
                 articleTypeCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     articleTypeCont.setStyle("-fx-background-color: SLATEGREY");
@@ -232,7 +260,7 @@ public class ReceptionistView extends View
 		colorCont.setAlignment(Pos.CENTER_LEFT);
 		Label colorLabel = new Label("COLORS                 : ");
                 colorCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    colorCont.setStyle("-fx-background-color: GREEN");
+                    colorCont.setStyle("-fx-background-color: DARKGREEN");
 		});
                 colorCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     colorCont.setStyle("-fx-background-color: SLATEGREY");
@@ -299,7 +327,7 @@ public class ReceptionistView extends View
 		clothingItemCont.setAlignment(Pos.CENTER_LEFT);
 		Label ciLabel = new Label("CLOTHING ITEMS : ");
                 clothingItemCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    clothingItemCont.setStyle("-fx-background-color: GREEN");
+                    clothingItemCont.setStyle("-fx-background-color: DARKGREEN");
 		});
                 clothingItemCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     clothingItemCont.setStyle("-fx-background-color: SLATEGREY");
@@ -365,7 +393,7 @@ public class ReceptionistView extends View
 		requestCont.setAlignment(Pos.CENTER_LEFT);
 		Label reqLabel = new Label("REQUESTS             : ");
                 requestCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-                    requestCont.setStyle("-fx-background-color: GREEN");
+                    requestCont.setStyle("-fx-background-color: DARKGREEN");
 		});
                 requestCont.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
                     requestCont.setStyle("-fx-background-color: SLATEGREY");
@@ -429,28 +457,6 @@ public class ReceptionistView extends View
                 requestCont.setAlignment(Pos.CENTER);
 
 		container.getChildren().add(requestCont);
-
-		HBox listAvailCont = new HBox(10);
-		listAvailCont.setAlignment(Pos.CENTER);
-		icon = new ImageView(new Image("/images/listcolor.png"));
-		icon.setFitHeight(15);
-		icon.setFitWidth(15);
-		listAvailableInventoryButton = new Button("List Available Inventory",icon);
-		listAvailableInventoryButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-		listAvailableInventoryButton.setOnAction((ActionEvent e) -> {
-			myModel.stateChangeRequest("ListAvailableInventory", null);
-		});
-		listAvailableInventoryButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
-			listAvailableInventoryButton.setEffect(shadow);
-                        statusLog.displayInfoMessage("Displays list of all Available Inventory");
-		});
-		listAvailableInventoryButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
-			listAvailableInventoryButton.setEffect(null);
-                        clearErrorMessage();
-		});
-		listAvailCont.getChildren().add(listAvailableInventoryButton);
-                listAvailCont.setAlignment(Pos.CENTER);
-		container.getChildren().add(listAvailCont);
 
 		HBox doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
