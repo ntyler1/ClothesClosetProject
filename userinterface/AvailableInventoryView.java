@@ -51,6 +51,7 @@ public class AvailableInventoryView extends View
         protected HBox btnContainer;
 	protected Button cancelButton;
 	protected Button submitButton;
+        protected Button saveButton;
 	protected MessageView statusLog;
 	protected Text foundText; 
 
@@ -171,7 +172,7 @@ public class AvailableInventoryView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
 
@@ -289,7 +290,7 @@ public class AvailableInventoryView extends View
 		icon.setFitWidth(15);
 		cancelButton = new Button("Return", icon);
 		cancelButton.setGraphic(icon);
-                cancelButton.setPadding(new Insets(10,10,10,10));
+                cancelButton.setPadding(new Insets(5,5,5,5));
 		cancelButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -305,6 +306,28 @@ public class AvailableInventoryView extends View
 		cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			cancelButton.setEffect(null);
 		});
+                
+                icon = new ImageView(new Image("/images/savecolor.png"));
+		icon.setFitHeight(15);
+		icon.setFitWidth(15);
+		saveButton = new Button("Save to File", icon);
+		saveButton.setGraphic(icon);
+                saveButton.setPadding(new Insets(5,5,5,5));
+		saveButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		saveButton.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent e) {
+				clearErrorMessage();
+                                saveToExcelFile();
+			}
+		});
+		saveButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+			saveButton.setEffect(new DropShadow());
+		});
+		saveButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+			saveButton.setEffect(null);
+		});
 
                 btnContainer = new HBox(10);
                 btnContainer.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -314,6 +337,7 @@ public class AvailableInventoryView extends View
                     btnContainer.setStyle("-fx-background-color: SLATEGREY");
 		});
 		btnContainer.setAlignment(Pos.CENTER);
+                btnContainer.getChildren().add(saveButton);
 		btnContainer.getChildren().add(cancelButton);
 
 		vbox.getChildren().add(grid);
@@ -357,7 +381,5 @@ public class AvailableInventoryView extends View
 	public void clearErrorMessage()
 	{
 		statusLog.clearErrorMessage();
-	}
-
-
+        }
 }
