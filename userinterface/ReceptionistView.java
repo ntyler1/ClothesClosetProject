@@ -162,8 +162,8 @@ public class ReceptionistView extends View
 		icon.setFitHeight(20);
 		icon.setFitWidth(20);
                 ImageView list = new ImageView(new Image("/images/listcolor.png"));
-                list.setFitHeight(15);
-                list.setFitWidth(15);
+                list.setFitHeight(20);
+                list.setFitWidth(20);
                 MenuItem availInventory = new MenuItem("List Avaliable Inventory", list );
                 MenuItem report2 = new MenuItem("Report 2");
                 MenuItem report3 = new MenuItem("Report 3");

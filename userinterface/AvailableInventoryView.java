@@ -38,8 +38,17 @@ import java.util.Enumeration;
 
 // project imports
 import impresario.IModel;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Properties;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
+import javax.swing.JOptionPane;
 import model.Inventory;
 import model.InventoryCollection;
 
@@ -99,8 +108,8 @@ public class AvailableInventoryView extends View
 				Enumeration entries = entryList.elements();
 				while (entries.hasMoreElements() == true)
 				{
-					Inventory nextAT = (Inventory)entries.nextElement();
-					Vector<String> view = nextAT.getEntryListView();
+					Inventory nextI = (Inventory)entries.nextElement();
+					Vector<String> view = nextI.getEntryListView();
 
 					// add this list entry to the list
 					InventoryTableModel nextTableRowData = new InventoryTableModel(view);
@@ -382,4 +391,89 @@ public class AvailableInventoryView extends View
 	{
 		statusLog.clearErrorMessage();
         }
+        
+       protected void writeToFile(String fName)
+        {
+            Vector allColumnNames = new Vector();
+
+            try
+            {
+                FileWriter outFile = new FileWriter(fName);
+                PrintWriter out = new PrintWriter(outFile);
+                InventoryCollection inventoryCollection = (InventoryCollection)myModel.getState("InventoryList");
+                Vector entryList = (Vector)inventoryCollection.getState("Inventory");
+
+                if ((entryList == null) || (entryList.size() == 0))
+                    return;
+
+                allColumnNames.addElement("ScoutName");
+                allColumnNames.addElement("Gender");
+                allColumnNames.addElement("Size");
+                allColumnNames.addElement("ArticleType");
+                allColumnNames.addElement("Color1");
+                allColumnNames.addElement("Color2");
+                allColumnNames.addElement("Brand");
+                allColumnNames.addElement("Notes");
+                allColumnNames.addElement("DonorLastName");
+                allColumnNames.addElement("DonorFirstName");
+                allColumnNames.addElement("DonorPhone");
+                allColumnNames.addElement("DonorEmail");
+                allColumnNames.addElement("Status");
+                allColumnNames.addElement("RecevierNetid");
+                allColumnNames.addElement("RecevierLastName");
+                allColumnNames.addElement("RecevierFirstName");
+                allColumnNames.addElement("DateDonated");
+                allColumnNames.addElement("DateTaken");
+
+                String line = "Barcode, Gender, Size, Article Type, Color 1, Color 2, Brand, Notes, Donor Last Name, "
+                        + "Donor First Name, Donor Phone, Donor Email, Date Donated";
+
+                out.println(line);
+
+                for (int k = 0; k < entryList.size(); k++)
+                {
+                    String valuesLine = "";
+                    Inventory nextI = (Inventory)entryList.elementAt(k);
+                    Vector<String> nextRow = nextI.getEntryListView();
+
+                    for (int j = 0; j < allColumnNames.size()-1; j++)
+                    {
+                            String nextValue = nextRow.elementAt(j);
+                            System.out.println(nextValue);
+                            if(nextValue != null)
+                                valuesLine += nextValue + ", ";
+                    }
+                    out.println(valuesLine);
+                }
+
+                // Also print the shift count and filter type
+                out.println("\nTotal number of Inventory Records: " + entryList.size());
+
+                // Finally, print the time-stamp
+                DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
+                DateFormat timeFormat = new SimpleDateFormat("hh:mm aaa");
+                Date date = new Date();
+                String timeStamp = dateFormat.format(date) + " " +
+                                   timeFormat.format(date);
+
+                out.println("Inventory Report created on " + timeStamp);
+
+                out.close();
+
+                // Acknowledge successful completion to user with JOptionPane
+                JOptionPane.showMessageDialog(null,
+                        "Report data saved successfully to selected file");
+            }
+            catch (FileNotFoundException e)
+            {
+                JOptionPane.showMessageDialog(null, "Could not access file to save: "
+                        + fName, "Save Error", JOptionPane.ERROR_MESSAGE );
+            }
+            catch (IOException e)
+            {
+                JOptionPane.showMessageDialog(null, "Error in saving to file: "
+                        + e.toString(), "Save Error", JOptionPane.ERROR_MESSAGE );
+
+            }
+    }
 }

@@ -103,7 +103,7 @@ public class InventoryCollection  extends EntityBase implements IView
         
         public void findAvailableInventory(){
             String query = "SELECT Barcode, Gender, Size, ArticleType.Description AS ArticleType, Color.Description AS Color1, Color2.Description AS Color2, Brand, Notes, \n" +
-                        ""+myTableName+".Status , DonorLastName, DonorFirstName, DonorPhone, DonorEmail, DateDonated\n" +
+                        "DonorLastName, DonorFirstName, DonorPhone, DonorEmail, DateDonated\n" +
                         "FROM "+myTableName+"\n" +
                         "INNER JOIN ArticleType ON ArticleType.BarcodePrefix = ArticleType\n" +
                         "INNER JOIN Color ON Color.BarcodePrefix = Color1\n" +

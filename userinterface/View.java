@@ -109,7 +109,7 @@ public abstract class View extends Group
         {
             String fileName = "";
 
-            int returnVal = chooser.showOpenDialog(null);
+            int returnVal = chooser.showSaveDialog(null);
 
             if(returnVal == JFileChooser.APPROVE_OPTION)
             {
@@ -145,7 +145,7 @@ public abstract class View extends Group
                         // Custom button text
                         Object[] options = {"Open reports folder",
                                             "Open this report",
-                                            "Do nothing, continue"};
+                                            "Cancel"};
 
                         // Ask user what (s)he wants to do
                         int n = JOptionPane.showOptionDialog(null,

@@ -93,29 +93,6 @@ public class ListAvailableInventoryTransaction extends Transaction
 			{
 				processTransaction(null);
 			}
-		//		else
-		//		if (key.equals("ArticleTypeSelected") == true)
-		//		{
-		//			mySelectedArticleType = myArticleTypeList.retrieve((String)value);
-		//			try
-		//			{
-		//				
-		//				Scene newScene = createModifyArticleTypeView();
-		//			
-		//				swapToView(newScene);
-		//
-		//			}
-		//			catch (Exception ex)
-		//			{
-		//				new Event(Event.getLeafLevelClassName(this), "processTransaction",
-		//					"Error in creating ModifyArticleTypeView", Event.ERROR);
-		//			}
-		//		}
-		//		else
-		//		if (key.equals("ArticleTypeData") == true)
-		//		{
-		//			processArticleTypeModification((Properties)value);
-		//		}
 
 		myRegistry.updateSubscribers(key, this);
 	}
