@@ -25,6 +25,9 @@ public class CheckoutClothingItemTransaction extends Transaction
     private Inventory myInventory;
 	private InventoryCollection myInventoryList;
 	private int inventoryCount = 0;
+	private Vector<Inventory> inv = new Vector<Inventory>();
+	private String possibleNetId;
+	private String possibleDateTaken;
    
 
 
@@ -46,7 +49,7 @@ public class CheckoutClothingItemTransaction extends Transaction
     protected void setDependencies()
     {
         dependencies = new Properties();
-        dependencies.setProperty("CancelSearchInventory", "CancelTransaction");
+		
         dependencies.setProperty("CancelCheckOutCI", "CancelTransaction");
         dependencies.setProperty("RecepientData", "TransactionError");
 
@@ -59,28 +62,24 @@ public class CheckoutClothingItemTransaction extends Transaction
     //----------------------------------------------------------
     public void processTransaction(Properties props)
     {
-		if (props.getProperty("Barcode") != null)
+		for(Inventory i: inv)
 		{
-			String barcode = props.getProperty("Barcode");
-			try{
-				myInventory = new Inventory(barcode);
+			String netId = props.getProperty("ReceiverNetid");
+			if (netId != null) {
+				i.setProperty("ReceiverNetid", netId);
 			}
-			catch(InvalidPrimaryKeyException e){
-				transactionErrorMessage = "ERROR: No Clothing Item Found With Entered Barcode";
+			String lastName = props.getProperty("ReceiverLastName");
+			if (lastName != null) {
+				i.setProperty("ReceiverLastName", lastName);
 			}
-			catch(MultiplePrimaryKeysException e){
-				transactionErrorMessage = "ERROR: Multiple Clothing Item Found With Entered Barcode";
+			String firstName = props.getProperty("ReceiverFirstName");
+			if (firstName != null) {
+				i.setProperty("ReceiverFirstName", firstName);
 			}
-		}
-		try
-		{
-			Scene newScene = createEnterRecepientInfoView();
-			swapToView(newScene);
-		}
-		catch (Exception ex)
-		{
-			new Event(Event.getLeafLevelClassName(this), "processTransaction",
-					"Error in creating InventoryCollectionView", Event.ERROR);
+			i.setProperty("DateTaken", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			i.stateChangeRequest("Status", "Received");
+			i.update(null);
+			transactionErrorMessage = (String)i.getState("UpdateStatusMessage");
 		}
     }
 
@@ -88,26 +87,6 @@ public class CheckoutClothingItemTransaction extends Transaction
      * This method encapsulates all the logic of Checking out of the inventory
      */
     //----------------------------------------------------------
-    private void processInventoryCheckout(Properties props)
-    {
-        String netId = props.getProperty("ReceiverNetid");
-        if (netId != null) {
-            myInventory.setProperty("ReceiverNetid", netId);
-        }
-        String lastName = props.getProperty("ReceiverLastName");
-        if (lastName != null) {
-            myInventory.setProperty("ReceiverLastName", lastName);
-        }
-		String firstName = props.getProperty("ReceiverFirstName");
-		if (firstName != null) {
-            myInventory.setProperty("ReceiverFirstName", firstName);
-        }
-        myInventory.setProperty("DateTaken", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
-		myInventory.stateChangeRequest("Status", "Received");
-		myInventory.update(null);
-        transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
-    }
-	
 	private void processNetId(Properties props)
 	{
 		if(props.getProperty("NetIdCheck") != null){
@@ -116,6 +95,44 @@ public class CheckoutClothingItemTransaction extends Transaction
 			myInventoryList.findByDateAndNetId(netId);
 			inventoryCount = myInventoryList.retrieveCount();
 		}
+	}
+	
+	private void addBarcodeToTable (Properties props)
+	{
+		if(props.getProperty("BarcodeToAdd") != null){
+			String barcode = props.getProperty("BarcodeToAdd");
+			boolean check = true;
+			try{
+				myInventory = new Inventory(barcode);
+				for(Inventory i: inv)
+				{
+					if(i.getState("Barcode").equals(myInventory.getState("Barcode"))){     //this code makes sure that there are no duplicates in the table
+						check = false;
+					}
+				}
+				if(check)
+				{
+					checkForPastCheckout();
+					inv.add(myInventory);
+					myInventoryList = new InventoryCollection();
+					myInventoryList.addToBarcodeList(inv);
+				}
+				myInventory = null;
+			}
+			catch(InvalidPrimaryKeyException e){
+				transactionErrorMessage = "ERROR: No Clothing Item Found With Entered Barcode";
+				myInventory = null;
+				myInventory.getState("Barcode");
+			}
+			catch(MultiplePrimaryKeysException e){
+				transactionErrorMessage = "ERROR: Multiple Clothing Item Found With Entered Barcode";
+			}
+			
+		}	
+	}
+	private void checkForPastCheckout(){
+		possibleDateTaken = (String)myInventory.getState("DateTaken");
+		possibleNetId = (String)myInventory.getState("ReceiverNetid");
 	}
 
     //-----------------------------------------------------------
@@ -150,6 +167,18 @@ public class CheckoutClothingItemTransaction extends Transaction
 			else
 				return "";
 		}
+		if (key.equals("PossibleReceiverNetid") == true)
+		{
+			return possibleNetId;
+		}
+		if (key.equals("PossibleDateTaken") == true)
+		{
+			return possibleDateTaken;
+		}
+		if (key.equals("InventoryList") == true)
+		{
+			return myInventoryList;
+		}
         return null;
     }
 
@@ -163,19 +192,19 @@ public class CheckoutClothingItemTransaction extends Transaction
             doYourJob();
         }
         else
-        if (key.equals("SearchInventory") == true)
-        {
-            processTransaction((Properties)value);
-        }
-        else
         if (key.equals("RecepientData") == true)
         {
-            processInventoryCheckout((Properties)value);
+            processTransaction((Properties)value);
         }
 		else
         if (key.equals("NetIdCheck") == true)
         {
             processNetId((Properties)value);
+        }
+		else
+        if (key.equals("AddBarcode") == true)
+        {
+            addBarcodeToTable((Properties)value);
         }
 
         myRegistry.updateSubscribers(key, this);
@@ -188,14 +217,14 @@ public class CheckoutClothingItemTransaction extends Transaction
     //------------------------------------------------------
     protected Scene createView()
     {
-        Scene currentScene = myViews.get("CheckOutItemView");
+        Scene currentScene = myViews.get("EnterRecepientInfoView");
 
         if (currentScene == null)
         {
             // create our initial view
-            View newView = ViewFactory.createView("CheckOutItemView", this);
+            View newView = ViewFactory.createView("EnterRecepientInfoView", this);
             currentScene = new Scene(newView);
-            myViews.put("CheckOutItemView", currentScene);
+            myViews.put("EnterRecepientInfoView", currentScene);
 
             return currentScene;
         }
@@ -204,19 +233,5 @@ public class CheckoutClothingItemTransaction extends Transaction
             return currentScene;
         }
     }
-
-    /**
-     * Create the view using which data about selected article type can be modified
-     */
-    //------------------------------------------------------
-    protected Scene createEnterRecepientInfoView()
-    {
-        View newView = ViewFactory.createView("EnterRecepientInfoView", this);
-        Scene currentScene = new Scene(newView);
-
-        return currentScene;
-
-    }
-
 }
 
