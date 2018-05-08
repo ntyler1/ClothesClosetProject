@@ -165,7 +165,7 @@ public class EnterRecepientInfoView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(450);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.LIGHTGREEN);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
 
@@ -258,7 +258,7 @@ public class EnterRecepientInfoView extends View
 		ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
-		addBarcodeButton = new Button("Add Barcode",icon);
+		addBarcodeButton = new Button("Add Item",icon);
 		addBarcodeButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		addBarcodeButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
@@ -350,42 +350,20 @@ public class EnterRecepientInfoView extends View
 								alert.setHeaderText("Done!");
 								alert.setContentText("Items have been checked out");
 								result = alert.showAndWait();
-								
-								myModel.stateChangeRequest("CancelCheckOutCI", null);
 							}
 							else
 								myModel.stateChangeRequest("CancelCheckOutCI", null);
 						}
 						else
 						{
-							props.setProperty("ReceiverNetid", recepientNetID);
-							props.setProperty("ReceiverFirstName", recepientFirstName);
-							props.setProperty("ReceiverLastName", recepientLastName);
-						
-							//Code here to check If the Date is within 6 months of last checkout
-							NetIdCheck = new Properties();
-							NetIdCheck.setProperty("NetIdCheck", recepientNetID);
-							myModel.stateChangeRequest("NetIdCheck", NetIdCheck);
-							netIdCount = (Integer)myModel.getState("NetIdCheck");
-							if(netIdCount >= 1)
-							{
-								Alert alert = new Alert(AlertType.CONFIRMATION);
-								alert.setTitle("Confirmation Dialog");
-								alert.setHeaderText("Too Many Checkouts!");
-								alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
-								((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
-                                                                Optional<ButtonType> result = alert.showAndWait();
-							myModel.stateChangeRequest("RecepientData", props);
-                                                        }
+							myModel.stateChangeRequest("RecepientData", props);                                                       
 							Alert alert = new Alert(AlertType.CONFIRMATION);
 							alert.setTitle("Confirmation Dialog");
 							alert.setHeaderText("Done!");
 							alert.setContentText("Items have been checked out");
 							Optional<ButtonType> result = alert.showAndWait();
-							
-							myModel.stateChangeRequest("CancelCheckOutCI", null);
-						}
-						
+                                                        myModel.stateChangeRequest("CancelCheckOutCI", null);
+						}						
 					}
 					else {
 						lastName.setStyle("-fx-border-color: firebrick;");
