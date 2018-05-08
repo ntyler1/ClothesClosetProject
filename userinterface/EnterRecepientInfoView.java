@@ -350,6 +350,7 @@ public class EnterRecepientInfoView extends View
 								alert.setHeaderText("Done!");
 								alert.setContentText("Items have been checked out");
 								result = alert.showAndWait();
+								myModel.stateChangeRequest("CancelCheckOutCI", null);
 							}
 							else
 								myModel.stateChangeRequest("CancelCheckOutCI", null);
@@ -362,7 +363,7 @@ public class EnterRecepientInfoView extends View
 							alert.setHeaderText("Done!");
 							alert.setContentText("Items have been checked out");
 							Optional<ButtonType> result = alert.showAndWait();
-                                                        myModel.stateChangeRequest("CancelCheckOutCI", null);
+                            myModel.stateChangeRequest("CancelCheckOutCI", null);
 						}						
 					}
 					else {
