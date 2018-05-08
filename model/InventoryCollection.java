@@ -170,6 +170,14 @@ public class InventoryCollection  extends EntityBase implements IView
 		else
 			return 0;
 	}
+	public void addToBarcodeList(Vector<Inventory> inv)
+	{
+		if(inv != null)
+		{
+			inventory = new Vector<Inventory>();
+			inventory = (Vector<Inventory>)inv.clone();
+		}
+	}
 
 	/** Called via the IView relationship */
 	//----------------------------------------------------------

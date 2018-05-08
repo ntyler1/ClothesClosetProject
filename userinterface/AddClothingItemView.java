@@ -55,9 +55,14 @@ public class AddClothingItemView extends View
 	protected TextField donorEmail;
 	protected Text actionText;
 	protected Text prompt;
+	String SaveDonorFName;
+	String SaveDonorLName;
+	String SaveDonorPhone;
+	String SaveDonorEmail;
 
 	protected Button submitButton;
 	protected Button cancelButton;
+	protected Button donor;
 	protected ComboBox<Gender> gender;
 	protected TextField size;
 	protected ComboBox<ArticleType> articleType;
@@ -598,8 +603,28 @@ public class AddClothingItemView extends View
 		cancelButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			cancelButton.setEffect(null);
 		});
-		doneCont.getChildren().add(cancelButton);
+		
+		icon = new ImageView(new Image("/images/editcolor.png"));
+		icon.setFitHeight(15);
+		icon.setFitWidth(15);
+		donor = new Button("Use Last Info", icon);
+		donor.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+		donor.setOnAction((ActionEvent e) -> {
+			donorFName.setText(SaveDonorFName);
+			donorLName.setText(SaveDonorLName);
+			donorPhone.setText(SaveDonorPhone);
+			donorEmail.setText(SaveDonorEmail);
+		});
+		donor.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
+			donor.setEffect(new DropShadow());
+		});
+		donor.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
+			donor.setEffect(null);
+		});
 
+		doneCont.getChildren().add(cancelButton);
+		doneCont.getChildren().add(donor);
+		
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(doneCont);
                 vbox.setAlignment(Pos.CENTER);
@@ -692,6 +717,10 @@ public class AddClothingItemView extends View
 		size.clear();
 		brand.clear();
 		notes.clear();
+		SaveDonorFName = donorFName.getText();
+		SaveDonorLName = donorLName.getText();
+		SaveDonorPhone = donorPhone.getText();
+		SaveDonorEmail = donorEmail.getText();
 		donorFName.clear();
 		donorLName.clear();
 		donorPhone.clear();
