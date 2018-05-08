@@ -8,6 +8,17 @@ import javafx.scene.image.ImageView;
 
 // project imports
 import impresario.IModel;
+import java.awt.Label;
+import java.util.Properties;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Gender;
 import model.ArticleType;
 import model.ColorX;
@@ -140,9 +151,40 @@ public class RemoveClothingItemView extends AddClothingItemView {
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		submitButton.setGraphic(icon);
+                submitButton.setOnAction((ActionEvent e) -> {
+                    displayErrorAlert();
+                });
 	}
+        
+        private void displayErrorAlert(){
+            clearErrorMessage();
+            Alert alert = new Alert(Alert.AlertType.ERROR, null, ButtonType.YES, ButtonType.NO);
+            alert.setHeaderText(null);
+            alert.setTitle("Remove Clothing Item");
+            alert.setHeaderText("Are you sure want to remove this Clothing Item?");
+            ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+            
+            Text label = new Text("Removal Notes : ");
 
-	public void clearValues(){
+            TextField removeReason = new TextField();
+            removeReason.setMinWidth(180);
 
-	}
+            GridPane rContent = new GridPane();
+            rContent.add(label, 0, 0);
+            rContent.add(removeReason, 1, 0);
+            alert.getDialogPane().setExpandableContent(rContent);
+            
+            alert.showAndWait();
+
+            if (alert.getResult() == ButtonType.YES) {
+               if(removeReason.getText() == null || removeReason.getText().equals(""))
+                    myModel.stateChangeRequest("ClothingItemData", null);
+               else
+               {
+                   Properties props = new Properties();
+                   props.setProperty("Reason", removeReason.getText());
+                   myModel.stateChangeRequest("ClothingItemData", props);
+               }
+            }
+        }
 }

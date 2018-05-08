@@ -210,9 +210,6 @@ public class Inventory extends EntityBase implements IView
 				whereClause.setProperty("Barcode", persistentState.getProperty("Barcode"));
 				updatePersistentState(mySchema, persistentState, whereClause);
 				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " removed successfully!";
-			} else {
-				Integer Id = insertPersistentState(mySchema, persistentState);
-				updateStatusMessage = "Inventory Record with barcode : " + persistentState.getProperty("Barcode") + " installed successfully";
 			}
 		} catch (SQLException ex) {
 			updateStatusMessage = "Error in removing clothing item data in database!";

@@ -81,7 +81,9 @@ public class RemoveClothingItemTransaction extends Transaction
 	//----------------------------------------------------------
 	private void processInventoryRemoval(Properties props)
 	{
-		myInventory.stateChangeRequest("Status", "Removed");
+		if(props != null)
+                    myInventory.stateChangeRequest("Notes", props.getProperty("Reason"));
+                myInventory.stateChangeRequest("Status", "Removed");
 		myInventory.remove();
 		transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
 	}

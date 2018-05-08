@@ -180,7 +180,7 @@ public class ArticleTypeCollectionView extends View
 
 		tableOfArticleTypes = new TableView<ArticleTypeTableModel>();
 		tableOfArticleTypes.setEffect(new DropShadow());
-		tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: Green;");
+		tableOfArticleTypes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: gold;");
 		tableOfArticleTypes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;

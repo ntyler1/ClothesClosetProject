@@ -224,7 +224,7 @@ public class AvailableInventoryView extends View
 
 		tableOfInventory = new TableView<InventoryTableModel>();
 		tableOfInventory.setEffect(new DropShadow());
-		tableOfInventory.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
+		tableOfInventory.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:gold;");
 
 		TableColumn barcodeColumn = new TableColumn("Barcode") ;
 		barcodeColumn.setMinWidth(40);
@@ -292,7 +292,7 @@ public class AvailableInventoryView extends View
 				new PropertyValueFactory<InventoryTableModel, String>("dateDonated"));
 
 		tableOfInventory.getColumns().addAll(barcodeColumn, genderColumn, sizeColumn, articleTypeColumn, color1Column, color2Column, brandColumn, 
-				notesColumn, donorLastNameColumn, donorFirstNameColumn, donorPhoneColumn, donorEmailColumn,
+				notesColumn, donorFirstNameColumn, donorLastNameColumn,  donorPhoneColumn, donorEmailColumn,
 				dateDonatedColumn);
 		ImageView icon = new ImageView(new Image("/images/return.png"));
 		icon.setFitHeight(15);
@@ -439,7 +439,6 @@ public class AvailableInventoryView extends View
                     for (int j = 0; j < allColumnNames.size()-1; j++)
                     {
                             String nextValue = nextRow.elementAt(j);
-                            System.out.println(nextValue);
                             if(nextValue != null)
                                 valuesLine += nextValue + ", ";
                     }

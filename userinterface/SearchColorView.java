@@ -114,7 +114,7 @@ public class SearchColorView extends View
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 18));
 		actionText.setWrappingWidth(350);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
                 
                 Text blankText2 = new Text("  ");

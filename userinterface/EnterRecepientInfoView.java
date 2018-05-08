@@ -40,6 +40,7 @@ import model.ColorCollection;
 import javafx.scene.control.ComboBox;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 public class EnterRecepientInfoView extends View {
@@ -261,7 +262,8 @@ public class EnterRecepientInfoView extends View {
 								alert.setTitle("Confirmation Dialog");
 								alert.setHeaderText("Too Many Checkouts!");
 								alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
-								Optional<ButtonType> result = alert.showAndWait();
+								((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+                                                                Optional<ButtonType> result = alert.showAndWait();
 							
 								if (result.get() == ButtonType.OK)
 								{

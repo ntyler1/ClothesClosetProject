@@ -257,3 +257,4 @@ Caused by: java.net.SocketException: Software caused connection abort: socket wr
 ** END NESTED EXCEPTION **
 
 >
+[5/7/18 4:40 PM]|Closet|Closet.<init>|Error|NOTAG|null<Unable to create Receptionist object>

@@ -27,15 +27,24 @@ import javafx.scene.image.ImageView;
 
 // project imports
 import impresario.IModel;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.Vector;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.Bloom;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.util.StringConverter;
 import model.ClothingRequest;
 import model.ClothingRequestCollection;
+import utilities.GlobalVariables;
 
 /** The class containing the Transaction Choice View  for the ATM application */
 //==============================================================
@@ -142,14 +151,14 @@ public class ReceptionistView extends View
 		ImageView icon = new ImageView(new Image("/images/buyingcolor.png"));
 		icon.setFitHeight(20);
 		icon.setFitWidth(20);
-		checkoutClothingItemButton = new Button("Checkout Clothing Item", icon);
+		checkoutClothingItemButton = new Button("Check Out Clothing Item", icon);
 		checkoutClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		checkoutClothingItemButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("CheckoutClothingItem", null);
 		});
 		checkoutClothingItemButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			checkoutClothingItemButton.setEffect(shadow);
-                        statusLog.displayInfoMessage("Checkout a Clothing Item to a Student");
+                        statusLog.displayInfoMessage("Check Out a Clothing Item to a Student");
 		});
 		checkoutClothingItemButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			checkoutClothingItemButton.setEffect(null);
@@ -158,26 +167,85 @@ public class ReceptionistView extends View
 		checkoutCont.getChildren().add(checkoutClothingItemButton);
                 checkoutCont.setAlignment(Pos.CENTER);
 
-                icon = new ImageView(new Image("/images/reportcolor.png"));
-		icon.setFitHeight(20);
-		icon.setFitWidth(20);
-                ImageView list = new ImageView(new Image("/images/listcolor.png"));
-                list.setFitHeight(20);
-                list.setFitWidth(20);
-                MenuItem availInventory = new MenuItem("List Avaliable Inventory", list );
-                MenuItem report2 = new MenuItem("Report 2");
+   
+                icon = new ImageView(new Image("/images/listcolor.png"));
+                icon.setFitHeight(20);
+                icon.setFitWidth(20);
+                MenuItem availInventory = new MenuItem("List Available Inventory", icon );
+                icon = new ImageView(new Image("/images/datecolor.png"));
+                icon.setFitHeight(20);
+                icon.setFitWidth(20);
+                MenuItem itemCheckedOutTillDate = new MenuItem("Checked Out Untill Date", icon);
                 MenuItem report3 = new MenuItem("Report 3");
                 MenuItem report4 = new MenuItem("Report 4");
 
-                MenuButton reportsButton = new MenuButton("Generate Reports", icon, availInventory, report2, report3, report4);
+                icon = new ImageView(new Image("/images/reportcolor.png"));
+		icon.setFitHeight(20);
+		icon.setFitWidth(20);
+                MenuButton reportsButton = new MenuButton("Generate Reports", icon, availInventory, itemCheckedOutTillDate, report3, report4);
 		reportsButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
-                reportsButton.setStyle("-fx-menu-color-highlighted: DARKGREEN; -fx-selection-bar:gold");
+                reportsButton.setStyle("-fx-selection-bar:gold");
 		availInventory.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("ListAvailableInventory", null);
 		});
+                itemCheckedOutTillDate.setOnAction((ActionEvent e) -> {
+			Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Checked Out Items Untill Date Report");
+                        alert.setHeaderText("Enter a Date for the Checked Out Items Report!");
+                        alert.getDialogPane().setMinHeight(175);
+                        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+
+                        DatePicker datePicker = new DatePicker();
+
+                        datePicker.setShowWeekNumbers(false);
+                        String pattern = "dd-MM-yyyy";
+
+                        datePicker.setConverter(new StringConverter<LocalDate>() {
+                             DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);
+
+                             @Override 
+                             public String toString(LocalDate date) {
+                                 if (date != null) {
+                                     return dateFormatter.format(date);
+                                 } else {
+                                     return "";
+                                 }
+                             }
+
+                             @Override 
+                             public LocalDate fromString(String string) {
+                                 if (string != null && !string.isEmpty()) {
+                                     return LocalDate.parse(string, dateFormatter);
+                                 } else {
+                                     return null;
+                                 }
+                             }
+                         });
+                        GridPane grid = new GridPane();
+                        Text label = new Text("Untill Date : ");
+                        grid.add(label, 0, 0);
+                        grid.add(datePicker, 1, 0);
+                        alert.getDialogPane().setContent(grid);
+                        
+                         final Button btOk = (Button) alert.getDialogPane().lookupButton(ButtonType.OK);
+                            btOk.addEventFilter(ActionEvent.ACTION, event -> {
+                                if(datePicker.getValue() != null){  
+                                    GlobalVariables.UNTILL_DATE = datePicker.getValue().format(DateTimeFormatter.ofPattern(pattern));
+                                    myModel.stateChangeRequest("UntillDateReport", null); 
+                                }
+                                else{
+                                    Text error = new Text("Enter a date!");
+                                    error.setFill(Color.FIREBRICK);
+                                    grid.add(error, 1, 1);
+                                    alert.getDialogPane().setContent(grid);
+                                    event.consume();
+                                }
+                            });
+                        alert.showAndWait();
+		});
 		reportsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			reportsButton.setEffect(shadow);
-                        statusLog.displayInfoMessage("Displays List of Reports");
+                        statusLog.displayInfoMessage("Displays List of Reports to Choose From");
 		});
 		reportsButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			reportsButton.setEffect(null);

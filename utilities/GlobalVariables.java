@@ -3,6 +3,9 @@ package utilities;
 
 // project imports
 
+import java.time.LocalDate;
+
+
 /** Global Variables */
 //==============================================================
 public class GlobalVariables 
@@ -34,6 +37,7 @@ public class GlobalVariables
 	public static final int COLOR_MAX_LENGTH = 10;
 	public static final int SIZE_MAX_LENGTH = 20;
 	public static final int BRAND_MAX_LENGTH = 30;
-	
-	
+        
+        //reports Stuff
+        public static String UNTILL_DATE = null;
 }

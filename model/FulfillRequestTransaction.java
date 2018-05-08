@@ -22,7 +22,7 @@ import userinterface.ViewFactory;
 public class FulfillRequestTransaction extends Transaction
 {
         private ClothingRequestCollection requestList;
-        private InventoryCollection matchingInventory;
+        private InventoryCollection matchingInventory, checkInventory;
         private ClothingRequest mySelectedRequest;
         private Inventory mySelectedInventory;
 	// GUI Components
@@ -75,6 +75,10 @@ public class FulfillRequestTransaction extends Transaction
                         requestList.findAllPending();
 			return requestList;
 		}
+                else if (key.equals("NetIdCheck") == true)
+		{
+                    return (Integer)checkInventory.retrieveCount();
+		}
 		
 		return null;
 	}
@@ -120,6 +124,11 @@ public class FulfillRequestTransaction extends Transaction
                         transactionErrorMessage = "ERROR Occured When Fulfilling Request!";
                     }
 		}
+                else
+                if (key.equals("NetIdCheck") == true)
+                {
+                    processNetId((Properties)value);
+                }
 
 		myRegistry.updateSubscribers(key, this);
 	}
@@ -131,6 +140,12 @@ public class FulfillRequestTransaction extends Transaction
             matchingInventory = new InventoryCollection();
             matchingInventory.findMatchingInventory(gender, articleType);
         }
+        
+        private void processNetId(Properties props)
+	{
+            checkInventory = new InventoryCollection();
+            checkInventory.findByDateAndNetId((String)mySelectedRequest.getState("RequesterNetId"));
+	}
         
         protected void fulfillRequest(String value) throws Exception{
             mySelectedInventory = matchingInventory.retrieve((String)value);

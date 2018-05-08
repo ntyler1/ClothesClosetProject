@@ -108,7 +108,7 @@ public class SearchInventoryView extends View
 		actionText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
                 container.setAlignment(Pos.CENTER);
 	
@@ -134,6 +134,13 @@ public class SearchInventoryView extends View
                 prompt1.setFill(Color.BLACK);
 		prompt1.setFont(Font.font("Copperplate", FontWeight.SEMI_BOLD, 20));
 		vbox.getChildren().add(prompt1);
+                
+                blankText = new Text("  ");
+		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText.setWrappingWidth(350);
+		blankText.setTextAlignment(TextAlignment.CENTER);
+		blankText.setFill(Color.WHITE);
+		vbox.getChildren().add(blankText);
 		
 		GridPane grid = new GridPane();
 		grid.setAlignment(Pos.CENTER);
@@ -145,13 +152,14 @@ public class SearchInventoryView extends View
 		Font myFont = Font.font("Copperplate", FontWeight.THIN, 18);
 		barcodeLabel.setFont(myFont);
                 barcodeLabel.setFill(Color.GOLD);
-		barcodeLabel.setWrappingWidth(150);
 		barcodeLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(barcodeLabel, 0, 1);
+		grid.add(barcodeLabel, 0, 0);
 
 		barcode = new TextField();
+                barcode.setMaxWidth(110);
                 barcode.setStyle("-fx-focus-color: darkgreen;");
-		grid.add(barcode, 1, 1);
+		grid.add(barcode, 1, 0);
+                
 		
 		vbox.getChildren().add(grid);
 
@@ -212,6 +220,7 @@ public class SearchInventoryView extends View
 		vbox.getChildren().add(blankText);
 		vbox.getChildren().add(doneCont);
                 vbox.setAlignment(Pos.CENTER);
+                
 		return vbox;
 	}
 
@@ -250,7 +259,6 @@ public class SearchInventoryView extends View
 			{
 				displayMessage(val);
 			}
-			
 		}
 	}
 

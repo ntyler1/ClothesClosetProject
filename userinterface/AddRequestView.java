@@ -134,7 +134,7 @@ public class AddRequestView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(450);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
 

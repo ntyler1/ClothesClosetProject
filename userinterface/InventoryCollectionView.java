@@ -177,7 +177,7 @@ public class InventoryCollectionView extends View
 
 		tableOfClothes = new TableView<InventoryTableModel>();
 		tableOfClothes.setEffect(new DropShadow());
-		tableOfClothes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
+		tableOfClothes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:gold;");
 		tableOfClothes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		TableColumn barcodeColumn = new TableColumn("Barcode") ;

@@ -7,19 +7,24 @@ import javafx.scene.paint.Color;
 // project imports
 import impresario.IModel;
 import java.util.Enumeration;
+import java.util.Optional;
+import java.util.Properties;
 import java.util.Vector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 import model.Inventory;
 import model.InventoryCollection;
 
@@ -46,19 +51,18 @@ public class MatchingInventoryView extends AvailableInventoryView
         {
                 tableOfInventory.setOnMousePressed((MouseEvent event) -> {
                     if (event.isPrimaryButtonDown() && event.getClickCount() >=2 ){
-                        processClothingItemSelected();
+                        check6Months();
                     }
                 });
                 ImageView icon = new ImageView(new Image("/images/check.png"));
                 icon.setFitHeight(15);
                 icon.setFitWidth(15);
 		submitButton = new Button("Select",icon);
-                submitButton.setPadding(new Insets(10,10,10,10));
+                submitButton.setPadding(new Insets(5,5,5,5));
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
  		submitButton.setOnAction((ActionEvent e) -> {
                     clearErrorMessage();
-                    // do the inquiry
-                    processClothingItemSelected();
+                    check6Months();
                 });
                 submitButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     submitButton.setEffect(new DropShadow());
@@ -80,8 +84,25 @@ public class MatchingInventoryView extends AvailableInventoryView
                 getEntryTableModelValues();
 	}
 
-	protected void clearValues(){
+	protected void check6Months(){
+                    myModel.stateChangeRequest("NetIdCheck", null);
+                    int netIdCount = (Integer)myModel.getState("NetIdCheck");
+                    if(netIdCount >= 1)
+                    {
+                        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                        alert.setTitle("Confirmation Dialog");
+                        alert.setHeaderText("Too Many Checkouts!");
+                        alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
+                        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
+                        Optional<ButtonType> result = alert.showAndWait();
 
+                        if (result.get() == ButtonType.OK)
+                        {
+                            processClothingItemSelected();
+                        }
+                    }
+                    else
+                        processClothingItemSelected();
 	}
         
         protected void getEntryTableModelValues()
@@ -153,7 +174,6 @@ public class MatchingInventoryView extends AvailableInventoryView
 			}
 			else
 			{
-				clearValues();
 				displayMessage(val);
 			}
 		}

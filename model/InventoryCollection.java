@@ -16,6 +16,7 @@ import impresario.IView;
 
 import userinterface.View;
 import userinterface.ViewFactory;
+import utilities.GlobalVariables;
 
 
 /** The class containing the InventoryCollection for the Professional Clothes
@@ -110,6 +111,17 @@ public class InventoryCollection  extends EntityBase implements IView
                         "INNER JOIN Color AS Color2 ON Color2.BarcodePrefix = Color2\n" +
                         "WHERE "+myTableName+".Status = 'Donated'";
 		populateCollectionHelper(query);
+        }
+        
+        public void findUntillDate(){
+             String query = "SELECT Barcode, Gender, Size, ArticleType.Description AS ArticleType, Color.Description AS Color1, Color2.Description AS Color2, Brand, Notes, \n" +
+                        "DonorLastName, DonorFirstName, DonorPhone, DonorEmail, DateDonated, ReceiverNetid, ReceiverLastName, ReceiverFirstName, DateTaken\n" +
+                        "FROM "+myTableName+"\n" +
+                        "INNER JOIN ArticleType ON ArticleType.BarcodePrefix = ArticleType\n" +
+                        "INNER JOIN Color ON Color.BarcodePrefix = Color1\n" +
+                        "INNER JOIN Color AS Color2 ON Color2.BarcodePrefix = Color2\n" +
+                        "WHERE "+myTableName+".Status = 'Received' AND DateTaken <= '"+GlobalVariables.UNTILL_DATE+"'";
+             populateCollectionHelper(query);
         }
 	/**
 	 *

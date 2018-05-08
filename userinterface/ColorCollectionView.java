@@ -182,7 +182,7 @@ public class ColorCollectionView extends View
 
 		tableOfColors = new TableView<ColorTableModel>();
 		tableOfColors.setEffect(new DropShadow());
-		tableOfColors.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: green;");
+		tableOfColors.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar: gold;");
 		tableOfColors.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
 
 		TableColumn barcodePrefixColumn = new TableColumn("Barcode Prefix") ;

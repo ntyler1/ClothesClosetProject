@@ -168,7 +168,7 @@ public class ClothingRequestPendingCollectionView extends View
 		actionText.setFont(Font.font("Copperplate", FontWeight.BOLD, 22));
 		actionText.setWrappingWidth(475);
 		actionText.setTextAlignment(TextAlignment.CENTER);
-		actionText.setFill(Color.BLACK);
+		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
 		container.setAlignment(Pos.CENTER);
                 
@@ -217,7 +217,7 @@ public class ClothingRequestPendingCollectionView extends View
 
 		tableOfRequests = new TableView<ClothingRequestTableModel>();
                 tableOfRequests.setEffect(new DropShadow());
-                tableOfRequests.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
+                tableOfRequests.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:gold;");
 		tableOfRequests.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
                 
                 TableColumn netIdColumn = new TableColumn("Net ID") ;

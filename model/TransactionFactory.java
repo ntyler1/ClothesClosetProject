@@ -71,13 +71,16 @@ public class TransactionFactory
                 if(transType.equals("RemoveRequest") == true) {
                     retValue = new RemoveRequestTransaction();
                 }
-				else
+		else
                 if(transType.equals("CheckoutClothingItem") == true) {
                     retValue = new CheckoutClothingItemTransaction();
                 }	
-				else
+		else
                 if(transType.equals("AddRequest") == true) {
                     retValue = new AddRequestTransaction();
+                }else
+                if(transType.equals("UntillDateReport") == true) {
+                    retValue = new UntillDateReportTransaction();
                 }
 		return retValue;
 	}
