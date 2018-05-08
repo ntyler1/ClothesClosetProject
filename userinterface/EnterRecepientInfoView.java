@@ -47,14 +47,9 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.effect.DropShadow;
-<<<<<<< HEAD
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
-
-public class EnterRecepientInfoView extends View {
-
-=======
 import javafx.scene.effect.InnerShadow;
 import model.Inventory;
 import model.InventoryCollection;
@@ -64,7 +59,6 @@ public class EnterRecepientInfoView extends View
 {
 	protected TableView<InventoryTableModel> tableOfClothes;
 	protected TextField barcode;
->>>>>>> 62b2c536ad3eb682e386e1eeccea6244679bf407
 	protected TextField netId;
 	protected TextField firstName;
 	protected TextField lastName;
@@ -364,16 +358,15 @@ public class EnterRecepientInfoView extends View
 						}
 						else
 						{
-<<<<<<< HEAD
 							props.setProperty("ReceiverNetid", recepientNetID);
 							props.setProperty("ReceiverFirstName", recepientFirstName);
 							props.setProperty("ReceiverLastName", recepientLastName);
 						
 							//Code here to check If the Date is within 6 months of last checkout
-							Properties NetIdCheck = new Properties();
+							NetIdCheck = new Properties();
 							NetIdCheck.setProperty("NetIdCheck", recepientNetID);
 							myModel.stateChangeRequest("NetIdCheck", NetIdCheck);
-							int netIdCount = (Integer)myModel.getState("NetIdCheck");
+							netIdCount = (Integer)myModel.getState("NetIdCheck");
 							if(netIdCount >= 1)
 							{
 								Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -382,10 +375,8 @@ public class EnterRecepientInfoView extends View
 								alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
 								((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
                                                                 Optional<ButtonType> result = alert.showAndWait();
-=======
 							myModel.stateChangeRequest("RecepientData", props);
->>>>>>> 62b2c536ad3eb682e386e1eeccea6244679bf407
-							
+                                                        }
 							Alert alert = new Alert(AlertType.CONFIRMATION);
 							alert.setTitle("Confirmation Dialog");
 							alert.setHeaderText("Done!");
@@ -536,7 +527,6 @@ public class EnterRecepientInfoView extends View
 	{
 		statusLog.clearErrorMessage();
 	}
-
 
 }
 

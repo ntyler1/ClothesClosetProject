@@ -87,7 +87,6 @@ public class CheckoutClothingItemTransaction extends Transaction
      * This method encapsulates all the logic of Checking out of the inventory
      */
     //----------------------------------------------------------
-<<<<<<< HEAD
     private void processInventoryCheckout(Properties props)
     {
         String netId = props.getProperty("ReceiverNetid");
@@ -107,9 +106,7 @@ public class CheckoutClothingItemTransaction extends Transaction
 		myInventory.update(null);
         transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");
     }
-	
-=======
->>>>>>> 62b2c536ad3eb682e386e1eeccea6244679bf407
+
 	private void processNetId(Properties props)
 	{
 		if(props.getProperty("NetIdCheck") != null){
@@ -256,5 +253,6 @@ public class CheckoutClothingItemTransaction extends Transaction
             return currentScene;
         }
     }
+    
 }
 
