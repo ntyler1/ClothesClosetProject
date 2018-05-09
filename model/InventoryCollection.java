@@ -17,6 +17,9 @@ import impresario.IView;
 import userinterface.View;
 import userinterface.ViewFactory;
 import utilities.GlobalVariables;
+import java.util.Date;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 
 /** The class containing the InventoryCollection for the Professional Clothes
@@ -79,10 +82,16 @@ public class InventoryCollection  extends EntityBase implements IView
 	
 	public void findByDateAndNetId(String netId)
 	{
-		String query = "SELECT * FROM " + myTableName + " WHERE (DateTaken > DATE_SUB(CURDATE(), INTERVAL 6 MONTH) AND ReceiverNetId = '" + netId + "')";
+		String query = "SELECT * FROM " + myTableName + " WHERE (DateTaken > " + dateSubtract6() + ") AND (ReceiverNetId = '" + netId + "')";
 		populateCollectionHelper(query);
 	}
-
+	public String dateSubtract6(){
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.MONTH, -6);
+		String s = new SimpleDateFormat("dd-MM-yyyy").format(c.getTime());
+		return s;
+	}
 	//-----------------------------------------------------------
 	public void findAll()
 	{

@@ -8,6 +8,7 @@ import java.util.Properties;
 import java.util.Vector;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Calendar;
 
 // project imports
 import event.Event;
@@ -76,7 +77,7 @@ public class CheckoutClothingItemTransaction extends Transaction
 			if (firstName != null) {
 				i.setProperty("ReceiverFirstName", firstName);
 			}
-			i.setProperty("DateTaken", new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+			i.setProperty("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
 			i.stateChangeRequest("Status", "Received");
 			i.update(null);
 			transactionErrorMessage = (String)i.getState("UpdateStatusMessage");
@@ -114,6 +115,8 @@ public class CheckoutClothingItemTransaction extends Transaction
 			myInventoryList = new InventoryCollection();
 			myInventoryList.findByDateAndNetId(netId);
 			inventoryCount = myInventoryList.retrieveCount();
+			
+			System.out.println(inventoryCount);
 		}
 	}
 	
