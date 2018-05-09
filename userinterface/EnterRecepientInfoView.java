@@ -274,7 +274,7 @@ public class EnterRecepientInfoView extends View
 					Alert alert = new Alert(AlertType.CONFIRMATION);
 					alert.setTitle("Confirmation Dialog");
 					alert.setHeaderText("Item has already been checked out!");
-					alert.setContentText("This item has been checkout in the past by: " + receiverNetid + " on this date: " + dateTaken +  " (yyyy,MM,dd). Are you sure you would like to continue?");
+					alert.setContentText("This item has been checkout in the past by: " + receiverNetid + " on this date: " + dateTaken +  ". Are you sure you would like to continue?");
 					Optional<ButtonType> result = alert.showAndWait();
 			
 					if (result.get() == ButtonType.OK)
