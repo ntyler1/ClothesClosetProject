@@ -82,6 +82,10 @@ public class TransactionFactory
                 if(transType.equals("UntillDateReport") == true) {
                     retValue = new UntillDateReportTransaction();
                 }
+                else
+                if(transType.equals("TopDonatorReport") == true) {
+                    retValue = new TopDonatorReportTransaction();
+                }
 		return retValue;
 	}
 }

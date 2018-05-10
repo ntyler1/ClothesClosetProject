@@ -85,6 +85,15 @@ public class InventoryCollection  extends EntityBase implements IView
 		String query = "SELECT * FROM " + myTableName + " WHERE (DateTaken > " + dateSubtract6() + ") AND (ReceiverNetId = '" + netId + "')";
 		populateCollectionHelper(query);
 	}
+        
+        public void findDonators(){
+            String query = "SELECT DonorFirstName, DonorLastName, DonorPhone, DonorEmail, COUNT( * ) AS  `Status` \n" +
+                                "FROM "+myTableName+" \n" +
+                                "GROUP BY DonorFirstName, DonorLastName\n" +
+                                "ORDER BY Status DESC ";
+            populateCollectionHelper(query);
+        }
+        
 	public String dateSubtract6(){
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
@@ -118,7 +127,7 @@ public class InventoryCollection  extends EntityBase implements IView
                         "INNER JOIN ArticleType ON ArticleType.BarcodePrefix = ArticleType\n" +
                         "INNER JOIN Color ON Color.BarcodePrefix = Color1\n" +
                         "INNER JOIN Color AS Color2 ON Color2.BarcodePrefix = Color2\n" +
-                        "WHERE "+myTableName+".Status = 'Donated'";
+                        "WHERE "+myTableName+".Status = 'Donated' ORDER BY DateDonated ASC";
 		populateCollectionHelper(query);
         }
         

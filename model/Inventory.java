@@ -225,7 +225,7 @@ public class Inventory extends EntityBase implements IView
 	public Vector<String> getEntryListView()
 	{
 		Vector<String> v = new Vector<String>();
-
+                
 		v.addElement(persistentState.getProperty("Barcode"));
 		v.addElement(persistentState.getProperty("Gender"));
 		v.addElement(persistentState.getProperty("Size"));

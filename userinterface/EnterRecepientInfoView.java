@@ -46,6 +46,9 @@ import impresario.IModel;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Separator;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -57,11 +60,11 @@ import model.InventoryCollection;
 //==============================================================================
 public class EnterRecepientInfoView extends View
 {
-	protected TableView<InventoryTableModel> tableOfClothes;
 	protected TextField barcode;
 	protected TextField netId;
 	protected TextField firstName;
 	protected TextField lastName;
+        protected MenuButton cart;
 	protected Button cancelButton;
 	protected Button submitButton;
 	protected Button addBarcodeButton;
@@ -87,7 +90,6 @@ public class EnterRecepientInfoView extends View
 
 		getChildren().add(container);
 		populateFields();
-		tableOfClothes.getSelectionModel().select(0); //autoselect first element
 	}
 	
 	protected String getActionText() {
@@ -97,42 +99,9 @@ public class EnterRecepientInfoView extends View
 	//--------------------------------------------------------------------------
 	protected void populateFields()
 	{
-		getEntryTableModelValues();
+		
 	}
 
-	//--------------------------------------------------------------------------
-	protected void getEntryTableModelValues()
-	{
-
-		ObservableList<InventoryTableModel> tableData = FXCollections.observableArrayList();
-		try
-		{
-			InventoryCollection inventoryCollection = 
-					(InventoryCollection)myModel.getState("InventoryList");
-
-			Vector entryList = (Vector)inventoryCollection.getState("Inventory");
-									
-			if (entryList.size() > 0)
-			{
-				Enumeration entries = entryList.elements();
-
-				while (entries.hasMoreElements() == true)
-				{
-					Inventory nextItem = (Inventory)entries.nextElement();
-					Vector<String> view = nextItem.getEntryListView();
-
-					// add this list entry to the list
-					InventoryTableModel nextTableRowData = new InventoryTableModel(view);
-					tableData.add(nextTableRowData);
-
-				}
-			}
-			tableOfClothes.setItems(tableData);
-		}	
-		catch (Exception e) {//SQLException e) {
-			// Need to handle this exception
-		}
-	}
 
 	// Create the title container
 	//-------------------------------------------------------------
@@ -167,6 +136,12 @@ public class EnterRecepientInfoView extends View
 		actionText.setTextAlignment(TextAlignment.CENTER);
 		actionText.setFill(Color.DARKGREEN);
 		container.getChildren().add(actionText);
+                blankText = new Text("  ");
+		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+		blankText.setWrappingWidth(350);
+		blankText.setTextAlignment(TextAlignment.CENTER);
+		blankText.setFill(Color.WHITE);
+		container.getChildren().add(blankText);
 		container.setAlignment(Pos.CENTER);
 
 		return container;
@@ -185,30 +160,6 @@ public class EnterRecepientInfoView extends View
 		grid.setVgap(10);
 		grid.setPadding(new Insets(0, 25, 10, 0));
 		
-		tableOfClothes = new TableView<InventoryTableModel>();
-		tableOfClothes.setEffect(new DropShadow());
-		tableOfClothes.setStyle("-fx-focus-color: transparent; -fx-faint-focus-color: transparent; -fx-selection-bar:lightgreen;");
-		tableOfClothes.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-
-		TableColumn barcodeColumn = new TableColumn("Barcode") ;
-		barcodeColumn.setMinWidth(50);
-		barcodeColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("barcode"));
-
-		TableColumn articleTypeColumn = new TableColumn("Article Type") ;
-		articleTypeColumn.setMinWidth(50);
-		articleTypeColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("articleType"));
-
-		
-				
-		TableColumn brandColumn = new TableColumn("Brand") ;
-		brandColumn.setMinWidth(50);
-		brandColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("brand"));
-
-		tableOfClothes.getColumns().addAll(barcodeColumn, articleTypeColumn, brandColumn);
-		
 		Text barcodeLabel = new Text(" Barcode : ");
 		Font myFont = Font.font("Copperplate", FontWeight.THIN, 16);
 		barcodeLabel.setFill(Color.GOLD);
@@ -221,47 +172,50 @@ public class EnterRecepientInfoView extends View
 		barcode.setMinWidth(180);
 		grid.add(barcode, 1, 1);
 		
+                Separator line = new Separator();
+                grid.add(line,0,2);
 
 		Text netIdLabel = new Text(" Net ID : ");
 		netIdLabel.setFill(Color.GOLD);
 		netIdLabel.setFont(myFont);
 		netIdLabel.setWrappingWidth(145);
 		netIdLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(netIdLabel, 0, 2);
+		grid.add(netIdLabel, 0, 3);
 
 		netId = new TextField();
 		netId.setMinWidth(180);
-		grid.add(netId, 1, 2);
+		grid.add(netId, 1, 3);
 
 		Text firstNameLabel = new Text(" First Name : ");
 		firstNameLabel.setFill(Color.GOLD);
 		firstNameLabel.setFont(myFont);
 		firstNameLabel.setWrappingWidth(145);
 		firstNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(firstNameLabel, 0, 3);
+		grid.add(firstNameLabel, 0, 4);
 
 		firstName = new TextField();
 		firstName.setMinWidth(180);
-		grid.add(firstName, 1, 3);
+		grid.add(firstName, 1, 4);
 
 		Text lastNameLabel = new Text(" Last Name : ");
 		lastNameLabel.setFill(Color.GOLD);
 		lastNameLabel.setFont(myFont);
 		lastNameLabel.setWrappingWidth(145);
 		lastNameLabel.setTextAlignment(TextAlignment.RIGHT);
-		grid.add(lastNameLabel, 0, 4);
+		grid.add(lastNameLabel, 0, 5);
 
 		lastName = new TextField();
 		lastName.setMinWidth(180);
-		grid.add(lastName, 1, 4);
+		grid.add(lastName, 1, 5);
 		
 		ImageView icon = new ImageView(new Image("/images/pluscolor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
-		addBarcodeButton = new Button("Add Item",icon);
+		addBarcodeButton = new Button("",icon);
 		addBarcodeButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		addBarcodeButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
+                        clearOutlines();
 			String myBarcode = barcode.getText();
 			Properties props = new Properties();
 			props.setProperty("BarcodeToAdd", myBarcode);
@@ -272,9 +226,10 @@ public class EnterRecepientInfoView extends View
 				if(receiverNetid != null && !receiverNetid.equals(""))
 				{
 					Alert alert = new Alert(AlertType.CONFIRMATION);
+                                        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
 					alert.setTitle("Confirmation Dialog");
 					alert.setHeaderText("Item has already been checked out!");
-					alert.setContentText("This item has been checkout in the past by: " + receiverNetid + " on this date: " + dateTaken +  ". Are you sure you would like to continue?");
+					alert.setContentText("This item has been checkout in the past!\nNet ID: " + receiverNetid + "\nAre you sure you would like to continue?");
 					Optional<ButtonType> result = alert.showAndWait();
 			
 					if (result.get() == ButtonType.OK)
@@ -283,15 +238,20 @@ public class EnterRecepientInfoView extends View
 					}
 					else
 					{
-						myModel.stateChangeRequest("CancelCheckOutCI", null);
+						e.consume();
 					}
 				}
+                                addToCart(myBarcode);
 				barcode.clear();
 			}
 			catch(Exception err){
-				displayErrorMessage("ERROR: No Inventory Record Found!");
+                                if(myBarcode.equals("")){
+                                    displayErrorMessage("ERROR: Blank Barcode!");
+                                    barcode.setStyle("-fx-border-color: firebrick; -fx-focus-color: darkgreen;");
+                                }
+                                else
+                                    displayErrorMessage("ERROR: No Inventory Record Found!");
 			}
-			getEntryTableModelValues();
 		});
 		
 		addBarcodeButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
@@ -303,10 +263,20 @@ public class EnterRecepientInfoView extends View
 		
 		grid.add(addBarcodeButton, 2, 1);
 
-		icon = new ImageView(new Image("/images/check.png"));
+                icon = new ImageView(new Image("/images/buyingcolor.png"));
+		icon.setFitHeight(20);
+		icon.setFitWidth(20);
+                cart = new MenuButton("View", icon);
+		cart.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
+                cart.setStyle("-fx-selection-bar:gold");
+                cart.setDisable(true);
+                
+                grid.add(cart, 3, 1);
+
+		icon = new ImageView(new Image("/images/checkColor.png"));
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
-		submitButton = new Button("Select",icon);
+		submitButton = new Button("Check Out",icon);
 		submitButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		submitButton.setOnAction((ActionEvent e) -> {
 			clearErrorMessage();
@@ -363,7 +333,7 @@ public class EnterRecepientInfoView extends View
 							alert.setHeaderText("Done!");
 							alert.setContentText("Items have been checked out");
 							Optional<ButtonType> result = alert.showAndWait();
-                            myModel.stateChangeRequest("CancelCheckOutCI", null);
+                                                        myModel.stateChangeRequest("CancelCheckOutCI", null);
 						}						
 					}
 					else {
@@ -388,8 +358,6 @@ public class EnterRecepientInfoView extends View
 		submitButton.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			submitButton.setEffect(null);
 		});
-		
-		
 		
 		icon = new ImageView(new Image("/images/return.png"));
 		icon.setFitHeight(15);
@@ -418,17 +386,7 @@ public class EnterRecepientInfoView extends View
 		btnContainer.getChildren().add(submitButton);
 		btnContainer.getChildren().add(cancelButton);
 
-		
-		tableOfClothes.setPrefHeight(150);
-        tableOfClothes.setMaxWidth(250);
-				
 		Text blankText2 = new Text("  ");
-		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-		blankText2.setWrappingWidth(200);
-		blankText2.setTextAlignment(TextAlignment.CENTER);
-		blankText2.setFill(Color.WHITE);
-		
-		Text blankText3 = new Text("  ");
 		blankText2.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 		blankText2.setWrappingWidth(200);
 		blankText2.setTextAlignment(TextAlignment.CENTER);
@@ -436,13 +394,10 @@ public class EnterRecepientInfoView extends View
 		
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(blankText2);
-		vbox.getChildren().add(tableOfClothes);
-		vbox.getChildren().add(blankText3);
 		vbox.getChildren().add(btnContainer);
-		vbox.setPadding(new Insets(10,10,10,10));
-        vbox.setAlignment(Pos.CENTER);
+                vbox.setAlignment(Pos.CENTER);
 		clearOutlines();
-
+                
 		return vbox;
 	}
 
@@ -466,6 +421,15 @@ public class EnterRecepientInfoView extends View
 			}
 		}
 	}
+    
+    protected void addToCart(String barcode){
+            cart.setDisable(false);
+            ImageView icon = new ImageView(new Image("/images/tagcolor.png"));
+            icon.setFitHeight(20);
+            icon.setFitWidth(20);
+            MenuItem cartItem = new MenuItem(barcode, icon);
+            cart.getItems().add(cartItem);
+    }
 	//--------------------------------------------------------------------------
 	protected MessageView createStatusLog(String initialMessage)
 	{
@@ -475,6 +439,7 @@ public class EnterRecepientInfoView extends View
 	}
 	
 	public void clearValues(){
+                barcode.clear();
 		netId.clear();
 		firstName.clear();
 		lastName.clear();
@@ -493,6 +458,7 @@ public class EnterRecepientInfoView extends View
 		statusLog.displayMessage(message);
 	}
 	private void clearOutlines(){
+                barcode.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
 		netId.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
 		firstName.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");
 		lastName.setStyle("-fx-border-color: transparent; -fx-focus-color: darkgreen;");

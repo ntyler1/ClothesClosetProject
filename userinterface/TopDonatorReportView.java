@@ -40,47 +40,56 @@ import model.InventoryCollection;
 import utilities.GlobalVariables;
 
 //==============================================================
-public class UntillDateReportView extends AvailableInventoryView
+public class TopDonatorReportView extends AvailableInventoryView
 {
 
 
 	// constructor for this class -- takes a model object
 	//----------------------------------------------------------
-	public UntillDateReportView(IModel dr)
+	public TopDonatorReportView(IModel td)
 	{
-		super(dr);
+		super(td);
 	}
 
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** CHECKED OUT ITEMS REPORT **";
+		return "** TOP DONATORS REPORT **";
 	}
 
 	//-------------------------------------------------------------
 	protected void populateFields()
         {
-            TableColumn recevierNetidColumn = new TableColumn("Recevier Net ID") ;
-		recevierNetidColumn.setMinWidth(60);
-		recevierNetidColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("recevierNetid"));
+            tableOfInventory.getColumns().clear();
+            
+            TableColumn donorLastNameColumn = new TableColumn("Donor Last Name") ;
+		donorLastNameColumn.setMinWidth(50);
+		donorLastNameColumn.setCellValueFactory(
+				new PropertyValueFactory<InventoryTableModel, String>("donorLastName"));
 
-		TableColumn receiverLastNameColumn = new TableColumn("Receiver Last Name") ;
-		receiverLastNameColumn.setMinWidth(60);
-		receiverLastNameColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("receiverLastName"));
+		TableColumn donorFirstNameColumn = new TableColumn("Donor First Name") ;
+		donorFirstNameColumn.setMinWidth(60);
+		donorFirstNameColumn.setCellValueFactory(
+				new PropertyValueFactory<InventoryTableModel, String>("donorFirstName"));
 
-		TableColumn receiverFirstNameColumn = new TableColumn("Receiver First Name") ;
-		receiverFirstNameColumn.setMaxWidth(200);
-		receiverFirstNameColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("receiverFirstName"));
-
-		TableColumn dateTakenColumn = new TableColumn("Date Taken") ;
-		dateTakenColumn.setMinWidth(20);
-		dateTakenColumn.setCellValueFactory(
-				new PropertyValueFactory<InventoryTableModel, String>("dateTaken"));
+		TableColumn donorEmailColumn = new TableColumn("Donor Email") ;
+		donorEmailColumn.setMaxWidth(200);
+		donorEmailColumn.setCellValueFactory(
+				new PropertyValueFactory<InventoryTableModel, String>("donorEmail"));
                 
-            tableOfInventory.getColumns().addAll(recevierNetidColumn, receiverFirstNameColumn, receiverLastNameColumn,  dateTakenColumn);
+		TableColumn donorPhoneColumn = new TableColumn("Donor Phone") ;
+		donorPhoneColumn.setMinWidth(60);
+		donorPhoneColumn.setCellValueFactory(
+				new PropertyValueFactory<InventoryTableModel, String>("donorPhone"));
+                
+                TableColumn itemsColumn = new TableColumn("Items Donated") ;
+		itemsColumn.setMinWidth(60);
+		itemsColumn.setCellValueFactory(
+				new PropertyValueFactory<InventoryTableModel, String>("status"));
+                
+            tableOfInventory.getColumns().addAll(donorFirstNameColumn, donorLastNameColumn, donorPhoneColumn, donorEmailColumn,  itemsColumn);
+            tableOfInventory.setMaxHeight(575);
+            tableOfInventory.setMaxWidth(575);
             getEntryTableModelValues();
 	}
         
@@ -108,15 +117,15 @@ public class UntillDateReportView extends AvailableInventoryView
 
 				}
 				if(entryList.size() == 1)
-					foundText.setText(entryList.size()+" Checked Out Item Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+					foundText.setText(entryList.size()+" Donator Record Found!");
 				else 
-					foundText.setText(entryList.size()+" Checked Out Items Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+					foundText.setText(entryList.size()+" Donator Records Found!");
 
 				foundText.setFill(Color.LIGHTGREEN);
 			}
 			else
 			{
-				foundText.setText("No Checked Out Items Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+				foundText.setText("No Donator Records Found!");
 				foundText.setFill(Color.FIREBRICK);
 			}
 
@@ -160,9 +169,7 @@ public class UntillDateReportView extends AvailableInventoryView
 		allColumnNames.add("DateDonated");
 		allColumnNames.add("DateTaken");
 
-                String line = "Barcode, Gender, Size, Article Type, Color 1, Color 2, Brand, Notes, Donor Last Name, "
-                        + "Donor First Name, Donor Phone, Donor Email,  Recevier Net ID, Recevier First Name, Recevier Last Name,"
-                        + "Date Donated, Date Taken";
+                String line = "Items Donated, Donor Last Name, Donor First Name, Donor Phone, Donor Email";
 
                 out.println(line);
 
@@ -175,14 +182,16 @@ public class UntillDateReportView extends AvailableInventoryView
                     for (int j = 0; j < allColumnNames.size(); j++)
                     {
                             String nextValue = nextRow.elementAt(j);
+                            System.out.println(nextValue);
                             if(nextValue != null)
                                 valuesLine += nextValue + ", ";
                     }
+                    System.out.println(valuesLine);
                     out.println(valuesLine);
                 }
 
                 // Also print the shift count and filter type
-                out.println("\nTotal number of checked out items untill "+GlobalVariables.UNTILL_DATE+" : " + entryList.size());
+                out.println("\nTotal number of donator records: " + entryList.size());
 
                 // Finally, print the time-stamp
                 DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
@@ -191,7 +200,7 @@ public class UntillDateReportView extends AvailableInventoryView
                 String timeStamp = dateFormat.format(date) + " " +
                                    timeFormat.format(date);
 
-                out.println("Checked Out Items Report created on " + timeStamp);
+                out.println("Top Donator Report created on " + timeStamp);
 
                 out.close();
 

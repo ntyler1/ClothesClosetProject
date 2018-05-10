@@ -27,10 +27,6 @@ public class ViewFactory {
 		{
 			return new SearchArticleTypeView(model);
 		}
-                else if(viewName.equals("RemoveArticleTypeView") == true)
-		{
-			return new RemoveArticleTypeView(model);
-		}
 		else if(viewName.equals("AddColorView") == true)
 		{
 			return new AddColorView(model);
@@ -42,10 +38,6 @@ public class ViewFactory {
 		else if(viewName.equals("SearchColorView") == true)
 		{
 			return new SearchColorView(model);
-		}
-		else if(viewName.equals("RemoveColorView") == true)
-		{
-			return new RemoveColorView(model);
 		}
                 else if(viewName.equals("ColorCollectionView") == true)
                 {
@@ -87,10 +79,6 @@ public class ViewFactory {
                 {
                     return new RemoveRequestCollectionView(model);
                 }
-		else if(viewName.equals("CheckOutItemView") == true)
-                {
-                    return new CheckOutItemView(model);
-                }
                 else if(viewName.equals("EnterRecepientInfoView") == true)
                 {
                     return new EnterRecepientInfoView(model);
@@ -102,6 +90,10 @@ public class ViewFactory {
                 else if(viewName.equals("UntillDateReportView") == true)
                 {
                     return new UntillDateReportView(model);
+                }
+                else if(viewName.equals("TopDonatorReportView") == true)
+                {
+                    return new TopDonatorReportView(model);
                 }
 		else
 			return null;

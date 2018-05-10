@@ -258,3 +258,26 @@ Caused by: java.net.SocketException: Software caused connection abort: socket wr
 
 >
 [5/7/18 4:40 PM]|Closet|Closet.<init>|Error|NOTAG|null<Unable to create Receptionist object>
+[5/9/18 11:53 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:53 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:53 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:57 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:57 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:57 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:57 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:57 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/10/18 12:05 AM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/10/18 12:05 AM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>

@@ -105,6 +105,7 @@ public class ReceptionistView extends View
 		getChildren().add(container);
 
 		populateFields();
+                cancelButton.requestFocus();
 
 		myModel.subscribe("TransactionError", this);
 	}
@@ -134,7 +135,7 @@ public class ReceptionistView extends View
 		container.getChildren().add(bportIcon);
 
 		container.setAlignment(Pos.CENTER);
-
+                
 		return container;
 	}
 
@@ -149,9 +150,9 @@ public class ReceptionistView extends View
 		HBox checkoutCont = new HBox(10);
 		checkoutCont.setAlignment(Pos.CENTER);
 		ImageView icon = new ImageView(new Image("/images/buyingcolor.png"));
-		icon.setFitHeight(20);
-		icon.setFitWidth(20);
-		checkoutClothingItemButton = new Button("Check Out Clothing Item", icon);
+		icon.setFitHeight(25);
+		icon.setFitWidth(25);
+		checkoutClothingItemButton = new Button("Check Out Item", icon);
 		checkoutClothingItemButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
 		checkoutClothingItemButton.setOnAction((ActionEvent e) -> {
 			myModel.stateChangeRequest("CheckoutClothingItem", null);
@@ -171,18 +172,20 @@ public class ReceptionistView extends View
                 icon = new ImageView(new Image("/images/listcolor.png"));
                 icon.setFitHeight(20);
                 icon.setFitWidth(20);
-                MenuItem availInventory = new MenuItem("List Available Inventory", icon );
+                MenuItem availInventory = new MenuItem("Available Inventory", icon );
                 icon = new ImageView(new Image("/images/datecolor.png"));
-                icon.setFitHeight(20);
-                icon.setFitWidth(20);
-                MenuItem itemCheckedOutTillDate = new MenuItem("Checked Out Untill Date", icon);
-                MenuItem report3 = new MenuItem("Report 3");
-                MenuItem report4 = new MenuItem("Report 4");
+                icon.setFitHeight(25);
+                icon.setFitWidth(25);
+                MenuItem itemCheckedOutTillDate = new MenuItem("Checked Out Items", icon);
+                icon = new ImageView(new Image("/images/medalcolor.png"));
+                icon.setFitHeight(25);
+                icon.setFitWidth(25);
+                MenuItem topDonators = new MenuItem("Top Donators", icon);
 
                 icon = new ImageView(new Image("/images/reportcolor.png"));
-		icon.setFitHeight(20);
-		icon.setFitWidth(20);
-                MenuButton reportsButton = new MenuButton("Generate Reports", icon, availInventory, itemCheckedOutTillDate, report3, report4);
+		icon.setFitHeight(25);
+		icon.setFitWidth(25);
+                MenuButton reportsButton = new MenuButton("    Reports    ", icon, availInventory, itemCheckedOutTillDate, topDonators);
 		reportsButton.setFont(Font.font("Comic Sans", FontWeight.THIN, 14));
                 reportsButton.setStyle("-fx-selection-bar:gold");
 		availInventory.setOnAction((ActionEvent e) -> {
@@ -190,7 +193,7 @@ public class ReceptionistView extends View
 		});
                 itemCheckedOutTillDate.setOnAction((ActionEvent e) -> {
 			Alert alert = new Alert(AlertType.INFORMATION);
-                        alert.setTitle("Checked Out Items Untill Date Report");
+                        alert.setTitle("Checked Out Items Report");
                         alert.setHeaderText("Enter a Date for the Checked Out Items Report!");
                         alert.getDialogPane().setMinHeight(175);
                         ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
@@ -222,7 +225,7 @@ public class ReceptionistView extends View
                              }
                          });
                         GridPane grid = new GridPane();
-                        Text label = new Text("Untill Date : ");
+                        Text label = new Text("           Date : ");
                         grid.add(label, 0, 0);
                         grid.add(datePicker, 1, 0);
                         alert.getDialogPane().setContent(grid);
@@ -242,6 +245,9 @@ public class ReceptionistView extends View
                                 }
                             });
                         alert.showAndWait();
+		});
+                topDonators.setOnAction((ActionEvent e) -> {
+			myModel.stateChangeRequest("TopDonatorReport", null);
 		});
 		reportsButton.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
 			reportsButton.setEffect(shadow);
