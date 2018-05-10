@@ -154,6 +154,9 @@ public class RemoveClothingItemView extends AddClothingItemView {
                 submitButton.setOnAction((ActionEvent e) -> {
                     displayErrorAlert();
                 });
+        doneCont.getChildren().clear();
+		doneCont.getChildren().add(submitButton);
+		doneCont.getChildren().add(cancelButton);
 	}
         
         private void displayErrorAlert(){

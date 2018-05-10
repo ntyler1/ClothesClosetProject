@@ -128,6 +128,9 @@ public class ModifyClothingItemView extends AddClothingItemView
 		icon.setFitHeight(15);
 		icon.setFitWidth(15);
 		submitButton.setGraphic(icon);
+		doneCont.getChildren().clear();
+		doneCont.getChildren().add(submitButton);
+		doneCont.getChildren().add(cancelButton);
 	}
 
 	public void clearValues(){

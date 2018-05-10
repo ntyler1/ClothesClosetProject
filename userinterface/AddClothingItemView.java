@@ -62,6 +62,7 @@ public class AddClothingItemView extends View
 	String SaveDonorPhone;
 	String SaveDonorEmail;
 
+	protected HBox doneCont;
 	protected Button submitButton;
 	protected Button cancelButton;
 	protected Button donor;
@@ -503,7 +504,7 @@ public class AddClothingItemView extends View
 		donorEmail.setMinWidth(180);
 		grid.add(donorEmail, 3, 6);
 
-		HBox doneCont = new HBox(10);
+		doneCont = new HBox(10);
 		doneCont.setAlignment(Pos.CENTER);
                 doneCont.addEventHandler(MouseEvent.MOUSE_ENTERED, (MouseEvent e) -> {
                     doneCont.setStyle("-fx-background-color: GOLD");
