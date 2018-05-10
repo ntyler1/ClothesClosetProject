@@ -117,15 +117,15 @@ public class TopDonatorReportView extends AvailableInventoryView
 
 				}
 				if(entryList.size() == 1)
-					foundText.setText(entryList.size()+" Donator Record Found!");
+					foundText.setText(entryList.size()+" Donor Record Found!");
 				else 
-					foundText.setText(entryList.size()+" Donator Records Found!");
+					foundText.setText(entryList.size()+" Donor Records Found!");
 
 				foundText.setFill(Color.LIGHTGREEN);
 			}
 			else
 			{
-				foundText.setText("No Donator Records Found!");
+				foundText.setText("No Donor Records Found!");
 				foundText.setFill(Color.FIREBRICK);
 			}
 
@@ -198,7 +198,7 @@ public class TopDonatorReportView extends AvailableInventoryView
                 String timeStamp = dateFormat.format(date) + " " +
                                    timeFormat.format(date);
 
-                out.println("Top Donator Report created on " + timeStamp);
+                out.println("Top Donor Report created on " + timeStamp);
 
                 out.close();
 
