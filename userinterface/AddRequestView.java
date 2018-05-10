@@ -35,6 +35,8 @@ import model.ArticleTypeCollection;
 import model.ColorCollection;
 import javafx.scene.control.ComboBox;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 
@@ -409,7 +411,7 @@ public class AddRequestView extends View
                                                                                                                 if(!recipientPhoneStr.equals(""))
                                                                                                                     props.setProperty("RequesterPhone", recipientPhoneStr);
 														props.setProperty("RequesterNetId", recipientNetStr);
-														props.setProperty("RequestMadeDate", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+														props.setProperty("RequestMadeDate", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
 														myModel.stateChangeRequest("ClothingRequestData", props);
 													}
 													else{
@@ -486,6 +488,11 @@ public class AddRequestView extends View
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(doneCont);
 		clearOutlines();
+                vbox.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		return vbox;
 	}
 

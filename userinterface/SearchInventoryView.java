@@ -158,6 +158,9 @@ public class SearchInventoryView extends View
 		barcode = new TextField();
                 barcode.setMaxWidth(110);
                 barcode.setStyle("-fx-focus-color: darkgreen;");
+                barcode.setOnAction((ActionEvent e) -> {
+			submitButton.fire();
+		});
 		grid.add(barcode, 1, 0);
                 
 		

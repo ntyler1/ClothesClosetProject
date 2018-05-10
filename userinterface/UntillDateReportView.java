@@ -108,15 +108,15 @@ public class UntillDateReportView extends AvailableInventoryView
 
 				}
 				if(entryList.size() == 1)
-					foundText.setText(entryList.size()+" Checked Out Item Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+					foundText.setText(entryList.size()+" Checked Out Item Found Until "+GlobalVariables.UNTILL_DATE+"!");
 				else 
-					foundText.setText(entryList.size()+" Checked Out Items Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+					foundText.setText(entryList.size()+" Checked Out Items Found Until "+GlobalVariables.UNTILL_DATE+"!");
 
 				foundText.setFill(Color.LIGHTGREEN);
 			}
 			else
 			{
-				foundText.setText("No Checked Out Items Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+				foundText.setText("No Checked Out Items Found Until "+GlobalVariables.UNTILL_DATE+"!");
 				foundText.setFill(Color.FIREBRICK);
 			}
 

@@ -91,10 +91,6 @@ public class FulfillRequestTransaction extends Transaction
 		{
 			doYourJob();
 		}
-                else
-                    if(key.equals("CancelMatchingInventory") == true){
-                        swapToView(createView());
-                    }
 		else
 		if (key.equals("ClothingRequestSelected") == true)
 		{
@@ -151,13 +147,13 @@ public class FulfillRequestTransaction extends Transaction
             mySelectedInventory = matchingInventory.retrieve((String)value);
             mySelectedRequest.stateChangeRequest("FulfilItemBarcode", value);
             mySelectedRequest.stateChangeRequest("Status", "Fulfilled");
-            mySelectedRequest.stateChangeRequest("RequestFulfilledDate", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+            mySelectedRequest.stateChangeRequest("RequestFulfilledDate", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
             String netId = (String)mySelectedRequest.getState("RequesterNetId");
             String firstName = (String)mySelectedRequest.getState("RequesterFirstName");
             String lastName = (String)mySelectedRequest.getState("RequesterLastName");
             mySelectedInventory.stateChangeRequest("ReceiverNetid", netId);
             mySelectedInventory.stateChangeRequest("Status", "Received");
-            mySelectedInventory.stateChangeRequest("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+            mySelectedInventory.stateChangeRequest("DateTaken", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
             mySelectedInventory.stateChangeRequest("ReceiverFirstName", firstName);
             mySelectedInventory.stateChangeRequest("ReceiverLastName", lastName);
             ClothingRequest tempRequest = new ClothingRequest((String)mySelectedRequest.getState("ID"));

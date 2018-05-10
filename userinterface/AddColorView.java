@@ -25,6 +25,8 @@ import impresario.IModel;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /** The class containing the Add Color View  for the Professional Clothes
@@ -253,6 +255,11 @@ public class AddColorView extends View
 		vbox.getChildren().add(doneCont);
                 vbox.setAlignment(Pos.CENTER);
 		clearOutlines();
+                vbox.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		return vbox;
 	}
 

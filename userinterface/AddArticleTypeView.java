@@ -25,6 +25,8 @@ import java.util.Properties;
 import impresario.IModel;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 /** The class containing the Add Article Type View  for the Professional Clothes
@@ -125,7 +127,7 @@ public class AddArticleTypeView extends View
 	{
 		VBox vbox = new VBox(10);
                 
-        Text blankText = new Text("  ");
+                Text blankText = new Text("  ");
 		blankText.setFont(Font.font("Arial", FontWeight.BOLD, 24));
 		blankText.setWrappingWidth(350);
 		blankText.setTextAlignment(TextAlignment.CENTER);
@@ -259,6 +261,11 @@ public class AddArticleTypeView extends View
         
 		vbox.getChildren().add(doneCont);
                 clearOutlines();
+                vbox.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 				
 		return vbox;
 	}

@@ -54,7 +54,7 @@ public class TopDonatorReportView extends AvailableInventoryView
 	//-------------------------------------------------------------
 	protected String getActionText()
 	{
-		return "** TOP DONATORS REPORT **";
+		return "** TOP DONOR REPORT **";
 	}
 
 	//-------------------------------------------------------------
@@ -182,16 +182,14 @@ public class TopDonatorReportView extends AvailableInventoryView
                     for (int j = 0; j < allColumnNames.size(); j++)
                     {
                             String nextValue = nextRow.elementAt(j);
-                            System.out.println(nextValue);
                             if(nextValue != null)
                                 valuesLine += nextValue + ", ";
                     }
-                    System.out.println(valuesLine);
                     out.println(valuesLine);
                 }
 
                 // Also print the shift count and filter type
-                out.println("\nTotal number of donator records: " + entryList.size());
+                out.println("\nTotal number of donor records: " + entryList.size());
 
                 // Finally, print the time-stamp
                 DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");

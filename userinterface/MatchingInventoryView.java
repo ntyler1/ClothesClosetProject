@@ -71,7 +71,6 @@ public class MatchingInventoryView extends AvailableInventoryView
                     submitButton.setEffect(null);
                 });
                 cancelButton.setOnAction(new EventHandler<ActionEvent>() {
-
 			@Override
 			public void handle(ActionEvent e) {
 				clearErrorMessage();

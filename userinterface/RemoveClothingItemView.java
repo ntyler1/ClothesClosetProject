@@ -164,7 +164,7 @@ public class RemoveClothingItemView extends AddClothingItemView {
             alert.setHeaderText("Are you sure want to remove this Clothing Item?");
             ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
             
-            Text label = new Text("Removal Notes : ");
+            Text label = new Text("     Removal Notes : ");
 
             TextField removeReason = new TextField();
             removeReason.setMinWidth(180);

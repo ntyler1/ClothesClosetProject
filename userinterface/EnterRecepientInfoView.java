@@ -170,6 +170,9 @@ public class EnterRecepientInfoView extends View
 
 		barcode = new TextField();
 		barcode.setMinWidth(180);
+                barcode.setOnAction((ActionEvent e) -> {
+			addBarcodeButton.fire();
+		});
 		grid.add(barcode, 1, 1);
 		
                 Separator line = new Separator();
@@ -283,7 +286,6 @@ public class EnterRecepientInfoView extends View
 			clearOutlines();
 			Properties props = new Properties();
 			
-			
 			String recepientNetID = netId.getText();
 			if (recepientNetID.length() > 0 )
 			{
@@ -306,6 +308,7 @@ public class EnterRecepientInfoView extends View
 						if(netIdCount >= 1)
 						{
 							Alert alert = new Alert(AlertType.CONFIRMATION);
+                                                        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
 							alert.setTitle("Confirmation Dialog");
 							alert.setHeaderText("Too Many Checkouts!");
 							alert.setContentText("This person has checked out " + netIdCount + " item(s) within the past 6 months. Are you sure you would like to continue?");
@@ -316,6 +319,7 @@ public class EnterRecepientInfoView extends View
 								myModel.stateChangeRequest("RecepientData", props);
 								
 								alert = new Alert(AlertType.CONFIRMATION);
+                                                                ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
 								alert.setTitle("Confirmation Dialog");
 								alert.setHeaderText("Done!");
 								alert.setContentText("Items have been checked out");
@@ -329,6 +333,7 @@ public class EnterRecepientInfoView extends View
 						{
 							myModel.stateChangeRequest("RecepientData", props);                                                       
 							Alert alert = new Alert(AlertType.CONFIRMATION);
+                                                        ((Stage)alert.getDialogPane().getScene().getWindow()).getIcons().add(new Image("images/BPT_LOGO_All-In-One_Color.png"));
 							alert.setTitle("Confirmation Dialog");
 							alert.setHeaderText("Done!");
 							alert.setContentText("Items have been checked out");

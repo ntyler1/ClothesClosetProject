@@ -58,7 +58,6 @@ public class AddRequestTransaction extends Transaction
 	//----------------------------------------------------------
 	public void processTransaction(Properties props)
 	{
-            System.out.println("here");
 		if (props.getProperty("RequesterNetId") != null)
 		{
                     String requesterNetID = props.getProperty("RequesterNetId");
@@ -84,7 +83,6 @@ public class AddRequestTransaction extends Transaction
                                     }
                                     else
                                     {
-                                        System.out.println(props.toString());
                                         myClothingRequest = new ClothingRequest(props);
                                         myClothingRequest.insert();
                                         transactionErrorMessage = (String)myClothingRequest.getState("UpdateStatusMessage");

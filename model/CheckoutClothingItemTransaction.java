@@ -77,7 +77,7 @@ public class CheckoutClothingItemTransaction extends Transaction
 			if (firstName != null) {
 				i.setProperty("ReceiverFirstName", firstName);
 			}
-			i.setProperty("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+			i.setProperty("DateTaken", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
 			i.stateChangeRequest("Status", "Received");
 			i.update(null);
 			transactionErrorMessage = (String)i.getState("UpdateStatusMessage");
@@ -102,7 +102,7 @@ public class CheckoutClothingItemTransaction extends Transaction
 		if (firstName != null) {
             myInventory.setProperty("ReceiverFirstName", firstName);
         }
-        myInventory.setProperty("DateTaken", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+        myInventory.setProperty("DateTaken", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
 		myInventory.stateChangeRequest("Status", "Received");
 		myInventory.update(null);
         transactionErrorMessage = (String)myInventory.getState("UpdateStatusMessage");

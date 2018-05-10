@@ -180,7 +180,7 @@ public class ReceptionistView extends View
                 icon = new ImageView(new Image("/images/medalcolor.png"));
                 icon.setFitHeight(25);
                 icon.setFitWidth(25);
-                MenuItem topDonators = new MenuItem("Top Donators", icon);
+                MenuItem topDonators = new MenuItem("Top Donor", icon);
 
                 icon = new ImageView(new Image("/images/reportcolor.png"));
 		icon.setFitHeight(25);
@@ -201,7 +201,7 @@ public class ReceptionistView extends View
                         DatePicker datePicker = new DatePicker();
 
                         datePicker.setShowWeekNumbers(false);
-                        String pattern = "dd-MM-yyyy";
+                        String pattern = "MM-dd-yyyy";
 
                         datePicker.setConverter(new StringConverter<LocalDate>() {
                              DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern(pattern);

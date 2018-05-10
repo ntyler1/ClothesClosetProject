@@ -35,6 +35,8 @@ import model.ArticleTypeCollection;
 import model.ColorCollection;
 import javafx.scene.control.ComboBox;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.StringConverter;
 
@@ -185,7 +187,8 @@ public class AddClothingItemView extends View
 		barcode = new TextField();
 		barcode.setMinWidth(180);
 		grid.add(barcode, 1, 1);
-		barcode.setOnKeyReleased(event -> {
+		barcode.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                     if (event.getCode() != KeyCode.ENTER) {
 			clearOutlines();
 			clearErrorMessage();
 			if(barcode.getText().length() == 0){
@@ -241,6 +244,9 @@ public class AddClothingItemView extends View
 					displayErrorMessage("ERROR: Entered Barcode Does Not Match Data Found In Database!");
 				}
 			}
+                     }
+                     else
+                         submitButton.fire();
 		});
 
 		Text genderLabel = new Text(" Gender : ");
@@ -388,6 +394,11 @@ public class AddClothingItemView extends View
 
 		size = new TextField();
 		size.setMinWidth(180);
+                size.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		grid.add(size, 1, 6);
 
 		Text brandLabel = new Text(" Brand : ");
@@ -399,6 +410,11 @@ public class AddClothingItemView extends View
 		grid.add(brandLabel, 2, 1);
 
 		brand = new TextField();
+                brand.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		brand.setMinWidth(180);
 		grid.add(brand, 3, 1);
 
@@ -411,6 +427,11 @@ public class AddClothingItemView extends View
 		grid.add(notesLabel, 2, 2);
 
 		notes = new TextField();
+                notes.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		notes.setMinWidth(180);
 		grid.add(notes, 3, 2);
 
@@ -423,6 +444,11 @@ public class AddClothingItemView extends View
 		grid.add(donorFNameLabel, 2, 3);
 
 		donorFName = new TextField();
+                donorFName.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		donorFName.setMinWidth(180);
 		grid.add(donorFName, 3, 3);
 
@@ -435,6 +461,11 @@ public class AddClothingItemView extends View
 		grid.add(donorLNameLabel, 2, 4);
 
 		donorLName = new TextField();
+                donorLName.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		donorLName.setMinWidth(180);
 		grid.add(donorLName, 3, 4);
 
@@ -447,6 +478,11 @@ public class AddClothingItemView extends View
 		grid.add(donorPhoneLabel, 2, 5);
 
 		donorPhone = new TextField();
+                donorPhone.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		donorPhone.setMinWidth(180);
 		grid.add(donorPhone, 3, 5);
 
@@ -459,6 +495,11 @@ public class AddClothingItemView extends View
 		grid.add(donorEmailLabel, 2, 6);
 
 		donorEmail = new TextField();
+                donorEmail.addEventFilter(KeyEvent.KEY_RELEASED, event->{
+                    if (event.getCode() == KeyCode.ENTER) {
+                        submitButton.fire();
+                    }
+                });
 		donorEmail.setMinWidth(180);
 		grid.add(donorEmail, 3, 6);
 
@@ -514,15 +555,19 @@ public class AddClothingItemView extends View
                                                                                                                     props.setProperty("Brand", brandStr);
 														if(!notesStr.equals(""))
                                                                                                                     props.setProperty("Notes", notesStr);
-														if(!donorFNameStr.equals(""))
-                                                                                                                    props.setProperty("DonorFirstName", donorFNameStr);
-														if(!donorLNameStr.equals(""))
-                                                                                                                    props.setProperty("DonorLastName", donorLNameStr);
+                                                                                                                if(donorFNameStr.equals("") && donorLNameStr.equals("")){
+                                                                                                                    props.setProperty("DonorFirstName", "Anonymous");
+                                                                                                                }else{
+                                                                                                                    if(!donorFNameStr.equals(""))
+                                                                                                                        props.setProperty("DonorFirstName", donorFNameStr);
+                                                                                                                    if(!donorLNameStr.equals(""))
+                                                                                                                        props.setProperty("DonorLastName", donorLNameStr);
+                                                                                                                }
 														if(!donorPhoneStr.equals(""))
                                                                                                                     props.setProperty("DonorPhone", donorPhoneStr);
 														if(!donorEmailStr.equals(""))
                                                                                                                     props.setProperty("DonorEmail", donorEmailStr);
-														props.setProperty("DateDonated", new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+														props.setProperty("DateDonated", new SimpleDateFormat("MM-dd-yyyy").format(new Date()));
 														myModel.stateChangeRequest("ClothingItemData", props);
 													}
 													else{
@@ -621,14 +666,14 @@ public class AddClothingItemView extends View
 		donor.addEventHandler(MouseEvent.MOUSE_EXITED, (MouseEvent e) -> {
 			donor.setEffect(null);
 		});
-
+                doneCont.getChildren().add(donor);
 		doneCont.getChildren().add(cancelButton);
-		doneCont.getChildren().add(donor);
 		
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(doneCont);
                 vbox.setAlignment(Pos.CENTER);
 		clearOutlines();
+               
 		return vbox;
 	}
 
