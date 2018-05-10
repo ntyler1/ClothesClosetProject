@@ -108,15 +108,15 @@ public class UntillDateReportView extends AvailableInventoryView
 
 				}
 				if(entryList.size() == 1)
-					foundText.setText(entryList.size()+" Checked Out Item Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+					foundText.setText(entryList.size()+" Checked Out Item Found Until "+GlobalVariables.UNTILL_DATE+"!");
 				else 
-					foundText.setText(entryList.size()+" Checked Out Items Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+					foundText.setText(entryList.size()+" Checked Out Items Found Until "+GlobalVariables.UNTILL_DATE+"!");
 
 				foundText.setFill(Color.LIGHTGREEN);
 			}
 			else
 			{
-				foundText.setText("No Checked Out Items Found Untill "+GlobalVariables.UNTILL_DATE+"!");
+				foundText.setText("No Checked Out Items Found Until "+GlobalVariables.UNTILL_DATE+"!");
 				foundText.setFill(Color.FIREBRICK);
 			}
 
@@ -182,7 +182,7 @@ public class UntillDateReportView extends AvailableInventoryView
                 }
 
                 // Also print the shift count and filter type
-                out.println("\nTotal number of checked out items untill "+GlobalVariables.UNTILL_DATE+" : " + entryList.size());
+                out.println("\nTotal number of checked out items until "+GlobalVariables.UNTILL_DATE+" : " + entryList.size());
 
                 // Finally, print the time-stamp
                 DateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy");
