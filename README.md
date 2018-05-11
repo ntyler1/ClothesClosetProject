@@ -16,7 +16,7 @@
       - Status (Active/Inactive – Default: “Active”)
 
    - Examples:
-      - Id	         Description	               Barcode Prefix	        Alpha code	      Status
+      - Id	     &nbsp;    Description	               Barcode Prefix	        Alpha code	      Status
       -  1	          Pant Suit	                     01	                  PS	             Active
       -  2	          Skirt Suit             	      02          	      SS	             Active
       -  3	          Blazer	                        03	                  BL	             Active
