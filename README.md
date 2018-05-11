@@ -9,16 +9,15 @@
 
 1. Basic CRUD sql operations on 'Article Types'
    - Fields:
-1.	Id (Integer) (Auto-generated PK)
-2.	Description (Text)
-3.	Barcode Prefix (Text) - Unique
-4.	Alpha code (Text)
-5.	Status (Active/Inactive – Default: “Active”)
+      1.	Id (Integer) (Auto-generated PK)
+      2.	Description (Text)
+      3.	Barcode Prefix (Text) - Unique
+      4.	Alpha code (Text)
+      5.	Status (Active/Inactive – Default: “Active”)
 
-Examples:
-
-Id	Description	Barcode Prefix	Alpha code	Status
-1	Pant Suit	01	PS	Active
-2	Skirt Suit	02	SS	Active
-3	Blazer	03	BL	Active
-4	Dress	04	D	Active
+   - Examples:
+      Id	Description	Barcode Prefix	Alpha code	Status
+      1	Pant Suit	01	            PS	         Active
+      2	Skirt Suit	02          	SS	         Active
+      3	Blazer	   03	            BL	         Active
+      4	Dress	      04	            D	         Active
