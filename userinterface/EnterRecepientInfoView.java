@@ -176,7 +176,7 @@ public class EnterRecepientInfoView extends View
 		grid.add(barcode, 1, 1);
 		
                 Separator line = new Separator();
-                grid.add(line,0,2);
+                grid.add(line,1,2);
 
 		Text netIdLabel = new Text(" Net ID : ");
 		netIdLabel.setFill(Color.GOLD);
