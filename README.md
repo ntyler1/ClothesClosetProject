@@ -17,7 +17,7 @@
 
    - Examples:
       - Id	Description	Barcode Prefix	Alpha code	Status
-      -  1	 \t  Pant Suit	01	            PS	         Active
+      -  1	   Pant Suit	01	            PS	         Active
       -  2	   Skirt Suit	02          	SS	         Active
       -  3	   Blazer	   03	            BL	         Active
       -  4	   Dress	      04	            D	         Active
