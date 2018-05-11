@@ -66,6 +66,7 @@
 >The system retrives all pending requests, ordered by “Request Made Date”, from earliest to latest. The user will select a request and ask the system to see if it can be fulfilled. The system will check the “Inventory” rolodex/table to see if there are any clothing items that match the following:
 >   - 1.	Article type in 'inventory' table matches the article type in the request
 >   - 2.	Gender of the article type in the request
+
 >All these matching items will then be shown to the user. The user can select one of the matching Inventory items to fulfill the request. In this case, the system changes the Status of the request to “Fulfilled”, records this barcode as the Fulfil Item Barcode, and the current date as the “Request Fulfilled Date”. The system then changes the Status of this Inventory item to “Received”, record the requester’s last name, first name and netid as well as the the current date as date taken.
 7. Reports which can be saved to a .csv file for excel viewing later
    - Top Donor
