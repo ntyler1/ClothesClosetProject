@@ -75,3 +75,5 @@
       - Retrives all 'Inventory' records that are available to give out (Status is "donated")
    - Check Out Items
       - Retirves all 'Inventory' records that have been given out up to a certain date
+
+![Screenshot](mainmenu.png)
