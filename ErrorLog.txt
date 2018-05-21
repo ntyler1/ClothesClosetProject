@@ -281,3 +281,4 @@ Caused by: java.net.SocketException: Software caused connection abort: socket wr
 [5/9/18 11:58 PM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
 [5/10/18 12:05 AM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
 [5/10/18 12:05 AM]|CheckoutClothingItemTransaction|Transaction|Error|NOTAG|null<Error in creating Transaction view>
+[5/20/18, 9:17 PM]|Receptionist|createTransaction|Error|NOTAG|null<Transaction Creation Failure: Unrecognized transaction java.lang.NullPointerException>
