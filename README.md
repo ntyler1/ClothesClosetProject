@@ -76,6 +76,7 @@
    - Check Out Items
       - Retirves all 'Inventory' records that have been given out up to a certain date
 
-## Main Menu GUI
+##Program Screenshots
 
-![Screenshot](mainmenu.png)
+![Screenshot](screenshot/mainmenu.png)
+![Screenshot](screenshot/screenshot1.png)
