@@ -76,15 +76,24 @@
    - Check Out Items
       - Retirves all 'Inventory' records that have been given out up to a certain date
 
-##Program Screenshots
+# GUI Screenshots
 
 ![Screenshot](screenshots/mainmenu.png)
+
 ![Screenshot](screenshots/screenshot1.png)
+
 ![Screenshot](screenshots/screenshot2.png)
+
 ![Screenshot](screenshots/screenshot3.png)
+
 ![Screenshot](screenshots/screenshot4.png)
+
 ![Screenshot](screenshots/screenshot5.png)
+
 ![Screenshot](screenshots/screenshot6.png)
+
 ![Screenshot](screenshots/screenshot8.png)
+
 ![Screenshot](screenshots/screenshot7.png)
+
 ![Screenshot](screenshots/screenshot9.png)
