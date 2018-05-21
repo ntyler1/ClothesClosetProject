@@ -78,5 +78,13 @@
 
 ##Program Screenshots
 
-![Screenshot](screenshot/mainmenu.png)
-![Screenshot](screenshot/screenshot1.png)
+![Screenshot](screenshots/mainmenu.png)
+![Screenshot](screenshots/screenshot1.png)
+![Screenshot](screenshots/screenshot2.png)
+![Screenshot](screenshots/screenshot3.png)
+![Screenshot](screenshots/screenshot4.png)
+![Screenshot](screenshots/screenshot5.png)
+![Screenshot](screenshots/screenshot6.png)
+![Screenshot](screenshots/screenshot8.png)
+![Screenshot](screenshots/screenshot7.png)
+![Screenshot](screenshots/screenshot9.png)
